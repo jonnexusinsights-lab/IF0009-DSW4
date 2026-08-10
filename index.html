@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal de Presentaciones - Desarrollo de Software IV</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-gradient: linear-gradient(135deg, #0b0f19 0%, #111827 50%, #1e1b4b 100%);
+            --card-bg: rgba(30, 41, 59, 0.45);
+            --card-border: rgba(255, 255, 255, 0.08);
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --accent-blue: #38bdf8;
+            --accent-indigo: #818cf8;
+            --accent-rose: #f43f5e;
+            --glass-blur: blur(12px);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-gradient);
+            color: var(--text-primary);
+            min-height: 100vh;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        /* Portal Header */
+        header {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            padding-bottom: 30px;
+        }
+
+        .ucr-badge {
+            background: rgba(56, 189, 248, 0.1);
+            border: 1px solid var(--accent-blue);
+            color: var(--accent-blue);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 2.8rem;
+            font-weight: 800;
+            background: linear-gradient(to right, var(--text-primary), var(--accent-indigo));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .meta-info {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .meta-info span strong {
+            color: var(--text-primary);
+        }
+
+        /* Modules Grid Layout */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+            gap: 30px;
+        }
+
+        /* Glassmorphic Card */
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 24px;
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 10px 30px -15px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-blue), var(--accent-indigo));
+            opacity: 0.8;
+        }
+
+        .card.disabled::before {
+            background: rgba(148, 163, 184, 0.3);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 20px 40px -15px rgba(56, 189, 248, 0.15);
+        }
+
+        .card.disabled:hover {
+            transform: none;
+            border-color: var(--card-border);
+            box-shadow: 0 10px 30px -15px rgba(0, 0, 0, 0.3);
+        }
+
+        .card-header h2 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 6px;
+        }
+
+        .card-header p {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        /* Presentation Links List */
+        .links-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .presentation-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 16px;
+            background: rgba(15, 23, 42, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            border-radius: 8px;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .presentation-item:hover {
+            background: rgba(56, 189, 248, 0.08);
+            border-color: rgba(56, 189, 248, 0.25);
+            padding-left: 20px;
+        }
+
+        .item-info {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .item-title {
+            font-size: 0.92rem;
+            font-weight: 500;
+            color: var(--text-primary);
+            transition: color 0.2s ease;
+        }
+
+        .presentation-item:hover .item-title {
+            color: var(--accent-blue);
+        }
+
+        .item-meta {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+        }
+
+        .badge-active {
+            background: rgba(34, 197, 94, 0.15);
+            color: #4ade80;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .badge-upcoming {
+            background: rgba(148, 163, 184, 0.1);
+            color: var(--text-secondary);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .upcoming-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 16px;
+            background: rgba(255, 255, 255, 0.01);
+            border: 1px solid transparent;
+            border-radius: 8px;
+            cursor: not-allowed;
+        }
+
+        .upcoming-item .item-title {
+            color: rgba(148, 163, 184, 0.5);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        footer.portal-footer {
+            margin-top: 50px;
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding-top: 20px;
+            width: 100%;
+            max-width: 1200px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        
+        <header>
+            <div class="ucr-badge">Universidad de Costa Rica</div>
+            <h1>Desarrollo de Software IV</h1>
+            <div class="meta-info">
+                <span>Recinto: <strong>Paraíso</strong></span>
+                <span>Código: <strong>IF0009</strong></span>
+                <span>Profesor: <strong>Mag. Jonathan Granados C.</strong></span>
+                <span>Ciclo: <strong>II-2026</strong></span>
+            </div>
+        </header>
+
+        <div class="grid">
+            
+            <!-- MÓDULO 1: FUNDAMENTOS WEB -->
+            <div class="card">
+                <div class="card-header">
+                    <h2>Módulo 1: Fundamentos Web</h2>
+                    <p>Evolución, arquitectura distribuida y pila completa.</p>
+                </div>
+                <div class="links-list">
+                    <a href="Temas/01_Fundamentos_Desarrollo_Web/1.1_Aplicaciones_Web/1.1_Aplicaciones_Web_Slides.html" class="presentation-item" target="_blank">
+                        <div class="item-info">
+                            <span class="item-title">1.1 Aplicaciones Web</span>
+                            <span class="item-meta">Arquitectura Cliente-Servidor e HTTP</span>
+                        </div>
+                        <span class="badge-active">Disponible</span>
+                    </a>
+                    
+                    <a href="Temas/01_Fundamentos_Desarrollo_Web/1.2_Pila_Completa/1.2_Pila_Completa_Slides.html" class="presentation-item" target="_blank">
+                        <div class="item-info">
+                            <span class="item-title">1.2 Pila Completa</span>
+                            <span class="item-meta">Desarrollo Full-Stack (Back / Front)</span>
+                        </div>
+                        <span class="badge-active">Disponible</span>
+                    </a>
+                    
+                    <div class="upcoming-item">
+                        <div class="item-info">
+                            <span class="item-title">1.3 Tendencias</span>
+                            <span class="item-meta">MPA / SPA / PWA / Nativo</span>
+                        </div>
+                        <span class="badge-upcoming">Próximamente</span>
+                    </div>
+
+                    <div class="upcoming-item">
+                        <div class="item-info">
+                            <span class="item-title">1.4 Protocolos y Sockets</span>
+                            <span class="item-meta">Sockets TCP en Java nativo</span>
+                        </div>
+                        <span class="badge-upcoming">Próximamente</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MÓDULO 2: TECNOLOGÍAS BACK-END -->
+            <div class="card disabled">
+                <div class="card-header">
+                    <h2>Módulo 2: Tecnologías Back-end</h2>
+                    <p>Modelos REST, inyección de dependencias y servicios web.</p>
+                </div>
+                <div class="links-list">
+                    <div class="upcoming-item">
+                        <div class="item-info">
+                            <span class="item-title">2.1 Inyección de Dependencias</span>
+                            <span class="item-meta">Patrón e implementaciones</span>
+                        </div>
+                        <span class="badge-upcoming">Próximamente</span>
+                    </div>
+                    <div class="upcoming-item">
+                        <div class="item-info">
+                            <span class="item-title">2.2 Web APIs RESTful</span>
+                            <span class="item-meta">Controladores y enrutamiento</span>
+                        </div>
+                        <span class="badge-upcoming">Próximamente</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MÓDULO 3: TECNOLOGÍAS FRONT-END -->
+            <div class="card disabled">
+                <div class="card-header">
+                    <h2>Módulo 3: Tecnologías Front-end</h2>
+                    <p>Frameworks de cliente SPA y maquetación interactiva.</p>
+                </div>
+                <div class="links-list">
+                    <div class="upcoming-item">
+                        <div class="item-info">
+                            <span class="item-title">3.1 Arquitectura Angular</span>
+                            <span class="item-meta">Módulos, Componentes y Directivas</span>
+                        </div>
+                        <span class="badge-upcoming">Próximamente</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MÓDULO 4: PERSISTENCIA DE DATOS -->
+            <div class="card disabled">
+                <div class="card-header">
+                    <h2>Módulo 4: Persistencia de Datos</h2>
+                    <p>Mapeo objeto-relacional y persistencia avanzada.</p>
+                </div>
+                <div class="links-list">
+                    <div class="upcoming-item">
+                        <div class="item-info">
+                            <span class="item-title">4.1 ORM (Mapeo de Datos)</span>
+                            <span class="item-meta">JPA / Hibernate en backend</span>
+                        </div>
+                        <span class="badge-upcoming">Próximamente</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <footer class="portal-footer">
+            <p>© 2026 Universidad de Costa Rica - Carrera de Informática Empresarial</p>
+            <p style="margin-top: 5px; color: rgba(148, 163, 184, 0.6);">IF0009 - Desarrollo de Software IV • Recinto de Paraíso</p>
+        </footer>
+
+    </div>
+</body>
+</html>
