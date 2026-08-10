@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <title>Presentación - Desarrollo de Software IV</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <!-- Reveal.js Base Stylesheets -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reset.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.css">
+    
+    <!-- Tokyo Night Dark Theme for Code Syntax Resaltation -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/tokyo-night-dark.min.css">
+
+    <!-- Premium Google Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* Modern Web Design Aesthetics & Layout Tokens */
+        .reveal {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0b0f19 0%, #111827 50%, #1e1b4b 100%);
+            color: #f8fafc;
+        }
+        
+        .reveal .slides section {
+            font-family: 'Inter', sans-serif;
+            text-align: left;
+            padding: 45px 60px;
+            box-sizing: border-box;
+        }
+        
+        /* Centered Cover Slide Layout */
+        .reveal .slides section.lead-slide {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+        
+        /* Premium Typography Styles */
+        .reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6 {
+            font-family: 'Outfit', sans-serif;
+            text-transform: none;
+            color: #38bdf8;
+            font-weight: 800;
+            text-shadow: none;
+        }
+        
+        .reveal h1 {
+            font-size: 2.1em;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #3b82f6;
+            padding-bottom: 12px;
+        }
+        
+        .reveal .lead-slide h1 {
+            border-bottom: none;
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            color: #38bdf8;
+        }
+        
+        .reveal h2 {
+            font-size: 1.35em;
+            color: #818cf8;
+            font-weight: 700;
+            margin-top: 0px;
+        }
+        
+        .reveal .lead-slide h2 {
+            font-size: 1.55em;
+            color: #818cf8;
+            margin-bottom: 30px;
+        }
+        
+        .reveal h3 {
+            font-size: 1.1em;
+            color: #a78bfa;
+        }
+        
+        /* List and Text Formatting */
+        .reveal p, .reveal li {
+            color: #cbd5e1;
+            line-height: 1.6;
+            font-size: 0.9em;
+        }
+        
+        .reveal ul {
+            list-style-type: square;
+            margin-left: 1.5em;
+        }
+        
+        .reveal li {
+            margin-bottom: 12px;
+        }
+        
+        .reveal strong {
+            color: #f43f5e;
+            font-weight: 600;
+        }
+        
+        .reveal em {
+            color: #fb7185;
+            font-style: italic;
+        }
+        
+        /* Code Block Containers and Inlines */
+        .reveal code {
+            font-family: 'Fira Code', monospace;
+            background-color: #030712;
+            color: #38bdf8;
+            border-radius: 4px;
+            padding: 2px 8px;
+            font-size: 0.85em;
+        }
+        
+        .reveal pre {
+            background-color: #030712 !important;
+            border: 1px solid #1f2937;
+            border-radius: 10px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
+            width: 100%;
+            margin: 20px 0;
+            box-sizing: border-box;
+        }
+        
+        .reveal pre code {
+            background-color: transparent;
+            color: inherit;
+            font-size: 0.8em;
+            line-height: 1.55;
+            padding: 18px;
+            max-height: 520px;
+        }
+        
+        /* Control Nav Arrows & Progress Bar */
+        .reveal .controls-arrow {
+            color: #38bdf8 !important;
+        }
+        
+        .reveal .progress span {
+            background-color: #38bdf8 !important;
+        }
+
+        /* Custom style overrides parsed from Marp frontmatter */
+        section {
+  font-family: 'Outfit', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  padding: 40px;
+  background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+}
+h1 {
+  color: #38bdf8;
+  font-size: 2.5em;
+}
+h2 {
+  color: #38bdf8;
+  border-bottom: 2px solid #3b82f6;
+}
+h3 {
+  color: #60a5fa;
+}
+footer {
+  font-size: 0.5em;
+  color: #64748b;
+}
+code {
+  background-color: #1e293b;
+  color: #38bdf8;
+}
+pre {
+  background-color: #0f172a;
+  border: 1px solid #334155;
+}
+span.highlight {
+  color: #fbbf24;
+  font-weight: bold;
+}
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <section >
+<h1>Introducción a GitHub y Git</h1>
+<h3>Colaboración Eficiente, Gestión de Versiones y Flujos de Trabajo Asistidos</h3>
+
+<strong>Curso:</strong> IF0009 - Desarrollo de Software IV
+<strong>Docente:</strong> Mag. Jonathan Granados C.
+<strong>Universidad de Costa Rica</strong>
+            </section>
+
+            <section >
+<h2>Git vs GitHub: Diferencias Fundamentales</h2>
+
+<ul>
+<li><strong>Git (Local):</strong>
+<ul>
+<li>Motor de control de versiones distribuido.
+</li>
+<li>Funciona localmente en su máquina, sin conexión a Internet.
+</li>
+<li>Registra el historial de cambios mediante instantáneas (<em>snapshots</em>).
+</li>
+</ul>
+</li>
+</ul>
+
+<ul>
+<li><strong>GitHub (Remoto):</strong>
+<ul>
+<li>Plataforma en la nube para alojar repositorios Git.
+</li>
+<li>Permite la colaboración mediante herramientas de revisión y gestión.
+</li>
+<li>Soporta Pull Requests, Issues y CI/CD.
+</li>
+</ul>
+</li>
+</ul>
+            </section>
+
+            <section >
+<h2>Flujo de Trabajo Básico en Git</h2>
+
+<pre><code class="language-text">[ Directorio Local ] --( git add )--&gt; [ Área Staging ]
+                                            |
+                                      ( git commit )
+                                            v
+[ GitHub (Remoto) ]  &lt;--( git push )-- [ Repositorio Local ]</code></pre>
+
+<ul>
+<li><strong><code>git add</code></strong>: Prepara archivos modificados.
+</li>
+<li><strong><code>git commit</code></strong>: Consolida los cambios en el historial local.
+</li>
+<li><strong><code>git push</code></strong>: Sube el historial de commits al servidor central.
+</li>
+</ul>
+            </section>
+
+            <section >
+<h2>Gestión de Ramas (Feature Branching)</h2>
+
+<ul>
+<li><strong>La rama <code>main</code> es sagrada:</strong> Siempre debe compilar y contener código estable de producción.
+</li>
+<li><strong>Ramas de características (<code>feature/</code>):</strong>
+<ul>
+<li>Se crean de manera temporal para trabajar de forma aislada.
+</li>
+<li>Evita interferencias en el trabajo de sus compañeros de equipo.
+</li>
+</ul>
+</li>
+<li><strong>Comando:</strong>
+</li>
+</ul>
+  <code>git checkout -b feature/mi-nueva-caracteristica</code>
+            </section>
+
+            <section >
+<h2>Pull Requests y Conflictos de Mezcla</h2>
+
+<ul>
+<li><strong>Pull Request (PR):</strong>
+<ul>
+<li>Propuesta formal para fusionar una rama temporal en <code>main</code>.
+</li>
+<li>Facilita la revisión de código por pares y la retroalimentación.
+</li>
+</ul>
+</li>
+<li><strong>Conflictos de Mezcla (Merge Conflicts):</strong>
+<ul>
+<li>Ocurren cuando dos ramas editan las mismas líneas de un archivo.
+</li>
+<li>Git detiene la fusión y requiere resolución humana manual.
+</li>
+<li><span class="highlight">¡No es un error del sistema, es parte del flujo normal!</span>
+</li>
+</ul>
+</li>
+</ul>
+            </section>
+
+            <section >
+<h2>Git y GitHub en Visual Studio Code</h2>
+
+<h3>Operaciones sin Consola</h3>
+
+<ul>
+<li><strong>Pestaña Source Control:</strong> Muestra los archivos modificados con un diff visual intuitivo.
+</li>
+<li><strong>Gestión de Cambios Interactiva:</strong>
+<ul>
+<li>Haga clic en <code>+</code> para preparar (stage) cambios.
+</li>
+<li>Escriba el mensaje del commit y confirme de forma gráfica.
+</li>
+</ul>
+</li>
+<li><strong>Editor de Conflictos Visual:</strong>
+<ul>
+<li>VS Code resalta el conflicto y provee botones rápidos para aceptar cambios locales, entrantes o ambos.
+</li>
+</ul>
+</li>
+</ul>
+            </section>
+
+            <section >
+<h2>Control de Versiones con Google Antigravity</h2>
+
+<h3>Asistencia Inteligente de Desarrollo</h3>
+
+<ul>
+<li><strong>Commits Semánticos Automáticos:</strong>
+<ul>
+<li>La IA lee su <em>git diff</em> y genera mensajes detallados siguiendo estándares profesionales.
+</li>
+</ul>
+</li>
+<li><strong>Resolución Asistida de Conflictos:</strong>
+<ul>
+<li>Delegue el análisis a Google Antigravity.
+</li>
+<li>La IA evalúa la coherencia lógica de ambas versiones y resuelve el conflicto sin romper la compilación de Maven.
+</li>
+</ul>
+</li>
+<li><strong>Sanitización de Repositorios:</strong>
+<ul>
+<li>La IA le ayuda a configurar archivos <code>.gitignore</code> para no subir claves ni carpetas innecesarias (como <code>target/</code>).
+</li>
+</ul>
+</li>
+</ul>
+            </section>
+
+            <section >
+<h2>Discusión y Preguntas</h2>
+
+<ul>
+<li>¿Qué beneficios aporta la revisión de código mediante Pull Requests a nivel de aprendizaje en el curso?
+</li>
+<li>¿Cómo contribuye el uso correcto de <code>.gitignore</code> a la seguridad informática de su proyecto y de su organización?
+</li>
+<li>¿Qué ventajas le ofrece el uso de la IA Google Antigravity al rastrear o documentar cambios en su historial de Git?
+</li>
+</ul>
+            </section>
+
+        </div>
+    </div>
+
+    <!-- Highlight.js and Reveal.js Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.js"></script>
+
+    <script>
+        // Initialize Highlight.js for code syntax coloring
+        hljs.highlightAll();
+
+        // Initialize Reveal.js with modern layout configurations
+        Reveal.initialize({
+            hash: true,
+            respondToHashChanges: true,
+            history: true,
+            transition: 'slide', // none/fade/slide/convex/concave/zoom
+            transitionSpeed: 'default',
+            backgroundTransition: 'fade',
+            width: 960,
+            height: 700,
+            margin: 0.05,
+            minScale: 0.2,
+            maxScale: 2.0,
+            plugins: []
+        });
+    </script>
+</body>
+</html>
