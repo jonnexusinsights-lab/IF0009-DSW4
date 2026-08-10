@@ -8,6 +8,8 @@ Este documento consolidado sirve como la **única fuente de verdad (Single Sourc
 
 - **Sigla:** IF0009
 - **Nombre:** Desarrollo de Software IV
+- **Docente:** Mag. Jonathan Granados C.
+- **Ciclo:** II Ciclo 2026 (II-2026)
 - **Tipo de Curso:** Teórico-práctico
 - **Créditos:** 4 créditos
 - **Horas Lectivas:** 8 horas semanales (3 horas de teoría, 5 horas de práctica)
@@ -271,15 +273,20 @@ Planificacion Lecciones/
 | [agentic_knowledge](file:///c:/Users/jonat/OneDrive/Documentos/UCR-2026/IF0009/Planificacion%20Lecciones/agentic_knowledge) | [project_context.md](file:///c:/Users/jonat/OneDrive/Documentos/UCR-2026/IF0009/Planificacion%20Lecciones/agentic_knowledge/project_context.md) | Contexto de Verdad | Contexto del Asistente | [x] Completado |
 | [Temas/01_Fundamentos_Desarrollo_Web/1.1_Aplicaciones_Web](file:///c:/Users/jonat/OneDrive/Documentos/UCR-2026/IF0009/Planificacion%20Lecciones/Temas/01_Fundamentos_Desarrollo_Web/1.1_Aplicaciones_Web) | [1.1_Aplicaciones_Web.md](file:///c:/Users/jonat/OneDrive/Documentos/UCR-2026/IF0009/Planificacion%20Lecciones/Temas/01_Fundamentos_Desarrollo_Web/1.1_Aplicaciones_Web/1.1_Aplicaciones_Web.md) | Lectura Conceptual | ModeTheory | [x] Completado |
 | [Temas/01_Fundamentos_Desarrollo_Web/1.1_Aplicaciones_Web](file:///c:/Users/jonat/OneDrive/Documentos/UCR-2026/IF0009/Planificacion%20Lecciones/Temas/01_Fundamentos_Desarrollo_Web/1.1_Aplicaciones_Web) | [1.1_Aplicaciones_Web_Slides.md](file:///c:/Users/jonat/OneDrive/Documentos/UCR-2026/IF0009/Planificacion%20Lecciones/Temas/01_Fundamentos_Desarrollo_Web/1.1_Aplicaciones_Web/1.1_Aplicaciones_Web_Slides.md) | Diapositivas Marp | ModePresentation | [x] Completado |
+| [Temas/01_Fundamentos_Desarrollo_Web/1.1_Aplicaciones_Web](file:///c:/Users/jonat/OneDrive/Documentos/UCR-2026/IF0009/Planificacion%20Lecciones/Temas/01_Fundamentos_Desarrollo_Web/1.1_Aplicaciones_Web) | [1.1_Aplicaciones_Web_Slides.html](file:///c:/Users/jonat/OneDrive/Documentos/UCR-2026/IF0009/Planificacion%20Lecciones/Temas/01_Fundamentos_Desarrollo_Web/1.1_Aplicaciones_Web/1.1_Aplicaciones_Web_Slides.html) | Presentación Interactiva HTML | Compilador Python | [x] Completado |
+| [src/python_utils_src](file:///c:/Users/jonat/OneDrive/Documentos/UCR-2026/IF0009/Planificacion%20Lecciones/src/python_utils_src) | [marp_to_reveal.py](file:///c:/Users/jonat/OneDrive/Documentos/UCR-2026/IF0009/Planificacion%20Lecciones/src/python_utils_src/marp_to_reveal.py) | Compilador de Presentaciones | Script Útil | [x] Completado |
+| [Temas/01_Fundamentos_Desarrollo_Web/1.2_Pila_Completa](file:///c:/Users/jonat/OneDrive/Documentos/UCR-2026/IF0009/Planificacion%20Lecciones/Temas/01_Fundamentos_Desarrollo_Web/1.2_Pila_Completa) | [1.2_Pila_Completa.md](file:///c:/Users/jonat/OneDrive/Documentos/UCR-2026/IF0009/Planificacion%20Lecciones/Temas/01_Fundamentos_Desarrollo_Web/1.2_Pila_Completa/1.2_Pila_Completa.md) | Lectura Conceptual | ModeTheory | [x] Completado |
+| [Temas/01_Fundamentos_Desarrollo_Web/1.2_Pila_Completa](file:///c:/Users/jonat/OneDrive/Documentos/UCR-2026/IF0009/Planificacion%20Lecciones/Temas/01_Fundamentos_Desarrollo_Web/1.2_Pila_Completa) | [1.2_Pila_Completa_Slides.md](file:///c:/Users/jonat/OneDrive/Documentos/UCR-2026/IF0009/Planificacion%20Lecciones/Temas/01_Fundamentos_Desarrollo_Web/1.2_Pila_Completa/1.2_Pila_Completa_Slides.md) | Diapositivas Marp | ModePresentation | [x] Completado |
+| [Temas/01_Fundamentos_Desarrollo_Web/1.2_Pila_Completa](file:///c:/Users/jonat/OneDrive/Documentos/UCR-2026/IF0009/Planificacion%20Lecciones/Temas/01_Fundamentos_Desarrollo_Web/1.2_Pila_Completa) | [1.2_Pila_Completa_Slides.html](file:///c:/Users/jonat/OneDrive/Documentos/UCR-2026/IF0009/Planificacion%20Lecciones/Temas/01_Fundamentos_Desarrollo_Web/1.2_Pila_Completa/1.2_Pila_Completa_Slides.html) | Presentación Interactiva HTML | Compilador Python | [x] Completado |
 
 ---
 
 ## 🚀 Planificación de Próximas Tareas
 
 1. **Próxima Tarea Prioritaria:**
-   - Iniciar la generación de contenidos conceptuales (lecturas teóricas) y diapositivas (formato Marp) para el subtema **1.2 Enfoque de pila completa (Full Stack Development)** bajo `01_Fundamentos_Desarrollo_Web/1.2_Pila_Completa/` utilizando `ModeTheory` y `ModePresentation` de manera combinada.
+   - Iniciar la generación de contenidos conceptuales (lecturas teóricas) y diapositivas (formato Marp) para el subtema **1.3 Tendencias (MPA/SPA/PWA/nativa)** bajo `01_Fundamentos_Desarrollo_Web/1.3_Tendencias/` utilizando `ModeTheory` y `ModePresentation` de manera combinada.
 2. **Tareas Pendientes (Próximas Sesiones):**
-   - Seguir progresivamente con los subtemas 1.3 y 1.4 de Fundamentos Web.
+   - Seguir progresivamente con el subtema 1.4 de Fundamentos Web.
    - Redacción de laboratorios prácticos utilizando `ModeLab`.
    - Formulación de cuestionarios/quices utilizando `ModeQuiz`.
    - Integración progresiva de todos los módulos hasta completar el contenido total del curso.

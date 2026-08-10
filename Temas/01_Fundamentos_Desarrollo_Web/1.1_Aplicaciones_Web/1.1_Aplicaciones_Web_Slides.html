@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <title>Presentación - Desarrollo de Software IV</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <!-- Reveal.js Base Stylesheets -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reset.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.css">
+    
+    <!-- Tokyo Night Dark Theme for Code Syntax Resaltation -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/tokyo-night-dark.min.css">
+
+    <!-- Premium Google Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* Modern Web Design Aesthetics & Layout Tokens */
+        .reveal {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0b0f19 0%, #111827 50%, #1e1b4b 100%);
+            color: #f8fafc;
+        }
+        
+        .reveal .slides section {
+            font-family: 'Inter', sans-serif;
+            text-align: left;
+            padding: 45px 60px;
+            box-sizing: border-box;
+        }
+        
+        /* Centered Cover Slide Layout */
+        .reveal .slides section.lead-slide {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+        
+        /* Premium Typography Styles */
+        .reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6 {
+            font-family: 'Outfit', sans-serif;
+            text-transform: none;
+            color: #38bdf8;
+            font-weight: 800;
+            text-shadow: none;
+        }
+        
+        .reveal h1 {
+            font-size: 2.1em;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #3b82f6;
+            padding-bottom: 12px;
+        }
+        
+        .reveal .lead-slide h1 {
+            border-bottom: none;
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            color: #38bdf8;
+        }
+        
+        .reveal h2 {
+            font-size: 1.35em;
+            color: #818cf8;
+            font-weight: 700;
+            margin-top: 0px;
+        }
+        
+        .reveal .lead-slide h2 {
+            font-size: 1.55em;
+            color: #818cf8;
+            margin-bottom: 30px;
+        }
+        
+        .reveal h3 {
+            font-size: 1.1em;
+            color: #a78bfa;
+        }
+        
+        /* List and Text Formatting */
+        .reveal p, .reveal li {
+            color: #cbd5e1;
+            line-height: 1.6;
+            font-size: 0.9em;
+        }
+        
+        .reveal ul {
+            list-style-type: square;
+            margin-left: 1.5em;
+        }
+        
+        .reveal li {
+            margin-bottom: 12px;
+        }
+        
+        .reveal strong {
+            color: #f43f5e;
+            font-weight: 600;
+        }
+        
+        .reveal em {
+            color: #fb7185;
+            font-style: italic;
+        }
+        
+        /* Code Block Containers and Inlines */
+        .reveal code {
+            font-family: 'Fira Code', monospace;
+            background-color: #030712;
+            color: #38bdf8;
+            border-radius: 4px;
+            padding: 2px 8px;
+            font-size: 0.85em;
+        }
+        
+        .reveal pre {
+            background-color: #030712 !important;
+            border: 1px solid #1f2937;
+            border-radius: 10px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
+            width: 100%;
+            margin: 20px 0;
+            box-sizing: border-box;
+        }
+        
+        .reveal pre code {
+            background-color: transparent;
+            color: inherit;
+            font-size: 0.8em;
+            line-height: 1.55;
+            padding: 18px;
+            max-height: 520px;
+        }
+        
+        /* Control Nav Arrows & Progress Bar */
+        .reveal .controls-arrow {
+            color: #38bdf8 !important;
+        }
+        
+        .reveal .progress span {
+            background-color: #38bdf8 !important;
+        }
+
+        /* Custom style overrides parsed from Marp frontmatter */
+        section {
+  font-family: 'Outfit', 'Inter', sans-serif;
+  background: linear-gradient(135deg, #0b0f19 0%, #111827 50%, #1e1b4b 100%);
+  color: #f8fafc;
+  padding: 50px 70px;
+  font-size: 22px;
+}
+h1 {
+  color: #38bdf8;
+  font-size: 1.7em;
+  font-weight: 800;
+  margin-bottom: 12px;
+  border-bottom: 2px solid #3b82f6;
+  padding-bottom: 10px;
+}
+h2 {
+  color: #818cf8;
+  font-size: 1.25em;
+  margin-top: 0px;
+}
+p, li {
+  color: #cbd5e1;
+  line-height: 1.5;
+}
+ul {
+  margin-top: 10px;
+}
+li {
+  margin-bottom: 8px;
+}
+strong {
+  color: #f43f5e;
+  font-weight: 600;
+}
+code {
+  background-color: #030712;
+  color: #38bdf8;
+  border-radius: 4px;
+  padding: 2px 6px;
+  font-family: 'Fira Code', monospace;
+  font-size: 0.9em;
+}
+pre {
+  background-color: #030712 !important;
+  border: 1px solid #1f2937;
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 0.72em;
+  line-height: 1.4;
+}
+footer {
+  font-size: 0.5em;
+  color: #6b7280;
+  position: absolute;
+  bottom: 20px;
+  right: 50px;
+}
+.lead {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 60px;
+}
+.lead h1 {
+  border-bottom: none;
+  font-size: 2.3em;
+  color: #38bdf8;
+  margin-bottom: 15px;
+}
+.lead p {
+  font-size: 1.1em;
+  color: #9ca3af;
+}
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <section >
+<h1>IF0009 - Desarrollo de Software IV</h1>
+
+<h2>Tema 1.1: Aplicaciones Web — Evolución y Arquitectura Cliente-Servidor</h2>
+
+Universidad de Costa Rica <br>
+Sede del Atlántico - Recinto Paraíso <br>
+Carrera de Informática Empresarial <br>
+<strong>Profesor:</strong> Mag. Jonathan Granados C. <br>
+<strong>Semestre:</strong> II-2026
+
+<footer>UCR - Informática Empresarial</footer>
+            </section>
+
+            <section >
+<h1>¿Qué es una Aplicación Web Moderna?</h1>
+
+<ul>
+<li>Es un <strong>sistema de software distribuido</strong> estructurado sobre una arquitectura desacoplada para interactuar a través de redes locales o Internet.
+</li>
+<li><strong>Componentes Principales:</strong>
+<ul>
+<li><strong>Cliente (Front-end):</strong> Interfaz gráfica interactiva que se ejecuta en el navegador web del usuario.
+<ul>
+<li>Interpreta HTML.
+</li>
+<li>Interpreta CSS.
+</li>
+<li>Interpreta JavaScript.
+</li>
+</ul>
+</li>
+<li><strong>Servidor (Back-end):</strong> Ejecuta:
+<ul>
+<li>Lógica densa de negocios.
+</li>
+<li>Validación de datos de entrada.
+</li>
+<li>Control de accesos y seguridad.
+</li>
+<li>Persistencia remota.
+</li>
+</ul>
+</li>
+<li><strong>Protocolo de Comunicación:</strong> Conjunto de reglas estandarizadas de transporte (HTTP/HTTPS) que rigen el intercambio de información.
+</li>
+</ul>
+</li>
+</ul>
+
+<footer>Tema 1.1: Aplicaciones Web</footer>
+            </section>
+
+            <section >
+<h1>Anatomía del Modelo Cliente-Servidor</h1>
+
+<ul>
+<li><strong>Desacoplamiento Operativo:</strong> El cliente y el servidor tienen responsabilidades segregadas. El cliente no accede a las bases de datos directamente por razones de seguridad y abstracción.
+</li>
+<li><strong>Flujo Transaccional:</strong>
+<ol>
+<li>El <strong>Cliente</strong> inicia de forma activa una conexión para enviar una <strong>Petición (Request)</strong>.
+</li>
+<li>El <strong>Servidor</strong> (escuchando pasivamente en un puerto TCP) intercepta la petición, procesa la lógica asociada y devuelve una <strong>Respuesta (Response)</strong>.
+</li>
+<li>La conexión se mantiene abierta o se cierra según los encabezados de conexión del protocolo HTTP.
+</li>
+</ol>
+</li>
+</ul>
+
+<footer>Tema 1.1: Aplicaciones Web</footer>
+            </section>
+
+            <section >
+<h1>La Analogía del Restaurante de Alta Cocina</h1>
+
+<ul>
+<li><strong>El Comensal (El Cliente):</strong> Visualiza el menú (UI en navegador) y selecciona un plato. No cocina él mismo ni conoce las recetas internas.
+</li>
+<li><strong>El Mesero (Protocolo HTTP/HTTPS):</strong> Transporta la orden (Petición) desde la mesa hasta la cocina, garantizando que el mensaje siga el estándar de la casa. Luego trae de vuelta el platillo terminado (Respuesta).
+</li>
+<li><strong>La Cocina (El Servidor/Base de Datos):</strong> Procesa la orden de forma aislada. Consulta la despensa (Base de Datos) e implementa las recetas (Lógica de negocio).
+</li>
+<li><strong>Seguridad:</strong> Mantener a los comensales fuera de la cocina previene incidentes (inyecciones de código, accesos indebidos de datos).
+</li>
+</ul>
+
+<footer>Tema 1.1: Aplicaciones Web</footer>
+            </section>
+
+            <section >
+<h1>Evolución de la Web: Era 1.0 (Estática)</h1>
+
+<ul>
+<li><strong>Características (Década de 1990):</strong>
+<ul>
+<li>El servidor web era un simple despachador de archivos de texto almacenados en disco (<code>.html</code>, <code>.css</code>).
+</li>
+<li>Sin bases de datos dinámicas ni lógica interactiva compleja.
+</li>
+<li>Todo usuario que visitaba una dirección URL recibía exactamente el mismo archivo binario.
+</li>
+</ul>
+</li>
+<li><strong>Limitaciones:</strong>
+<ul>
+<li>Actualizar información implicaba reescribir código HTML y subir manualmente los archivos de nuevo a través de protocolos como FTP.
+</li>
+<li>Imposibilidad de manejar estados de sesión complejos:
+<ul>
+<li>Carritos de compra.
+</li>
+<li>Perfiles de usuario.
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+<footer>Tema 1.1: Aplicaciones Web</footer>
+            </section>
+
+            <section >
+<h1>Evolución de la Web: Era 2.0 (SSR y AJAX)</h1>
+
+<ul>
+<li><strong>Server-Side Rendering (SSR - Década de 2000):</strong>
+<ul>
+<li>Introducción de bases de datos relacionales y lenguajes backend:
+<ul>
+<li>Java Servlets.
+</li>
+<li>PHP.
+</li>
+<li>ASP.
+</li>
+</ul>
+</li>
+<li>El servidor procesa la lógica e inyecta dinámicamente datos en plantillas HTML antes de transmitirlas al cliente.
+</li>
+</ul>
+</li>
+<li><strong>Revolución AJAX (2005):</strong>
+<ul>
+<li><em>Asynchronous JavaScript and XML</em> habilitó la actualización asíncrona de partes específicas de la interfaz sin necesidad de refrescar toda la ventana del navegador.
+</li>
+<li>Redujo el consumo de ancho de banda y mejoró la usabilidad.
+</li>
+</ul>
+</li>
+</ul>
+
+<footer>Tema 1.1: Aplicaciones Web</footer>
+            </section>
+
+            <section >
+<h1>Evolución de la Web: Era SPA y APIs</h1>
+
+<ul>
+<li><strong>Single-Page Applications (SPA - Década de 2010):</strong>
+<ul>
+<li>El servidor únicamente despacha una plantilla HTML vacía y paquetes JavaScript/TypeScript iniciales.
+</li>
+<li>Frameworks de cliente (ej. <strong>Angular</strong>) manejan el enrutamiento interno y redibujan dinámicamente el DOM.
+</li>
+</ul>
+</li>
+<li><strong>Interfaces de Programación de Aplicaciones (APIs):</strong>
+<ul>
+<li>El servidor de backend se desacopla del diseño gráfico.
+</li>
+<li>Se convierte en una <strong>API RESTful</strong> que solo intercambia información cruda estructurada.
+</li>
+<li>El formato estándar de intercambio es <strong>JSON</strong>, reduciendo drásticamente la carga de la red.
+</li>
+</ul>
+</li>
+</ul>
+
+<footer>Tema 1.1: Aplicaciones Web</footer>
+            </section>
+
+            <section >
+<h1>El Protocolo HTTP: Anatomía del Request</h1>
+
+Cada petición enviada por el cliente al servidor contiene:
+<ul>
+<li><strong>Método HTTP (Verbos):</strong> Define la acción semántica:
+<ul>
+<li><code>GET</code>: Solicitar un recurso sin efectos colaterales en el servidor.
+</li>
+<li><code>POST</code>: Crear un nuevo recurso en el servidor.
+</li>
+<li><code>PUT</code>: Actualizar un recurso existente.
+</li>
+<li><code>DELETE</code>: Eliminar un recurso del sistema.
+</li>
+</ul>
+</li>
+<li><strong>URI / URL:</strong> Dirección de destino del recurso.
+</li>
+<li><strong>Headers (Encabezados):</strong> Metadatos de la petición:
+<ul>
+<li><code>Content-Type</code> (ej. <code>application/json</code>).
+</li>
+<li><code>Authorization</code> (ej. <code>Bearer <token></code>).
+</li>
+</ul>
+</li>
+<li><strong>Body (Cuerpo):</strong> Carga útil de datos (payload), común en <code>POST</code> o <code>PUT</code>.
+</li>
+</ul>
+
+<footer>Tema 1.1: Aplicaciones Web</footer>
+            </section>
+
+            <section >
+<h1>El Protocolo HTTP: Anatomía del Response (Códigos de Estado)</h1>
+
+Cada respuesta devuelta por el servidor contiene metadatos y un estado de ejecución:
+<ul>
+<li><strong>Código de Estado HTTP (Status Codes):</strong>
+<ul>
+<li><code>2xx</code> (Éxito):
+<ul>
+<li><code>200 OK</code> (Petición resuelta con éxito).
+</li>
+<li><code>201 Created</code> (Recurso creado con éxito).
+</li>
+</ul>
+</li>
+<li><code>3xx</code> (Redirección):
+<ul>
+<li><code>301 Moved Permanently</code> (Redirección a nueva URI).
+</li>
+</ul>
+</li>
+<li><code>4xx</code> (Error del Cliente):
+<ul>
+<li><code>400 Bad Request</code> (Sintaxis inválida o datos incorrectos).
+</li>
+<li><code>401 Unauthorized</code> (Autenticación requerida).
+</li>
+<li><code>404 Not Found</code> (Recurso inexistente).
+</li>
+</ul>
+</li>
+<li><code>5xx</code> (Error del Servidor):
+<ul>
+<li><code>500 Internal Server Error</code> (Excepción no controlada en el backend).
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+<footer>Tema 1.1: Aplicaciones Web</footer>
+            </section>
+
+            <section >
+<h1>El Protocolo HTTP: Anatomía del Response (Encabezados y Cuerpo)</h1>
+
+<ul>
+<li><strong>Headers (Encabezados de Respuesta):</strong> Metadatos clave enviados por el servidor:
+<ul>
+<li><code>Content-Type</code> (ej. <code>application/json; charset=utf-8</code>).
+</li>
+<li><code>Access-Control-Allow-Origin</code> (Permisos CORS).
+</li>
+<li><code>Set-Cookie</code> (Creación de cookies de sesión en el cliente).
+</li>
+</ul>
+</li>
+<li><strong>Body (Cuerpo de la Respuesta):</strong> La carga útil (<em>payload</em>) del recurso solicitado:
+<ul>
+<li>Estructuras web: HTML, CSS, JavaScript.
+</li>
+<li>Datos crudos: JSON (estándar para APIs de Angular y móviles).
+</li>
+<li>Binarios: Imágenes, PDFs o documentos descargables.
+</li>
+</ul>
+</li>
+</ul>
+
+<footer>Tema 1.1: Aplicaciones Web</footer>
+            </section>
+
+            <section >
+<h1>Implementación en Java: Servidor HTTP Nativo</h1>
+
+A nivel de red, un servidor se encarga de abrir sockets y enrutar las peticiones. En Java se logra mediante <code>com.sun.net.httpserver.HttpServer</code>:
+
+<pre><code class="language-java">import com.sun.net.httpserver.HttpServer;
+import com.sun.net.httpserver.HttpHandler;
+import com.sun.net.httpserver.HttpExchange;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.net.InetSocketAddress;
+import java.nio.charset.StandardCharsets;
+
+public class ServidorWeb {
+    public static void main(String[] args) throws IOException {
+        int puerto = 3000;
+        HttpServer server = HttpServer.create(new InetSocketAddress(puerto), 0);
+        
+        // Registrar rutas (Contextos) y asociar manejadores
+        server.createContext("/api/info", new InfoHandler());
+        server.createContext("/", new HomeHandler());
+        
+        server.setExecutor(null); // Usar ejecutor predeterminado
+        System.out.println("Servidor Java escuchando en puerto " + puerto);
+        server.start();
+    }
+    // (Manejadores de rutas detallados en la siguiente diapositiva...)
+}</code></pre>
+
+<footer>Tema 1.1: Aplicaciones Web</footer>
+            </section>
+
+            <section >
+<h1>Implementación en Java: Manejadores de Rutas</h1>
+
+A continuación se detalla cómo procesar los objetos de petición y respuesta usando <code>HttpHandler</code>:
+
+<pre><code class="language-java">static class InfoHandler implements HttpHandler {
+    @Override
+    public void handle(HttpExchange exchange) throws IOException {
+        if ("GET".equalsIgnoreCase(exchange.getRequestMethod())) {
+            // Configurar encabezados CORS y tipo de respuesta
+            exchange.getResponseHeaders().set("Content-Type", "application/json; charset=utf-8");
+            exchange.getResponseHeaders().set("Access-Control-Allow-Origin", "*");
+            
+            String jsonResponse = "{\"curso\": \"IF0009\", \"servidor\": \"Java HttpServer\"}";
+            byte[] responseBytes = jsonResponse.getBytes(StandardCharsets.UTF_8);
+            
+            // Enviar headers (Status 200) y longitud del payload
+            exchange.sendResponseHeaders(200, responseBytes.length);
+            try (OutputStream os = exchange.getResponseBody()) {
+                os.write(responseBytes); // Escribir en el stream de respuesta
+            }
+        } else {
+            exchange.sendResponseHeaders(405, -1); // 405 Method Not Allowed
+        }
+    }
+}</code></pre>
+
+<footer>Tema 1.1: Aplicaciones Web</footer>
+            </section>
+
+            <section >
+<h1>Trampa Arquitectónica #1: Errores de CORS</h1>
+
+<ul>
+<li><strong>CORS (Cross-Origin Resource Sharing):</strong>
+<ul>
+<li>Mecanismo de seguridad implementado por los navegadores web.
+</li>
+<li>Evita llamadas cruzadas no autorizadas desde un origen cliente hacia un origen servidor.
+</li>
+<li><strong>Ejemplo de conflicto:</strong>
+<ul>
+<li>Origen Cliente: <code>http://localhost:4200</code> (Angular)
+</li>
+<li>Origen Servidor: <code>http://localhost:3000</code> (API Java)
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Solución:</strong>
+<ul>
+<li>El servidor debe agregar encabezados de respuesta CORS válidos:
+<ul>
+<li><code>Access-Control-Allow-Origin: *</code> o el dominio de confianza del cliente.
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+<footer>Tema 1.1: Aplicaciones Web</footer>
+            </section>
+
+            <section >
+<h1>Trampa Arquitectónica #2: Servidores Stateful</h1>
+
+<ul>
+<li><strong>Servidor Stateful (Con Estado):</strong>
+<ul>
+<li>Almazena datos de sesión del usuario activo directamente en la memoria caché del proceso del servidor de aplicaciones.
+</li>
+<li><strong>Problema:</strong> Si el tráfico aumenta y se requiere duplicar los servidores backend detrás de un balanceador de carga, el usuario perderá su sesión si es redirigido a otro nodo.
+</li>
+</ul>
+</li>
+<li><strong>Solución (Arquitectura Stateless):</strong>
+<ul>
+<li>Las APIs modernas deben ser sin estado.
+</li>
+<li>Toda información de autenticación se envía en cada request en forma de token firmado.
+</li>
+<li>El estándar de la industria es el uso de <strong>JWT</strong> (JSON Web Tokens).
+</li>
+</ul>
+</li>
+</ul>
+
+<footer>Tema 1.1: Aplicaciones Web</footer>
+            </section>
+
+            <section >
+<h1>Discusión y Preguntas de Reflexión</h1>
+
+Analice las siguientes interrogantes orientadas al diseño de sistemas en producción:
+
+<ol>
+<li>Si un sistema académico de matrícula universitaria enfrenta alta concurrencia de estudiantes y conexiones de red móviles inestables:
+<ul>
+<li><strong>¿Cuáles son los trade-offs de rendimiento inicial y latencia al usar una arquitectura SPA modular frente a un esquema MPA clásico?</strong>
+</li>
+<li><strong>¿Cómo afecta la indexación para motores de búsqueda (SEO) a ambas arquitecturas y qué tecnologías mitigan esto?</strong>
+</li>
+</ul>
+</li>
+</ol>
+
+<footer>Tema 1.1: Aplicaciones Web</footer>
+            </section>
+
+        </div>
+    </div>
+
+    <!-- Reveal.js Core and Plugins -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/plugin/markdown/markdown.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/plugin/highlight/highlight.js"></script>
+
+    <script>
+        // Init Reveal.js with modern layout configurations
+        Reveal.initialize({
+            hash: true,
+            respondToHashChanges: true,
+            history: true,
+            transition: 'slide', // none/fade/slide/convex/concave/zoom
+            transitionSpeed: 'default',
+            backgroundTransition: 'fade',
+            width: 960,
+            height: 700,
+            margin: 0.05,
+            minScale: 0.2,
+            maxScale: 2.0,
+            plugins: [ RevealMarkdown, RevealHighlight ]
+        });
+    </script>
+</body>
+</html>
