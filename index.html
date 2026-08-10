@@ -13,13 +13,14 @@
     <style>
         :root {
             --bg-gradient: linear-gradient(135deg, #0b0f19 0%, #111827 50%, #1e1b4b 100%);
-            --card-bg: rgba(30, 41, 59, 0.45);
+            --card-bg: rgba(30, 41, 59, 0.4);
             --card-border: rgba(255, 255, 255, 0.08);
             --text-primary: #f8fafc;
             --text-secondary: #94a3b8;
             --accent-blue: #38bdf8;
             --accent-indigo: #818cf8;
-            --accent-rose: #f43f5e;
+            --accent-green: #4ade80;
+            --accent-purple: #c084fc;
             --glass-blur: blur(12px);
         }
 
@@ -34,7 +35,7 @@
             background: var(--bg-gradient);
             color: var(--text-primary);
             min-height: 100vh;
-            padding: 40px 20px;
+            padding: 45px 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -42,11 +43,11 @@
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1250px;
             width: 100%;
             display: flex;
             flex-direction: column;
-            gap: 40px;
+            gap: 45px;
             animation: fadeIn 0.8s ease-out;
         }
 
@@ -58,7 +59,7 @@
             align-items: center;
             gap: 15px;
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            padding-bottom: 30px;
+            padding-bottom: 35px;
         }
 
         .ucr-badge {
@@ -75,18 +76,19 @@
 
         h1 {
             font-family: 'Outfit', sans-serif;
-            font-size: 2.8rem;
-            font-weight: 800;
+            font-size: 3rem;
+            font-weight: 900;
             background: linear-gradient(to right, var(--text-primary), var(--accent-indigo));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            margin-top: 5px;
         }
 
         .meta-info {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 20px;
+            gap: 24px;
             color: var(--text-secondary);
             font-size: 0.95rem;
         }
@@ -98,7 +100,7 @@
         /* Modules Grid Layout */
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
             gap: 30px;
         }
 
@@ -106,13 +108,13 @@
         .card {
             background: var(--card-bg);
             border: 1px solid var(--card-border);
-            border-radius: 16px;
-            padding: 24px;
+            border-radius: 20px;
+            padding: 26px;
             backdrop-filter: var(--glass-blur);
             -webkit-backdrop-filter: var(--glass-blur);
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 22px;
             transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
             box-shadow: 0 10px 30px -15px rgba(0, 0, 0, 0.3);
             position: relative;
@@ -125,19 +127,19 @@
             top: 0;
             left: 0;
             right: 0;
-            height: 3px;
+            height: 4px;
             background: linear-gradient(90deg, var(--accent-blue), var(--accent-indigo));
-            opacity: 0.8;
+            opacity: 0.85;
         }
 
         .card.disabled::before {
-            background: rgba(148, 163, 184, 0.3);
+            background: rgba(148, 163, 184, 0.25);
         }
 
         .card:hover {
             transform: translateY(-5px);
             border-color: rgba(255, 255, 255, 0.15);
-            box-shadow: 0 20px 40px -15px rgba(56, 189, 248, 0.15);
+            box-shadow: 0 20px 40px -15px rgba(56, 189, 248, 0.12);
         }
 
         .card.disabled:hover {
@@ -149,7 +151,7 @@
         .card-header h2 {
             font-family: 'Outfit', sans-serif;
             font-size: 1.35rem;
-            font-weight: 700;
+            font-weight: 800;
             color: var(--text-primary);
             margin-bottom: 6px;
         }
@@ -157,6 +159,7 @@
         .card-header p {
             font-size: 0.85rem;
             color: var(--text-secondary);
+            line-height: 1.4;
         }
 
         /* Presentation Links List */
@@ -170,17 +173,17 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 12px 16px;
-            background: rgba(15, 23, 42, 0.3);
+            padding: 14px 16px;
+            background: rgba(15, 23, 42, 0.4);
             border: 1px solid rgba(255, 255, 255, 0.03);
-            border-radius: 8px;
+            border-radius: 10px;
             text-decoration: none;
-            transition: all 0.2s ease;
+            transition: all 0.25s ease;
         }
 
         .presentation-item:hover {
             background: rgba(56, 189, 248, 0.08);
-            border-color: rgba(56, 189, 248, 0.25);
+            border-color: rgba(56, 189, 248, 0.3);
             padding-left: 20px;
         }
 
@@ -188,11 +191,13 @@
             display: flex;
             flex-direction: column;
             gap: 4px;
+            flex: 1;
+            padding-right: 10px;
         }
 
         .item-title {
             font-size: 0.92rem;
-            font-weight: 500;
+            font-weight: 600;
             color: var(--text-primary);
             transition: color 0.2s ease;
         }
@@ -202,43 +207,48 @@
         }
 
         .item-meta {
-            font-size: 0.75rem;
+            font-size: 0.76rem;
             color: var(--text-secondary);
+            line-height: 1.3;
         }
 
         .badge-active {
             background: rgba(34, 197, 94, 0.15);
-            color: #4ade80;
-            padding: 2px 8px;
-            border-radius: 4px;
+            color: var(--accent-green);
+            padding: 3px 10px;
+            border-radius: 6px;
             font-size: 0.7rem;
-            font-weight: 600;
+            font-weight: 700;
             text-transform: uppercase;
+            letter-spacing: 0.02em;
+            flex-shrink: 0;
         }
 
         .badge-upcoming {
-            background: rgba(148, 163, 184, 0.1);
-            color: var(--text-secondary);
-            padding: 2px 8px;
-            border-radius: 4px;
+            background: rgba(148, 163, 184, 0.08);
+            color: rgba(148, 163, 184, 0.6);
+            padding: 3px 10px;
+            border-radius: 6px;
             font-size: 0.7rem;
-            font-weight: 600;
+            font-weight: 700;
             text-transform: uppercase;
+            letter-spacing: 0.02em;
+            flex-shrink: 0;
         }
 
         .upcoming-item {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 12px 16px;
-            background: rgba(255, 255, 255, 0.01);
-            border: 1px solid transparent;
-            border-radius: 8px;
+            padding: 14px 16px;
+            background: rgba(255, 255, 255, 0.015);
+            border: 1px solid rgba(255, 255, 255, 0.01);
+            border-radius: 10px;
             cursor: not-allowed;
         }
 
         .upcoming-item .item-title {
-            color: rgba(148, 163, 184, 0.5);
+            color: rgba(148, 163, 184, 0.65);
         }
 
         /* Animations */
@@ -254,14 +264,13 @@
         }
 
         footer.portal-footer {
-            margin-top: 50px;
+            margin-top: 55px;
             text-align: center;
             color: var(--text-secondary);
             font-size: 0.8rem;
             border-top: 1px solid rgba(255, 255, 255, 0.05);
-            padding-top: 20px;
+            padding-top: 25px;
             width: 100%;
-            max-width: 1200px;
         }
     </style>
 </head>
@@ -281,25 +290,25 @@
 
         <div class="grid">
             
-            <!-- MÓDULO 1: FUNDAMENTOS WEB -->
+            <!-- TEMA 1: FUNDAMENTOS WEB -->
             <div class="card">
                 <div class="card-header">
-                    <h2>Módulo 1: Fundamentos Web</h2>
-                    <p>Evolución, arquitectura distribuida y pila completa.</p>
+                    <h2>Tema 1: Fundamentos Web</h2>
+                    <p>Evolución de la web, arquitectura distribuida y pila completa.</p>
                 </div>
                 <div class="links-list">
                     <a href="Temas/01_Fundamentos_Desarrollo_Web/1.1_Aplicaciones_Web/1.1_Aplicaciones_Web_Slides.html" class="presentation-item" target="_blank">
                         <div class="item-info">
                             <span class="item-title">1.1 Aplicaciones Web</span>
-                            <span class="item-meta">Arquitectura Cliente-Servidor e HTTP</span>
+                            <span class="item-meta">Evolución y arquitectura cliente-servidor nativa.</span>
                         </div>
                         <span class="badge-active">Disponible</span>
                     </a>
                     
                     <a href="Temas/01_Fundamentos_Desarrollo_Web/1.2_Pila_Completa/1.2_Pila_Completa_Slides.html" class="presentation-item" target="_blank">
                         <div class="item-info">
-                            <span class="item-title">1.2 Pila Completa</span>
-                            <span class="item-meta">Desarrollo Full-Stack (Back / Front)</span>
+                            <span class="item-title">1.2 Pila Completa (Full Stack)</span>
+                            <span class="item-meta">Responsabilidades e integración Backend / Frontend.</span>
                         </div>
                         <span class="badge-active">Disponible</span>
                     </a>
@@ -307,73 +316,197 @@
                     <div class="upcoming-item">
                         <div class="item-info">
                             <span class="item-title">1.3 Tendencias</span>
-                            <span class="item-meta">MPA / SPA / PWA / Nativo</span>
+                            <span class="item-meta">Multi-page (MPA), Single-page (SPA) y PWA.</span>
                         </div>
                         <span class="badge-upcoming">Próximamente</span>
                     </div>
 
                     <div class="upcoming-item">
                         <div class="item-info">
-                            <span class="item-title">1.4 Protocolos y Sockets</span>
-                            <span class="item-meta">Sockets TCP en Java nativo</span>
+                            <span class="item-title">1.4 Criterios de Selección</span>
+                            <span class="item-meta">Evaluación de frameworks y stacks de desarrollo.</span>
                         </div>
                         <span class="badge-upcoming">Próximamente</span>
                     </div>
                 </div>
             </div>
 
-            <!-- MÓDULO 2: TECNOLOGÍAS BACK-END -->
+            <!-- TEMA 2: CONFIGURACIÓN DEL AMBIENTE -->
             <div class="card disabled">
                 <div class="card-header">
-                    <h2>Módulo 2: Tecnologías Back-end</h2>
-                    <p>Modelos REST, inyección de dependencias y servicios web.</p>
+                    <h2>Tema 2: Ambiente de Desarrollo</h2>
+                    <p>Instalación de herramientas y control de versiones con Git.</p>
                 </div>
                 <div class="links-list">
                     <div class="upcoming-item">
                         <div class="item-info">
-                            <span class="item-title">2.1 Inyección de Dependencias</span>
-                            <span class="item-meta">Patrón e implementaciones</span>
+                            <span class="item-title">2.1 Configuración de Entornos</span>
+                            <span class="item-meta">SDKs, Node.js, CLIs, IDEs y Bases de Datos.</span>
                         </div>
                         <span class="badge-upcoming">Próximamente</span>
                     </div>
+                    
                     <div class="upcoming-item">
                         <div class="item-info">
-                            <span class="item-title">2.2 Web APIs RESTful</span>
-                            <span class="item-meta">Controladores y enrutamiento</span>
-                        </div>
-                        <span class="badge-upcoming">Próximamente</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- MÓDULO 3: TECNOLOGÍAS FRONT-END -->
-            <div class="card disabled">
-                <div class="card-header">
-                    <h2>Módulo 3: Tecnologías Front-end</h2>
-                    <p>Frameworks de cliente SPA y maquetación interactiva.</p>
-                </div>
-                <div class="links-list">
-                    <div class="upcoming-item">
-                        <div class="item-info">
-                            <span class="item-title">3.1 Arquitectura Angular</span>
-                            <span class="item-meta">Módulos, Componentes y Directivas</span>
+                            <span class="item-title">2.2 Control de Versiones (Git)</span>
+                            <span class="item-meta">Feature Branching, Pull Requests y resolución de conflictos.</span>
                         </div>
                         <span class="badge-upcoming">Próximamente</span>
                     </div>
                 </div>
             </div>
 
-            <!-- MÓDULO 4: PERSISTENCIA DE DATOS -->
+            <!-- TEMA 3: DESARROLLO BACK-END -->
             <div class="card disabled">
                 <div class="card-header">
-                    <h2>Módulo 4: Persistencia de Datos</h2>
-                    <p>Mapeo objeto-relacional y persistencia avanzada.</p>
+                    <h2>Tema 3: Desarrollo Back-end</h2>
+                    <p>Arquitectura orientada a servicios, persistencia y APIs REST.</p>
                 </div>
                 <div class="links-list">
                     <div class="upcoming-item">
                         <div class="item-info">
-                            <span class="item-title">4.1 ORM (Mapeo de Datos)</span>
-                            <span class="item-meta">JPA / Hibernate en backend</span>
+                            <span class="item-title">3.1 Capa de Datos (JPA/Hibernate)</span>
+                            <span class="item-meta">Mapeo de entidades, operaciones CRUD y paginación.</span>
+                        </div>
+                        <span class="badge-upcoming">Próximamente</span>
+                    </div>
+                    
+                    <div class="upcoming-item">
+                        <div class="item-info">
+                            <span class="item-title">3.2 Capa de Negocios</span>
+                            <span class="item-meta">Validaciones desacopladas e inyección de dependencias.</span>
+                        </div>
+                        <span class="badge-upcoming">Próximamente</span>
+                    </div>
+                    
+                    <div class="upcoming-item">
+                        <div class="item-info">
+                            <span class="item-title">3.3 Capa de Controladores REST</span>
+                            <span class="item-meta">Enrutamiento, verbos HTTP y Swagger/OpenAPI.</span>
+                        </div>
+                        <span class="badge-upcoming">Próximamente</span>
+                    </div>
+
+                    <div class="upcoming-item">
+                        <div class="item-info">
+                            <span class="item-title">3.4 al 3.7 Seguridad y Pruebas</span>
+                            <span class="item-meta">JWT, control de roles y testeo unitario (JUnit/Mockito).</span>
+                        </div>
+                        <span class="badge-upcoming">Próximamente</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TEMA 4: DESARROLLO FRONT-END -->
+            <div class="card disabled">
+                <div class="card-header">
+                    <h2>Tema 4: Desarrollo Front-end</h2>
+                    <p>Experiencia de usuario (UX), HTML/CSS, TypeScript y Angular.</p>
+                </div>
+                <div class="links-list">
+                    <div class="upcoming-item">
+                        <div class="item-info">
+                            <span class="item-title">4.1 y 4.2 Introducción y UX</span>
+                            <span class="item-meta">Responsabilidad front-end, accesibilidad (A11y) y UX.</span>
+                        </div>
+                        <span class="badge-upcoming">Próximamente</span>
+                    </div>
+                    
+                    <div class="upcoming-item">
+                        <div class="item-info">
+                            <span class="item-title">4.3 y 4.4 HTML & CSS Avanzado</span>
+                            <span class="item-meta">Flexbox, CSS Grid, responsividad y Mobile-First.</span>
+                        </div>
+                        <span class="badge-upcoming">Próximamente</span>
+                    </div>
+                    
+                    <div class="upcoming-item">
+                        <div class="item-info">
+                            <span class="item-title">4.5 Programación JS/TS Moderno</span>
+                            <span class="item-meta">Promesas, observables y asincronía (Async/Await).</span>
+                        </div>
+                        <span class="badge-upcoming">Próximamente</span>
+                    </div>
+
+                    <div class="upcoming-item">
+                        <div class="item-info">
+                            <span class="item-title">4.6 Framework Angular</span>
+                            <span class="item-meta">Componentes, directivas, RxJS, HttpClient y Guards.</span>
+                        </div>
+                        <span class="badge-upcoming">Próximamente</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TEMA 5: DESARROLLO MÓVIL -->
+            <div class="card disabled">
+                <div class="card-header">
+                    <h2>Tema 5: Desarrollo Móvil</h2>
+                    <p>Entornos multiplataforma y acceso a hardware nativo.</p>
+                </div>
+                <div class="links-list">
+                    <div class="upcoming-item">
+                        <div class="item-info">
+                            <span class="item-title">5.1 Ecosistemas Móviles</span>
+                            <span class="item-meta">Comparativa de desarrollo nativo vs multiplataforma.</span>
+                        </div>
+                        <span class="badge-upcoming">Próximamente</span>
+                    </div>
+                    
+                    <div class="upcoming-item">
+                        <div class="item-info">
+                            <span class="item-title">5.2 Desarrollo Multiplataforma</span>
+                            <span class="item-meta">Navegación (Stack/Tabs), base de datos SQLite y GPS/Cámara.</span>
+                        </div>
+                        <span class="badge-upcoming">Próximamente</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TEMA 6: SEGURIDAD WEB Y MÓVIL -->
+            <div class="card disabled">
+                <div class="card-header">
+                    <h2>Tema 6: Seguridad Web y Móvil</h2>
+                    <p>Mitigación de riesgos contra OWASP Top 10 y hardening de APIs.</p>
+                </div>
+                <div class="links-list">
+                    <div class="upcoming-item">
+                        <div class="item-info">
+                            <span class="item-title">6.1 al 6.4 Protección de Código</span>
+                            <span class="item-meta">Prevención SQLi y XSS, cifrado de datos y sanitización.</span>
+                        </div>
+                        <span class="badge-upcoming">Próximamente</span>
+                    </div>
+                    
+                    <div class="upcoming-item">
+                        <div class="item-info">
+                            <span class="item-title">6.5 al 6.7 Seguridad en APIs y Despliegue</span>
+                            <span class="item-meta">Rate limiting, CORS, secretos y análisis de vulnerabilidades.</span>
+                        </div>
+                        <span class="badge-upcoming">Próximamente</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TEMA 7: DESPLIEGUE Y PUBLICACIÓN -->
+            <div class="card disabled">
+                <div class="card-header">
+                    <h2>Tema 7: Despliegue y Publicación</h2>
+                    <p>Contenerización, certificados HTTPS, proxies inversos y publicación.</p>
+                </div>
+                <div class="links-list">
+                    <div class="upcoming-item">
+                        <div class="item-info">
+                            <span class="item-title">7.1 Despliegue Web Contenerizado</span>
+                            <span class="item-meta">Bundling, Docker, Docker Compose, Nginx y SSL/TLS.</span>
+                        </div>
+                        <span class="badge-upcoming">Próximamente</span>
+                    </div>
+                    
+                    <div class="upcoming-item">
+                        <div class="item-info">
+                            <span class="item-title">7.2 Publicación Móvil</span>
+                            <span class="item-meta">Firmado de binarios (.apk, .ipa) y distribución en tiendas.</span>
                         </div>
                         <span class="badge-upcoming">Próximamente</span>
                     </div>
@@ -384,7 +517,7 @@
 
         <footer class="portal-footer">
             <p>© 2026 Universidad de Costa Rica - Carrera de Informática Empresarial</p>
-            <p style="margin-top: 5px; color: rgba(148, 163, 184, 0.6);">IF0009 - Desarrollo de Software IV • Recinto de Paraíso</p>
+            <p style="margin-top: 5px; color: rgba(148, 163, 184, 0.55);">IF0009 - Desarrollo de Software IV • Sede del Atlántico - Recinto de Paraíso</p>
         </footer>
 
     </div>
