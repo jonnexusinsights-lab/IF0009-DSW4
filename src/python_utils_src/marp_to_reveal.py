@@ -16,28 +16,30 @@ import argparse
 def parse_markdown_to_html(md_content):
     """
     Parses basic Markdown features commonly used in slide decks into standard HTML blocks.
+    Protects code blocks from being corrupted by inline formatting rules.
     """
-    # 1. Escape basic HTML entities to avoid breakage (except inside custom tags we might add later)
-    # We escape &, <, > only if they aren't part of existing HTML tags.
-    # For robust slide conversion, we handle raw code blocks first.
+    code_blocks = []
     
-    # 2. Extract and format multi-line code blocks
-    def replace_code_block(match):
+    # 1. Protect and format multi-line code blocks first
+    def protect_code_block(match):
         lang = match.group(1) or 'plaintext'
         code = match.group(2)
-        # Escape HTML entities inside the code block
+        # Escape HTML entities inside the code block to prevent browser DOM parsing issues
         code_escaped = code.replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;')
-        return f'<pre><code class="language-{lang}">{code_escaped}</code></pre>'
+        html_block = f'<pre><code class="language-{lang}">{code_escaped}</code></pre>'
+        placeholder = f'<!-- CODEBLOCK{len(code_blocks)} -->'
+        code_blocks.append(html_block)
+        return placeholder
     
-    md_content = re.sub(r'```(\w*)\n(.*?)\n```', replace_code_block, md_content, flags=re.DOTALL)
+    md_content = re.sub(r'```(\w*)\n(.*?)\n```', protect_code_block, md_content, flags=re.DOTALL)
     
-    # 3. Headings (H1 to H4)
+    # 2. Headings (H1 to H4)
     md_content = re.sub(r'^#\s+(.+)$', r'<h1>\1</h1>', md_content, flags=re.MULTILINE)
     md_content = re.sub(r'^##\s+(.+)$', r'<h2>\1</h2>', md_content, flags=re.MULTILINE)
     md_content = re.sub(r'^###\s+(.+)$', r'<h3>\1</h3>', md_content, flags=re.MULTILINE)
     md_content = re.sub(r'^####\s+(.+)$', r'<h4>\1</h4>', md_content, flags=re.MULTILINE)
     
-    # 4. Nested Lists Parser (Supports both ul and ol)
+    # 3. Nested Lists Parser (Supports both ul and ol)
     lines = md_content.split('\n')
     new_lines = []
     indent_stack = [] # holds tuples of (indentation_level, list_type)
@@ -95,14 +97,16 @@ def parse_markdown_to_html(md_content):
             
     md_content = '\n'.join(new_lines)
     
-    # 5. Inline formatting (bold, italic, code)
-    # Bold (**text** or __text__)
+    # 4. Inline formatting (bold, italic, code) - safe now
     md_content = re.sub(r'\*\*(.+?)\*\*|__(.+?)__', r'<strong>\1\2</strong>', md_content)
-    # Italic (*text* or _text_)
     md_content = re.sub(r'\*(.+?)\*|_(.+?)_', r'<em>\1\2</em>', md_content)
-    # Inline code (`code`)
     md_content = re.sub(r'`([^`\n]+)`', r'<code>\1</code>', md_content)
     
+    # 5. Restore protected code blocks
+    for idx, html_block in enumerate(code_blocks):
+        placeholder = f'<!-- CODEBLOCK{idx} -->'
+        md_content = md_content.replace(placeholder, html_block)
+        
     return md_content
 
 def compile_marp_to_reveal(input_path, output_path):
@@ -330,13 +334,15 @@ def compile_marp_to_reveal(input_path, output_path):
 {reveal_slides_html}        </div>
     </div>
 
-    <!-- Reveal.js Core and Plugins -->
+    <!-- Highlight.js and Reveal.js Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/plugin/markdown/markdown.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/plugin/highlight/highlight.js"></script>
 
     <script>
-        // Init Reveal.js with modern layout configurations
+        // Initialize Highlight.js for code syntax coloring
+        hljs.highlightAll();
+
+        // Initialize Reveal.js with modern layout configurations
         Reveal.initialize({{
             hash: true,
             respondToHashChanges: true,
@@ -349,7 +355,7 @@ def compile_marp_to_reveal(input_path, output_path):
             margin: 0.05,
             minScale: 0.2,
             maxScale: 2.0,
-            plugins: [ RevealMarkdown, RevealHighlight ]
+            plugins: []
         }});
     </script>
 </body>

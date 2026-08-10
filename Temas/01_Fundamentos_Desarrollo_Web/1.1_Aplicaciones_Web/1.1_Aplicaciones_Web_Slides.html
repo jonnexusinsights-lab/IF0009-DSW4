@@ -665,13 +665,15 @@ Analice las siguientes interrogantes orientadas al diseño de sistemas en produc
         </div>
     </div>
 
-    <!-- Reveal.js Core and Plugins -->
+    <!-- Highlight.js and Reveal.js Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/plugin/markdown/markdown.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/plugin/highlight/highlight.js"></script>
 
     <script>
-        // Init Reveal.js with modern layout configurations
+        // Initialize Highlight.js for code syntax coloring
+        hljs.highlightAll();
+
+        // Initialize Reveal.js with modern layout configurations
         Reveal.initialize({
             hash: true,
             respondToHashChanges: true,
@@ -684,7 +686,7 @@ Analice las siguientes interrogantes orientadas al diseño de sistemas en produc
             margin: 0.05,
             minScale: 0.2,
             maxScale: 2.0,
-            plugins: [ RevealMarkdown, RevealHighlight ]
+            plugins: []
         });
     </script>
 </body>

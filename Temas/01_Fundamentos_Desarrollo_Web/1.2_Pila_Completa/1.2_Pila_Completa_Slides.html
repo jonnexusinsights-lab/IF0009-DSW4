@@ -463,10 +463,10 @@ Script Front-end ejecutado en navegador que utiliza la API Fetch nativa para com
         fetch('http://localhost:3000/api/estudiante')
             .then(res =&gt; res.json())
             .then(data =&gt; {
-                contenedor.innerHTML = <code>&lt;p&gt;Estudiante: ${data.nombre} (${data.carnet})&lt;/p&gt;</code>;
+                contenedor.innerHTML = `&lt;p&gt;Estudiante: ${data.nombre} (${data.carnet})&lt;/p&gt;`;
             })
             .catch(err =&gt; {
-                contenedor.innerHTML = <code>&lt;p style="color:red;"&gt;Error: ${err.message}&lt;/p&gt;</code>;
+                contenedor.innerHTML = `&lt;p style="color:red;"&gt;Error: ${err.message}&lt;/p&gt;`;
             });
     }
 &lt;/script&gt;</code></pre>
@@ -552,13 +552,15 @@ Analice las siguientes interrogantes orientadas al diseño de sistemas en produc
         </div>
     </div>
 
-    <!-- Reveal.js Core and Plugins -->
+    <!-- Highlight.js and Reveal.js Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/plugin/markdown/markdown.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/plugin/highlight/highlight.js"></script>
 
     <script>
-        // Init Reveal.js with modern layout configurations
+        // Initialize Highlight.js for code syntax coloring
+        hljs.highlightAll();
+
+        // Initialize Reveal.js with modern layout configurations
         Reveal.initialize({
             hash: true,
             respondToHashChanges: true,
@@ -571,7 +573,7 @@ Analice las siguientes interrogantes orientadas al diseño de sistemas en produc
             margin: 0.05,
             minScale: 0.2,
             maxScale: 2.0,
-            plugins: [ RevealMarkdown, RevealHighlight ]
+            plugins: []
         });
     </script>
 </body>
