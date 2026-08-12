@@ -215,10 +215,11 @@ def compile_marp_to_reveal(input_path, output_path):
         }}
         
         .reveal .slides section {{
-            font-family: 'Inter', sans-serif;
+            font-family: 'Outfit', 'Inter', sans-serif;
             text-align: left;
-            padding: 45px 60px;
+            padding: 50px 70px;
             box-sizing: border-box;
+            font-size: 22px;
         }}
         
         /* Centered Cover Slide Layout */
@@ -241,10 +242,10 @@ def compile_marp_to_reveal(input_path, output_path):
         }}
         
         .reveal h1 {{
-            font-size: 2.1em;
-            margin-bottom: 20px;
-            border-bottom: 3px solid #3b82f6;
-            padding-bottom: 12px;
+            font-size: 1.7em;
+            margin-bottom: 12px;
+            border-bottom: 2px solid #3b82f6;
+            padding-bottom: 10px;
         }}
         
         .reveal .lead-slide h1 {{
@@ -255,7 +256,7 @@ def compile_marp_to_reveal(input_path, output_path):
         }}
         
         .reveal h2 {{
-            font-size: 1.35em;
+            font-size: 1.25em;
             color: #818cf8;
             font-weight: 700;
             margin-top: 0px;
@@ -276,7 +277,6 @@ def compile_marp_to_reveal(input_path, output_path):
         .reveal p, .reveal li {{
             color: #cbd5e1;
             line-height: 1.6;
-            font-size: 0.9em;
         }}
         
         .reveal ul {{
@@ -296,6 +296,14 @@ def compile_marp_to_reveal(input_path, output_path):
         .reveal em {{
             color: #fb7185;
             font-style: italic;
+        }}
+        
+        .reveal footer {{
+            font-size: 0.5em;
+            color: #6b7280;
+            position: absolute;
+            bottom: 20px;
+            right: 50px;
         }}
         
         /* Code Block Containers and Inlines */

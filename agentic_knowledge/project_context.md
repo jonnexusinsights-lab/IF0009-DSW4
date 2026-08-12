@@ -233,6 +233,8 @@ Para garantizar la uniformidad en las evaluaciones, se establecen los siguientes
 
 Este bloque mantiene el control de qué carpetas y archivos se han creado o modificado en la sesión de trabajo.
 
+* **Actualización Reciente (Estandarización de Estilos y Portadas):** Se unificaron los estilos CSS del compilador `marp_to_reveal.py` y se simplificó la cabecera frontmatter de todos los archivos de presentación, garantizando un look and feel visualmente idéntico para todo el curso.
+
 ### Estado General de la Estructura de Directorios
 
 ```
