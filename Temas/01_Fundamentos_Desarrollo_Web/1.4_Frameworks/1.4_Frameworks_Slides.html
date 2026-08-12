@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <title>Stacks y Frameworks - Desarrollo de Software IV</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <!-- Reveal.js Base Stylesheets -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reset.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.css">
+    
+    <!-- Tokyo Night Dark Theme for Code Syntax Resaltation -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/tokyo-night-dark.min.css">
+
+    <!-- Premium Google Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* Modern Web Design Aesthetics & Layout Tokens */
+        .reveal {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0b0f19 0%, #111827 50%, #1e1b4b 100%);
+            color: #f8fafc;
+        }
+        
+        .reveal .slides section {
+            font-family: 'Inter', sans-serif;
+            text-align: left;
+            padding: 45px 60px;
+            box-sizing: border-box;
+        }
+        
+        /* Centered Cover Slide Layout */
+        .reveal .slides section.lead-slide {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+        
+        /* Premium Typography Styles */
+        .reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6 {
+            font-family: 'Outfit', sans-serif;
+            text-transform: none;
+            color: #38bdf8;
+            font-weight: 800;
+            text-shadow: none;
+        }
+        
+        .reveal h1 {
+            font-size: 2.1em;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #3b82f6;
+            padding-bottom: 12px;
+        }
+        
+        .reveal .lead-slide h1 {
+            border-bottom: none;
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            color: #38bdf8;
+        }
+        
+        .reveal h2 {
+            font-size: 1.35em;
+            color: #818cf8;
+            font-weight: 700;
+            margin-top: 0px;
+        }
+        
+        .reveal .lead-slide h2 {
+            font-size: 1.55em;
+            color: #818cf8;
+            margin-bottom: 30px;
+        }
+        
+        .reveal h3 {
+            font-size: 1.1em;
+            color: #a78bfa;
+        }
+        
+        /* List and Text Formatting */
+        .reveal p, .reveal li {
+            color: #cbd5e1;
+            line-height: 1.6;
+            font-size: 0.9em;
+        }
+        
+        .reveal ul {
+            list-style-type: square;
+            margin-left: 1.5em;
+        }
+        
+        .reveal li {
+            margin-bottom: 12px;
+        }
+        
+        .reveal strong {
+            color: #f43f5e;
+            font-weight: 600;
+        }
+        
+        .reveal em {
+            color: #fb7185;
+            font-style: italic;
+        }
+        
+        /* Code Block Containers and Inlines */
+        .reveal code {
+            font-family: 'Fira Code', monospace;
+            background-color: #030712;
+            color: #38bdf8;
+            border-radius: 4px;
+            padding: 2px 8px;
+            font-size: 0.85em;
+        }
+        
+        .reveal pre {
+            background-color: #030712 !important;
+            border: 1px solid #1f2937;
+            border-radius: 10px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
+            width: 100%;
+            margin: 20px 0;
+            box-sizing: border-box;
+        }
+        
+        .reveal pre code {
+            background-color: transparent;
+            color: inherit;
+            font-size: 0.8em;
+            line-height: 1.55;
+            padding: 18px;
+            max-height: 520px;
+        }
+        
+        /* Control Nav Arrows & Progress Bar */
+        .reveal .controls-arrow {
+            color: #38bdf8 !important;
+        }
+        
+        .reveal .progress span {
+            background-color: #38bdf8 !important;
+        }
+
+        /* Custom style overrides parsed from Marp frontmatter */
+        section {
+  font-family: 'Outfit', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  padding: 50px 70px;
+  background: linear-gradient(135deg, #0b0f19 0%, #111827 50%, #1e1b4b 100%);
+}
+h1 {
+  color: #38bdf8;
+  font-size: 2.3em;
+  font-weight: 800;
+  border-bottom: 2px solid #3b82f6;
+  padding-bottom: 10px;
+}
+h2 {
+  color: #38bdf8;
+  font-size: 1.6em;
+  border-bottom: 1px solid rgba(59, 130, 246, 0.4);
+  padding-bottom: 5px;
+}
+h3 {
+  color: #60a5fa;
+  font-size: 1.2em;
+}
+footer {
+  font-size: 0.55em;
+  color: #64748b;
+}
+code {
+  background-color: #1e293b;
+  color: #38bdf8;
+  font-size: 0.85em;
+}
+pre {
+  background-color: #0f172a;
+  border: 1px solid #334155;
+  padding: 10px;
+}
+span.highlight {
+  color: #fbbf24;
+  font-weight: bold;
+}
+ul {
+  margin-top: 15px;
+}
+li {
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <section >
+<h1>Stacks y Frameworks</h1>
+<h3>Frameworks de Software, Inversión de Control (IoC) y Selección de Stacks Tecnológicos</h3>
+
+Universidad de Costa Rica <br>
+Sede del Atlántico - Recinto Paraíso <br>
+Carrera de Informática Empresarial <br>
+<strong>Profesor:</strong> Mag. Jonathan Granados C. <br>
+<strong>Semestre:</strong> II-2026
+
+<footer>UCR - Informática Empresarial</footer>
+            </section>
+
+            <section >
+<h2>1. Framework vs. Biblioteca (Library)</h2>
+
+<ul>
+<li><strong>Biblioteca (Library):</strong>
+<ul>
+<li>Conjunto de clases y funciones empaquetadas.
+</li>
+<li>Su código tiene el control y decide cuándo llamarlas.
+</li>
+<li>Ejemplo: <code>Gson</code> para serializar JSON.
+</li>
+</ul>
+</li>
+<li><strong>Framework (Marco de Trabajo):</strong>
+<ul>
+<li>Esqueleto arquitectónico que prescribe la estructura del sistema.
+</li>
+<li>El framework invoca a su código en puntos predefinidos.
+</li>
+<li>Ejemplo: <code>Spring Boot</code> para APIs empresariales.
+</li>
+</ul>
+</li>
+<li><span class="highlight">Inversión de Control (IoC):</span> El flujo de control se delega del código del programador hacia la plataforma/framework.
+</li>
+</ul>
+            </section>
+
+            <section >
+<h2>Inversión de Control y Inyección de Dependencias</h2>
+
+<pre><code class="language-text">Aproximación Imperativa Tradicional (Biblioteca):
+[Su Código] ─── new ServicioEmail() ───&gt; Instancia de Email
+
+Aproximación Declarativa Moderna (Framework / DI):
+[Contenedor Spring (IoC)] ─── Instancia y mantiene Bean ───&gt; [Su Código]
+                             (Inyecta automáticamente vía @Autowired)</code></pre>
+
+<ul>
+<li><strong>Inyección de Dependencias (DI):</strong> Patrón que implementa IoC, pasando a una clase sus colaboradoras externas de manera pasiva.
+</li>
+</ul>
+            </section>
+
+            <section >
+<h2>2. Criterios de Selección de Stacks Tecnológicos</h2>
+
+La selección de tecnologías en la empresa responde a variables racionales:
+
+<ul>
+<li><strong>Arquitectura y Rendimiento:</strong> Consumo de recursos de infraestructura, concurrencia nativa de hilos y velocidad de procesamiento.
+</li>
+<li><strong>Curva de Aprendizaje y Talento:</strong> Costo y factibilidad de reclutamiento de desarrolladores en el mercado local.
+</li>
+<li><strong>Comunidad y Respaldo:</strong> Frecuencia de parches de seguridad y soporte corporativo estable (Oracle, Microsoft, Google).
+</li>
+<li><strong>Costo Total de Propiedad (TCO):</strong> Costo de servidores en la nube y licencias asociadas.
+</li>
+</ul>
+            </section>
+
+            <section >
+<h2>Inyección de Dependencias en Spring Boot (Java)</h2>
+
+<pre><code class="language-java">@Service // El framework toma control del ciclo de vida de esta clase
+class ServicioEmail implements ServicioNotificaciones {
+    public void enviarMensaje(String destino, String msg) { ... }
+}
+
+@Component
+class GestorUsuarios {
+    private final ServicioNotificaciones servicio;
+
+    @Autowired // Spring busca en su contenedor el Bean compatible e inyecta la instancia
+    public GestorUsuarios(ServicioNotificaciones servicio) {
+        this.servicio = servicio;
+    }
+}</code></pre>
+            </section>
+
+            <section >
+<h2>Trampas Comunes (Gotchas)</h2>
+
+<ul>
+<li><strong>Uso inapropiado de <code>new</code>:</strong>
+<ul>
+<li>Si inicializa componentes administrados usando <code>new</code>, rompe la inversión de control y anula las capacidades decorativas y transaccionales del framework.
+</li>
+<li><em>Solución:</em> Use inyección de constructor o <code>@Autowired</code>.
+</li>
+</ul>
+</li>
+<li><strong>Dependencias Circulares:</strong>
+<ul>
+<li>Ocurre cuando dos clases se inyectan recursivamente una a la otra (A -> B -> A). Spring aborta el inicio con un fallo de contexto.
+</li>
+<li><em>Solución:</em> Refactorice extrayendo la lógica común a una clase intermedia.
+</li>
+</ul>
+</li>
+</ul>
+            </section>
+
+            <section >
+<h2>Discusión y Preguntas</h2>
+
+<ul>
+<li>Si estuviera diseñando el <strong>núcleo de transacciones bancarias</strong> de una entidad financiera y, simultáneamente, una <strong>aplicación web dinámica de chat interactivo</strong> en tiempo real:
+<ol>
+<li>¿Qué stack tecnológico full-stack seleccionaría para cada uno?
+</li>
+<li>¿Qué criterios de selección pesaron más en su decisión final (rendimiento, seguridad, velocidad de desarrollo o soporte comunitario)?
+</li>
+</ol>
+</li>
+</ul>
+
+<footer>UCR - Informática Empresarial</footer>
+            </section>
+
+        </div>
+    </div>
+
+    <!-- Highlight.js and Reveal.js Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.js"></script>
+
+    <script>
+        // Initialize Highlight.js for code syntax coloring
+        hljs.highlightAll();
+
+        // Initialize Reveal.js with modern layout configurations
+        Reveal.initialize({
+            hash: true,
+            respondToHashChanges: true,
+            history: true,
+            transition: 'slide', // none/fade/slide/convex/concave/zoom
+            transitionSpeed: 'default',
+            backgroundTransition: 'fade',
+            width: 960,
+            height: 700,
+            margin: 0.05,
+            minScale: 0.2,
+            maxScale: 2.0,
+            plugins: []
+        });
+    </script>
+</body>
+</html>
