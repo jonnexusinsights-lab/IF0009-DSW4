@@ -43,7 +43,8 @@ public class Transaccion {
     private LocalDateTime fecha;
 
     // Constructor parametrizado
-    public Transaccion(String id, double monto, String tipo, String cuentaOrigen, LocalDateTime fecha) {
+    public Transaccion(String id, double monto, String tipo, 
+                       String cuentaOrigen, LocalDateTime fecha) {
         this.id = id;
         this.monto = monto;
         this.tipo = tipo;
@@ -75,7 +76,8 @@ public class Transaccion {
     // Sobrescritura de toString para facilitar la visualización del objeto
     @Override
     public String toString() {
-        return String.format("Transaccion[ID=%s, Monto=%.2f, Tipo=%s, Cuenta=%s, Fecha=%s]",
+        return String.format(
+                "Transaccion[ID=%s, Monto=%.2f, Tipo=%s, Cuenta=%s, Fecha=%s]",
                 id, monto, tipo, cuentaOrigen, fecha);
     }
 }
@@ -123,7 +125,8 @@ public class AnalizadorTransacciones {
      * @param umbral Monto límite exclusivo.
      * @return Lista filtrada de transacciones.
      */
-    public List<Transaccion> obtenerTransaccionesDeAltoValor(List<Transaccion> transacciones, double umbral) {
+    public List<Transaccion> obtenerTransaccionesDeAltoValor(
+            List<Transaccion> transacciones, double umbral) {
         List<Transaccion> altoValor = new ArrayList<>();
         if (transacciones == null) {
             return altoValor;
@@ -143,7 +146,8 @@ public class AnalizadorTransacciones {
      * @param tipo Tipo de transacción a promediar ("DEBITO" o "CREDITO").
      * @return Promedio aritmético de los montos, o 0.0 si no hay coincidencias.
      */
-    public double calcularPromedioPorTipo(List<Transaccion> transacciones, String tipo) {
+    public double calcularPromedioPorTipo(
+            List<Transaccion> transacciones, String tipo) {
         if (transacciones == null || transacciones.isEmpty() || tipo == null) {
             return 0.0;
         }
@@ -178,18 +182,24 @@ public class Main {
         List<Transaccion> historial = new ArrayList<>();
         
         // Carga de historial de pruebas (con marcas temporales simuladas)
-        historial.add(new Transaccion("T01", 1500.00, "CREDITO", "CTA-101", LocalDateTime.now().minusHours(5)));
-        historial.add(new Transaccion("T02", 200.00, "DEBITO", "CTA-101", LocalDateTime.now().minusHours(4)));
-        historial.add(new Transaccion("T03", 450.50, "DEBITO", "CTA-102", LocalDateTime.now().minusHours(3)));
-        historial.add(new Transaccion("T04", 3000.00, "CREDITO", "CTA-103", LocalDateTime.now().minusHours(2)));
-        historial.add(new Transaccion("T05", 120.00, "DEBITO", "CTA-101", LocalDateTime.now().minusHours(1)));
+        historial.add(new Transaccion("T01", 1500.00, "CREDITO", 
+                "CTA-101", LocalDateTime.now().minusHours(5)));
+        historial.add(new Transaccion("T02", 200.00, "DEBITO", 
+                "CTA-101", LocalDateTime.now().minusHours(4)));
+        historial.add(new Transaccion("T03", 450.50, "DEBITO", 
+                "CTA-102", LocalDateTime.now().minusHours(3)));
+        historial.add(new Transaccion("T04", 3000.00, "CREDITO", 
+                "CTA-103", LocalDateTime.now().minusHours(2)));
+        historial.add(new Transaccion("T05", 120.00, "DEBITO", 
+                "CTA-101", LocalDateTime.now().minusHours(1)));
 
         AnalizadorTransacciones analizador = new AnalizadorTransacciones();
 
         // Invocar algoritmos de procesamiento lógico
         double saldoNeto = analizador.calcularSaldoNeto(historial);
         double promedioDebitos = analizador.calcularPromedioPorTipo(historial, "DEBITO");
-        List<Transaccion> transaccionesGrandes = analizador.obtenerTransaccionesDeAltoValor(historial, 1000.0);
+        List<Transaccion> transaccionesGrandes = 
+                analizador.obtenerTransaccionesDeAltoValor(historial, 1000.0);
 
         // Imprimir reporte de resultados en la consola estándar
         System.out.println("=== INFORME DE ANÁLISIS FINANCIERO ===");
@@ -235,7 +245,8 @@ import java.util.List;
 
 public class ProcesadorReportes {
 
-    public static void generarReporteCuenta(List<Transaccion> transacciones, String cuentaBuscada) {
+    public static void generarReporteCuenta(
+            List<Transaccion> transacciones, String cuentaBuscada) {
         System.out.println("Generando reporte para la cuenta: " + cuentaBuscada);
         
         // Iterar el historial de transacciones
@@ -289,7 +300,8 @@ import java.util.List;
 
 public class ProcesadorReportes {
 
-    public static void generarReporteCuenta(List<Transaccion> transacciones, String cuentaBuscada) {
+    public static void generarReporteCuenta(
+            List<Transaccion> transacciones, String cuentaBuscada) {
         // Validación de parámetros de entrada
         if (transacciones == null || cuentaBuscada == null) {
             System.out.println("Entrada no válida para el reporte.");
@@ -308,7 +320,7 @@ public class ProcesadorReportes {
             // Corrección de comparación: equals() en lugar de ==
             if (cuentaBuscada.equalsIgnoreCase(t.getCuentaOrigen())) {
                 
-                // Prevención de NPE colocando la constante al inicio de la comparación
+                // Evitar NPE colocando la constante al inicio
                 if ("DEBITO".equalsIgnoreCase(t.getTipo())) {
                     System.out.printf("Egreso detectado - Monto: %.2f CRC\n", t.getMonto());
                 } else {
@@ -344,7 +356,8 @@ public class DetectorFraude {
      * @param transacciones Historial completo a analizar.
      * @return Lista de transacciones clasificadas como sospechosas.
      */
-    public List<Transaccion> analizarComportamientoSospechoso(List<Transaccion> transacciones) {
+    public List<Transaccion> analizarComportamientoSospechoso(
+            List<Transaccion> transacciones) {
         // Implemente su algoritmo aquí
     }
 }

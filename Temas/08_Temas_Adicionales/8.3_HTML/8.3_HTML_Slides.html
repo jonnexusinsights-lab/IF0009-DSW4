@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <title>Presentación - Desarrollo de Software IV</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <!-- Reveal.js Base Stylesheets -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reset.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.css">
+    
+    <!-- Tokyo Night Dark Theme for Code Syntax Resaltation -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/tokyo-night-dark.min.css">
+
+    <!-- Premium Google Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* Modern Web Design Aesthetics & Layout Tokens */
+        .reveal {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0b0f19 0%, #111827 50%, #1e1b4b 100%);
+            color: #f8fafc;
+        }
+        
+        .reveal .slides section {
+            font-family: 'Inter', sans-serif;
+            text-align: left;
+            padding: 45px 60px;
+            box-sizing: border-box;
+        }
+        
+        /* Centered Cover Slide Layout */
+        .reveal .slides section.lead-slide {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+        
+        /* Premium Typography Styles */
+        .reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6 {
+            font-family: 'Outfit', sans-serif;
+            text-transform: none;
+            color: #38bdf8;
+            font-weight: 800;
+            text-shadow: none;
+        }
+        
+        .reveal h1 {
+            font-size: 2.1em;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #3b82f6;
+            padding-bottom: 12px;
+        }
+        
+        .reveal .lead-slide h1 {
+            border-bottom: none;
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            color: #38bdf8;
+        }
+        
+        .reveal h2 {
+            font-size: 1.35em;
+            color: #818cf8;
+            font-weight: 700;
+            margin-top: 0px;
+        }
+        
+        .reveal .lead-slide h2 {
+            font-size: 1.55em;
+            color: #818cf8;
+            margin-bottom: 30px;
+        }
+        
+        .reveal h3 {
+            font-size: 1.1em;
+            color: #a78bfa;
+        }
+        
+        /* List and Text Formatting */
+        .reveal p, .reveal li {
+            color: #cbd5e1;
+            line-height: 1.6;
+            font-size: 0.9em;
+        }
+        
+        .reveal ul {
+            list-style-type: square;
+            margin-left: 1.5em;
+        }
+        
+        .reveal li {
+            margin-bottom: 12px;
+        }
+        
+        .reveal strong {
+            color: #f43f5e;
+            font-weight: 600;
+        }
+        
+        .reveal em {
+            color: #fb7185;
+            font-style: italic;
+        }
+        
+        /* Code Block Containers and Inlines */
+        .reveal code {
+            font-family: 'Fira Code', monospace;
+            background-color: #030712;
+            color: #38bdf8;
+            border-radius: 4px;
+            padding: 2px 8px;
+            font-size: 0.85em;
+        }
+        
+        .reveal pre {
+            background-color: #030712 !important;
+            border: 1px solid #1f2937;
+            border-radius: 10px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
+            width: 100%;
+            margin: 20px 0;
+            box-sizing: border-box;
+        }
+        
+        .reveal pre code {
+            background-color: transparent;
+            color: inherit;
+            font-size: 0.8em;
+            line-height: 1.55;
+            padding: 18px;
+            max-height: 520px;
+        }
+        
+        /* Control Nav Arrows & Progress Bar */
+        .reveal .controls-arrow {
+            color: #38bdf8 !important;
+        }
+        
+        .reveal .progress span {
+            background-color: #38bdf8 !important;
+        }
+
+        /* Custom style overrides parsed from Marp frontmatter */
+        section {
+  font-family: 'Outfit', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  padding: 40px;
+  background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+}
+h1 {
+  color: #38bdf8;
+  font-size: 2.5em;
+}
+h2 {
+  color: #38bdf8;
+  border-bottom: 2px solid #3b82f6;
+  padding-bottom: 5px;
+}
+h3 {
+  color: #60a5fa;
+}
+footer {
+  font-size: 0.55em;
+  color: #64748b;
+}
+code {
+  background-color: #1e293b;
+  color: #38bdf8;
+}
+pre {
+  background-color: #0f172a;
+  border: 1px solid #334155;
+}
+span.highlight {
+  color: #fbbf24;
+  font-weight: bold;
+}
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <section >
+<h1>Web Components y APIs Modernas de HTML5</h1>
+<h3>Extensibilidad Nativa, Encapsulamiento y Atributos de Datos Personalizados</h3>
+
+<strong>Curso:</strong> IF0009 - Desarrollo de Software IV
+<strong>Docente:</strong> Mag. Jonathan Granados C.
+<strong>Universidad de Costa Rica</strong>
+            </section>
+
+            <section >
+<h2>¿Qué son los Web Components?</h2>
+
+<ul>
+<li>Estándar nativo del consorcio <strong>W3C</strong> para la web moderna.
+</li>
+<li>Permiten crear <span class="highlight">etiquetas HTML personalizadas</span> y reutilizables.
+</li>
+<li>Funcionan directamente en el navegador <strong>sin dependencias externas</strong> ni frameworks (como Angular o React).
+</li>
+<li>Promueven el desacoplamiento y el encapsulamiento limpio.
+</li>
+<li>Los nombres de etiquetas personalizadas <strong>deben</strong> contener un guion medio (<code>-</code>) por estándar.
+</li>
+</ul>
+            </section>
+
+            <section >
+<h2>Los Tres Pilares del Estándar</h2>
+
+<ol>
+<li><strong>Custom Elements:</strong>
+</li>
+</ol>
+   APIs de JavaScript para definir nuevos elementos HTML con lógica de control asociada a clases heredadas de <code>HTMLElement</code>.
+<ol>
+<li><strong>Shadow DOM (DOM en la Sombra):</strong>
+</li>
+</ol>
+   Aísla y encapsula el HTML y CSS del componente, evitando que los estilos de la página principal se filtren o afecten al componente.
+<ol>
+<li><strong>HTML Templates (<code><template></code> y <code><slot></code>):</strong>
+</li>
+</ol>
+   Estructuras de marcado declaradas en HTML que no se renderizan al cargar la página, listas para ser clonadas e inyectadas dinámicamente.
+            </section>
+
+            <section >
+<h2>Shadow DOM: Concepto Visual</h2>
+
+<pre><code class="language-text">[ DOM Principal de la Página (Light DOM) ]
+                   │
+                   └── &lt;tarjeta-contacto&gt; (Shadow Host)
+                                │
+                                └── #shadow-root (Barrera de Aislamiento)
+                                             ├── &lt;style&gt; (CSS aislado)
+                                             ├── &lt;div&gt; (Estructura interna)
+                                             └── &lt;slot&gt; (Punto de inyección)</code></pre>
+            </section>
+
+            <section >
+<h2>Plantillas y Slots (<code><template></code> / <code><slot></code>)</h2>
+
+<ul>
+<li>La etiqueta <code><template></code> define la estructura base y los estilos privados.
+</li>
+<li>El elemento <code><slot></code> actúa como un <strong>marcador de posición</strong> para inyectar contenido externo.
+</li>
+</ul>
+
+<pre><code class="language-html">&lt;template id="mi-plantilla"&gt;
+    &lt;style&gt;
+        .caja { padding: 10px; border: 1px solid #ccc; }
+    &lt;/style&gt;
+    &lt;div class="caja"&gt;
+        &lt;!-- Contenido dinámico del exterior caerá aquí --&gt;
+        &lt;slot name="mensaje"&gt;Mensaje predeterminado&lt;/slot&gt;
+    &lt;/div&gt;
+&lt;/template&gt;</code></pre>
+            </section>
+
+            <section >
+<h2>Estructura de Código del Componente (JS)</h2>
+
+<pre><code class="language-javascript">class TarjetaContacto extends HTMLElement {
+    constructor() {
+        super();
+        // 1. Activar Shadow DOM
+        this.attachShadow({ mode: 'open' });
+
+        // 2. Clonar la plantilla e inyectarla
+        const plantilla = document.getElementById('plantilla-tarjeta');
+        const clon = plantilla.content.cloneNode(true);
+        this.shadowRoot.appendChild(clon);
+    }
+}
+// Registrar la etiqueta en el navegador
+customElements.define('tarjeta-contacto', TarjetaContacto);</code></pre>
+            </section>
+
+            <section >
+<h2>Atributos de Datos Personalizados (<code>data-*</code>)</h2>
+
+<ul>
+<li>Mecanismo estándar de HTML5 para embeber datos en elementos HTML.
+</li>
+<li>Sintaxis: <code>data-nombre-atributo="valor"</code>.
+</li>
+<li>Accesibles dinámicamente desde JavaScript mediante el mapa <strong><code>dataset</code></strong> de la API del DOM.
+</li>
+</ul>
+
+<pre><code class="language-html">&lt;!-- Declaración en HTML --&gt;
+&lt;tarjeta-contacto data-rol="Administrador" data-user-id="101"&gt;
+&lt;/tarjeta-contacto&gt;
+
+&lt;script&gt;
+    // Lectura en JS
+    const rol = elemento.dataset.rol; // "Administrador"
+    const userId = elemento.dataset.userId; // "101" (camelCase automático)
+&lt;/script&gt;</code></pre>
+            </section>
+
+            <section >
+<h2>Trampas Comunes (Gotchas)</h2>
+
+<ul>
+<li><span class="highlight">Etiquetas autocerrables:</span> Los Custom Elements no admiten la sintaxis <code><mi-elemento /></code>. Deben cerrarse formalmente: <code><mi-elemento></mi-elemento></code>.
+</li>
+<li><span class="highlight">Estilos globales:</span> El Shadow DOM bloquea estilos externos. Si usa Bootstrap o Tailwind globales, no afectarán los elementos internos de su Web Component de manera automática.
+</li>
+<li><span class="highlight">Indexación SEO:</span> Buscadores antiguos y lectores de pantalla pueden tener problemas si la información clave del negocio reside puramente en variables del Shadow DOM.
+</li>
+</ul>
+            </section>
+
+            <section >
+<h2>Discusión y Preguntas</h2>
+
+<ul>
+<li>¿Qué ventajas e inconvenientes identifica al utilizar <strong>Web Components nativos</strong> en lugar de componentes construidos en frameworks específicos como <strong>Angular</strong>?
+</li>
+<li>¿Cómo interactuaría usted mediante JavaScript con un elemento que reside dentro del Shadow DOM si no puede seleccionarlo usando <code>document.querySelector</code> directo?
+</li>
+</ul>
+            </section>
+
+        </div>
+    </div>
+
+    <!-- Highlight.js and Reveal.js Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.js"></script>
+
+    <script>
+        // Initialize Highlight.js for code syntax coloring
+        hljs.highlightAll();
+
+        // Initialize Reveal.js with modern layout configurations
+        Reveal.initialize({
+            hash: true,
+            respondToHashChanges: true,
+            history: true,
+            transition: 'slide', // none/fade/slide/convex/concave/zoom
+            transitionSpeed: 'default',
+            backgroundTransition: 'fade',
+            width: 960,
+            height: 700,
+            margin: 0.05,
+            minScale: 0.2,
+            maxScale: 2.0,
+            plugins: []
+        });
+    </script>
+</body>
+</html>
