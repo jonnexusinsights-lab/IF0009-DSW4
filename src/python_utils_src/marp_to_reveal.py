@@ -100,7 +100,13 @@ def parse_markdown_to_html(md_content):
     # 4. Inline formatting (bold, italic, code) - safe now
     md_content = re.sub(r'\*\*(.+?)\*\*|__(.+?)__', r'<strong>\1\2</strong>', md_content)
     md_content = re.sub(r'\*(.+?)\*|_(.+?)_', r'<em>\1\2</em>', md_content)
-    md_content = re.sub(r'`([^`\n]+)`', r'<code>\1</code>', md_content)
+    
+    def escape_inline_code(match):
+        code_text = match.group(1)
+        code_escaped = code_text.replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;')
+        return f'<code>{code_escaped}</code>'
+        
+    md_content = re.sub(r'`([^`\n]+)`', escape_inline_code, md_content)
     
     # 5. Restore protected code blocks
     for idx, html_block in enumerate(code_blocks):
@@ -125,6 +131,7 @@ def compile_marp_to_reveal(input_path, output_path):
     yaml_match = re.match(r'^---\n(.*?)\n---\n', content, flags=re.DOTALL)
     
     style_content = ""
+    slide_title = "Presentación"
     if yaml_match:
         frontmatter = yaml_match.group(1)
         # Search for custom CSS style blocks: style: | ...
@@ -138,6 +145,11 @@ def compile_marp_to_reveal(input_path, output_path):
                 indent = len(non_empty_lines[0]) - len(non_empty_lines[0].lstrip())
                 style_content = '\n'.join([l[indent:] if len(l) >= indent else l for l in style_lines])
         
+        # Search for custom title property: title: ...
+        title_match = re.search(r'^title:\s*(.+)$', frontmatter, flags=re.MULTILINE)
+        if title_match:
+            slide_title = title_match.group(1).strip().strip('"').strip("'")
+            
         # Strip frontmatter from slides content
         slides_raw = content[yaml_match.end():]
     else:
@@ -179,7 +191,7 @@ def compile_marp_to_reveal(input_path, output_path):
 <html lang="es">
 <head>
     <meta charset="utf-8">
-    <title>Presentación - Desarrollo de Software IV</title>
+    <title>{slide_title} - Desarrollo de Software IV</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
     <!-- Reveal.js Base Stylesheets -->

@@ -226,7 +226,7 @@ span.highlight {
 </ol>
    Aísla y encapsula el HTML y CSS del componente, evitando que los estilos de la página principal se filtren o afecten al componente.
 <ol>
-<li><strong>HTML Templates (<code><template></code> y <code><slot></code>):</strong>
+<li><strong>HTML Templates (<code>&lt;template&gt;</code> y <code>&lt;slot&gt;</code>):</strong>
 </li>
 </ol>
    Estructuras de marcado declaradas en HTML que no se renderizan al cargar la página, listas para ser clonadas e inyectadas dinámicamente.
@@ -246,12 +246,12 @@ span.highlight {
             </section>
 
             <section >
-<h2>Plantillas y Slots (<code><template></code> / <code><slot></code>)</h2>
+<h2>Plantillas y Slots (<code>&lt;template&gt;</code> / <code>&lt;slot&gt;</code>)</h2>
 
 <ul>
-<li>La etiqueta <code><template></code> define la estructura base y los estilos privados.
+<li>La etiqueta <code>&lt;template&gt;</code> define la estructura base y los estilos privados.
 </li>
-<li>El elemento <code><slot></code> actúa como un <strong>marcador de posición</strong> para inyectar contenido externo.
+<li>El elemento <code>&lt;slot&gt;</code> actúa como un <strong>marcador de posición</strong> para inyectar contenido externo.
 </li>
 </ul>
 
@@ -312,7 +312,7 @@ customElements.define('tarjeta-contacto', TarjetaContacto);</code></pre>
 <h2>Trampas Comunes (Gotchas)</h2>
 
 <ul>
-<li><span class="highlight">Etiquetas autocerrables:</span> Los Custom Elements no admiten la sintaxis <code><mi-elemento /></code>. Deben cerrarse formalmente: <code><mi-elemento></mi-elemento></code>.
+<li><span class="highlight">Etiquetas autocerrables:</span> Los Custom Elements no admiten la sintaxis <code>&lt;mi-elemento /&gt;</code>. Deben cerrarse formalmente: <code>&lt;mi-elemento&gt;&lt;/mi-elemento&gt;</code>.
 </li>
 <li><span class="highlight">Estilos globales:</span> El Shadow DOM bloquea estilos externos. Si usa Bootstrap o Tailwind globales, no afectarán los elementos internos de su Web Component de manera automática.
 </li>

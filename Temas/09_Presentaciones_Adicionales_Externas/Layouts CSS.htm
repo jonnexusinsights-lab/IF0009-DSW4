@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en-US"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"><title>Layouts CSS</title><meta property="og:title" content="Layouts CSS"><meta charset="UTF-8"><meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0"><meta name="apple-mobile-web-app-capable" content="yes"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta property="og:type" content="website"><meta name="twitter:card" content="summary"><style>@media screen{body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button{appearance:none;background-color:initial;border:0;color:inherit;cursor:pointer;font-size:inherit;opacity:.8;outline:none;padding:0;transition:opacity .2s linear;-webkit-tap-highlight-color:transparent}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button:disabled,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button:disabled,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button:disabled,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button:disabled{cursor:not-allowed;opacity:.15!important}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button:hover,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button:hover,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button:hover,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button:hover{opacity:1}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button:hover:active,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button:hover:active,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button:hover:active,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button:hover:active{opacity:.6}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button:hover:not(:disabled),body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button:hover:not(:disabled),body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button:hover:not(:disabled),body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button:hover:not(:disabled){transition:none}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=prev],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=prev],body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button.bespoke-marp-presenter-info-page-prev{background:#0000 url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSI1IiBkPSJNNjggOTAgMjggNTBsNDAtNDAiLz48L3N2Zz4=") no-repeat 50%;background-size:contain;overflow:hidden;text-indent:100%;white-space:nowrap}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=next],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=next],body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button.bespoke-marp-presenter-info-page-next{background:#0000 url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSI1IiBkPSJtMzIgOTAgNDAtNDAtNDAtNDAiLz48L3N2Zz4=") no-repeat 50%;background-size:contain;overflow:hidden;text-indent:100%;white-space:nowrap}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=fullscreen],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=fullscreen]{background:#0000 url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48ZGVmcz48c3R5bGU+LmF7ZmlsbDpub25lO3N0cm9rZTojZmZmO3N0cm9rZS1saW5lY2FwOnJvdW5kO3N0cm9rZS1saW5lam9pbjpyb3VuZDtzdHJva2Utd2lkdGg6NXB4fTwvc3R5bGU+PC9kZWZzPjxyZWN0IHdpZHRoPSI4MCIgaGVpZ2h0PSI2MCIgeD0iMTAiIHk9IjIwIiBjbGFzcz0iYSIgcng9IjUuNjciLz48cGF0aCBkPSJNNDAgNzBIMjBWNTBtMjAgMEwyMCA3MG00MC00MGgyMHYyMG0tMjAgMCAyMC0yMCIgY2xhc3M9ImEiLz48L3N2Zz4=") no-repeat 50%;background-size:contain;overflow:hidden;text-indent:100%;white-space:nowrap}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button.exit[data-bespoke-marp-osc=fullscreen],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button.exit[data-bespoke-marp-osc=fullscreen]{background-image:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48ZGVmcz48c3R5bGU+LmF7ZmlsbDpub25lO3N0cm9rZTojZmZmO3N0cm9rZS1saW5lY2FwOnJvdW5kO3N0cm9rZS1saW5lam9pbjpyb3VuZDtzdHJva2Utd2lkdGg6NXB4fTwvc3R5bGU+PC9kZWZzPjxyZWN0IHdpZHRoPSI4MCIgaGVpZ2h0PSI2MCIgeD0iMTAiIHk9IjIwIiBjbGFzcz0iYSIgcng9IjUuNjciLz48cGF0aCBkPSJNMjAgNTBoMjB2MjBtLTIwIDAgMjAtMjBtNDAgMEg2MFYzMG0yMCAwTDYwIDUwIiBjbGFzcz0iYSIvPjwvc3ZnPg==")}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=presenter],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=presenter]{background:#0000 url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSI1IiBkPSJNODcuOCA0Ny41Qzg5IDUwIDg3LjcgNTIgODUgNTJIMzVhOC43IDguNyAwIDAgMS03LjItNC41bC0xNS42LTMxQzExIDE0IDEyLjIgMTIgMTUgMTJoNTBhOC44IDguOCAwIDAgMSA3LjIgNC41ek02MCA1MnYzNm0tMTAgMGgyME00NSA0MmgyMCIvPjwvc3ZnPg==") no-repeat 50%;background-size:contain;overflow:hidden;text-indent:100%;white-space:nowrap}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button.bespoke-marp-presenter-note-bigger{background:#0000 url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cGF0aCBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSI1IiBkPSJNMTIgNTBoODBNNTIgOTBWMTAiLz48L3N2Zz4=") no-repeat 50%;background-size:contain;overflow:hidden;text-indent:100%;white-space:nowrap}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button.bespoke-marp-presenter-note-smaller{background:#0000 url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSI1IiBkPSJNMTIgNTBoODAiLz48L3N2Zz4=") no-repeat 50%;background-size:contain;overflow:hidden;text-indent:100%;white-space:nowrap}}@keyframes __bespoke_marp_transition_reduced_outgoing__{0%{opacity:1}to{opacity:0}}@keyframes __bespoke_marp_transition_reduced_incoming__{0%{mix-blend-mode:plus-lighter;opacity:0}to{mix-blend-mode:plus-lighter;opacity:1}}.bespoke-marp-note,.bespoke-marp-osc,.bespoke-progress-parent{display:none;transition:none}@media screen{::view-transition-group(*){animation-duration:var(--marp-bespoke-transition-animation-duration,.5s);animation-timing-function:ease}::view-transition-new(*),::view-transition-old(*){animation-delay:0s;animation-direction:var(--marp-bespoke-transition-animation-direction,normal);animation-duration:var(--marp-bespoke-transition-animation-duration,.5s);animation-fill-mode:both;animation-name:var(--marp-bespoke-transition-animation-name,var(--marp-bespoke-transition-animation-name-fallback,__bespoke_marp_transition_no_animation__));mix-blend-mode:normal}::view-transition-old(*){--marp-bespoke-transition-animation-name-fallback:__bespoke_marp_transition_reduced_outgoing__;animation-timing-function:ease}::view-transition-new(*){--marp-bespoke-transition-animation-name-fallback:__bespoke_marp_transition_reduced_incoming__;animation-timing-function:ease}::view-transition-new(root),::view-transition-old(root){animation-timing-function:linear}::view-transition-new(__bespoke_marp_transition_osc__),::view-transition-old(__bespoke_marp_transition_osc__){animation-duration:0s!important;animation-name:__bespoke_marp_transition_osc__!important}::view-transition-new(__bespoke_marp_transition_osc__){opacity:0!important}.bespoke-marp-transition-warming-up::view-transition-group(*),.bespoke-marp-transition-warming-up::view-transition-new(*),.bespoke-marp-transition-warming-up::view-transition-old(*){animation-play-state:paused!important}body,html{height:100%;margin:0}body{background:#000;overflow:hidden}svg.bespoke-marp-slide{content-visibility:hidden;opacity:0;pointer-events:none;z-index:-1}svg.bespoke-marp-slide:not(.bespoke-marp-active) *{view-transition-name:none!important}svg.bespoke-marp-slide.bespoke-marp-active{content-visibility:visible;opacity:1;pointer-events:auto;z-index:0}svg.bespoke-marp-slide.bespoke-marp-active.bespoke-marp-active-ready *{animation-name:__bespoke_marp__!important}@supports not (content-visibility:hidden){svg.bespoke-marp-slide[data-bespoke-marp-load=hideable]{display:none}svg.bespoke-marp-slide[data-bespoke-marp-load=hideable].bespoke-marp-active{display:block}}}@media screen and (prefers-reduced-motion:reduce){svg.bespoke-marp-slide *{view-transition-name:none!important}}@media screen{[data-bespoke-marp-fragment=inactive]{visibility:hidden}body[data-bespoke-view=""] .bespoke-marp-parent,body[data-bespoke-view=next] .bespoke-marp-parent{inset:0;position:absolute}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc{background:#000000a6;border-radius:7px;bottom:50px;color:#fff;contain:paint;display:block;font-family:Helvetica,Arial,sans-serif;font-size:16px;left:50%;line-height:0;opacity:1;padding:12px;position:absolute;touch-action:manipulation;transform:translateX(-50%);transition:opacity .2s linear;-webkit-user-select:none;user-select:none;white-space:nowrap;will-change:transform;z-index:1;view-transition-name:__bespoke_marp_transition_osc__}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>*,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>*{margin-left:6px}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>:first-child,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>:first-child{margin-left:0}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>span,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>span{opacity:.8}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>span[data-bespoke-marp-osc=page],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>span[data-bespoke-marp-osc=page]{display:inline-block;min-width:140px;text-align:center}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=fullscreen],body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=next],body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=presenter],body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=prev],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=fullscreen],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=next],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=presenter],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=prev]{height:32px;line-height:32px;width:32px}body[data-bespoke-view=""] .bespoke-marp-parent.bespoke-marp-inactive,body[data-bespoke-view=next] .bespoke-marp-parent.bespoke-marp-inactive{cursor:none}body[data-bespoke-view=""] .bespoke-marp-parent.bespoke-marp-inactive>.bespoke-marp-osc,body[data-bespoke-view=next] .bespoke-marp-parent.bespoke-marp-inactive>.bespoke-marp-osc{opacity:0;pointer-events:none}body[data-bespoke-view=""] svg.bespoke-marp-slide,body[data-bespoke-view=next] svg.bespoke-marp-slide{height:100%;left:0;position:absolute;top:0;width:100%}body[data-bespoke-view=""] .bespoke-progress-parent{background:#222;display:flex;height:5px;width:100%}body[data-bespoke-view=""] .bespoke-progress-parent+.bespoke-marp-parent{top:5px}body[data-bespoke-view=""] .bespoke-progress-parent .bespoke-progress-bar{background:#0288d1;flex:0 0 0;transition:flex-basis .2s cubic-bezier(0,1,1,1)}body[data-bespoke-view=next]{background:#0000}body[data-bespoke-view=presenter]{background:#161616}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container{display:grid;font-family:Helvetica,Arial,sans-serif;grid-template:"current dragbar next" minmax(140px,1fr) "current dragbar note" 2fr "info    dragbar note" 3em;grid-template-columns:minmax(3px,var(--bespoke-marp-presenter-split-ratio,66%)) 0 minmax(3px,1fr);height:100%;left:0;position:absolute;top:0;width:100%}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-parent{grid-area:current;overflow:hidden;position:relative}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-parent svg.bespoke-marp-slide{height:calc(100% - 40px);left:20px;pointer-events:none;position:absolute;top:20px;-webkit-user-select:none;user-select:none;width:calc(100% - 40px)}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-parent svg.bespoke-marp-slide.bespoke-marp-active{filter:drop-shadow(0 3px 10px rgba(0,0,0,.5))}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-dragbar-container{background:#0288d1;cursor:col-resize;grid-area:dragbar;margin-left:-3px;opacity:0;position:relative;transition:opacity .4s linear .1s;width:6px;z-index:10}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-dragbar-container:hover{opacity:1}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-dragbar-container.active{opacity:1;transition-delay:0s}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-next-container{background:#222;cursor:pointer;display:none;grid-area:next;overflow:hidden;position:relative}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-next-container.active{display:block}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-next-container iframe.bespoke-marp-presenter-next{background:#0000;border:0;display:block;filter:drop-shadow(0 3px 10px rgba(0,0,0,.5));height:calc(100% - 40px);left:20px;pointer-events:none;position:absolute;top:20px;-webkit-user-select:none;user-select:none;width:calc(100% - 40px)}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container{background:#222;color:#eee;grid-area:note;position:relative;z-index:1}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button{height:1.5em;line-height:1.5em;width:1.5em}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-presenter-note-wrapper{display:block;inset:0;position:absolute}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-presenter-note-buttons{background:#000000a6;border-radius:4px;bottom:0;display:flex;gap:4px;margin:12px;opacity:0;padding:6px;pointer-events:none;position:absolute;right:0;transition:opacity .2s linear}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-presenter-note-buttons:focus-within,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-presenter-note-wrapper:focus-within+.bespoke-marp-presenter-note-buttons,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container:hover .bespoke-marp-presenter-note-buttons{opacity:1;pointer-events:auto}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note{box-sizing:border-box;font-size:calc(1.1em*var(--bespoke-marp-note-font-scale, 1));height:calc(100% - 40px);margin:20px;overflow:auto;padding-right:3px;white-space:pre-wrap;width:calc(100% - 40px);word-wrap:break-word;scrollbar-color:#eeeeee80 #0000;scrollbar-width:thin}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note::-webkit-scrollbar{width:6px}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note::-webkit-scrollbar-track{background:#0000}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note::-webkit-scrollbar-thumb{background:#eeeeee80;border-radius:6px}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note:empty{pointer-events:none}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note.active{display:block}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note p:first-child{margin-top:0}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note p:last-child{margin-bottom:0}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container{align-items:center;box-sizing:border-box;color:#eee;display:flex;flex-wrap:nowrap;grid-area:info;justify-content:center;overflow:hidden;padding:0 10px}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-page,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-time,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-timer{box-sizing:border-box;display:block;padding:0 10px;white-space:nowrap;width:100%}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button{height:1.5em;line-height:1.5em;width:1.5em}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-page{order:2;text-align:center}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-page .bespoke-marp-presenter-info-page-text{display:inline-block;min-width:120px;text-align:center}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-time{color:#999;order:1;text-align:left}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-timer{color:#999;order:3;text-align:right}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-timer:hover{cursor:pointer}}@media print{.bespoke-marp-presenter-info-container,.bespoke-marp-presenter-next-container,.bespoke-marp-presenter-note-container{display:none}}</style><style>@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@200;400;700&display=swap');@import url('https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/monokai.css');div#\:\$p > svg > foreignObject > section{width:1280px;height:720px;box-sizing:border-box;overflow:hidden;position:relative;scroll-snap-align:center center;-webkit-text-size-adjust:100%;text-size-adjust:100%}div#\:\$p > svg > foreignObject > section::after{bottom:0;content:attr(data-marpit-pagination);padding:inherit;pointer-events:none;position:absolute;right:0}div#\:\$p > svg > foreignObject > section:not([data-marpit-pagination])::after{display:none}div#\:\$p > svg > foreignObject > section :is(h1, marp-h1){font-size:2em;margin-block:0.67em}div#\:\$p > svg > foreignObject > section video::-webkit-media-controls{will-change:transform}@page {size:1280px 720px;margin:0}@media print{html, body{background-color:#fff;margin:0;page-break-inside:avoid;break-inside:avoid-page}div#\:\$p > svg > foreignObject > section{page-break-before:always;break-before:page}div#\:\$p > svg > foreignObject > section, div#\:\$p > svg > foreignObject > section *{-webkit-print-color-adjust:exact!important;animation-delay:0s!important;animation-duration:0s!important;color-adjust:exact!important;print-color-adjust:exact!important;transition:none!important}div#\:\$p > svg[data-marpit-svg]{display:block;height:100vh;width:100vw}}div#\:\$p > svg > foreignObject > :where(section){container-type:size}div#\:\$p > svg > foreignObject > section img[data-marp-twemoji]{background:transparent;height:1em;margin:0 .05em 0 .1em;vertical-align:-.1em;width:1em}div#\:\$p > svg > foreignObject > :where(section):not([\20 root]){font-family:"Outfit", sans-serif;font-weight:200;font-size:20px;padding:calc(var(--marpit-root-font-size, 1rem) * 2.5);background:#181818;color:#ccc}div#\:\$p > svg > foreignObject > :where(section):not([\20 root]){--marpit-root-font-size: 20px}div#\:\$p > svg > foreignObject > section spoiler{color:transparent;text-shadow:none}div#\:\$p > svg > foreignObject > section .bespoke-marp-parent{position:absolute;inset:0;overflow:hidden;aspect-ratio:16/9!important;align-self:center}div#\:\$p > svg > foreignObject > section.cover{background:linear-gradient(to bottom, black, transparent 40% 96%, black 100%), linear-gradient(to right, #000 3%, #000e 15%, #000c 20%, transparent 28%), var(--cover, url(cover.jpg));background-color:black;background-size:auto 765px;background-position:top right;background-repeat:no-repeat}div#\:\$p > svg > foreignObject > section.cover ul{padding-left:5px;list-style:none}div#\:\$p > svg > foreignObject > section.cover li{background:#000c;margin:calc(var(--marpit-root-font-size, 1rem) * 1) 0;padding:calc(var(--marpit-root-font-size, 1rem) * 1);box-shadow:3px 3px 0 #fe704d;max-width:max-content}div#\:\$p > svg > foreignObject > section.cover li:hover{background:#fe704d;cursor:pointer}div#\:\$p > svg > foreignObject > section.cover blockquote{position:absolute;bottom:calc(var(--marpit-root-font-size, 1rem) * 5);right:calc(var(--marpit-root-font-size, 1rem) * 5);padding:calc(var(--marpit-root-font-size, 1rem) * 1);background:#000c}div#\:\$p > svg > foreignObject > section :is(h2, marp-h2){color:#fe704d}div#\:\$p > svg > foreignObject > section li{margin:calc(var(--marpit-root-font-size, 1rem) * .5) 0}div#\:\$p > svg > foreignObject > section strong{color:white}div#\:\$p > svg > foreignObject > section :is(pre, marp-pre){background:#000;color:white;padding:calc(var(--marpit-root-font-size, 1rem) * 1);margin:0}div#\:\$p > svg > foreignObject > section code{color:gold;text-wrap:auto}div#\:\$p > svg > foreignObject > section :is(pre, marp-pre) code{color:white}div#\:\$p > svg > foreignObject > section a{color:#3179ed;text-decoration:none}div#\:\$p > svg > foreignObject > section svg[data-marpit-svg]{background:linear-gradient(126deg, indigo, deeppink)}div#\:\$p > svg > foreignObject > section .grid{display:grid;gap:calc(var(--marpit-root-font-size, 1rem) * 1);grid-template-columns:repeat(auto-fit, minmax(300px, 1fr))}div#\:\$p > svg > foreignObject > section:has(steps){position:relative}div#\:\$p > svg > foreignObject > section .step-indicator{position:absolute;top:0;right:0;font-size:0.85em;font-weight:400;padding:calc(var(--marpit-root-font-size, 1rem) * 0.3) calc(var(--marpit-root-font-size, 1rem) * 0.8);background:#fe704d22;color:#fe704d;border-radius:0 0 0 calc(var(--marpit-root-font-size, 1rem) * 0.5);z-index:100;letter-spacing:0.05em;pointer-events:none}div#\:\$p > svg > foreignObject > section section.step-indicator{--marpit-root-font-size: 0.85em}div#\:\$p > svg > foreignObject > section steps{display:block;position:relative}div#\:\$p > svg > foreignObject > section step{display:block}div#\:\$p > svg > foreignObject > section step:not(:first-child){display:none}div#\:\$p > svg > foreignObject > section step[data-marpit-fragment]{display:none}div#\:\$p > svg > foreignObject > section steps:has(> step[data-bespoke-marp-fragment=active])>step:first-child{display:none}div#\:\$p > svg > foreignObject > section step[data-bespoke-marp-fragment=inactive]{visibility:visible!important;display:none!important}div#\:\$p > svg > foreignObject > section step[data-bespoke-marp-fragment=active]{display:block!important;visibility:visible!important}div#\:\$p > svg > foreignObject > section step[data-bespoke-marp-fragment=active]:has(~ step[data-bespoke-marp-fragment=active]){display:none!important}div#\:\$p > svg > foreignObject > section split-slide{--left: 50%;--right: 50%;--font-size: calc(var(--marpit-root-font-size, 1rem) * 1);display:grid;grid-template-columns:var(--left) var(--right);gap:calc(var(--marpit-root-font-size, 1rem) * 1)}div#\:\$p > svg > foreignObject > section split-slide :is(pre, marp-pre){font-size:var(--font-size)}div#\:\$p > svg > foreignObject > section table{--width: 100%;width:var(--width);border-collapse:collapse}div#\:\$p > svg > foreignObject > section th, div#\:\$p > svg > foreignObject > section td{border:1px solid #ddd;padding:8px;text-align:center}div#\:\$p > svg > foreignObject > section a:is([href$=".png"],[href$=".jpg"],[href$=".jpeg"],[href$=".webp"],[href$=".gif"])::before{content:"";display:inline-block;vertical-align:middle;margin-right:calc(var(--marpit-root-font-size, 1rem) * 0.2);width:24px;height:24px;background-size:contain;background-repeat:no-repeat;background-position:center;background-image:url(../assets/icon-img.png)}div#\:\$p > svg > foreignObject > section[data-marpit-scope-M9xtw5Hz]{--cover: url(../assets/img_00057_.png);}div#\:\$p > svg > foreignObject > section[data-marpit-scope-tyrKwueP]{--cover: url(../assets/img_00066_.png);}div#\:\$p > svg > foreignObject > section[data-marpit-scope-CD7B5U2v] .order-example{display:flex}div#\:\$p > svg > foreignObject > section[data-marpit-scope-CD7B5U2v] .order-example img{width:100px;height:100px;background:indigo;border:5px solid gold}div#\:\$p > svg > foreignObject > section[data-marpit-scope-CD7B5U2v] .order-example .cat{background:white;object-fit:contain}div#\:\$p > svg > foreignObject > section[data-marpit-scope-CD7B5U2v] .cat{order:var(--cat-order, 0)}div#\:\$p > svg > foreignObject > section[data-marpit-scope-JroHGt68]{--cover: url(../assets/img_00067_.png);}div#\:\$p > svg > foreignObject > section[data-marpit-scope-KVKndVrW]{--cover: url(../assets/img_00068_.png);}div#\:\$p > svg > foreignObject > section[data-marpit-scope-ezFwbENN] .item{width:100px;height:100px;position:relative}div#\:\$p > svg > foreignObject > section[data-marpit-scope-ezFwbENN] .item.item-1{background:deeppink}div#\:\$p > svg > foreignObject > section[data-marpit-scope-ezFwbENN] .item.item-2{background:indigo;top:-40px;left:40px}div#\:\$p > svg > foreignObject > section[data-marpit-scope-ezFwbENN] .item.item-3{background:black;top:-80px;left:80px}div#\:\$p > svg > foreignObject > section[data-marpit-scope-ezFwbENN] .item.item-1{z-index:1}div#\:\$p > svg > foreignObject > section[data-marpit-scope-ezFwbENN] .item.item-2{z-index:var(--item-index, 5)}div#\:\$p > svg > foreignObject > section[data-marpit-scope-ezFwbENN] .item.item-3{z-index:10}div#\:\$p > svg > foreignObject > section[data-marpit-scope-OKcyJD8O] .reference{anchor-name:--ref;background:deeppink;width:250px;margin:auto}div#\:\$p > svg > foreignObject > section[data-marpit-scope-OKcyJD8O] .element{background:indigo;position:absolute;position-anchor:--ref;bottom:anchor(bottom);right:anchor(left)}div#\:\$p > svg > foreignObject > section[data-marpit-scope-IiE2U1fK]{--cover: url(../assets/img_00069_.png);}div#\:\$p > svg > foreignObject > section[data-marpit-scope-2CAPnwdW] .element{background:deeppink;width:200px;height:100px}div#\:\$p > svg > foreignObject > section[data-marpit-scope-2CAPnwdW] .element:hover{width:300px;background:indigo}div#\:\$p > svg > foreignObject > section[data-marpit-scope-2CAPnwdW] .transition{transition:all 1s}div#\:\$p > svg > foreignObject > section[data-marpit-scope-2CAPnwdW] .t-fast{transition-duration:0.2s}div#\:\$p > svg > foreignObject > section[data-marpit-scope-Eqa6kYRF] .element{background:deeppink;width:200px;height:200px;animation:move-Eqa6kYRF 2s alternate infinite}@keyframes move-Eqa6kYRF{0%, 100%{transform:translate(0, 0)}50%{transform:translate(200px, 0)}}div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="background"]{columns:initial!important;display:block!important;padding:0!important}div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="background"]::before, div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="background"]::after, div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="content"]::before, div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="content"]::after{display:none!important}div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="background"] > div[data-marpit-advanced-background-container]{all:initial;display:flex;flex-direction:row;height:100%;overflow:hidden;width:100%}div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="background"] > div[data-marpit-advanced-background-container][data-marpit-advanced-background-direction="vertical"]{flex-direction:column}div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="background"][data-marpit-advanced-background-split] > div[data-marpit-advanced-background-container]{width:var(--marpit-advanced-background-split, 50%)}div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="background"][data-marpit-advanced-background-split="right"] > div[data-marpit-advanced-background-container]{margin-left:calc(100% - var(--marpit-advanced-background-split, 50%))}div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="background"] > div[data-marpit-advanced-background-container] > figure{all:initial;background-position:center;background-repeat:no-repeat;background-size:cover;flex:auto;margin:0}div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="background"] > div[data-marpit-advanced-background-container] > figure > figcaption{position:absolute;border:0;clip:rect(0, 0, 0, 0);height:1px;margin:-1px;overflow:hidden;padding:0;white-space:nowrap;width:1px}div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="content"], div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="pseudo"]{background:transparent!important}div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background="pseudo"], div#\:\$p > svg[data-marpit-svg] > foreignObject[data-marpit-advanced-background="pseudo"]{pointer-events:none!important}div#\:\$p > svg > foreignObject > section[data-marpit-advanced-background-split]{width:100%;height:100%}
+</style><style>
+    #img-modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: rgba(0, 0, 0, 0.85);
+      align-items: center;
+      justify-content: center;
+      cursor: zoom-out;
+    }
+    #img-modal-overlay.open {
+      display: flex;
+    }
+    #img-modal-overlay img {
+      max-width: 90vw;
+      max-height: 90vh;
+      object-fit: contain;
+      border-radius: 4px;
+      box-shadow: 0 8px 40px #000a;
+      cursor: default;
+    }
+    #img-modal-close {
+      position: fixed;
+      top: 1rem;
+      right: 1.25rem;
+      font-size: 2rem;
+      line-height: 1;
+      color: #fff;
+      background: none;
+      border: none;
+      cursor: pointer;
+      opacity: 0.7;
+      z-index: 10000;
+    }
+    #img-modal-close:hover { opacity: 1; }
+  </style></head><body data-bespoke-view=""><div class="bespoke-progress-parent"><div class="bespoke-progress-bar" style="flex-basis: 0%;"></div></div><div id=":$p" class="bespoke-marp-parent bespoke-marp-inactive"><svg data-marpit-svg="" viewBox="0 0 1280 720" class="bespoke-marp-slide bespoke-marp-active" data-bespoke-marp-load="hideable"><foreignObject width="1280" height="720"><section id="1" data-marpit-scope-m9xtw5hz="" data-paginate="true" data-class="cover" data-theme="alo" lang="en-US" class="cover" data-marpit-pagination="1" style="--paginate:true;--class:cover;--theme:alo;" data-marpit-pagination-total="25">
+<h1 id="layouts-css">Layouts CSS</h1>
+<h2 id="contenidos">Contenidos</h2>
+<ul>
+<li>La propiedad <code>display</code></li>
+<li>Layouts Flex</li>
+<li>Layouts Grid</li>
+<li>Position / Anchor position</li>
+<li>Animaciones</li>
+</ul>
+<blockquote>
+<p>Inspirado en el bootcamp de <br><strong>Manz.dev</strong> todos los créditos a el.</p>
+</blockquote>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720" class="bespoke-marp-slide" aria-hidden="true" data-bespoke-marp-load="hideable"><foreignObject width="1280" height="720"><section id="2" data-paginate="true" data-theme="alo" lang="en-US" data-marpit-pagination="2" style="--paginate:true;--theme:alo;" data-marpit-pagination-total="25">
+<h2 id="la-propiedad-display">La propiedad display</h2>
+<ul>
+<li>Los flujos <code>inline</code> se ajustan al contenido</li>
+<li>Los flujos <code>block</code> ocupan el espacio disponible</li>
+<li><img class="emoji" draggable="false" alt="🆕" src="Layouts%20CSS_files/1f195_AY_j.svg" data-marp-twemoji=""> Nueva sintaxis (comportamiento exterior, comportamiento de hijos)</li>
+</ul>
+<steps>
+<step>
+<pre><code class="language-css"><span class="hljs-selector-class">.element</span> {
+  <span class="hljs-attribute">display</span>: inline;         <span class="hljs-comment">/* <img class="emoji" draggable="false" alt="❌" src="Layouts%20CSS_files/274c_AY_j.svg" data-marp-twemoji=""> Ignora width / height */</span>
+  <span class="hljs-attribute">display</span>: block;
+  <span class="hljs-attribute">display</span>: inline-block;   <span class="hljs-comment">/* <img class="emoji" draggable="false" alt="✅" src="Layouts%20CSS_files/2705_AY_j.svg" data-marp-twemoji=""> width / height */</span>
+  <span class="hljs-attribute">display</span>: inline-flex;
+  <span class="hljs-attribute">display</span>: flex;
+  <span class="hljs-attribute">display</span>: inline-grid;
+  <span class="hljs-attribute">display</span>: grid;
+}
+</code></pre>
+</step>
+<step data-marpit-fragment="1" data-bespoke-marp-fragment="inactive">
+<pre><code class="language-css"><span class="hljs-selector-class">.element</span> {
+  <span class="hljs-attribute">display</span>: inline flow;         <span class="hljs-comment">/* Antiguo inline <img class="emoji" draggable="false" alt="❌" src="Layouts%20CSS_files/274c_AY_j.svg" data-marp-twemoji=""> Ignora width / height */</span>
+  <span class="hljs-attribute">display</span>: block flow;          <span class="hljs-comment">/* Antiguo block */</span>
+  <span class="hljs-attribute">display</span>: inline flow-root;    <span class="hljs-comment">/* Antiguo inline-block <img class="emoji" draggable="false" alt="✅" src="Layouts%20CSS_files/2705_AY_j.svg" data-marp-twemoji=""> width / height */</span>
+  <span class="hljs-attribute">display</span>: inline flex;         <span class="hljs-comment">/* Antiguo inline-flex */</span>
+  <span class="hljs-attribute">display</span>: block flex;          <span class="hljs-comment">/* Antiguo flex */</span>
+  <span class="hljs-attribute">display</span>: inline grid;         <span class="hljs-comment">/* Antiguo inline-grid */</span>
+  <span class="hljs-attribute">display</span>: block grid;          <span class="hljs-comment">/* Antiguo grid */</span>
+}
+</code></pre>
+</step>
+<div class="step-indicator">1 / 2</div></steps>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720" class="bespoke-marp-slide" aria-hidden="true" data-bespoke-marp-load="hideable"><foreignObject width="1280" height="720"><section id="3" data-marpit-scope-tyrkwuep="" data-paginate="true" data-class="cover" data-theme="alo" lang="en-US" class="cover" data-marpit-pagination="3" style="--paginate:true;--class:cover;--theme:alo;" data-marpit-pagination-total="25">
+<h1 id="flex">Flex</h1>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720" class="bespoke-marp-slide" aria-hidden="true" data-bespoke-marp-load="hideable"><foreignObject width="1280" height="720"><section id="4" data-paginate="true" data-theme="alo" lang="en-US" data-marpit-pagination="4" style="--paginate:true;--theme:alo;" data-marpit-pagination-total="25">
+<h2 id="flex-css">Flex CSS</h2>
+<ul>
+<li>Sistema de una sola dimensión <a href="https://lenguajecss.com/css/flex/que-es-flex/">Flex</a></li>
+</ul>
+<split-slide>
+<steps>
+<step>
+<pre><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"parent"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"item"</span>&gt;</span>1<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"item"</span>&gt;</span>2<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"item"</span>&gt;</span>3<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"item"</span>&gt;</span>4<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"item"</span>&gt;</span>5<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"item"</span>&gt;</span>6<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+</code></pre>
+</step>
+<step data-marpit-fragment="1" data-bespoke-marp-fragment="inactive">
+<pre><code class="language-css"><span class="hljs-selector-class">.parent</span> {
+  <span class="hljs-attribute">display</span>: flex;
+  <span class="hljs-attribute">flex-direction</span>: row;
+  <span class="hljs-attribute">background</span>: <span class="hljs-number">#999</span>;
+
+  <span class="hljs-selector-class">.item</span> {
+    <span class="hljs-attr">--size</span>: <span class="hljs-number">100px</span>;
+
+    <span class="hljs-attribute">background</span>: indigo;
+    <span class="hljs-attribute">border</span>: <span class="hljs-number">5px</span> solid gold;
+    <span class="hljs-attribute">color</span>: gold;
+    <span class="hljs-attribute">width</span>: <span class="hljs-built_in">var</span>(--size);
+    <span class="hljs-attribute">height</span>: <span class="hljs-built_in">var</span>(--size);
+  }
+}
+</code></pre>
+</step>
+<div class="step-indicator">1 / 2</div></steps>
+<div>
+<ul>
+<li>
+<p>Propiedad <code>flex-direction</code>:</p>
+<ul>
+<li><code>row</code> (por defecto)</li>
+<li><code>column</code></li>
+<li><code>row-reverse</code></li>
+<li><code>column-reverse</code></li>
+</ul>
+</li>
+</ul>
+</div>
+</split-slide>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720" class="bespoke-marp-slide" aria-hidden="true" data-bespoke-marp-load="hideable"><foreignObject width="1280" height="720"><section id="5" data-paginate="true" data-theme="alo" lang="en-US" data-marpit-pagination="5" style="--paginate:true;--theme:alo;" data-marpit-pagination-total="25">
+<h2 id="gaps-huecos">Gaps (Huecos)</h2>
+<ul>
+<li>Propiedad <code>gap</code> → para añadir huecos entre items (no globales)</li>
+<li>No es lo mismo <code>gap</code> (sólo entre items) que <code>padding</code> o <code>margin</code></li>
+</ul>
+<split-slide>
+<steps>
+<step>
+<pre><code class="language-css"><span class="hljs-selector-class">.parent</span> {
+  <span class="hljs-attribute">display</span>: flex;
+  <span class="hljs-attribute">flex-direction</span>: row;
+  <span class="hljs-attribute">gap</span>: <span class="hljs-number">1rem</span>;
+  <span class="hljs-attribute">background</span>: <span class="hljs-number">#999</span>;
+
+  <span class="hljs-selector-class">.item</span> {
+    <span class="hljs-comment">/* ... */</span>
+  }
+}
+</code></pre>
+</step>
+<step data-marpit-fragment="1" data-bespoke-marp-fragment="inactive">
+<pre><code class="language-css"><span class="hljs-selector-class">.parent</span> {
+  <span class="hljs-attribute">display</span>: flex;
+  <span class="hljs-attribute">flex-direction</span>: row;
+  <span class="hljs-attribute">gap</span>: <span class="hljs-number">2rem</span>;
+  <span class="hljs-attribute">padding</span>: <span class="hljs-number">1rem</span>;
+  <span class="hljs-attribute">border</span>: <span class="hljs-number">3px</span> solid black;
+  <span class="hljs-attribute">column-rule</span>: <span class="hljs-number">3px</span> solid black;
+  <span class="hljs-attribute">column-rule</span>-<span class="hljs-attribute">inset</span>: -<span class="hljs-number">1rem</span>;
+  <span class="hljs-attribute">background</span>: <span class="hljs-number">#999</span>;
+}
+</code></pre>
+</step>
+<div class="step-indicator">1 / 2</div></steps>
+<div>
+<ul>
+<li>Añadimos un <code>padding</code> para border exteriores</li>
+<li>Ponemos líneas con <code>column-rule: 3px solid black</code></li>
+<li>Aumentamos el <code>gap</code> a <code>2rem</code> para dar más espacio</li>
+<li>Ajustamos: <code>border: 3px solid black</code> y <code>width: max-content</code></li>
+<li><img class="emoji" draggable="false" alt="⚠" src="Layouts%20CSS_files/26a0_AY_j.svg" data-marp-twemoji=""> Ajustamos las lineas con <code>column-rule-inset: -1rem</code><br>
+<strong>Pro-tip:</strong></li>
+<li>Añadimos un <code>--offset: 2rem</code></li>
+<li>Mutamos <code>column-rule-inset: calc(var(--offset) * -1)</code></li>
+<li>Mutamos <code>padding: var(--offset)</code></li>
+<li>Mutamos <code>gap: calc(var(--offset) * 2)</code></li>
+</ul>
+</div>
+</split-slide>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720" class="bespoke-marp-slide" aria-hidden="true" data-bespoke-marp-load="hideable"><foreignObject width="1280" height="720"><section id="6" data-paginate="true" data-theme="alo" lang="en-US" data-marpit-pagination="6" style="--paginate:true;--theme:alo;" data-marpit-pagination-total="25">
+<h2 id="flex-multil%C3%ADnea-wrap">Flex multilínea (Wrap)</h2>
+<ul>
+<li>Se dice que Flex funciona con una dimensión, pero...</li>
+<li>Propiedad <code>flex-wrap*</code> → con <code>wrap</code> permite multilínea (desborda items sin deformarlos)</li>
+</ul>
+<split-slide>
+<pre><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"parent"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"item"</span>&gt;</span>1<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"item"</span>&gt;</span>2<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"item"</span>&gt;</span>3<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"item"</span>&gt;</span>4<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"item"</span>&gt;</span>5<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-comment">&lt;!-- ... hasta 10 --&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+</code></pre>
+<steps>
+<step>
+<pre><code class="language-css"><span class="hljs-selector-class">.parent</span> {
+  <span class="hljs-attribute">display</span>: flex;
+  <span class="hljs-attribute">flex-direction</span>: row;
+  <span class="hljs-attribute">background</span>: grey;
+  <span class="hljs-attribute">padding</span>: <span class="hljs-number">1rem</span>;
+  <span class="hljs-attribute">width</span>: <span class="hljs-number">600px</span>;
+  <span class="hljs-attribute">gap</span>: <span class="hljs-number">1rem</span>;
+
+  <span class="hljs-selector-class">.item</span> { <span class="hljs-comment">/* ... */</span> }
+}
+</code></pre>
+</step>
+<step data-marpit-fragment="1" data-bespoke-marp-fragment="inactive">
+<pre><code class="language-css"><span class="hljs-selector-class">.parent</span> {
+  <span class="hljs-attribute">display</span>: flex;
+  <span class="hljs-attribute">flex-direction</span>: row;
+  <span class="hljs-attribute">flex-wrap</span>: wrap;
+  <span class="hljs-attribute">justify-content</span>: space-between;
+  <span class="hljs-attribute">align-content</span>: space-between;
+  <span class="hljs-attribute">background</span>: grey;
+  <span class="hljs-attribute">padding</span>: <span class="hljs-number">1rem</span>;
+  <span class="hljs-attribute">width</span>: <span class="hljs-number">600px</span>;
+  <span class="hljs-attribute">gap</span>: <span class="hljs-number">1rem</span>;
+}
+</code></pre>
+</step>
+<div class="step-indicator">1 / 2</div></steps>
+</split-slide>
+<ul>
+<li>El modo <code>wrap</code> desbloquea <code>align-content</code> para alinear esas líneas extra.</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720" class="bespoke-marp-slide" aria-hidden="true" data-bespoke-marp-load="hideable"><foreignObject width="1280" height="720"><section id="7" data-marpit-scope-cd7b5u2v="" data-paginate="true" data-theme="alo" lang="en-US" data-marpit-pagination="7" style="--paginate:true;--theme:alo;" data-marpit-pagination-total="25">
+<h2 id="extras-de-flex">Extras de Flex</h2>
+<ul>
+<li>Con <code>justify-content</code> → eje primario (row → horizontal, column → vertical)</li>
+<li>Con <code>align-items</code> → eje secundario (row → vertical, column → horizontal)</li>
+<li>En modo wrap, <code>align-content</code> permite alinear eje extra multilinea</li>
+<li>Extra: El maravilloso <code>order</code></li>
+</ul>
+<div class="order-example">
+  <img src="Layouts%20CSS_files/Official_CSS_Logo.svg_AY_j.png" alt="Duck">
+  <img src="Layouts%20CSS_files/Official_CSS_Logo.svg_AY_j.png" alt="Duck">
+  <img class="cat" src="Layouts%20CSS_files/logo_AY_j.png" alt="Cat">
+  <img src="Layouts%20CSS_files/Official_CSS_Logo.svg_AY_j.png" alt="Duck">
+</div>
+<div class="buttons">
+<p><code>.cat { order: </code> <input type="number" oninput="document.body.style.setProperty('--cat-order', this.value)" value="0"><code>}</code></p>
+</div>
+Juegos para practicar:
+<p><a href="https://flexboxfroggy.com/#es">FlexboxFroggy</a><br>
+<a href="https://flexboxdefense.com/">FlexboxDefense</a></p>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720" class="bespoke-marp-slide" aria-hidden="true" data-bespoke-marp-load="hideable"><foreignObject width="1280" height="720"><section id="8" data-marpit-scope-jrohgt68="" data-paginate="true" data-class="cover" data-theme="alo" lang="en-US" class="cover" data-marpit-pagination="8" style="--paginate:true;--class:cover;--theme:alo;" data-marpit-pagination-total="25">
+<h1 id="grid">Grid</h1>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720" class="bespoke-marp-slide" aria-hidden="true" data-bespoke-marp-load="hideable"><foreignObject width="1280" height="720"><section id="9" data-paginate="true" data-theme="alo" lang="en-US" data-marpit-pagination="9" style="--paginate:true;--theme:alo;" data-marpit-pagination-total="25">
+<h2 id="grid-1">Grid</h2>
+<ul>
+<li>Sistema de dos dimensiones (cuadrículas) → Conceptos: <a href="https://lenguajecss.com/css/grid/que-es-grid/"> Grid</a></li>
+</ul>
+<split-slide>
+<steps>
+<step>
+<pre><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"grid"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"item"</span>&gt;</span>1<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"item"</span>&gt;</span>2<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"item"</span>&gt;</span>3<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"item"</span>&gt;</span>4<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"item"</span>&gt;</span>5<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"item"</span>&gt;</span>6<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+</code></pre>
+</step>
+<step data-marpit-fragment="1" data-bespoke-marp-fragment="inactive">
+<pre><code class="language-css"><span class="hljs-selector-class">.grid</span> {
+  <span class="hljs-attribute">display</span>: grid;
+  <span class="hljs-attribute">grid-template-columns</span>: <span class="hljs-number">100px</span> <span class="hljs-number">100px</span> <span class="hljs-number">100px</span>;
+  <span class="hljs-attribute">grid-template-rows</span>: <span class="hljs-number">50px</span> <span class="hljs-number">50px</span>;
+  <span class="hljs-attribute">gap</span>: <span class="hljs-number">15px</span> <span class="hljs-number">15px</span>;
+  <span class="hljs-attribute">width</span>: max-content;
+  <span class="hljs-attribute">background</span>: grey;
+
+  <span class="hljs-selector-class">.item</span> { <span class="hljs-attribute">background</span>: indigo }
+}
+</code></pre>
+</step>
+<div class="step-indicator">1 / 2</div></steps>
+<div>
+<ul>
+<li>Definir el tamaño de ancho → <code>grid-template-columns</code></li>
+<li>Definir el tamaño de alto → <code>grid-template-rows</code></li>
+<li>Definir huecos con <code>gap</code> → (row + columns)</li>
+<li>Más info: <a href="https://lenguajecss.com/css/grid/que-es-grid/">Grid</a></li>
+</ul>
+</div>
+</split-slide>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720" class="bespoke-marp-slide" aria-hidden="true" data-bespoke-marp-load="hideable"><foreignObject width="1280" height="720"><section id="10" data-paginate="true" data-theme="alo" lang="en-US" data-marpit-pagination="10" style="--paginate:true;--theme:alo;" data-marpit-pagination-total="25">
+<h2 id="m%C3%A1s-caracter%C3%ADsticas-en-grid">Más características en Grid</h2>
+<ul>
+<li>Se pueden usar características adicionales en Grid</li>
+</ul>
+<split-slide>
+<steps>
+<step>
+<pre><code class="language-css"><span class="hljs-selector-class">.grid</span> {
+  <span class="hljs-attribute">display</span>: grid;
+  <span class="hljs-attribute">grid-template-columns</span>: <span class="hljs-number">100px</span> <span class="hljs-number">100px</span> <span class="hljs-number">100px</span>;
+  <span class="hljs-attribute">grid-template-rows</span>: <span class="hljs-number">50px</span> <span class="hljs-number">50px</span>;
+  <span class="hljs-attribute">gap</span>: <span class="hljs-number">15px</span> <span class="hljs-number">15px</span>;
+  <span class="hljs-attribute">width</span>: max-content;
+  <span class="hljs-attribute">background</span>: grey;
+
+  <span class="hljs-selector-class">.item</span> { <span class="hljs-attribute">background</span>: indigo }
+}
+</code></pre>
+</step>
+<step data-marpit-fragment="1" data-bespoke-marp-fragment="inactive">
+<pre><code class="language-css"><span class="hljs-selector-class">.grid</span> {
+  <span class="hljs-attribute">display</span>: grid;
+  <span class="hljs-attribute">grid-template-columns</span>: <span class="hljs-built_in">repeat</span>(<span class="hljs-number">3</span>, <span class="hljs-number">100px</span>) <span class="hljs-number">200px</span>;
+  <span class="hljs-attribute">grid-template-rows</span>: <span class="hljs-built_in">repeat</span>(<span class="hljs-number">2</span>, <span class="hljs-number">50px</span>);
+  <span class="hljs-attribute">gap</span>: <span class="hljs-number">15px</span> <span class="hljs-number">15px</span>;
+  <span class="hljs-attribute">width</span>: max-content;
+  <span class="hljs-attribute">background</span>: grey;
+
+  <span class="hljs-selector-class">.item</span> { <span class="hljs-attribute">background</span>: indigo }
+}
+</code></pre>
+</step>
+<step data-marpit-fragment="2" data-bespoke-marp-fragment="inactive">
+<pre><code class="language-css"><span class="hljs-selector-class">.grid</span> {
+  <span class="hljs-attribute">display</span>: grid;
+  <span class="hljs-attribute">grid-template-columns</span>: <span class="hljs-number">100px</span> <span class="hljs-number">1</span>fr <span class="hljs-number">100px</span>;
+  <span class="hljs-attribute">grid-template-rows</span>: <span class="hljs-built_in">repeat</span>(<span class="hljs-number">2</span>, <span class="hljs-number">50px</span>);
+  <span class="hljs-attribute">gap</span>: <span class="hljs-number">15px</span> <span class="hljs-number">15px</span>;
+  <span class="hljs-attribute">width</span>: max-content;
+  <span class="hljs-attribute">background</span>: grey;
+
+  <span class="hljs-selector-class">.item</span> { <span class="hljs-attribute">background</span>: indigo }
+}
+</code></pre>
+</step>
+<div class="step-indicator">1 / 3</div></steps>
+<div>
+<ul>
+<li>La función <code>repeat(num, size)</code> ayuda a simplificar</li>
+<li>La unidad <code>fr</code> (fracción restante)</li>
+<li>Responsive one-line: <code>repeat(auto-fill, minmax(var(--size), 1fr))</code></li>
+</ul>
+<div>
+</div></div></split-slide></section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720" class="bespoke-marp-slide" aria-hidden="true" data-bespoke-marp-load="hideable"><foreignObject width="1280" height="720"><section data-paginate="true" data-theme="alo" lang="en-US" data-marpit-pagination="11" style="--paginate:true;--theme:alo;--marpit-advanced-background-split:50%;" data-marpit-pagination-total="25" data-marpit-advanced-background="background" data-marpit-advanced-background-split="right"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;../assets/alinear-grid-css.png&quot;);background-size:contain;"></figure></div></section></foreignObject><foreignObject width="50%" height="720"><section id="11" data-paginate="true" data-theme="alo" lang="en-US" data-marpit-pagination="11" style="--paginate:true;--theme:alo;--marpit-advanced-background-split:50%;" data-marpit-pagination-total="25" data-marpit-advanced-background="content" data-marpit-advanced-background-split="right">
+<h2 id="extras-de-grid">Extras de Grid</h2>
+<ul>
+<li>Con las propiedades <code>*-items</code> y <code>*-content</code> se puede alinear elementos</li>
+<li>Con <code>justify-items</code> y <code>align-items</code> (hijos, dentro de celdas)</li>
+<li>Con <code>justify-content</code> y <code>align-content</code> (el propio grid)</li>
+<li>Más info → <a href="https://lenguajecss.com/css/grid/alinear-centrar-css/">Alinear en Grid</a></li>
+</ul>
+</section>
+</foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section data-paginate="true" data-theme="alo" lang="en-US" data-marpit-pagination="11" style="" data-marpit-pagination-total="25" data-marpit-advanced-background="pseudo" data-marpit-advanced-background-split="right"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720" class="bespoke-marp-slide" aria-hidden="true" data-bespoke-marp-load="hideable"><foreignObject width="1280" height="720"><section id="12" data-paginate="true" data-theme="alo" lang="en-US" data-marpit-pagination="12" style="--paginate:true;--theme:alo;" data-marpit-pagination-total="25">
+<h2 id="grid-por-%C3%A1reas">Grid por áreas</h2>
+<ul>
+<li><a href="https://lenguajecss.com/css/grid/grid-template-areas/">Grid por áreas</a>: <code>grid-template-areas</code> y <code>grid-area</code></li>
+<li>Zonas vacías con <code>.</code> (asegúrate de tener mismo número de columnas)</li>
+</ul>
+<split-slide>
+<pre><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"parent"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">header</span>&gt;</span>Logo<span class="hljs-tag">&lt;/<span class="hljs-name">header</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">section</span>&gt;</span>Content<span class="hljs-tag">&lt;/<span class="hljs-name">section</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">aside</span>&gt;</span>Menú<span class="hljs-tag">&lt;/<span class="hljs-name">aside</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">footer</span>&gt;</span>Footer<span class="hljs-tag">&lt;/<span class="hljs-name">footer</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+</code></pre>
+<pre><code class="language-css"><span class="hljs-selector-class">.parent</span> {
+  <span class="hljs-attribute">display</span>: grid;
+  <span class="hljs-attribute">grid-template-areas</span>: <span class="hljs-string">"head head"</span>
+                       <span class="hljs-string">"body menu"</span>
+                       <span class="hljs-string">"foot foot"</span>;
+  <span class="hljs-attribute">grid-template-rows</span>: <span class="hljs-number">100px</span> <span class="hljs-number">1</span>fr <span class="hljs-number">100px</span>;
+  <span class="hljs-attribute">height</span>: <span class="hljs-number">700px</span>;
+}
+
+<span class="hljs-selector-tag">header</span> { <span class="hljs-attribute">grid-area</span>: head; <span class="hljs-attribute">background</span>: blue }
+<span class="hljs-selector-tag">section</span> { <span class="hljs-attribute">grid-area</span>: body; <span class="hljs-attribute">background</span>: green }
+<span class="hljs-selector-tag">aside</span> { <span class="hljs-attribute">grid-area</span>: menu; <span class="hljs-attribute">background</span>: grey }
+<span class="hljs-selector-tag">footer</span> { <span class="hljs-attribute">grid-area</span>: foot; <span class="hljs-attribute">background</span>: <span class="hljs-number">#333</span> }
+</code></pre>
+</split-slide>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720" class="bespoke-marp-slide" aria-hidden="true" data-bespoke-marp-load="hideable"><foreignObject width="1280" height="720"><section id="13" data-paginate="true" data-theme="alo" lang="en-US" data-marpit-pagination="13" style="--paginate:true;--theme:alo;" data-marpit-pagination-total="25">
+<h2 id="grids-irregulares">Grids irregulares</h2>
+<ul>
+<li><a href="https://lenguajecss.com/css/grid/irregular-grid/">Grids irregulares</a>: <code>grid-*-start</code> y <code>grid-*-end</code></li>
+<li>Zonas vacías con <code>.</code> (asegúrate de tener mismo número de columnas)</li>
+</ul>
+<split-slide>
+<pre><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"parent"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"item"</span>&gt;</span>1<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"item"</span>&gt;</span>2<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"item"</span>&gt;</span>3<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"item"</span>&gt;</span>4<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"item"</span>&gt;</span>5<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+</code></pre>
+<pre><code class="language-css"><span class="hljs-selector-class">.parent</span> {
+  <span class="hljs-attribute">display</span>: grid;
+  <span class="hljs-attribute">grid-template-columns</span>: <span class="hljs-built_in">repeat</span>(<span class="hljs-number">2</span>, <span class="hljs-number">100px</span>);
+  <span class="hljs-attribute">grid-template-rows</span>: <span class="hljs-number">50px</span> <span class="hljs-number">1</span>fr <span class="hljs-number">100px</span>;
+  <span class="hljs-attribute">gap</span>: <span class="hljs-number">5px</span>;
+}
+
+<span class="hljs-selector-class">.item</span> { <span class="hljs-attribute">background</span>: grey }
+
+<span class="hljs-selector-class">.item</span><span class="hljs-selector-pseudo">:nth-child</span>(<span class="hljs-number">2</span>) {
+  <span class="hljs-attribute">grid-row-start</span>: <span class="hljs-number">2</span>;       <span class="hljs-comment">/* +1 */</span>
+  <span class="hljs-attribute">grid-column</span>: <span class="hljs-number">1</span> / span <span class="hljs-number">2</span>; <span class="hljs-comment">/* De 1 hasta 2 */</span>
+}
+</code></pre>
+</split-slide>
+<p>Juegos para prácticar:</p>
+<ul>
+<li><a href="https://cssgridgarden.com/#es">Grid Garden</a></li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720" class="bespoke-marp-slide" aria-hidden="true" data-bespoke-marp-load="hideable"><foreignObject width="1280" height="720"><section id="14" data-marpit-scope-kvkndvrw="" data-paginate="true" data-class="cover" data-theme="alo" lang="en-US" class="cover" data-marpit-pagination="14" style="--paginate:true;--class:cover;--theme:alo;" data-marpit-pagination-total="25">
+<h1 id="position">Position</h1>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720" class="bespoke-marp-slide" aria-hidden="true" data-bespoke-marp-load="hideable"><foreignObject width="1280" height="720"><section id="15" data-paginate="true" data-theme="alo" lang="en-US" data-marpit-pagination="15" style="--paginate:true;--theme:alo;" data-marpit-pagination-total="25">
+<h2 id="posicionamiento-css">Posicionamiento CSS</h2>
+<ul>
+<li>La propiedad <code>position</code></li>
+<li>5 modalidades: <code>static</code>, <code>relative</code> y <code>absolute</code> (variaciones: <code>fixed</code> y <code>sticky</code>)</li>
+<li>Desplazamientos: <code>top</code>, <code>bottom</code>, <code>left</code>, <code>right</code></li>
+</ul>
+<split-slide style="--left:60%; --right:40%;">
+<steps>
+<step>
+<pre><code class="language-css"><span class="hljs-selector-class">.item-1</span> {
+  <span class="hljs-attribute">position</span>: relative;
+  <span class="hljs-attribute">left</span>: <span class="hljs-number">5px</span>;            <span class="hljs-comment">/* → 5px (desde la izquierda) */</span>
+  <span class="hljs-attribute">left</span>: -<span class="hljs-number">5px</span>;           <span class="hljs-comment">/* ← 5px (hacia la izquierda) */</span>
+  <span class="hljs-attribute">top</span>: <span class="hljs-number">5px</span>;             <span class="hljs-comment">/* ↓ 5px (hacia abajo) */</span>
+  <span class="hljs-attribute">top</span>: -<span class="hljs-number">5px</span>;            <span class="hljs-comment">/* ↑ 5px (hacia arriba) */</span>
+}
+</code></pre>
+</step>
+<step data-marpit-fragment="1" data-bespoke-marp-fragment="inactive">
+<pre><code class="language-css"><span class="hljs-selector-class">.item-2</span> {
+  <span class="hljs-attribute">position</span>: absolute;
+  <span class="hljs-attribute">left</span>: <span class="hljs-number">0</span>;
+  <span class="hljs-attribute">top</span>: <span class="hljs-number">0</span>;
+}
+</code></pre>
+</step>
+<step data-marpit-fragment="2" data-bespoke-marp-fragment="inactive">
+<pre><code class="language-css"><span class="hljs-selector-class">.parent</span> {
+  <span class="hljs-attribute">position</span>: relative;       <span class="hljs-comment">/* Marco (referencia) */</span>
+
+  <span class="hljs-selector-class">.item</span> {
+    <span class="hljs-attribute">position</span>: absolute;     <span class="hljs-comment">/* Busca padre != static */</span>
+    <span class="hljs-attribute">left</span>: <span class="hljs-number">0</span>;
+    <span class="hljs-attribute">top</span>: <span class="hljs-number">0</span>;
+  }
+}
+</code></pre>
+</step>
+<step data-marpit-fragment="3" data-bespoke-marp-fragment="inactive">
+<pre><code class="language-css"><span class="hljs-selector-class">.parent</span> {
+  <span class="hljs-attribute">position</span>: relative;       <span class="hljs-comment">/* Marco (referencia) */</span>
+  <span class="hljs-selector-class">.item</span> {
+    <span class="hljs-attribute">position</span>: absolute;     <span class="hljs-comment">/* Busca padre != static */</span>
+    <span class="hljs-attribute">left</span>: <span class="hljs-number">0</span>;
+    <span class="hljs-attribute">top</span>: <span class="hljs-number">0</span>;
+    <span class="hljs-attribute">bottom</span>: <span class="hljs-number">0</span>;
+    <span class="hljs-attribute">right</span>: <span class="hljs-number">0</span>;               <span class="hljs-comment">/* Extender a 20px */</span>
+  }
+}
+</code></pre>
+</step>
+<step data-marpit-fragment="4" data-bespoke-marp-fragment="inactive">
+<pre><code class="language-css"><span class="hljs-selector-class">.parent</span> {
+  <span class="hljs-attribute">position</span>: relative;
+  <span class="hljs-selector-class">.item</span> {
+    <span class="hljs-attribute">position</span>: absolute;
+    <span class="hljs-attribute">inset</span>: <span class="hljs-number">0</span>;               <span class="hljs-comment">/* inset: 0 20px 0 0 */</span>
+  }
+}
+</code></pre>
+</step>
+<div class="step-indicator">1 / 5</div></steps>
+<div>
+<ul>
+<li>Posicionamiento relativo</li>
+<li>Posicionamiento absoluto</li>
+<li>Posicionamiento de referencia (colocar)</li>
+<li>Posicionamiento de referencia → inset</li>
+<li>Posicionamiento fijo (sobre el viewport)</li>
+<li>Posicionamiento pegajoso</li>
+</ul>
+</div>
+</split-slide>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720" class="bespoke-marp-slide" aria-hidden="true" data-bespoke-marp-load="hideable"><foreignObject width="1280" height="720"><section id="16" data-marpit-scope-ezfwbenn="" data-paginate="true" data-theme="alo" lang="en-US" data-marpit-pagination="16" style="--paginate:true;--theme:alo;" data-marpit-pagination-total="25">
+<h2 id="profundidad-css">Profundidad CSS</h2>
+<ul>
+<li>La propiedad <code>z-index</code> (valores numéricos)</li>
+</ul>
+<split-slide style="--left:60%; --right:40%;">
+<steps>
+<step>
+<pre><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"container"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"item item-1"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"item item-2"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"item item-3"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+</code></pre>
+</step>
+<step data-marpit-fragment="1" data-bespoke-marp-fragment="inactive">
+<pre><code class="language-css"><span class="hljs-selector-class">.item</span> {
+  <span class="hljs-attribute">width</span>: <span class="hljs-number">100px</span>;
+  <span class="hljs-attribute">height</span>: <span class="hljs-number">100px</span>;
+  <span class="hljs-attribute">position</span>: relative;
+
+  &amp;<span class="hljs-selector-class">.item-1</span> { <span class="hljs-attribute">background</span>: deeppink }
+  &amp;<span class="hljs-selector-class">.item-2</span> { <span class="hljs-attribute">background</span>: indigo; <span class="hljs-attribute">top</span>: -<span class="hljs-number">40px</span>; <span class="hljs-attribute">left</span>: <span class="hljs-number">40px</span> }
+  &amp;<span class="hljs-selector-class">.item-3</span> { <span class="hljs-attribute">background</span>: black; <span class="hljs-attribute">top</span>: -<span class="hljs-number">80px</span>; <span class="hljs-attribute">left</span>: <span class="hljs-number">80px</span> }
+  &amp;<span class="hljs-selector-class">.item-1</span> { <span class="hljs-attribute">z-index</span>: <span class="hljs-number">1</span> }
+  &amp;<span class="hljs-selector-class">.item-2</span> { <span class="hljs-attribute">z-index</span>: <span class="hljs-built_in">var</span>(--item-index, <span class="hljs-number">5</span>) }
+  &amp;<span class="hljs-selector-class">.item-3</span> { <span class="hljs-attribute">z-index</span>: <span class="hljs-number">10</span> }
+}
+</code></pre>
+</step>
+<div class="step-indicator">1 / 2</div></steps>
+<div>
+<div class="zindex-example">
+  <div class="item item-1">1</div>
+  <div class="item item-2"></div>
+  <div class="item item-3">10</div>
+</div>
+<div class="buttons">
+  <code>.item-2 { z-index: </code>
+  <input type="number" value="5" oninput="document.body.style.setProperty('--item-index', this.value)">
+  <code>&nbsp;}</code>
+</div>
+</div>
+</split-slide>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720" class="bespoke-marp-slide" aria-hidden="true" data-bespoke-marp-load="hideable"><foreignObject width="1280" height="720"><section id="17" data-marpit-scope-okcyjd8o="" data-paginate="true" data-theme="alo" lang="en-US" data-marpit-pagination="17" style="--paginate:true;--theme:alo;" data-marpit-pagination-total="25">
+<h2 id="css-anchor-position">CSS Anchor position</h2>
+<split-slide>
+<pre><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"reference"</span>&gt;</span>Reference<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"element"</span>&gt;</span>Element<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><span class="language-css">
+<span class="hljs-selector-class">.reference</span> { <span class="hljs-attribute">anchor-name</span>: --ref }
+
+<span class="hljs-selector-class">.element</span> {
+  <span class="hljs-attribute">position</span>: absolute;
+  <span class="hljs-attribute">position-anchor</span>: --ref;
+  <span class="hljs-attribute">bottom</span>: <span class="hljs-built_in">anchor</span>(bottom); <span class="hljs-number">1</span>️⃣
+  <span class="hljs-attribute">right</span>: <span class="hljs-built_in">anchor</span>(left);    <span class="hljs-number">2</span>️⃣
+}
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
+</code></pre>
+<div>
+<ul>
+<li><img class="emoji" draggable="false" alt="1️⃣" src="Layouts%20CSS_files/31-20e3_AY_j.svg" data-marp-twemoji=""> Ancla el borde inferior del elemento a la referencia</li>
+<li><img class="emoji" draggable="false" alt="2️⃣" src="Layouts%20CSS_files/32-20e3_AY_j.svg" data-marp-twemoji=""> Ancla el borde derecho del elemento a la referencia<div>
+<div class="reference">Reference</div>
+<div class="element">Element</div>
+</div>
+</li>
+</ul>
+</div>
+</split-slide>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720" class="bespoke-marp-slide" aria-hidden="true" data-bespoke-marp-load="hideable"><foreignObject width="1280" height="720"><section id="18" data-marpit-scope-iie2u1fk="" data-paginate="true" data-class="cover" data-theme="alo" lang="en-US" class="cover" data-marpit-pagination="18" style="--paginate:true;--class:cover;--theme:alo;" data-marpit-pagination-total="25">
+<h1 id="animaciones">Animaciones</h1>
+<ul>
+<li>La propiedad <code>transition</code></li>
+<li>La regla <code>@starting-style</code></li>
+<li>Animaciones con <code>@keyframes</code></li>
+<li>Ritmo (funciones de tiempo)</li>
+<li>Animaciones de scroll</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720" class="bespoke-marp-slide" aria-hidden="true" data-bespoke-marp-load="hideable"><foreignObject width="1280" height="720"><section id="19" data-marpit-scope-2capnwdw="" data-paginate="true" data-theme="alo" lang="en-US" data-marpit-pagination="19" style="--paginate:true;--theme:alo;" data-marpit-pagination-total="25">
+<h2 id="transiciones">Transiciones</h2>
+<ul>
+<li>La palabra clave <code>all</code> aplica a todas las propiedades</li>
+<li>Transiciones de entrada y de salida</li>
+</ul>
+<split-slide>
+<pre><code class="language-css"><span class="hljs-selector-class">.element</span> {
+  <span class="hljs-attribute">background</span>: deeppink;
+  <span class="hljs-attribute">width</span>: <span class="hljs-number">200px</span>;
+  <span class="hljs-attribute">transition</span>: all <span class="hljs-number">0.5s</span>;
+}
+
+<span class="hljs-selector-class">.element</span><span class="hljs-selector-pseudo">:hover</span> {
+  <span class="hljs-attribute">width</span>: <span class="hljs-number">300px</span>;
+  <span class="hljs-attribute">background</span>: indigo;
+}
+</code></pre>
+<div>
+<div class="element"></div>
+<br>
+<div class="element transition"></div>
+<br>
+<div class="element transition t-fast"></div>
+</div>
+</split-slide>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720" class="bespoke-marp-slide" aria-hidden="true" data-bespoke-marp-load="hideable"><foreignObject width="1280" height="720"><section id="20" data-paginate="true" data-theme="alo" lang="en-US" data-marpit-pagination="20" style="--paginate:true;--theme:alo;" data-marpit-pagination-total="25">
+<h2 id="la-regla-starting-style">La regla <code>@starting-style</code></h2>
+<ul>
+<li>Estilo inicial (útil para evitar saltos en entradas)</li>
+<li>Se puede aplicar <strong>nesting</strong> en los estilos</li>
+</ul>
+<steps>
+<step>
+<pre><code class="language-css"><span class="hljs-selector-class">.element</span> {
+  <span class="hljs-attribute">background</span>: deeppink;
+  <span class="hljs-attribute">width</span>: <span class="hljs-number">200px</span>;
+  <span class="hljs-attribute">height</span>: <span class="hljs-number">75px</span>;
+  <span class="hljs-attribute">transition</span>: all <span class="hljs-number">0.75s</span>;
+  <span class="hljs-attribute">opacity</span>: <span class="hljs-number">1</span>;
+}
+
+<span class="hljs-keyword">@starting-style</span> {
+  <span class="hljs-selector-class">.element</span> { <span class="hljs-attribute">opacity</span>: <span class="hljs-number">0</span> }
+}
+</code></pre>
+</step>
+<step data-marpit-fragment="1" data-bespoke-marp-fragment="inactive">
+<pre><code class="language-css"><span class="hljs-selector-class">.element</span> {
+  <span class="hljs-attribute">background</span>: deeppink;
+  <span class="hljs-attribute">width</span>: <span class="hljs-number">200px</span>;
+  <span class="hljs-attribute">height</span>: <span class="hljs-number">75px</span>;
+  <span class="hljs-attribute">transition</span>: all <span class="hljs-number">0.75s</span>;
+  <span class="hljs-attribute">opacity</span>: <span class="hljs-number">1</span>;
+
+  <span class="hljs-keyword">@starting-style</span> {
+    <span class="hljs-attribute">opacity</span>: <span class="hljs-number">0</span>;
+  }
+}
+</code></pre>
+</step>
+<div class="step-indicator">1 / 2</div></steps>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720" class="bespoke-marp-slide" aria-hidden="true" data-bespoke-marp-load="hideable"><foreignObject width="1280" height="720"><section id="21" data-marpit-scope-eqa6kyrf="" data-paginate="true" data-theme="alo" lang="en-US" data-marpit-pagination="21" style="--paginate:true;--theme:alo;" data-marpit-pagination-total="25">
+<h2 id="animaciones-1">Animaciones</h2>
+<ul>
+<li>Con <code>@keyframes</code> creamos la animación</li>
+<li>Con <code>animation</code> la aplicamos → <a href="https://lenguajecss.com/animaciones/animaciones/animaciones/#propiedades-de-animaci%C3%B3n-css">Más opciones de animación</a></li>
+</ul>
+<split-slide>
+<pre><code class="language-css"><span class="hljs-selector-class">.element</span> {
+  <span class="hljs-attribute">background</span>: deeppink;
+  <span class="hljs-attribute">width</span>: <span class="hljs-number">200px</span>;
+  <span class="hljs-attribute">height</span>: <span class="hljs-number">200px</span>;
+  <span class="hljs-attribute">animation</span>: move <span class="hljs-number">2s</span> alternate infinite;
+}
+
+<span class="hljs-keyword">@keyframes</span> move {
+  <span class="hljs-number">0%</span>, <span class="hljs-number">100%</span> { <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">translate</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>); }
+  <span class="hljs-number">50%</span> { <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">translate</span>(<span class="hljs-number">200px</span>, <span class="hljs-number">0</span>); }
+}
+</code></pre>
+<div class="element">
+</div>
+</split-slide>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720" class="bespoke-marp-slide" aria-hidden="true" data-bespoke-marp-load="hideable"><foreignObject width="1280" height="720"><section id="22" data-paginate="true" data-theme="alo" lang="en-US" data-marpit-pagination="22" style="--paginate:true;--theme:alo;" data-marpit-pagination-total="25">
+<h2 id="ritmo-funciones-de-tiempo">Ritmo (funciones de tiempo)</h2>
+<ul>
+<li>Constante (mismo ritmo): <code>linear</code></li>
+<li><a href="https://lenguajecss.com/animaciones/timing-functions/que-son/#valores-predefinidos">Ritmos variables</a>: <code>ease</code> (por defecto), <code>ease-in</code>, <code>ease-out</code>, <code>ease-in-out</code></li>
+<li><a href="https://cubic-bezier.com/#.17,.67,.83,.67">Ritmo personalizado</a>: función <code>cubic-bezier()</code></li>
+<li><a href="https://lenguajecss.com/animaciones/timing-functions/linear/">Ritmo lineal personalizado</a>: función <code>linear()</code></li>
+<li><a href="https://lenguajecss.com/animaciones/timing-functions/steps/">Ritmos escalonados</a>: función <code>steps()</code> → <a href="https://lenguajecss.com/animaciones/animaciones/spritesheets-css/">Ejemplo con SpriteSheets</a></li>
+</ul>
+<p>Se puede usar con transiciones y animaciones</p>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720" class="bespoke-marp-slide" aria-hidden="true" data-bespoke-marp-load="hideable"><foreignObject width="1280" height="720"><section id="23" data-paginate="true" data-theme="alo" lang="en-US" data-marpit-pagination="23" style="--paginate:true;--theme:alo;" data-marpit-pagination-total="25">
+<h2 id="animaciones-de-scroll">Animaciones de scroll</h2>
+<ul>
+<li>La <a href="https://lenguajecss.com/animaciones/scroll-driven-animation/view/">función view()</a> → <a href="https://codepen.io/alons182/pen/MYjEYEQ">Ejemplo</a></li>
+</ul>
+<pre><code class="language-css"><span class="hljs-selector-class">.element</span> {
+  <span class="hljs-attribute">background</span>: indigo;
+  <span class="hljs-attribute">animation</span>: change linear both;
+  <span class="hljs-attribute">animation-timeline</span>: <span class="hljs-built_in">view</span>(block <span class="hljs-number">20%</span>);
+}
+
+<span class="hljs-keyword">@keyframes</span> change {
+  <span class="hljs-selector-tag">from</span> { <span class="hljs-attribute">scale</span>: <span class="hljs-number">0</span>; <span class="hljs-attribute">opacity</span>: <span class="hljs-number">0</span> }
+  <span class="hljs-selector-tag">to</span> { <span class="hljs-attribute">scale</span>: <span class="hljs-number">1</span>; <span class="hljs-attribute">opacity</span>: <span class="hljs-number">1</span>; }
+}
+</code></pre>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720" class="bespoke-marp-slide" aria-hidden="true" data-bespoke-marp-load="hideable"><foreignObject width="1280" height="720"><section id="24" data-paginate="true" data-theme="alo" lang="en-US" data-marpit-pagination="24" style="--paginate:true;--theme:alo;" data-marpit-pagination-total="25">
+<h2 id="view-transition">View Transition</h2>
+<ul>
+<li>¿Qué son las <a href="https://lenguajecss.com/animaciones/view-transition/que-son/">View Transition</a>?</li>
+<li>Recomendable en un <code>&lt;style&gt;</code> inline (performance)</li>
+</ul>
+<pre><code class="language-css"><span class="hljs-comment">/* Obligatorio */</span>
+<span class="hljs-keyword">@view-transition</span> { navigation: auto }
+
+<span class="hljs-comment">/* Opcional */</span>
+<span class="hljs-selector-class">.container</span> {
+  <span class="hljs-attribute">view-transition-name</span>: page;
+}
+
+::<span class="hljs-built_in">view-transition-old</span>(page) { <span class="hljs-attribute">animation</span>: fade <span class="hljs-number">0.2s</span> linear forwards }
+::<span class="hljs-built_in">view-transition-new</span>(page) { <span class="hljs-attribute">animation</span>: fade <span class="hljs-number">0.3s</span> linear reverse }
+
+<span class="hljs-keyword">@keyframes</span> fade {
+  <span class="hljs-selector-tag">from</span> { <span class="hljs-attribute">opacity</span>: <span class="hljs-number">1</span> }
+  <span class="hljs-selector-tag">to</span> { <span class="hljs-attribute">opacity</span>: <span class="hljs-number">0</span> }
+}
+</code></pre>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720" class="bespoke-marp-slide" aria-hidden="true" data-bespoke-marp-load="hideable"><foreignObject width="1280" height="720"><section id="25" data-paginate="true" data-theme="alo" lang="en-US" data-marpit-pagination="25" style="--paginate:true;--theme:alo;" data-marpit-pagination-total="25">
+<h2 id="referencias">Referencias</h2>
+<ul>
+<li><a href="https://lenguajecss.com/css/cheatsheets/">CheatSheet CSS</a></li>
+<li><a href="https://bootcamp.manz.dev/">bootcamp.manz.dev</a></li>
+</ul>
+<script src="Layouts%20CSS_files/steps_AY_j.js"></script>
+<script src="Layouts%20CSS_files/image-modal_AY_j.js"></script></section>
+<script>!function(){"use strict";const t={h1:{proto:()=>HTMLHeadingElement,attrs:{role:"heading","aria-level":"1"},style:"display: block; font-size: 2em; margin-block-start: 0.67em; margin-block-end: 0.67em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h2:{proto:()=>HTMLHeadingElement,attrs:{role:"heading","aria-level":"2"},style:"display: block; font-size: 1.5em; margin-block-start: 0.83em; margin-block-end: 0.83em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h3:{proto:()=>HTMLHeadingElement,attrs:{role:"heading","aria-level":"3"},style:"display: block; font-size: 1.17em; margin-block-start: 1em; margin-block-end: 1em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h4:{proto:()=>HTMLHeadingElement,attrs:{role:"heading","aria-level":"4"},style:"display: block; margin-block-start: 1.33em; margin-block-end: 1.33em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h5:{proto:()=>HTMLHeadingElement,attrs:{role:"heading","aria-level":"5"},style:"display: block; font-size: 0.83em; margin-block-start: 1.67em; margin-block-end: 1.67em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h6:{proto:()=>HTMLHeadingElement,attrs:{role:"heading","aria-level":"6"},style:"display: block; font-size: 0.67em; margin-block-start: 2.33em; margin-block-end: 2.33em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},span:{proto:()=>HTMLSpanElement},pre:{proto:()=>HTMLElement,style:"display: block; font-family: monospace; white-space: pre; margin: 1em 0; --marp-auto-scaling-white-space: pre;"}},e="data-marp-auto-scaling-wrapper",i="data-marp-auto-scaling-svg",n="data-marp-auto-scaling-container";class s extends HTMLElement{container;containerSize;containerObserver;svg;svgComputedStyle;svgPreserveAspectRatio="xMinYMid meet";wrapper;wrapperSize;wrapperObserver;constructor(){super();const t=t=>([e])=>{const{width:i,height:n}=e.contentRect;this[t]={width:i,height:n},this.updateSVGRect()};this.attachShadow({mode:"open"}),this.containerObserver=new ResizeObserver(t("containerSize")),this.wrapperObserver=new ResizeObserver((...e)=>{t("wrapperSize")(...e),this.flushSvgDisplay()})}static get observedAttributes(){return["data-downscale-only"]}connectedCallback(){this.shadowRoot.innerHTML=`\n<style>\n  svg[${i}] { display: block; width: 100%; height: auto; vertical-align: top; }\n  span[${n}] { display: table; white-space: var(--marp-auto-scaling-white-space, nowrap); width: max-content; }\n</style>\n<div ${e}>\n  <svg part="svg" ${i}>\n    <foreignObject><span ${n}><slot></slot></span></foreignObject>\n  </svg>\n</div>\n    `.split(/\n\s*/).join(""),this.wrapper=this.shadowRoot.querySelector(`div[${e}]`)??void 0;const t=this.svg;this.svg=this.wrapper?.querySelector(`svg[${i}]`)??void 0,this.svg!==t&&(this.svgComputedStyle=this.svg?window.getComputedStyle(this.svg):void 0),this.container=this.svg?.querySelector(`span[${n}]`)??void 0,this.observe()}disconnectedCallback(){this.svg=void 0,this.svgComputedStyle=void 0,this.wrapper=void 0,this.container=void 0,this.observe()}attributeChangedCallback(){this.observe()}flushSvgDisplay(){const{svg:t}=this;t&&(t.style.display="inline",requestAnimationFrame(()=>{t.style.display=""}))}observe(){this.containerObserver.disconnect(),this.wrapperObserver.disconnect(),this.wrapper&&this.wrapperObserver.observe(this.wrapper),this.container&&this.containerObserver.observe(this.container),this.svgComputedStyle&&this.observeSVGStyle(this.svgComputedStyle)}observeSVGStyle(t){const e=()=>{const i=(()=>{const e=t.getPropertyValue("--preserve-aspect-ratio");if(e)return e.trim();return`x${(({textAlign:t,direction:e})=>{if(t.endsWith("left"))return"Min";if(t.endsWith("right"))return"Max";if("start"===t||"end"===t){let i="rtl"===e;return"end"===t&&(i=!i),i?"Max":"Min"}return"Mid"})(t)}YMid meet`})();i!==this.svgPreserveAspectRatio&&(this.svgPreserveAspectRatio=i,this.updateSVGRect()),t===this.svgComputedStyle&&requestAnimationFrame(e)};e()}updateSVGRect(){let t=Math.ceil(this.containerSize?.width??0);const e=Math.ceil(this.containerSize?.height??0);void 0!==this.dataset.downscaleOnly&&(t=Math.max(t,this.wrapperSize?.width??0));const i=this.svg?.querySelector(":scope > foreignObject");if(i?.setAttribute("width",`${t}`),i?.setAttribute("height",`${e}`),this.svg&&(this.svg.setAttribute("viewBox",`0 0 ${t} ${e}`),this.svg.setAttribute("preserveAspectRatio",this.svgPreserveAspectRatio),this.svg.style.height=t<=0||e<=0?"0":""),this.container){const t=this.svgPreserveAspectRatio.toLowerCase();this.container.style.marginLeft=t.startsWith("xmid")||t.startsWith("xmax")?"auto":"0",this.container.style.marginRight=t.startsWith("xmi")?"auto":"0"}}}const r=(t,{attrs:e={},style:i})=>class extends t{constructor(...t){super(...t);for(const[t,i]of Object.entries(e))this.hasAttribute(t)||this.setAttribute(t,i);this._shadow()}static get observedAttributes(){return["data-auto-scaling"]}connectedCallback(){this._update()}attributeChangedCallback(){this._update()}_shadow(){if(!this.shadowRoot)try{this.attachShadow({mode:"open"})}catch(t){if(!(t instanceof Error&&"NotSupportedError"===t.name))throw t}return this.shadowRoot}_update(){const t=this._shadow();if(t){const e=i?`<style>:host { ${i} }</style>`:"";let n="<slot></slot>";const{autoScaling:s}=this.dataset;if(void 0!==s){n=`<marp-auto-scaling exportparts="svg:auto-scaling" ${"downscale-only"===s?"data-downscale-only":""}>${n}</marp-auto-scaling>`}t.innerHTML=e+n}}};let o;const a=Symbol(),l=()=>o??(o=!!document.createElement("div",{is:"marp-auto-scaling"}).outerHTML.startsWith("<div is"),o);let c;const d="marpitSVGPolyfill:setZoomFactor,",h=Symbol(),g=Symbol();const p=()=>{const t="Apple Computer, Inc."===navigator.vendor,e=t?[v]:[],i={then:e=>(t?(async()=>{if(void 0===c){const t=document.createElement("canvas");t.width=10,t.height=10;const e=t.getContext("2d"),i=new Image(10,10),n=new Promise(t=>{i.addEventListener("load",()=>t())});i.crossOrigin="anonymous",i.src="data:image/svg+xml;charset=utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2210%22%20height%3D%2210%22%20viewBox%3D%220%200%201%201%22%3E%3CforeignObject%20width%3D%221%22%20height%3D%221%22%20requiredExtensions%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxhtml%22%3E%3Cdiv%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxhtml%22%20style%3D%22width%3A%201px%3B%20height%3A%201px%3B%20background%3A%20red%3B%20position%3A%20relative%22%3E%3C%2Fdiv%3E%3C%2FforeignObject%3E%3C%2Fsvg%3E",await n,e.drawImage(i,0,0),c=e.getImageData(5,5,1,1).data[3]<128}return c})().then(t=>{null==e||e(t?[v]:[])}):null==e||e([]),i)};return Object.assign(e,i)};let m,u;function v(t){const e="object"==typeof t&&t.target||document,i="object"==typeof t?t.zoom:t;window[g]||(Object.defineProperty(window,g,{configurable:!0,value:!0}),document.body.style.zoom=1.0001,document.body.offsetHeight,document.body.style.zoom=1,window.addEventListener("message",({data:t,origin:e})=>{if(e===window.origin)try{if(t&&"string"==typeof t&&t.startsWith(d)){const[,e]=t.split(","),i=Number.parseFloat(e);Number.isNaN(i)||(u=i)}}catch(t){console.error(t)}}));let n=!1;Array.from(e.querySelectorAll("svg[data-marpit-svg]"),t=>{var e,s,r,o;t.style.transform||(t.style.transform="translateZ(0)");const a=i||u||t.currentScale||1;m!==a&&(m=a,n=a);const l=t.getBoundingClientRect(),{length:c}=t.children;for(let i=0;i<c;i+=1){const n=t.children[i];if(n.getScreenCTM){const t=n.getScreenCTM();if(t){const i=null!==(s=null===(e=n.x)||void 0===e?void 0:e.baseVal.value)&&void 0!==s?s:0,c=null!==(o=null===(r=n.y)||void 0===r?void 0:r.baseVal.value)&&void 0!==o?o:0,d=n.children.length;for(let e=0;e<d;e+=1){const s=n.children[e];if("SECTION"===s.tagName){const{style:e}=s;e.transformOrigin||(e.transformOrigin=`${-i}px ${-c}px`),e.transform=`scale(${a}) matrix(${t.a}, ${t.b}, ${t.c}, ${t.d}, ${t.e-l.left}, ${t.f-l.top}) translateZ(0.0001px)`;break}}}}}}),!1!==n&&Array.from(e.querySelectorAll("iframe"),({contentWindow:t})=>{null==t||t.postMessage(`${d}${n}`,"null"===window.origin?"*":window.origin)})}function w({once:t=!1,target:e=document}={}){const i=function(t=document){if(t[h])return t[h];let e=!0;const i=()=>{e=!1,delete t[h]};Object.defineProperty(t,h,{configurable:!0,value:i});let n=[],s=!1;(async()=>{try{n=await p()}finally{s=!0}})();const r=()=>{for(const e of n)e({target:t});s&&0===n.length||e&&window.requestAnimationFrame(r)};return r(),i}(e);return t?(i(),()=>{}):i}m=1,u=void 0;const b=Symbol(),y=(e=document)=>{if("undefined"==typeof window)throw new Error("Marp Core's browser script is valid only in browser context.");if(((e=document)=>{const i=window[a];i||customElements.define("marp-auto-scaling",s);for(const n of Object.keys(t)){const s=`marp-${n}`,o=t[n].proto();l()&&o!==HTMLElement?i||customElements.define(s,r(o,{style:t[n].style}),{extends:n}):(i||customElements.define(s,r(HTMLElement,t[n])),e.querySelectorAll(`${n}[is="${s}"]`).forEach(t=>{t.outerHTML=t.outerHTML.replace(new RegExp(`^<${n}`,"i"),`<${s}`).replace(new RegExp(`</${n}>$`,"i"),`</${s}>`)}))}window[a]=!0})(e),e[b])return e[b];const i=w({target:e}),n=()=>{i(),delete e[b]},o=Object.assign(n,{cleanup:n,update:()=>y(e)});return Object.defineProperty(e,b,{configurable:!0,value:o}),o},f=document.currentScript;y(f?f.getRootNode():document)}();
+</script></foreignObject></svg></div><div id="img-modal-overlay"><button id="img-modal-close" aria-label="Cerrar imagen">✕</button><img alt=""></div><script>/*!! License: https://unpkg.com/@marp-team/marp-cli@4.2.3/lib/bespoke.js.LICENSE.txt */
+!function(){"use strict";function e(e){return e&&e.__esModule&&Object.prototype.hasOwnProperty.call(e,"default")?e.default:e}var t,n,r=(n||(n=1,t={from:function(e,t){var n,r=1===(e.parent||e).nodeType?e.parent||e:document.querySelector(e.parent||e),o=[].filter.call("string"==typeof e.slides?r.querySelectorAll(e.slides):e.slides||r.children,function(e){return"SCRIPT"!==e.nodeName}),a={},i=function(e,t){return(t=t||{}).index=o.indexOf(e),t.slide=e,t},s=function(e,t){a[e]=(a[e]||[]).filter(function(e){return e!==t})},c=function(e,t){return(a[e]||[]).reduce(function(e,n){return e&&!1!==n(t)},!0)},l=function(e,t){o[e]&&(n&&c("deactivate",i(n,t)),n=o[e],c("activate",i(n,t)))},d=function(e,t){var r=o.indexOf(n)+e;c(e>0?"next":"prev",i(n,t))&&l(r,t)},u={off:s,on:function(e,t){return(a[e]||(a[e]=[])).push(t),s.bind(null,e,t)},fire:c,slide:function(e,t){if(!arguments.length)return o.indexOf(n);c("slide",i(o[e],t))&&l(e,t)},next:d.bind(null,1),prev:d.bind(null,-1),parent:r,slides:o,destroy:function(e){c("destroy",i(n,e)),a={}}};return(t||[]).forEach(function(e){e(u)}),n||l(0),u}}),t),o=e(r);const a=document.body,i=(...e)=>history.replaceState(...e),s="",c="presenter",l="next",d=["",c,l],u="bespoke-marp-",f=`data-${u}`,m=(e,{protocol:t,host:n,pathname:r,hash:o}=location)=>{const a=e.toString();return`${t}//${n}${r}${a?"?":""}${a}${o}`},g=()=>a.dataset.bespokeView,p=e=>new URLSearchParams(location.search).get(e),v=(e,t={})=>{const n={location,setter:i,...t},r=new URLSearchParams(n.location.search);for(const t of Object.keys(e)){const n=e[t];"string"==typeof n?r.set(t,n):r.delete(t)}try{n.setter({...window.history.state??{}},"",m(r,n.location))}catch(e){console.error(e)}},h=(()=>{const e="bespoke-marp";try{return localStorage.setItem(e,e),localStorage.removeItem(e),!0}catch{return!1}})(),y=e=>{try{return localStorage.getItem(e)}catch{return null}},b=(e,t)=>{try{return localStorage.setItem(e,t),!0}catch{return!1}},w=e=>{try{return localStorage.removeItem(e),!0}catch{return!1}},x=(e,t)=>{const n="aria-hidden";t?e.setAttribute(n,"true"):e.removeAttribute(n)},k=e=>{e.parent.classList.add(`${u}parent`),e.slides.forEach(e=>e.classList.add(`${u}slide`)),e.on("activate",t=>{const n=`${u}active`,r=t.slide,o=r.classList,a=!o.contains(n);if(e.slides.forEach(e=>{e.classList.remove(n),x(e,!0)}),o.add(n),x(r,!1),a){const e=`${n}-ready`;o.add(e),document.body.clientHeight,o.remove(e)}})},$=e=>{let t=0,n=0;Object.defineProperty(e,"fragments",{enumerable:!0,value:e.slides.map(e=>[null,...e.querySelectorAll("[data-marpit-fragment]")])});const r=r=>void 0!==e.fragments[t][n+r],o=(r,o)=>{t=r,n=o,e.fragments.forEach((e,t)=>{e.forEach((e,n)=>{if(null==e)return;const a=t<r||t===r&&n<=o;e.setAttribute(`${f}fragment`,(a?"":"in")+"active");const i=`${f}current-fragment`;t===r&&n===o?e.setAttribute(i,"current"):e.removeAttribute(i)})}),e.fragmentIndex=o;const a={slide:e.slides[r],index:r,fragments:e.fragments[r],fragmentIndex:o};e.fire("fragment",a)};e.on("next",({fragment:a=!0})=>{if(a){if(r(1))return o(t,n+1),!1;const a=t+1;e.fragments[a]&&o(a,0)}else{const r=e.fragments[t].length;if(n+1<r)return o(t,r-1),!1;const a=e.fragments[t+1];a&&o(t+1,a.length-1)}}),e.on("prev",({fragment:a=!0})=>{if(r(-1)&&a)return o(t,n-1),!1;const i=t-1;e.fragments[i]&&o(i,e.fragments[i].length-1)}),e.on("slide",({index:t,fragment:n})=>{let r=0;if(void 0!==n){const o=e.fragments[t];if(o){const{length:e}=o;r=-1===n?e-1:Math.min(Math.max(n,0),e-1)}}o(t,r)}),o(0,0)},E=document,L=()=>!(!E.fullscreenEnabled&&!E.webkitFullscreenEnabled),S=()=>!(!E.fullscreenElement&&!E.webkitFullscreenElement),P=e=>{e.fullscreen=()=>{L()&&(async()=>{S()?(E.exitFullscreen||E.webkitExitFullscreen)?.call(E):((e=E.body)=>{(e.requestFullscreen||e.webkitRequestFullscreen)?.call(e)})()})()},document.addEventListener("keydown",t=>{"f"!==t.key&&"F11"!==t.key||t.altKey||t.ctrlKey||t.metaKey||!L()||(e.fullscreen(),t.preventDefault())})},_=`${u}inactive`,T=(e=2e3)=>({parent:t,fire:n})=>{const r=t.classList,o=e=>n(`marp-${e?"":"in"}active`);let a;const i=()=>{a&&clearTimeout(a),a=setTimeout(()=>{r.add(_),o()},e),r.contains(_)&&(r.remove(_),o(!0))};for(const e of["mousedown","mousemove","touchend"])document.addEventListener(e,i);setTimeout(i,0)},I=["AUDIO","BUTTON","INPUT","SELECT","TEXTAREA","VIDEO"],M=e=>{e.parent.addEventListener("keydown",e=>{if(!e.target)return;const t=e.target;(I.includes(t.nodeName)||"true"===t.contentEditable)&&e.stopPropagation()})},O=e=>{window.addEventListener("load",()=>{for(const t of e.slides){const e=t.querySelector("marp-auto-scaling, [data-auto-scaling], [data-marp-fitting]");t.setAttribute(`${f}load`,e?"":"hideable")}})},A=({interval:e=250}={})=>t=>{document.addEventListener("keydown",e=>{if(" "===e.key&&e.shiftKey)t.prev();else if("ArrowLeft"===e.key||"ArrowUp"===e.key||"PageUp"===e.key)t.prev({fragment:!e.shiftKey});else if(" "!==e.key||e.shiftKey)if("ArrowRight"===e.key||"ArrowDown"===e.key||"PageDown"===e.key)t.next({fragment:!e.shiftKey});else if("End"===e.key)t.slide(t.slides.length-1,{fragment:-1});else{if("Home"!==e.key)return;t.slide(0)}else t.next();e.preventDefault()});let n,r,o=0;t.parent.addEventListener("wheel",a=>{let i=!1;const s=(e,t)=>{e&&(i=i||((e,t)=>((e,t)=>{const n="X"===t?"Width":"Height";return e[`client${n}`]<e[`scroll${n}`]})(e,t)&&((e,t)=>{const{overflow:n}=e,r=e[`overflow${t}`];return"auto"===n||"scroll"===n||"auto"===r||"scroll"===r})(getComputedStyle(e),t))(e,t)),e?.parentElement&&s(e.parentElement,t)};if(0!==a.deltaX&&s(a.target,"X"),0!==a.deltaY&&s(a.target,"Y"),i)return;a.preventDefault();const c=Math.sqrt(a.deltaX**2+a.deltaY**2);if(void 0!==a.wheelDelta){if(void 0===a.webkitForce&&Math.abs(a.wheelDelta)<40)return;if(a.deltaMode===a.DOM_DELTA_PIXEL&&c<4)return}else if(a.deltaMode===a.DOM_DELTA_PIXEL&&c<12)return;r&&clearTimeout(r),r=setTimeout(()=>{n=0},e);const l=Date.now()-o<e,d=c<=n;if(n=c,l||d)return;let u;(a.deltaX>0||a.deltaY>0)&&(u="next"),(a.deltaX<0||a.deltaY<0)&&(u="prev"),u&&(t[u](),o=Date.now())})},C=(e=`.${u}osc`)=>{const t=document.querySelector(e);if(!t)return()=>{};const n=(e,n)=>{t.querySelectorAll(`[${f}osc=${JSON.stringify(e)}]`).forEach(n)};return L()||n("fullscreen",e=>e.style.display="none"),h||n("presenter",e=>{e.disabled=!0,e.title="Presenter view is disabled due to restricted localStorage."}),e=>{t.addEventListener("click",t=>{if(t.target instanceof HTMLElement){const{bespokeMarpOsc:n}=t.target.dataset;n&&t.target.blur();const r={fragment:!t.shiftKey};"next"===n?e.next(r):"prev"===n?e.prev(r):"fullscreen"===n?e?.fullscreen():"presenter"===n&&e.openPresenterView()}}),e.parent.appendChild(t),e.on("activate",({index:t})=>{n("page",n=>n.textContent=`Page ${t+1} of ${e.slides.length}`)}),e.on("fragment",({index:t,fragments:r,fragmentIndex:o})=>{n("prev",e=>e.disabled=0===t&&0===o),n("next",n=>n.disabled=t===e.slides.length-1&&o===r.length-1)}),e.on("marp-active",()=>x(t,!1)),e.on("marp-inactive",()=>x(t,!0)),L()&&(e=>{for(const t of["","webkit"])E.addEventListener(t+"fullscreenchange",e)})(()=>n("fullscreen",e=>e.classList.toggle("exit",L()&&S())))}},D=e=>{window.addEventListener("message",t=>{if(t.origin!==window.origin)return;const[n,r]=t.data.split(":");if("navigate"===n){const[t,n]=r.split(",");let o=Number.parseInt(t,10),a=Number.parseInt(n,10)+1;a>=e.fragments[o].length&&(o+=1,a=0),e.slide(o,{fragment:a})}})};var N,B,q,K,F,j,V,U={exports:{}},X=(N||(N=1,U.exports=(B=["area","base","br","col","command","embed","hr","img","input","keygen","link","meta","param","source","track","wbr"],q=function(e){return String(e).replace(/[&<>"']/g,function(e){return"&"+K[e]+";"})},K={"&":"amp","<":"lt",">":"gt",'"':"quot","'":"apos"},F="dangerouslySetInnerHTML",j={className:"class",htmlFor:"for"},V={},function(e,t){var n=[],r="";t=t||{};for(var o=arguments.length;o-- >2;)n.push(arguments[o]);if("function"==typeof e)return t.children=n.reverse(),e(t);if(e){if(r+="<"+e,t)for(var a in t)!1!==t[a]&&null!=t[a]&&a!==F&&(r+=" "+(j[a]?j[a]:q(a))+'="'+q(t[a])+'"');r+=">"}if(-1===B.indexOf(e)){if(t[F])r+=t[F].__html;else for(;n.length;){var i=n.pop();if(i)if(i.pop)for(var s=i.length;s--;)n.push(i[s]);else r+=!0===V[i]?i:q(i)}r+=e?"</"+e+">":""}return V[r]=!0,r})),U.exports),H=e(X);const R=({children:e})=>H(null,null,...e),W=`${u}presenter-`,J={container:`${W}container`,dragbar:`${W}dragbar-container`,next:`${W}next`,nextContainer:`${W}next-container`,noteContainer:`${W}note-container`,noteWrapper:`${W}note-wrapper`,noteButtons:`${W}note-buttons`,infoContainer:`${W}info-container`,infoPage:`${W}info-page`,infoPageText:`${W}info-page-text`,infoPagePrev:`${W}info-page-prev`,infoPageNext:`${W}info-page-next`,noteButtonsBigger:`${W}note-bigger`,noteButtonsSmaller:`${W}note-smaller`,infoTime:`${W}info-time`,infoTimer:`${W}info-timer`},Y=e=>{const{title:t}=document;document.title="[Presenter view]"+(t?` - ${t}`:"");const n={},r=e=>(n[e]=n[e]||document.querySelector(`.${e}`),n[e]);document.body.appendChild((e=>{const t=document.createElement("div");return t.className=J.container,t.appendChild(e),t.insertAdjacentHTML("beforeend",H(R,null,H("div",{class:J.nextContainer},H("iframe",{class:J.next,src:"?view=next"})),H("div",{class:J.dragbar}),H("div",{class:J.noteContainer},H("div",{class:J.noteWrapper}),H("div",{class:J.noteButtons},H("button",{class:J.noteButtonsSmaller,tabindex:"-1",title:"Smaller notes font size"},"Smaller notes font size"),H("button",{class:J.noteButtonsBigger,tabindex:"-1",title:"Bigger notes font size"},"Bigger notes font size"))),H("div",{class:J.infoContainer},H("div",{class:J.infoPage},H("button",{class:J.infoPagePrev,tabindex:"-1",title:"Previous"},"Previous"),H("span",{class:J.infoPageText}),H("button",{class:J.infoPageNext,tabindex:"-1",title:"Next"},"Next")),H("time",{class:J.infoTime,title:"Current time"}),H("time",{class:J.infoTimer,title:"Timer"})))),t})(e.parent)),(e=>{let t=!1;r(J.dragbar).addEventListener("mousedown",()=>{t=!0,r(J.dragbar).classList.add("active")}),window.addEventListener("mouseup",()=>{t=!1,r(J.dragbar).classList.remove("active")}),window.addEventListener("mousemove",e=>{if(!t)return;const n=e.clientX/document.documentElement.clientWidth*100;r(J.container).style.setProperty("--bespoke-marp-presenter-split-ratio",`${Math.max(0,Math.min(100,n))}%`)}),r(J.nextContainer).addEventListener("click",()=>e.next());const n=r(J.next),o=(a=n,(e,t)=>a.contentWindow?.postMessage(`navigate:${e},${t}`,"null"===window.origin?"*":window.origin));var a;n.addEventListener("load",()=>{r(J.nextContainer).classList.add("active"),o(e.slide(),e.fragmentIndex),e.on("fragment",({index:e,fragmentIndex:t})=>o(e,t))});const i=document.querySelectorAll(".bespoke-marp-note");i.forEach(e=>{e.addEventListener("keydown",e=>e.stopPropagation()),r(J.noteWrapper).appendChild(e)}),e.on("activate",()=>i.forEach(t=>t.classList.toggle("active",t.dataset.index==e.slide())));let s=0;const c=e=>{s=Math.max(-5,s+e),r(J.noteContainer).style.setProperty("--bespoke-marp-note-font-scale",(1.2**s).toFixed(4))},l=()=>c(1),d=()=>c(-1),u=r(J.noteButtonsBigger),f=r(J.noteButtonsSmaller);u.addEventListener("click",()=>{u.blur(),l()}),f.addEventListener("click",()=>{f.blur(),d()}),document.addEventListener("keydown",e=>{"+"===e.key&&l(),"-"===e.key&&d()},!0),e.on("activate",({index:t})=>{r(J.infoPageText).textContent=`${t+1} / ${e.slides.length}`});const m=r(J.infoPagePrev),g=r(J.infoPageNext);m.addEventListener("click",t=>{m.blur(),e.prev({fragment:!t.shiftKey})}),g.addEventListener("click",t=>{g.blur(),e.next({fragment:!t.shiftKey})}),e.on("fragment",({index:t,fragments:n,fragmentIndex:r})=>{m.disabled=0===t&&0===r,g.disabled=t===e.slides.length-1&&r===n.length-1});let p=new Date;const v=()=>{const e=new Date,t=e=>`${Math.floor(e)}`.padStart(2,"0"),n=e.getTime()-p.getTime(),o=t(n/1e3%60),a=t(n/1e3/60%60),i=t(n/36e5%24);r(J.infoTime).textContent=e.toLocaleTimeString(),r(J.infoTimer).textContent=`${i}:${a}:${o}`};v(),setInterval(v,250),r(J.infoTimer).addEventListener("click",()=>{p=new Date})})(e)},z=e=>{if(!(e=>e.syncKey&&"string"==typeof e.syncKey)(e))throw new Error("The current instance of Bespoke.js is invalid for Marp bespoke presenter plugin.");Object.defineProperties(e,{openPresenterView:{enumerable:!0,value:G},presenterUrl:{enumerable:!0,get:Q}}),h&&document.addEventListener("keydown",t=>{"p"!==t.key||t.altKey||t.ctrlKey||t.metaKey||(t.preventDefault(),e.openPresenterView())})};function G(){const{max:e,floor:t}=Math,n=e(t(.85*window.innerWidth),640),r=e(t(.85*window.innerHeight),360);return window.open(this.presenterUrl,W+this.syncKey,`width=${n},height=${r},menubar=no,toolbar=no`)}function Q(){const e=new URLSearchParams(location.search);return e.set("view","presenter"),e.set("sync",this.syncKey),m(e)}const Z=e=>{const t=g();return t===l&&e.appendChild(document.createElement("span")),{[s]:z,[c]:Y,[l]:D}[t]},ee=e=>{e.on("activate",t=>{document.querySelectorAll(".bespoke-progress-parent > .bespoke-progress-bar").forEach(n=>{n.style.flexBasis=100*t.index/(e.slides.length-1)+"%"})})},te=e=>{const t=Number.parseInt(e,10);return Number.isNaN(t)?null:t},ne=(e={})=>{const t={history:!0,...e};return e=>{let n=!0;const r=e=>{const t=n;try{return n=!0,e()}finally{n=t}},o=(t={fragment:!0})=>{let n=t.fragment?te(p("f")||""):null;((t,n)=>{const{min:r,max:o}=Math,{fragments:a,slides:i}=e,s=o(0,r(t,i.length-1)),c=o(0,r(n||0,a[s].length-1));s===e.slide()&&c===e.fragmentIndex||e.slide(s,{fragment:c})})((()=>{if(location.hash){const[t]=location.hash.slice(1).split(":~:");if(/^\d+$/.test(t))return(te(t)??1)-1;const r=document.getElementById(t)||document.querySelector(`a[name="${CSS.escape(t)}"]`);if(r){const{length:t}=e.slides;for(let o=0;o<t;o+=1)if(e.slides[o].contains(r)){const t=e.fragments?.[o],a=r.closest("[data-marpit-fragment]");if(t&&a){const e=t.indexOf(a);e>=0&&(n=e)}return o}}}return 0})(),n)};e.on("fragment",({index:e,fragmentIndex:r})=>{n||v({f:0===r||r.toString()},{location:{...location,hash:`#${e+1}`},setter:(...e)=>t.history?history.pushState(...e):history.replaceState(...e)})}),setTimeout(()=>{o(),window.addEventListener("hashchange",()=>r(()=>{o({fragment:!1}),v({f:void 0})})),window.addEventListener("popstate",()=>{n||r(()=>o())}),n=!1},0)}},re=(e={})=>{const t=e.key||window.history.state?.marpBespokeSyncKey||Math.random().toString(36).slice(2),n=`bespoke-marp-sync-${t}`;var r;r={marpBespokeSyncKey:t},v({},{setter:(e,...t)=>i({...e,...r},...t)});const o=()=>{const e=y(n);return e?JSON.parse(e):Object.create(null)},a=e=>{const t=o(),r={...t,...e(t)};return b(n,JSON.stringify(r)),r},s=()=>{window.removeEventListener("pageshow",s),a(e=>({reference:(e.reference||0)+1}))};return e=>{s(),Object.defineProperty(e,"syncKey",{value:t,enumerable:!0});let r=!0;setTimeout(()=>{e.on("fragment",e=>{r&&a(()=>({index:e.index,fragmentIndex:e.fragmentIndex}))})},0),window.addEventListener("storage",t=>{if(t.key===n&&t.oldValue&&t.newValue){const n=JSON.parse(t.oldValue),o=JSON.parse(t.newValue);if(n.index!==o.index||n.fragmentIndex!==o.fragmentIndex)try{r=!1,e.slide(o.index,{fragment:o.fragmentIndex,forSync:!0})}finally{r=!0}}});const i=()=>{const{reference:e}=o();void 0===e||e<=1?w(n):a(()=>({reference:e-1}))};window.addEventListener("pagehide",e=>{e.persisted&&window.addEventListener("pageshow",s),i()}),e.on("destroy",i)}},{PI:oe,abs:ae,sqrt:ie,atan2:se}=Math,ce={passive:!0},le=({slope:e=-.7,swipeThreshold:t=30}={})=>n=>{let r;const o=n.parent,a=e=>{const t=o.getBoundingClientRect();return{x:e.pageX-(t.left+t.right)/2,y:e.pageY-(t.top+t.bottom)/2}};o.addEventListener("touchstart",({touches:e})=>{r=1===e.length?a(e[0]):void 0},ce),o.addEventListener("touchmove",e=>{if(r)if(1===e.touches.length){e.preventDefault();const t=a(e.touches[0]),n=t.x-r.x,o=t.y-r.y;r.delta=ie(ae(n)**2+ae(o)**2),r.radian=se(n,o)}else r=void 0}),o.addEventListener("touchend",o=>{if(r){if(r.delta&&r.delta>=t&&r.radian){const t=(r.radian-e+oe)%(2*oe)-oe;n[t<0?"next":"prev"](),o.stopPropagation()}r=void 0}},ce)},de=new Map;de.clear(),de.set("none",{backward:{both:void 0,incoming:void 0,outgoing:void 0},forward:{both:void 0,incoming:void 0,outgoing:void 0}});const ue={both:"",outgoing:"outgoing-",incoming:"incoming-"},fe={forward:"",backward:"-backward"},me=e=>`--marp-bespoke-transition-animation-${e}`,ge=e=>`--marp-transition-${e}`,pe=me("name"),ve=me("duration"),he=e=>new Promise(t=>{const n={},r=document.createElement("div"),o=e=>{r.remove(),t(e)};r.addEventListener("animationstart",()=>o(n)),Object.assign(r.style,{animationName:e,animationDuration:"1s",animationFillMode:"both",animationPlayState:"paused",position:"absolute",pointerEvents:"none"}),document.body.appendChild(r);const a=getComputedStyle(r).getPropertyValue(ge("duration"));a&&Number.parseFloat(a)>=0&&(n.defaultDuration=a),((e,t)=>{requestAnimationFrame(()=>{e.style.animationPlayState="running",requestAnimationFrame(()=>t(void 0))})})(r,o)}),ye=async e=>de.has(e)?de.get(e):(e=>{const t={},n=[];for(const[r,o]of Object.entries(ue))for(const[a,i]of Object.entries(fe)){const s=`marp-${o}transition${i}-${e}`;n.push(he(s).then(e=>{t[a]=t[a]||{},t[a][r]=e?{...e,name:s}:void 0}))}return Promise.all(n).then(()=>t)})(e).then(t=>(de.set(e,t),t)),be=e=>Object.values(e).flatMap(Object.values).every(e=>!e),we=(e,{type:t,backward:n})=>{const r=e[n?"backward":"forward"],o=(()=>{const e=r[t],n=e=>({[pe]:e.name});if(e)return n(e);if(r.both){const e=n(r.both);return"incoming"===t&&(e[me("direction")]="reverse"),e}})();return!o&&n?we(e,{type:t,backward:!1}):o||{[pe]:"__bespoke_marp_transition_no_animation__"}},xe=e=>{if(e)try{const t=JSON.parse(e);if((e=>{if("object"!=typeof e)return!1;const t=e;return"string"==typeof t.name&&(void 0===t.duration||"string"==typeof t.duration)})(t))return t}catch{}},ke="_tSId",$e="_tA",Ee="bespoke-marp-transition-warming-up",Le=window.matchMedia("(prefers-reduced-motion: reduce)"),Se="__bespoke_marp_transition_reduced_outgoing__",Pe="__bespoke_marp_transition_reduced_incoming__",_e={forward:{both:void 0,incoming:{name:Pe},outgoing:{name:Se}},backward:{both:void 0,incoming:{name:Pe},outgoing:{name:Se}}},Te=e=>{if(!document.startViewTransition)return;const t=t=>(void 0!==t&&(e._tD=t),e._tD);let n;t(!1),((...e)=>{CSS.registerProperty({name:ge("duration"),syntax:"<time>",inherits:!0,initialValue:"-1s"});const t=[...new Set(e).values()];return Promise.all(t.map(e=>ye(e))).then()})(...Array.from(document.querySelectorAll("section[data-transition], section[data-transition-back]")).flatMap(e=>[e.dataset.transition,e.dataset.transitionBack].flatMap(e=>{const t=xe(e);return[t?.name,t?.builtinFallback?`__builtin__${t.name}`:void 0]}).filter(e=>!!e))).then(()=>{document.querySelectorAll("style").forEach(e=>{e.innerHTML=e.innerHTML.replace(/--marp-transition-duration:[^;}]*[;}]/g,e=>e.slice(0,-1)+"!important"+e.slice(-1))})});const r=(n,{back:r,cond:o})=>a=>{const i=t();if(i)return!!a[$e]||!("object"!=typeof i||(i.skipTransition(),!a.forSync));if(!o(a))return!0;const s=e.slides[e.slide()],c=()=>a.back??r,l="data-transition"+(c()?"-back":""),d=s.querySelector(`section[${l}]`);if(!d)return!0;const u=xe(d.getAttribute(l)??void 0);return!u||((async(e,{builtinFallback:t=!0}={})=>{let n=await ye(e);if(be(n)){if(!t)return;return n=await ye(`__builtin__${e}`),be(n)?void 0:n}return n})(u.name,{builtinFallback:u.builtinFallback}).then(e=>{if(!e){t(!0);try{n(a)}finally{t(!1)}return}let r=e;Le.matches&&(console.warn("Use a constant animation to transition because preferring reduced motion by viewer has detected."),r=_e);const o=document.getElementById(ke);o&&o.remove();const i=document.createElement("style");i.id=ke,document.head.appendChild(i),((e,t)=>{const n=[`:root{${ge("direction")}:${t.backward?-1:1};}`,":root:has(.bespoke-marp-inactive){cursor:none;}"],r=t=>{const n=e[t].both?.defaultDuration||e[t].outgoing?.defaultDuration||e[t].incoming?.defaultDuration;return"forward"===t?n:n||r("forward")},o=t.duration||r(t.backward?"backward":"forward");void 0!==o&&n.push(`::view-transition-group(*){${ve}:${o};}`);const a=e=>Object.entries(e).map(([e,t])=>`${e}:${t};`).join("");return n.push(`::view-transition-old(root){${a(we(e,{...t,type:"outgoing"}))}}`,`::view-transition-new(root){${a(we(e,{...t,type:"incoming"}))}}`),n})(r,{backward:c(),duration:u.duration}).forEach(e=>i.sheet?.insertRule(e));const s=document.documentElement.classList;s.add(Ee);let l=!1;const d=()=>{l||(n(a),l=!0,s.remove(Ee))},f=()=>{t(!1),i.remove(),s.remove(Ee)};try{t(!0);const e=document.startViewTransition(d);t(e),e.finished.finally(f)}catch(e){console.error(e),d(),f()}}),!1)};e.on("prev",r(t=>e.prev({...t,[$e]:!0}),{back:!0,cond:e=>e.index>0&&!((e.fragment??1)&&n.fragmentIndex>0)})),e.on("next",r(t=>e.next({...t,[$e]:!0}),{cond:t=>t.index+1<e.slides.length&&!(n.fragmentIndex+1<n.fragments.length)})),setTimeout(()=>{e.on("slide",r(t=>e.slide(t.index,{...t,[$e]:!0}),{cond:t=>{const n=e.slide();return t.index!==n&&(t.back=t.index<n,!0)}}))},0),e.on("fragment",e=>{n=e})};let Ie;const Me=()=>(void 0===Ie&&(Ie="wakeLock"in navigator&&navigator.wakeLock),Ie),Oe=async()=>{const e=Me();if(e)try{return await e.request("screen")}catch(e){console.warn(e)}return null},Ae=async()=>{if(!Me())return;let e;const t=()=>{e&&"visible"===document.visibilityState&&Oe()};for(const e of["visibilitychange","fullscreenchange"])document.addEventListener(e,t);return e=await Oe(),e};((e=document.getElementById(":$p"))=>{(()=>{const e=p("view");a.dataset.bespokeView=e===l||e===c?e:""})();const t=(e=>{const t=p(e);return v({[e]:void 0}),t})("sync")||void 0;o.from(e,((...e)=>{const t=d.findIndex(e=>g()===e);return e.map(([e,n])=>e[t]&&n).filter(e=>e)})([[1,1,0],re({key:t})],[[1,1,1],Z(e)],[[1,1,0],M],[[1,1,1],k],[[1,0,0],T()],[[1,1,1],O],[[1,1,1],ne({history:!1})],[[1,1,0],A()],[[1,1,0],P],[[1,0,0],ee],[[1,1,0],le()],[[1,0,0],C()],[[1,0,0],Te],[[1,1,1],$],[[1,1,0],Ae]))})()}();</script></body></html>

@@ -284,6 +284,9 @@ Planificacion Lecciones/
 | [Temas/01_Fundamentos_Desarrollo_Web/1.2_Pila_Completa](file:///c:/Users/jonat/OneDrive/Documentos/UCR-2026/IF0009/Planificacion%20Lecciones/Temas/01_Fundamentos_Desarrollo_Web/1.2_Pila_Completa) | [1.2_Pila_Completa.md](file:///c:/Users/jonat/OneDrive/Documentos/UCR-2026/IF0009/Planificacion%20Lecciones/Temas/01_Fundamentos_Desarrollo_Web/1.2_Pila_Completa/1.2_Pila_Completa.md) | Lectura Conceptual | ModeTheory | [x] Completado |
 | [Temas/01_Fundamentos_Desarrollo_Web/1.2_Pila_Completa](file:///c:/Users/jonat/OneDrive/Documentos/UCR-2026/IF0009/Planificacion%20Lecciones/Temas/01_Fundamentos_Desarrollo_Web/1.2_Pila_Completa) | [1.2_Pila_Completa_Slides.md](file:///c:/Users/jonat/OneDrive/Documentos/UCR-2026/IF0009/Planificacion%20Lecciones/Temas/01_Fundamentos_Desarrollo_Web/1.2_Pila_Completa/1.2_Pila_Completa_Slides.md) | Diapositivas Marp | ModePresentation | [x] Completado |
 | [Temas/01_Fundamentos_Desarrollo_Web/1.2_Pila_Completa](file:///c:/Users/jonat/OneDrive/Documentos/UCR-2026/IF0009/Planificacion%20Lecciones/Temas/01_Fundamentos_Desarrollo_Web/1.2_Pila_Completa) | [1.2_Pila_Completa_Slides.html](file:///c:/Users/jonat/OneDrive/Documentos/UCR-2026/IF0009/Planificacion%20Lecciones/Temas/01_Fundamentos_Desarrollo_Web/1.2_Pila_Completa/1.2_Pila_Completa_Slides.html) | Presentación Interactiva HTML | Compilador Python | [x] Completado |
+| [Temas/01_Fundamentos_Desarrollo_Web/1.3_Tendencias](file:///c:/Users/jonat/OneDrive/Documentos/UCR-2026/IF0009/Planificacion%20Lecciones/Temas/01_Fundamentos_Desarrollo_Web/1.3_Tendencias) | [1.3_Tendencias.md](file:///c:/Users/jonat/OneDrive/Documentos/UCR-2026/IF0009/Planificacion%20Lecciones/Temas/01_Fundamentos_Desarrollo_Web/1.3_Tendencias/1.3_Tendencias.md) | Lectura Conceptual | ModeTheory | [x] Completado |
+| [Temas/01_Fundamentos_Desarrollo_Web/1.3_Tendencias](file:///c:/Users/jonat/OneDrive/Documentos/UCR-2026/IF0009/Planificacion%20Lecciones/Temas/01_Fundamentos_Desarrollo_Web/1.3_Tendencias) | [1.3_Tendencias_Slides.md](file:///c:/Users/jonat/OneDrive/Documentos/UCR-2026/IF0009/Planificacion%20Lecciones/Temas/01_Fundamentos_Desarrollo_Web/1.3_Tendencias/1.3_Tendencias_Slides.md) | Diapositivas Marp | ModePresentation | [x] Completado |
+| [Temas/01_Fundamentos_Desarrollo_Web/1.3_Tendencias](file:///c:/Users/jonat/OneDrive/Documentos/UCR-2026/IF0009/Planificacion%20Lecciones/Temas/01_Fundamentos_Desarrollo_Web/1.3_Tendencias) | [1.3_Tendencias_Slides.html](file:///c:/Users/jonat/OneDrive/Documentos/UCR-2026/IF0009/Planificacion%20Lecciones/Temas/01_Fundamentos_Desarrollo_Web/1.3_Tendencias/1.3_Tendencias_Slides.html) | Presentación Interactiva HTML | Compilador Python | [x] Completado |
 | [Evaluaciones/Laboratorios/warmup](file:///c:/Users/jonat/OneDrive/Documentos/UCR-2026/IF0009/Planificacion%20Lecciones/Evaluaciones/Laboratorios/warmup) | [Laboratorio_Warmup.md](file:///c:/Users/jonat/OneDrive/Documentos/UCR-2026/IF0009/Planificacion%20Lecciones/Evaluaciones/Laboratorios/warmup/Laboratorio_Warmup.md) | Guía de Laboratorio | ModeLab | [x] Completado |
 | [Evaluaciones/Laboratorios/warmup](file:///c:/Users/jonat/OneDrive/Documentos/UCR-2026/IF0009/Planificacion%20Lecciones/Evaluaciones/Laboratorios/warmup) | [Laboratorio_Warmup.pdf](file:///c:/Users/jonat/OneDrive/Documentos/UCR-2026/IF0009/Planificacion%20Lecciones/Evaluaciones/Laboratorios/warmup/Laboratorio_Warmup.pdf) | Guía de Laboratorio PDF | Conversor Python | [x] Completado |
 | [Temas/08_Temas_Adicionales/8.1_Maven](file:///c:/Users/jonat/OneDrive/Documentos/UCR-2026/IF0009/Planificacion%20Lecciones/Temas/08_Temas_Adicionales/8.1_Maven) | [8.1_Maven.md](file:///c:/Users/jonat/OneDrive/Documentos/UCR-2026/IF0009/Planificacion%20Lecciones/Temas/08_Temas_Adicionales/8.1_Maven/8.1_Maven.md) | Lectura Conceptual | ModeTheory | [x] Completado |
@@ -308,12 +311,11 @@ Planificacion Lecciones/
 ## 🚀 Planificación de Próximas Tareas
 
 1. **Próxima Tarea Prioritaria:**
-   - Iniciar la generación de contenidos conceptuales (lecturas teóricas) y diapositivas (formato Marp) para el subtema **1.3 Tendencias (MPA/SPA/PWA/nativa)** bajo `01_Fundamentos_Desarrollo_Web/1.3_Tendencias/` utilizando `ModeTheory` y `ModePresentation` de manera combinada.
+   - Iniciar la generación de contenidos conceptuales (lecturas teóricas) y diapositivas (formato Marp) para el subtema **1.4 Criterios de Selección** bajo `01_Fundamentos_Desarrollo_Web/1.4_Frameworks/` utilizando `ModeTheory` y `ModePresentation`.
 2. **Tareas Pendientes (Próximas Sesiones):**
-   - Seguir progresivamente con el subtema 1.4 de Fundamentos Web.
+   - Continuar con el Tema 2: Configuración del Ambiente de Desarrollo (2.1 y 2.2).
    - Redacción de los laboratorios prácticos subsiguientes utilizando `ModeLab`.
    - Formulación de cuestionarios/quices utilizando `ModeQuiz`.
-   - Integración progresiva de todos los módulos hasta completar el contenido total del curso.
 
 ---
 
