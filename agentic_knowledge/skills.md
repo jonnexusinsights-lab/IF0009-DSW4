@@ -28,7 +28,13 @@ Usa este procedimiento para diseñar laboratorios prácticos paso a paso.
   3. **Parte 1 (Práctica Guiada):** Planteamiento paso a paso de un problema real, código base completo con todas sus dependencias declaradas y captura/output de consola esperado.
   4. **Parte 2 (Depuración):** Código con un error intencional y común, guía instruccional para analizar el error en consola y procedimiento exacto para resolverlo.
   5. **Parte 3 (Reto Autónomo):** Requerimiento técnico adicional sin solución explícita, indicando únicamente las especificaciones a cumplir y cómo verificar el éxito.
-- **Reglas de Formato:** Checkboxes de Markdown (`- [ ]`) para pasos completados, bloques de código etiquetados correctamente y uso estricto del pronombre formal **"usted"** en todas las directivas de acción.
+- **Reglas de Formato y Estructura Técnica:**
+  * **Trato Formal:** Uso estricto del pronombre formal **"usted"** en todas las directivas de acción.
+  * **Checkboxes de Markdown:** Uso de `- [ ]` para pasos de depuración y tareas completadas.
+  * **Separación Obligatoria de Listas (Líneas en Blanco):** Siempre coloque una **línea en blanco** entre un párrafo explicativo y el inicio de cualquier lista (viñetas `*`, numeraciones `1.` o checklists `- [ ]`). De lo contrario, los parsers de PDF/Markdown colapsarán la lista dentro del párrafo en una única línea continua en el PDF.
+  * **Ajuste de Ancho de Código (Límite de 75 caracteres):** Todos los bloques de código (HTML, CSS, Java, Bash, etc.) deben tener líneas que no superen los **75 caracteres** de longitud, aplicando saltos de línea y formateo manual (ej. `\` para continuación de comandos). Esto evita que el código sea recortado lateralmente al exportarse a PDF.
+  * **Sangría de Código Estructurado:** En bloques de código jerárquico (como HTML), aplique una indentación rigurosa de **4 espacios** por nivel de anidamiento para garantizar legibilidad.
+  * **Flujo de Git integrado en IDE e IA:** En talleres o laboratorios de control de versiones, incluya guías visuales para operar el panel **Source Control** de Visual Studio Code y ejemplos prácticos de cómo interactuar con **Google Antigravity** como copiloto de IA (prompts sugeridos para redactar commits semánticos, generar archivos `.gitignore` y depurar fallas de consola).
 
 ---
 
