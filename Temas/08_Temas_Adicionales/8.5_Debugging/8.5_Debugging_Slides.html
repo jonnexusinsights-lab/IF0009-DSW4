@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <title>Debugging - Desarrollo de Software IV</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <!-- Reveal.js Base Stylesheets -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reset.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.css">
+    
+    <!-- Tokyo Night Dark Theme for Code Syntax Resaltation -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/tokyo-night-dark.min.css">
+
+    <!-- Premium Google Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* Modern Web Design Aesthetics & Layout Tokens */
+        .reveal {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0b0f19 0%, #111827 50%, #1e1b4b 100%);
+            color: #f8fafc;
+        }
+        
+        .reveal .slides section {
+            font-family: 'Outfit', 'Inter', sans-serif;
+            text-align: left;
+            padding: 50px 70px;
+            box-sizing: border-box;
+            font-size: 22px;
+        }
+        
+        /* Centered Cover Slide Layout */
+        .reveal .slides section.lead-slide {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+        
+        /* Premium Typography Styles */
+        .reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6 {
+            font-family: 'Outfit', sans-serif;
+            text-transform: none;
+            color: #38bdf8;
+            font-weight: 800;
+            text-shadow: none;
+        }
+        
+        .reveal h1 {
+            font-size: 1.7em;
+            margin-bottom: 12px;
+            border-bottom: 2px solid #3b82f6;
+            padding-bottom: 10px;
+        }
+        
+        .reveal .lead-slide h1 {
+            border-bottom: none;
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            color: #38bdf8;
+        }
+        
+        .reveal h2 {
+            font-size: 1.25em;
+            color: #818cf8;
+            font-weight: 700;
+            margin-top: 0px;
+        }
+        
+        .reveal .lead-slide h2 {
+            font-size: 1.55em;
+            color: #818cf8;
+            margin-bottom: 30px;
+        }
+        
+        .reveal h3 {
+            font-size: 1.1em;
+            color: #a78bfa;
+        }
+        
+        /* List and Text Formatting */
+        .reveal p, .reveal li {
+            color: #cbd5e1;
+            line-height: 1.6;
+        }
+        
+        .reveal ul {
+            list-style-type: square;
+            margin-left: 1.5em;
+        }
+        
+        .reveal li {
+            margin-bottom: 12px;
+        }
+        
+        .reveal strong {
+            color: #f43f5e;
+            font-weight: 600;
+        }
+        
+        .reveal em {
+            color: #fb7185;
+            font-style: italic;
+        }
+        
+        .reveal footer {
+            font-size: 0.5em;
+            color: #6b7280;
+            position: absolute;
+            bottom: 20px;
+            right: 50px;
+        }
+        
+        /* Code Block Containers and Inlines */
+        .reveal code {
+            font-family: 'Fira Code', monospace;
+            background-color: #030712;
+            color: #38bdf8;
+            border-radius: 4px;
+            padding: 2px 8px;
+            font-size: 0.85em;
+        }
+        
+        .reveal pre {
+            background-color: #030712 !important;
+            border: 1px solid #1f2937;
+            border-radius: 10px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
+            width: 100%;
+            margin: 20px 0;
+            box-sizing: border-box;
+        }
+        
+        .reveal pre code {
+            background-color: transparent;
+            color: inherit;
+            font-size: 0.8em;
+            line-height: 1.55;
+            padding: 18px;
+            max-height: 520px;
+        }
+        
+        /* Control Nav Arrows & Progress Bar */
+        .reveal .controls-arrow {
+            color: #38bdf8 !important;
+        }
+        
+        .reveal .progress span {
+            background-color: #38bdf8 !important;
+        }
+
+        /* Custom style overrides parsed from Marp frontmatter */
+        
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <section >
+<h1>IF0009 - Desarrollo de Software IV</h1>
+<h2>Tema 8.5: Fundamentos y Estrategias de Depuración (Debugging)</h2>
+<h3>Diagnóstico de Errores en VS Code e Integración Asistida por IA</h3>
+
+Universidad de Costa Rica <br>
+Sede del Atlántico - Recinto Paraíso <br>
+Carrera de Informática Empresarial <br>
+<strong>Profesor:</strong> Mag. Jonathan Granados C. <br>
+<strong>Semestre:</strong> II-2026
+
+<footer>UCR - Informática Empresarial</footer>
+            </section>
+
+            <section >
+<h2>¿Qué es la Depuración (Debugging)?</h2>
+
+<ul>
+<li>Proceso sistemático de identificar, aislar y corregir fallas en el software.
+</li>
+<li>Diferencia clave:
+<ul>
+<li><strong>Pruebas (Testing):</strong> Detectan la presencia de un defecto.
+</li>
+<li><strong>Depuración (Debugging):</strong> Encuentra la causa raíz del defecto.
+</li>
+</ul>
+</li>
+<li>Dos aproximaciones metodológicas principales:
+<ul>
+<li><strong>Análisis Estático:</strong> Inspección de código sin ejecutar (linters, compilador).
+</li>
+<li><strong>Análisis Dinámico:</strong> Monitoreo y control del programa en ejecución.
+</li>
+</ul>
+</li>
+</ul>
+            </section>
+
+            <section >
+<h2>Conceptos Clave de Depuración Dinámica</h2>
+
+<ul>
+<li><strong>Punto de Interrupción (Breakpoint):</strong>
+<ul>
+<li>Pausa la ejecución del programa antes de ejecutar una línea específica.
+</li>
+</ul>
+</li>
+<li><strong>Pila de Llamadas (Call Stack):</strong>
+<ul>
+<li>Lista de métodos activos en ejecución en el hilo actual.
+</li>
+</ul>
+</li>
+<li><strong>Watch (Inspección):</strong>
+<ul>
+<li>Monitoreo en tiempo real del valor de variables en memoria.
+</li>
+</ul>
+</li>
+</ul>
+            </section>
+
+            <section >
+<h2>Comandos de Control de Flujo</h2>
+
+<ul>
+<li><strong>Step Over (F10):</strong>
+<ul>
+<li>Ejecuta la línea actual y se detiene en la siguiente instrucción.
+</li>
+</ul>
+</li>
+<li><strong>Step Into (F11):</strong>
+<ul>
+<li>Entra al detalle del método invocado en la línea actual.
+</li>
+</ul>
+</li>
+<li><strong>Step Out (Shift + F11):</strong>
+<ul>
+<li>Completa el método actual y vuelve al llamador en la pila.
+</li>
+</ul>
+</li>
+</ul>
+            </section>
+
+            <section >
+<h2>Configuración del Depurador (<code>launch.json</code>)</h2>
+
+<ul>
+<li>VS Code utiliza el archivo <code>.vscode/launch.json</code> para gestionar perfiles:
+</li>
+</ul>
+
+<pre><code class="language-json">{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Debug Java Server",
+            "request": "launch",
+            "mainClass": "cr.ac.ucr.paraiso...AppServer"
+        }
+    ]
+}</code></pre>
+            </section>
+
+            <section >
+<h2>Ejemplo de Código con Falla Común</h2>
+
+<pre><code class="language-java">public class CalculadoraSalarios {
+    public static void main(String[] args) {
+        List&lt;Empleado&gt; empleados = obtenerEmpleados();
+        double total = 0;
+        for (Empleado emp : empleados) {
+            // Lanza NullPointerException si un elemento es null
+            total += emp.getSalarioNeto();
+        }
+        System.out.println("Total: " + total);
+    }
+}</code></pre>
+
+<ul>
+<li>Colocar un <strong>Breakpoint</strong> en el bucle <code>for</code> permite examinar qué elemento de la lista causó el valor <code>null</code>.
+</li>
+</ul>
+            </section>
+
+            <section >
+<h2>Depuración en el Navegador (Chrome DevTools)</h2>
+
+<ul>
+<li>Acceso rápido en el navegador: presione <strong><code>F12</code></strong> o <strong><code>Ctrl + Shift + I</code></strong>.
+</li>
+<li><strong>Pestaña Console (Consola):</strong>
+<ul>
+<li>Muestra excepciones de JavaScript en caliente.
+</li>
+<li>Imprime logs generados con <code>console.log()</code>.
+</li>
+<li>Visualiza advertencias de recursos bloqueados por CORS o tipos MIME incorrectos.
+</li>
+</ul>
+</li>
+<li><strong>Pestaña Sources (Orígenes):</strong>
+<ul>
+<li>Permite colocar breakpoints directamente en el código de JavaScript del cliente.
+</li>
+<li>Inspecciona variables y la pila de ejecución en el navegador.
+</li>
+</ul>
+</li>
+</ul>
+            </section>
+
+            <section >
+<h2>DevTools: Análisis de Red (Pestaña Network)</h2>
+
+<ul>
+<li>Esencial para diagnosticar la comunicación asíncrona entre Frontend y Backend.
+</li>
+<li><strong>Inspección de Encabezados (Headers):</strong>
+<ul>
+<li>Validar que <code>Content-Type</code> sea <code>application/json</code> en peticiones POST.
+</li>
+</ul>
+</li>
+<li><strong>Inspección del Payload (Carga Útil):</strong>
+<ul>
+<li>Verificar que el JSON enviado por el cliente tenga el formato y claves correctas.
+</li>
+</ul>
+</li>
+<li><strong>Inspección de la Respuesta (Response):</strong>
+<ul>
+<li>Analizar el código de estado (ej. 200 OK, 404, 415 o 500) y el JSON devuelto por el Backend.
+</li>
+</ul>
+</li>
+</ul>
+            </section>
+
+            <section >
+<h2>Depuración Asistida con IA (Google Antigravity)</h2>
+
+<ul>
+<li>Utilizar prompts estructurados optimiza el diagnóstico de trazas complejas:
+</li>
+</ul>
+
+<ul>
+<li><strong>Análisis de excepciones:</strong>
+<ul>
+<li><em>"Asistente, analice el siguiente error [pegar error] y proponga posibles causas y correcciones."</em>
+</li>
+</ul>
+</li>
+<li><strong>Refactorización defensiva:</strong>
+<ul>
+<li><em>"Asistente, diseñe una corrección robusta contra NullPointerException en este método [pegar código]."</em>
+</li>
+</ul>
+</li>
+</ul>
+            </section>
+
+            <section >
+<h2>Trampas Comunes al Depurar</h2>
+
+<ul>
+<li><strong>No recompilar previamente:</strong>
+<ul>
+<li>Ejecutar el debugger sin hacer un <code>mvn compile</code> previo causará que el IDE muestre desfases de línea.
+</li>
+</ul>
+</li>
+<li><strong>Ingresar a librerías de terceros (JDK):</strong>
+<ul>
+<li>Presionar <em>Step Into</em> en métodos nativos (<code>System.out.println</code>) abrirá el fuente del JDK.
+</li>
+<li>Use <em>Step Out</em> para salir rápidamente.
+</li>
+</ul>
+</li>
+<li><strong>Puntos de interrupción grises:</strong>
+<ul>
+<li>Ocurre si la clase binaria no se compiló con metadata de depuración.
+</li>
+</ul>
+</li>
+</ul>
+            </section>
+
+            <section >
+<h2>Pregunta de Reflexión</h2>
+
+<ul>
+<li>Al interactuar mediante solicitudes JSON entre el Frontend y el Backend:
+</li>
+</ul>
+
+> ¿Cómo ayuda el inspector de red de las herramientas del desarrollador (DevTools) a aislar si un fallo de parsing ocurre por un formato erróneo del cliente o por una mala deserialización en el servidor Java?
+            </section>
+
+        </div>
+    </div>
+
+    <!-- Highlight.js and Reveal.js Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.js"></script>
+
+    <script>
+        // Initialize Highlight.js for code syntax coloring
+        hljs.highlightAll();
+
+        // Initialize Reveal.js with modern layout configurations
+        Reveal.initialize({
+            hash: true,
+            respondToHashChanges: true,
+            history: true,
+            transition: 'slide', // none/fade/slide/convex/concave/zoom
+            transitionSpeed: 'default',
+            backgroundTransition: 'fade',
+            width: 960,
+            height: 700,
+            margin: 0.05,
+            minScale: 0.2,
+            maxScale: 2.0,
+            plugins: []
+        });
+    </script>
+</body>
+</html>

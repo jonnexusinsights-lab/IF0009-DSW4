@@ -103,7 +103,7 @@ Para todos los proyectos y entregables del curso, se establece que tanto el iden
 `cr.ac.ucr.paraiso.ie.<id>.<package_name>`  
 Donde `<id>` corresponde a su carné universitario (ej. `b98765`) y `<package_name>` al nombre del entregable o módulo (para esta práctica, `practica1`). En los ejemplos siguientes, reemplace la palabra `carnet` con su propio carné en minúsculas.
 
-1. Cree el archivo `pom.xml` en la raíz del proyecto con el siguiente contenido estructurado. Note que incluimos la biblioteca **Gson** de Google para facilitar la conversión de texto JSON a objetos Java:
+1. Cree el archivo `pom.xml` en la ruta `backend/pom.xml` con el siguiente contenido estructurado. Note que incluimos la biblioteca **Gson** de Google para facilitar la conversión de texto JSON a objetos Java:
 
 ```xml
 <project xmlns="http://maven.apache.org/POM/4.0.0"
@@ -136,20 +136,20 @@ Donde `<id>` corresponde a su carné universitario (ej. `b98765`) y `<package_na
 2. Cree la estructura jerárquica de carpetas de Maven y el directorio público para los archivos HTML/CSS. Ejecute los siguientes comandos en la consola (o créelos desde el explorador de archivos de su IDE):
 
 ```bash
-# Crear estructura de código Java (remplace con su carné)
-mkdir -p src/main/java/cr/ac/ucr/paraiso/ie/carnet/practica1
+# Crear carpeta para el Backend y su estructura Java (remplace con su carné)
+mkdir -p backend/src/main/java/cr/ac/ucr/paraiso/ie/carnet/practica1
 
-# Crear carpeta pública para el frontend estático
-mkdir -p public
+# Crear carpeta para el Frontend estático
+mkdir -p frontend
 ```
 
 ---
 
 ### Paso 3: Implementación del Servidor HTTP Java Nativo (Backend)
 
-Cree el archivo de código Java `AppServer.java` en la ruta `src/main/java/cr/ac/ucr/paraiso/ie/carnet/practica1/AppServer.java`. 
+Cree el archivo de código Java `AppServer.java` en la ruta `backend/src/main/java/cr/ac/ucr/paraiso/ie/carnet/practica1/AppServer.java`. 
 
-Este servidor realiza dos tareas fundamentales: sirve archivos estáticos de la carpeta `public/` y expone un endpoint API REST `/api/submit` que recibe datos JSON vía POST, los deserializa y retorna un saludo personalizado.
+Este servidor realiza dos tareas fundamentales: sirve archivos estáticos de la carpeta externa `frontend/` y expone un endpoint API REST `/api/submit` que recibe datos JSON vía POST, los deserializa y retorna un saludo personalizado.
 
 ```java
 package cr.ac.ucr.paraiso.ie.carnet.practica1;
@@ -188,7 +188,8 @@ public class AppServer {
                 path = "/index.html";
             }
             
-            File file = new File("public" + path);
+            // Buscar los archivos en la carpeta frontend vecina del backend
+            File file = new File("../frontend" + path);
             if (!file.exists() || file.isDirectory()) {
                 String err = "404 - Archivo no encontrado";
                 exchange.sendResponseHeaders(404, err.length());
@@ -279,9 +280,9 @@ public class AppServer {
 
 ### Paso 4: Creación del Frontend (HTML5 + CSS + Fetch API)
 
-Cree la interfaz de usuario en el directorio `public/`. Esta interfaz consta de un formulario de registro y una lógica en JavaScript para serializar los campos en un objeto JSON y enviarlo asíncronamente al servidor.
+Cree la interfaz de usuario en el directorio `frontend/`. Esta interfaz consta de un formulario de registro y una lógica en JavaScript para serializar los campos en un objeto JSON y enviarlo asíncronamente al servidor.
 
-1. Cree el archivo `public/index.html` asegurando un anidamiento riguroso de etiquetas de 4 espacios:
+1. Cree el archivo `frontend/index.html` asegurando un anidamiento riguroso de etiquetas de 4 espacios:
 
 ```html
 <!DOCTYPE html>
@@ -377,7 +378,7 @@ Cree la interfaz de usuario en el directorio `public/`. Esta interfaz consta de 
 </html>
 ```
 
-2. Cree el archivo `public/style.css` aplicando un diseño responsivo minimalista y elegante mediante el uso de variables CSS y una paleta basada en HSL:
+2. Cree el archivo `frontend/style.css` aplicando un diseño responsivo minimalista y elegante mediante el uso de variables CSS y una paleta basada en HSL:
 
 ```css
 /* Paleta y Variables de Estilos */
@@ -498,13 +499,17 @@ button:hover {
 
 ### Paso 5: Compilación, Ejecución y Enlace de Repositorio Remoto
 
-1. Compile el proyecto utilizando Maven. En la raíz del proyecto, ejecute en su terminal:
+1. Ingrese a la carpeta del backend y compile el proyecto utilizando Maven. En la raíz de su proyecto, ejecute en su terminal:
 
 ```bash
+# Ingresar al directorio del backend
+cd backend
+
+# Compilar clases
 mvn clean compile
 ```
 
-2. Ejecute el servidor Java utilizando el plugin de Maven Exec. Ejecute (remplazando `carnet` por su carné UCR):
+2. Ejecute el servidor Java utilizando el plugin de Maven Exec desde la carpeta `backend/` (remplazando `carnet` por su carné UCR):
 
 ```bash
 mvn exec:java \
@@ -516,10 +521,13 @@ mvn exec:java \
 4. Vinculación del repositorio remoto en GitHub:
    * Vaya a su cuenta en [GitHub](https://github.com) y cree un repositorio público vacío llamado `practica-1`. **No** lo inicialice con archivos README, gitignore o licencia.
    * Copie la dirección HTTPS provista.
-   * Ejecute los siguientes comandos en su terminal local para vincularlo y subir el código:
+   * Abra una nueva terminal (o regrese al directorio raíz `practica-1/` ejecutando `cd ..`) y ejecute los siguientes comandos para vincularlo y subir el código:
 
 ```bash
-# Agregar archivos al staging y confirmar commit inicial
+# Regresar a la raíz del proyecto (si está en la carpeta backend)
+cd ..
+
+# Agregar archivos de ambas carpetas (backend y frontend) al staging y confirmar commit
 git add .
 git commit -m "feat: inicializacion de proyecto con git, maven y servidor java"
 
