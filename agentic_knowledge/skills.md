@@ -14,7 +14,7 @@ Usa este procedimiento para crear contenido de guías y explicaciones teóricas.
   3. **Concepto Principal (El 'Qué'):** Definición rigurosa y académica apoyada en la documentación oficial, destacando términos clave en negrita y cursiva.
   4. **Analogía (La Intuición):** Asociación didáctica con un concepto de la vida cotidiana para asentar la teoría.
   5. **Ejemplo de Código e Implementación (El 'Cómo'):** Bloque de código completo, limpio y funcional en la tecnología objetivo, seguido de una explicación línea por línea de las instrucciones clave.
-  6. **Trampas Comunes (Gotchas):** Detalle técnico de los errores más recurrentes al implementar el concepto y cómo prevenirlos.
+  6. **Trampas Comunes:** Detalle técnico de los errores más recurrentes al implementar el concepto y cómo prevenirlos.
   7. **Pregunta de Reflexión:** Reto lógico corto para que el estudiante evalúe lo aprendido en la lectura.
 - **Reglas de Formato:** Markdown estándar limpio, separadores horizontales (`---`) entre secciones y uso del trato formal de **"usted"** en español.
 
