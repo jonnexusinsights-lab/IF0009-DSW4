@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <title>Tema 3.1 - Capa de Datos y Persistencia - Desarrollo de Software IV</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <!-- Reveal.js Base Stylesheets -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reset.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.css">
+    
+    <!-- Tokyo Night Dark Theme for Code Syntax Resaltation -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/tokyo-night-dark.min.css">
+
+    <!-- Premium Google Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* Modern Web Design Aesthetics & Layout Tokens */
+        .reveal {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0b0f19 0%, #111827 50%, #1e1b4b 100%);
+            color: #f8fafc;
+        }
+        
+        .reveal .slides section {
+            font-family: 'Outfit', 'Inter', sans-serif;
+            text-align: left;
+            padding: 50px 70px;
+            box-sizing: border-box;
+            font-size: 22px;
+        }
+        
+        /* Centered Cover Slide Layout */
+        .reveal .slides section.lead-slide {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+        
+        /* Premium Typography Styles */
+        .reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6 {
+            font-family: 'Outfit', sans-serif;
+            text-transform: none;
+            color: #38bdf8;
+            font-weight: 800;
+            text-shadow: none;
+        }
+        
+        .reveal h1 {
+            font-size: 1.7em;
+            margin-bottom: 12px;
+            border-bottom: 2px solid #3b82f6;
+            padding-bottom: 10px;
+        }
+        
+        .reveal .lead-slide h1 {
+            border-bottom: none;
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            color: #38bdf8;
+        }
+        
+        .reveal h2 {
+            font-size: 1.25em;
+            color: #818cf8;
+            font-weight: 700;
+            margin-top: 0px;
+        }
+        
+        .reveal .lead-slide h2 {
+            font-size: 1.55em;
+            color: #818cf8;
+            margin-bottom: 30px;
+        }
+        
+        .reveal h3 {
+            font-size: 1.1em;
+            color: #a78bfa;
+        }
+        
+        /* List and Text Formatting */
+        .reveal p, .reveal li {
+            color: #cbd5e1;
+            line-height: 1.6;
+        }
+        
+        .reveal ul {
+            list-style-type: square;
+            margin-left: 1.5em;
+        }
+        
+        .reveal li {
+            margin-bottom: 12px;
+        }
+        
+        .reveal strong {
+            color: #f43f5e;
+            font-weight: 600;
+        }
+        
+        .reveal em {
+            color: #fb7185;
+            font-style: italic;
+        }
+        
+        .reveal footer {
+            font-size: 0.5em;
+            color: #6b7280;
+            position: absolute;
+            bottom: 20px;
+            right: 50px;
+        }
+        
+        /* Code Block Containers and Inlines */
+        .reveal code {
+            font-family: 'Fira Code', monospace;
+            background-color: #030712;
+            color: #38bdf8;
+            border-radius: 4px;
+            padding: 2px 8px;
+            font-size: 0.85em;
+        }
+        
+        .reveal pre {
+            background-color: #030712 !important;
+            border: 1px solid #1f2937;
+            border-radius: 10px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
+            width: 100%;
+            margin: 20px 0;
+            box-sizing: border-box;
+        }
+        
+        .reveal pre code {
+            background-color: transparent;
+            color: inherit;
+            font-size: 0.8em;
+            line-height: 1.55;
+            padding: 18px;
+            max-height: 520px;
+        }
+        
+        /* Control Nav Arrows & Progress Bar */
+        .reveal .controls-arrow {
+            color: #38bdf8 !important;
+        }
+        
+        .reveal .progress span {
+            background-color: #38bdf8 !important;
+        }
+
+        /* Custom style overrides parsed from Marp frontmatter */
+        section {
+  background-color: #0f172a;
+  color: #f8fafc;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+}
+h1, h2 {
+  color: #38bdf8;
+}
+h3 {
+  color: #7dd3fc;
+}
+footer {
+  color: #64748b;
+}
+code {
+  background-color: #1e293b;
+  color: #38bdf8;
+}
+pre code {
+  background-color: transparent;
+  color: #f8fafc;
+}
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <section >
+<h1>IF0009 - Desarrollo de Software IV</h1>
+
+<h2>Tema 3.1: Capa de Datos y Persistencia Empresarial con Spring Data JPA</h2>
+
+Universidad de Costa Rica <br>
+Sede del Atlántico - Recinto Paraíso <br>
+Carrera de Informática Empresarial <br>
+<strong>Profesor:</strong> Mag. Jonathan Granados C. <br>
+<strong>Semestre:</strong> II-2026
+
+<footer>UCR - Informática Empresarial</footer>
+            </section>
+
+            <section >
+<h1>¿Qué es la Persistencia y el Mapeo ORM?</h1>
+
+<ul>
+<li><strong>Desajuste de Impedancia Objeto-Relacional:</strong>
+<ul>
+<li><strong>Java:</strong> Trabaja con objetos en memoria y referencias de grafo.
+</li>
+<li><strong>Base de Datos:</strong> Estructurada en tablas de dos dimensiones (filas y columnas) con llaves primarias/foráneas.
+</li>
+</ul>
+</li>
+<li><strong>El Mapeo Objeto-Relacional (ORM):</strong>
+<ul>
+<li>Patrón de diseño y herramienta de software que traduce automáticamente objetos a filas de bases de datos relacionales.
+</li>
+<li><strong>JPA (Java Persistence API):</strong> Especificación estándar de Java.
+</li>
+<li><strong>Hibernate:</strong> El motor (proveedor) de software que ejecuta JPA.
+</li>
+</ul>
+</li>
+</ul>
+
+<footer>Tema 3.1: Capa de Datos y Persistencia</footer>
+            </section>
+
+            <section >
+<h1>Entidades Relacionales en JPA</h1>
+
+<ul>
+<li>Una <strong>Entidad</strong> es un POJO de Java decorado con anotaciones JPA.
+</li>
+<li><strong>Anotaciones de Mapeo Esenciales:</strong>
+<ul>
+<li><code>@Entity</code>: Registra la clase como entidad persistente.
+</li>
+<li><code>@Table</code>: Asocia la entidad a una tabla física de la base de datos.
+</li>
+<li><code>@Id</code>: Define el campo que actuará como llave primaria (<code>PK</code>).
+</li>
+<li><code>@GeneratedValue</code>: Declara la estrategia de auto-incrementar.
+</li>
+<li><code>@Column</code>: Configura restricciones finas en columnas (nombres, nulos, longitudes).
+</li>
+</ul>
+</li>
+</ul>
+
+<footer>Tema 3.1: Capa de Datos y Persistencia</footer>
+            </section>
+
+            <section >
+<h1>La Abstracción de Repositorios</h1>
+
+<ul>
+<li><strong>DAO Tradicional:</strong> Requería escribir extensas sentencias SQL manuales y procesar el ResultSet.
+</li>
+<li><strong>Spring Data JPA (<code>JpaRepository</code>):</strong>
+<ul>
+<li>Interfaz de Java que extiende <code>JpaRepository&lt;T, ID&gt;</code>.
+</li>
+<li>Genera automáticamente en tiempo de ejecución las implementaciones de operaciones CRUD estándar (<code>save</code>, <code>findById</code>, <code>deleteById</code>).
+</li>
+<li><strong>Query Methods:</strong> Generación de consultas automáticas según el nombre del método (ej. <code>findByActivo</code>).
+</li>
+</ul>
+</li>
+</ul>
+
+<footer>Tema 3.1: Capa de Datos y Persistencia</footer>
+            </section>
+
+            <section >
+<h1>Mapeo de Procedimientos Almacenados</h1>
+
+<ul>
+<li>En entornos corporativos, delegar lógica compleja al motor de la base de datos es habitual por rendimiento.
+</li>
+<li><strong>Soporte JPA para Stored Procedures:</strong>
+<ul>
+<li>Decoración de la clase entidad con <code>@NamedStoredProcedureQuery</code>.
+</li>
+<li>Definición de parámetros tipados mediante <code>@StoredProcedureParameter</code>.
+</li>
+<li>Parámetros de entrada (<code>ParameterMode.IN</code>) y salida (<code>ParameterMode.OUT</code>).
+</li>
+<li>Invocación simplificada con la anotación <code>@Procedure</code> en los repositorios.
+</li>
+</ul>
+</li>
+</ul>
+
+<footer>Tema 3.1: Capa de Datos y Persistencia</footer>
+            </section>
+
+            <section >
+<h1>Paginación Física y Ordenamiento</h1>
+
+<ul>
+<li><strong>Paginación en Memoria (Mala Práctica):</strong> Cargar millones de filas a RAM para paginar con JS. Causa caídas de servidor y red.
+</li>
+<li><strong>Paginación Física (Buena Práctica):</strong> Solicitar al motor de base de datos únicamente el fragmento requerido (<code>LIMIT</code> y <code>OFFSET</code>).
+</li>
+<li><strong>Soporte en Spring Data JPA:</strong>
+<ul>
+<li>Interfaz <code>Pageable</code> para pasar número de página, tamaño y orden (<code>Sort</code>).
+</li>
+<li>Clase <code>PageRequest.of</code> para instanciar la configuración de paginación.
+</li>
+<li>Objeto de retorno <code>Page&lt;T&gt;</code> que encapsula el listado y metadatos totales.
+</li>
+</ul>
+</li>
+</ul>
+
+<footer>Tema 3.1: Capa de Datos y Persistencia</footer>
+            </section>
+
+            <section >
+<h1>Analogías para Entender la Capa de Datos</h1>
+
+<ul>
+<li><strong>El ORM como Traductor Simultáneo:</strong>
+<ul>
+<li>Java habla inglés (objetos) y la base de datos habla español (tablas relacionales).
+</li>
+<li>El ORM traduce conceptos (guardar objeto) a instrucciones nativas de base de datos (INSERT INTO) en tiempo real.
+</li>
+</ul>
+</li>
+<li><strong>La Paginación como Tomos de Enciclopedia:</strong>
+<ul>
+<li>Si necesita consultar una definición, solicita el volumen específico a la biblioteca.
+</li>
+<li>No carga sobre su mesa de estudio la estantería completa de enciclopedias (toda la tabla en RAM).
+</li>
+</ul>
+</li>
+</ul>
+
+<footer>Tema 3.1: Capa de Datos y Persistencia</footer>
+            </section>
+
+            <section >
+<h1>Código: La Entidad Estudiante (<code>Estudiante.java</code>)</h1>
+
+<pre><code class="language-java">@Entity
+@Table(name = "estudiantes")
+@NamedStoredProcedureQuery(
+    name = "Estudiante.obtenerPromedio",
+    procedureName = "SP_OBTENER_PROMEDIO",
+    parameters = {
+        @StoredProcedureParameter(
+            mode = ParameterMode.IN, 
+            name = "p_estudiante_id", type = Integer.class),
+        @StoredProcedureParameter(
+            mode = ParameterMode.OUT, 
+            name = "p_promedio", type = Double.class)
+    }
+)
+public class Estudiante {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+    private String nombre;
+    private String carnet;
+    private boolean activo;
+    // Constructor, getters y setters...
+}</code></pre>
+
+<footer>Tema 3.1: Capa de Datos y Persistencia</footer>
+            </section>
+
+            <section >
+<h1>Código: El Repositorio (<code>EstudianteRepository.java</code>)</h1>
+
+<pre><code class="language-java">@Repository
+public interface EstudianteRepository 
+        extends JpaRepository&lt;Estudiante, Integer&gt; {
+
+    // Ejecutar procedimiento almacenado
+    @Procedure(name = "Estudiante.obtenerPromedio")
+    Double obtenerPromedioEstudiante(
+        @Param("p_estudiante_id") Integer estudianteId
+    );
+
+    // Consulta paginada personalizada
+    Page&lt;Estudiante&gt; findByActivo(
+        boolean activo, 
+        Pageable pageable
+    );
+}</code></pre>
+
+<footer>Tema 3.1: Capa de Datos y Persistencia</footer>
+            </section>
+
+            <section >
+<h1>Código: El Servicio Paginado (<code>EstudianteService.java</code>)</h1>
+
+<pre><code class="language-java">@Service
+public class EstudianteService {
+    @Autowired
+    private EstudianteRepository repository;
+
+    @Transactional(readOnly = true)
+    public Page&lt;Estudiante&gt; listarActivosPaginados(
+        int pagina, int tamano
+    ) {
+        Pageable controlPaginacion = PageRequest.of(
+            pagina, 
+            tamano, 
+            Sort.by("nombre").ascending()
+        );
+        return repository.findByActivo(true, controlPaginacion);
+    }
+}</code></pre>
+
+<footer>Tema 3.1: Capa de Datos y Persistencia</footer>
+            </section>
+
+            <section >
+<h1>Trampas Comunes en Persistencia</h1>
+
+<ul>
+<li><strong>Problema N+1 SELECT:</strong> Ocurre al cargar colecciones de datos ansiosamente (<code>Eager</code>), generando $N$ consultas adicionales para obtener los elementos asociados de la lista.
+<ul>
+<li><em>Solución:</em> Usar carga perezosa (<code>Lazy</code>) y <code>JOIN FETCH</code> o <code>@EntityGraph</code>.
+</li>
+</ul>
+</li>
+<li><strong>Excepción <code>LazyInitializationException</code>:</strong> Intentar leer una propiedad perezosa fuera de una sesión transaccional activa de Hibernate.
+<ul>
+<li><em>Solución:</em> Usar <code>@Transactional</code> en los métodos de servicio.
+</li>
+</ul>
+</li>
+<li><strong>Transaccionalidad en Procedimientos:</strong> Llamadas a procedimientos almacenados que modifican datos sin transacción activa fallarán.
+<ul>
+<li><em>Solución:</em> Garantizar la presencia de <code>@Transactional</code>.
+</li>
+</ul>
+</li>
+</ul>
+
+<footer>Tema 3.1: Capa de Datos y Persistencia</footer>
+            </section>
+
+            <section >
+<h1>Pregunta de Reflexión</h1>
+
+<ul>
+<li>Si un sistema corporativo con millones de transacciones de compra/venta realiza búsquedas y las carga completas en memoria (<code>List&lt;Transaccion&gt;</code>) para que el frontend realice la paginación visual:
+<ul>
+<li>¿Cómo afectará esto la CPU y memoria RAM del servidor de base de datos y del servidor web?
+</li>
+<li>¿Qué estrategias de mitigación implementa Spring Data JPA a través de <code>Pageable</code> para solucionar este problema de rendimiento?
+</li>
+</ul>
+</li>
+</ul>
+
+<footer>Tema 3.1: Capa de Datos y Persistencia</footer>
+            </section>
+
+        </div>
+    </div>
+
+    <!-- Highlight.js and Reveal.js Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.js"></script>
+
+    <script>
+        // Initialize Highlight.js for code syntax coloring
+        hljs.highlightAll();
+
+        // Initialize Reveal.js with modern layout configurations
+        Reveal.initialize({
+            hash: true,
+            respondToHashChanges: true,
+            history: true,
+            transition: 'slide', // none/fade/slide/convex/concave/zoom
+            transitionSpeed: 'default',
+            backgroundTransition: 'fade',
+            width: 960,
+            height: 700,
+            margin: 0.05,
+            minScale: 0.2,
+            maxScale: 2.0,
+            plugins: []
+        });
+    </script>
+</body>
+</html>

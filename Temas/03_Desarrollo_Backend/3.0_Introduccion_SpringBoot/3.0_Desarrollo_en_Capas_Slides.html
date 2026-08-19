@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <title>Tema 3.0 - Desarrollo en Capas y Distribución - Desarrollo de Software IV</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <!-- Reveal.js Base Stylesheets -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reset.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.css">
+    
+    <!-- Tokyo Night Dark Theme for Code Syntax Resaltation -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/tokyo-night-dark.min.css">
+
+    <!-- Premium Google Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* Modern Web Design Aesthetics & Layout Tokens */
+        .reveal {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0b0f19 0%, #111827 50%, #1e1b4b 100%);
+            color: #f8fafc;
+        }
+        
+        .reveal .slides section {
+            font-family: 'Outfit', 'Inter', sans-serif;
+            text-align: left;
+            padding: 50px 70px;
+            box-sizing: border-box;
+            font-size: 22px;
+        }
+        
+        /* Centered Cover Slide Layout */
+        .reveal .slides section.lead-slide {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+        
+        /* Premium Typography Styles */
+        .reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6 {
+            font-family: 'Outfit', sans-serif;
+            text-transform: none;
+            color: #38bdf8;
+            font-weight: 800;
+            text-shadow: none;
+        }
+        
+        .reveal h1 {
+            font-size: 1.7em;
+            margin-bottom: 12px;
+            border-bottom: 2px solid #3b82f6;
+            padding-bottom: 10px;
+        }
+        
+        .reveal .lead-slide h1 {
+            border-bottom: none;
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            color: #38bdf8;
+        }
+        
+        .reveal h2 {
+            font-size: 1.25em;
+            color: #818cf8;
+            font-weight: 700;
+            margin-top: 0px;
+        }
+        
+        .reveal .lead-slide h2 {
+            font-size: 1.55em;
+            color: #818cf8;
+            margin-bottom: 30px;
+        }
+        
+        .reveal h3 {
+            font-size: 1.1em;
+            color: #a78bfa;
+        }
+        
+        /* List and Text Formatting */
+        .reveal p, .reveal li {
+            color: #cbd5e1;
+            line-height: 1.6;
+        }
+        
+        .reveal ul {
+            list-style-type: square;
+            margin-left: 1.5em;
+        }
+        
+        .reveal li {
+            margin-bottom: 12px;
+        }
+        
+        .reveal strong {
+            color: #f43f5e;
+            font-weight: 600;
+        }
+        
+        .reveal em {
+            color: #fb7185;
+            font-style: italic;
+        }
+        
+        .reveal footer {
+            font-size: 0.5em;
+            color: #6b7280;
+            position: absolute;
+            bottom: 20px;
+            right: 50px;
+        }
+        
+        /* Code Block Containers and Inlines */
+        .reveal code {
+            font-family: 'Fira Code', monospace;
+            background-color: #030712;
+            color: #38bdf8;
+            border-radius: 4px;
+            padding: 2px 8px;
+            font-size: 0.85em;
+        }
+        
+        .reveal pre {
+            background-color: #030712 !important;
+            border: 1px solid #1f2937;
+            border-radius: 10px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
+            width: 100%;
+            margin: 20px 0;
+            box-sizing: border-box;
+        }
+        
+        .reveal pre code {
+            background-color: transparent;
+            color: inherit;
+            font-size: 0.8em;
+            line-height: 1.55;
+            padding: 18px;
+            max-height: 520px;
+        }
+        
+        /* Control Nav Arrows & Progress Bar */
+        .reveal .controls-arrow {
+            color: #38bdf8 !important;
+        }
+        
+        .reveal .progress span {
+            background-color: #38bdf8 !important;
+        }
+
+        /* Custom style overrides parsed from Marp frontmatter */
+        section {
+  background-color: #0f172a;
+  color: #f8fafc;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+}
+h1, h2 {
+  color: #38bdf8;
+}
+h3 {
+  color: #7dd3fc;
+}
+footer {
+  color: #64748b;
+}
+code {
+  background-color: #1e293b;
+  color: #38bdf8;
+}
+pre code {
+  background-color: transparent;
+  color: #f8fafc;
+}
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <section >
+<h1>IF0009 - Desarrollo de Software IV</h1>
+
+<h2>Tema 3.0: Desarrollo en Capas y Distribución del Procesamiento en Spring Boot</h2>
+
+Universidad de Costa Rica <br>
+Sede del Atlántico - Recinto Paraíso <br>
+Carrera de Informática Empresarial <br>
+<strong>Profesor:</strong> Mag. Jonathan Granados C. <br>
+<strong>Semestre:</strong> II-2026
+
+<footer>UCR - Informática Empresarial</footer>
+            </section>
+
+            <section >
+<h1>¿Por qué emplear Capas en el Código?</h1>
+
+<ul>
+<li><strong>Complejidad del Software:</strong> Las aplicaciones crecen agrupando cientos de clases colaborativas.
+</li>
+<li><strong>Código Espagueti:</strong> Mezclar bases de datos, validaciones y diseño visual acopla el código y lo hace frágil.
+</li>
+<li><strong>Separación de Incumbencias (<em>Separation of Concerns</em>):</strong>
+<ul>
+<li>Agrupar componentes con especializaciones operativas comunes.
+</li>
+<li>Establecer jerarquías de dependencias unidireccionales y limpias.
+</li>
+<li>Facilitar mantenimiento, testeo en paralelo y reusabilidad.
+</li>
+</ul>
+</li>
+</ul>
+
+<footer>Tema 3.0: Desarrollo en Capas y Distribución</footer>
+            </section>
+
+            <section >
+<h1>Arquitectura Lógica versus Física</h1>
+
+<ul>
+<li><strong>Arquitectura Lógica (<code>N-Layer</code>):</strong>
+<ul>
+<li>Segregación del código a nivel de diseño y código fuente (paquetes).
+</li>
+<li>Ej: paquetes <code>.domain</code>, <code>.data</code>, <code>.business</code>, <code>.controller</code> en Java.
+</li>
+<li>Facilita la legibilidad y mantenimiento del código.
+</li>
+</ul>
+</li>
+<li><strong>Arquitectura Física (<code>N-Tier</code>):</strong>
+<ul>
+<li>Distribución del software ejecutándose en distintos servidores físicos o nodos de red (tiers).
+</li>
+<li>Clásica de 3-Tier: Cliente (Navegador) $\rightarrow$ Servidor de Aplicación (Spring Boot) $\rightarrow$ Base de Datos.
+</li>
+</ul>
+</li>
+</ul>
+
+<footer>Tema 3.0: Desarrollo en Capas y Distribución</footer>
+            </section>
+
+            <section >
+<h1>Responsabilidades de las Capas en Spring Boot</h1>
+
+<ul>
+<li><strong>Controladores (<code>@RestController</code>):</strong> Intercepta peticiones HTTP, valida datos, gestiona respuestas y códigos HTTP.
+</li>
+<li><strong>Negocio / Servicios (<code>@Service</code>):</strong> Contiene las reglas, lógica de negocio y delimita transacciones.
+</li>
+<li><strong>Datos / Repositorios (<code>@Repository</code>):</strong> Realiza operaciones de lectura/escritura físicas en la base de datos (JPA).
+</li>
+<li><strong>Dominio / Comunes (<code>domain</code>):</strong> Entidades y modelos de datos representativos del negocio (compartidos).
+</li>
+</ul>
+
+<footer>Tema 3.0: Desarrollo en Capas y Distribución</footer>
+            </section>
+
+            <section >
+<h1>La Pirámide de Pruebas Automatizadas</h1>
+
+<ul>
+<li><strong>Desacoplar en capas facilita el testeo:</strong>
+</li>
+<li><strong>Unit Tests (Pruebas Unitarias):</strong> Evalúan métodos de clases aisladas en memoria sin contexto del framework (rápidas).
+</li>
+<li><strong>Integration Tests (Pruebas de Integración):</strong> Validan la interacción real entre servicios y repositorios (cargan el contexto Spring).
+</li>
+<li><strong>Web/API Tests:</strong> Prueban endpoints enviando solicitudes HTTP simuladas.
+</li>
+</ul>
+
+<footer>Tema 3.0: Desarrollo en Capas y Distribución</footer>
+            </section>
+
+            <section >
+<h1>Analogía Lógica y Física de las Capas</h1>
+
+<ul>
+<li><strong>El Diseño de una Empresa (N-Layer):</strong>
+<ul>
+<li>Departamentos especializados: Ventas (Presentación), Ingeniería (Negocios), y Compras (Datos).
+</li>
+<li>El vendedor no calcula estructuras ni va a buscar materiales; coordina solicitudes de forma ordenada.
+</li>
+</ul>
+</li>
+<li><strong>Los Edificios Físicos de la Empresa (N-Tier):</strong>
+<ul>
+<li>Oficina comercial céntrica (Cliente), planta administrativa (Backend) y bodega industrial aislada (Base de Datos).
+</li>
+<li>Si la bodega colapsa físicamente, los demás edificios continúan de forma aislada e independiente.
+</li>
+</ul>
+</li>
+</ul>
+
+<footer>Tema 3.0: Desarrollo en Capas y Distribución</footer>
+            </section>
+
+            <section >
+<h1>Código: El DTO de Validación (<code>PeliculaCreationDTO.java</code>)</h1>
+
+<pre><code class="language-java">public class PeliculaCreationDTO {
+    @NotBlank(message = "El título es obligatorio.")
+    @Size(min = 1, max = 50, 
+          message = "El título debe medir 1 a 50 letras.")
+    private String titulo;
+    private boolean subtitulada;
+    private boolean estreno;
+    @NotNull(message = "El género es requerido.")
+    private Integer generoId;
+    @NotNull(message = "Debe ingresar al menos un actor.")
+    @Size(min = 1, message = "Se requiere al menos un actor.")
+    private List&lt;Integer&gt; actorIds;
+    // Getters y Setters...
+}</code></pre>
+
+<footer>Tema 3.0: Desarrollo en Capas y Distribución</footer>
+            </section>
+
+            <section >
+<h1>Código: La Entidad de Dominio (<code>Pelicula.java</code>)</h1>
+
+<pre><code class="language-java">@Entity
+@Table(name = "peliculas")
+public class Pelicula {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+    private String titulo;
+    private boolean subtitulada;
+    private boolean estreno;
+    @ManyToOne
+    @JoinColumn(name = "genero_id")
+    private Genero genero;
+    @ManyToMany
+    private List&lt;Actor&gt; actores;
+    // Getters y Setters...
+}</code></pre>
+
+<footer>Tema 3.0: Desarrollo en Capas y Distribución</footer>
+            </section>
+
+            <section >
+<h1>Código: El Servicio de Negocio (<code>PeliculaService.java</code>)</h1>
+
+<pre><code class="language-java">@Service
+public class PeliculaService {
+    @Autowired
+    private PeliculaRepository repository;
+
+    @Transactional
+    public Pelicula guardarPelicula(Pelicula pelicula) {
+        // Validación e inyección de reglas de negocio...
+        return repository.save(pelicula);
+    }
+}</code></pre>
+
+<footer>Tema 3.0: Desarrollo en Capas y Distribución</footer>
+            </section>
+
+            <section >
+<h1>Código: El Controlador REST (<code>PeliculaRestController.java</code>)</h1>
+
+<pre><code class="language-java">@RestController
+@RequestMapping("/api/peliculas")
+public class PeliculaRestController {
+    @Autowired private PeliculaService service;
+
+    @PostMapping
+    public ResponseEntity&lt;?&gt; registrar(
+            @Validated @RequestBody PeliculaCreationDTO dto,
+            BindingResult validacion) {
+        if (validacion.hasErrors()) {
+            return ResponseEntity.badRequest().body(validacion);
+        }
+        Pelicula nueva = new Pelicula(dto.getTitulo());
+        return ResponseEntity.status(HttpStatus.CREATED)
+            .body(service.guardarPelicula(nueva));
+    }
+}</code></pre>
+
+<footer>Tema 3.0: Desarrollo en Capas y Distribución</footer>
+            </section>
+
+            <section >
+<h1>Trampas Comunes en Arquitectura de Capas</h1>
+
+<ul>
+<li><strong>Exponer Entidades del Dominio:</strong> Enviar entidades JPA directo al cliente sin DTOs, arriesgando fallas de seguridad (<em>Overposting</em>).
+</li>
+<li><strong>Lógica en el Controlador:</strong> Validar reglas complejas dentro de los controladores en lugar de centralizarlas en la capa <code>@Service</code>.
+</li>
+<li><strong>Consultas SQL en Capas Superiores:</strong> Acoplar la capa de presentación a dependencias de consultas SQL nativas del motor.
+</li>
+</ul>
+
+<footer>Tema 3.0: Desarrollo en Capas y Distribución</footer>
+            </section>
+
+            <section >
+<h1>Pregunta de Reflexión</h1>
+
+<ul>
+<li>Si decide migrar este diseño monolítico de Spring Boot en capas a una arquitectura de <strong>Microservicios</strong> en la nube:
+<ul>
+<li>¿Cómo beneficia la separación lógica en paquetes (<code>controller</code>, <code>business</code>, <code>data</code>) al momento de segmentar el sistema en piezas independientes?
+</li>
+<li>¿Qué partes del código permanecerían intactas y cuáles requerirían adaptación para comunicarse por red?
+</li>
+</ul>
+</li>
+</ul>
+
+<footer>Tema 3.0: Desarrollo en Capas y Distribución</footer>
+            </section>
+
+        </div>
+    </div>
+
+    <!-- Highlight.js and Reveal.js Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.js"></script>
+
+    <script>
+        // Initialize Highlight.js for code syntax coloring
+        hljs.highlightAll();
+
+        // Initialize Reveal.js with modern layout configurations
+        Reveal.initialize({
+            hash: true,
+            respondToHashChanges: true,
+            history: true,
+            transition: 'slide', // none/fade/slide/convex/concave/zoom
+            transitionSpeed: 'default',
+            backgroundTransition: 'fade',
+            width: 960,
+            height: 700,
+            margin: 0.05,
+            minScale: 0.2,
+            maxScale: 2.0,
+            plugins: []
+        });
+    </script>
+</body>
+</html>

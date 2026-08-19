@@ -308,8 +308,23 @@ def convert_md_to_pdf(input_path, output_path, theme="modern", course_title="IF0
     """
 
     # Open output PDF file in binary write mode
+    base_dir = os.path.dirname(os.path.abspath(input_path))
+    
+    def link_callback(uri, rel):
+        if (uri.startswith('http://') or 
+                uri.startswith('https://') or 
+                uri.startswith('data:')):
+            return uri
+        uri = uri.split('?')[0].split('#')[0]
+        resolved_path = os.path.abspath(os.path.join(base_dir, uri))
+        return resolved_path
+
     with open(output_path, "w+b") as pdf_file:
-        pisa_status = pisa.CreatePDF(full_html, dest=pdf_file)
+        pisa_status = pisa.CreatePDF(
+            full_html, 
+            dest=pdf_file, 
+            link_callback=link_callback
+        )
         
     if not pisa_status.err:
         print(f"Éxito: Se ha generado el archivo PDF correctamente.")
