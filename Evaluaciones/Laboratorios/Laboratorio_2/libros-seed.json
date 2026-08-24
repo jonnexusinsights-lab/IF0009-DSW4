@@ -1,0 +1,47 @@
+[
+  {
+    "id": 1,
+    "titulo": "Clean Code",
+    "autor": "Robert C. Martin",
+    "categoria": "Técnico",
+    "anioPublicacion": 2008,
+    "leido": true,
+    "resena": "Un libro fundamental para aprender a escribir código limpio."
+  },
+  {
+    "id": 2,
+    "titulo": "Única mirando al mar",
+    "autor": "Fernando Contreras Castro",
+    "categoria": "Novela",
+    "anioPublicacion": 1993,
+    "leido": false,
+    "resena": "Gran novela costarricense sobre la realidad social del país."
+  },
+  {
+    "id": 3,
+    "titulo": "Introduction to Algorithms",
+    "autor": "Thomas H. Cormen",
+    "categoria": "Técnico",
+    "anioPublicacion": 1990,
+    "leido": false,
+    "resena": "Referencia clásica para el análisis y diseño de algoritmos."
+  },
+  {
+    "id": 4,
+    "titulo": "Cien años de soledad",
+    "autor": "Gabriel García Márquez",
+    "categoria": "Novela",
+    "anioPublicacion": 1967,
+    "leido": true,
+    "resena": "Obra cumbre de la literatura y el realismo mágico."
+  },
+  {
+    "id": 5,
+    "titulo": "El fin de la eternidad",
+    "autor": "Isaac Asimov",
+    "categoria": "Ciencia Ficción",
+    "anioPublicacion": 1955,
+    "leido": true,
+    "resena": "Novela insigne sobre viajes en el tiempo y libre albedrío."
+  }
+]
