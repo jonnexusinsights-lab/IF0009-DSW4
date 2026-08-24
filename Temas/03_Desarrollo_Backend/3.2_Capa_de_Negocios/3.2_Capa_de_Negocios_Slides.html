@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <title>Tema 3.2 - Capa de Negocios y Transacciones - Desarrollo de Software IV</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <!-- Reveal.js Base Stylesheets -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reset.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.css">
+    
+    <!-- Tokyo Night Dark Theme for Code Syntax Resaltation -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/tokyo-night-dark.min.css">
+
+    <!-- Premium Google Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* Modern Web Design Aesthetics & Layout Tokens */
+        .reveal {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0b0f19 0%, #111827 50%, #1e1b4b 100%);
+            color: #f8fafc;
+        }
+        
+        .reveal .slides section {
+            font-family: 'Outfit', 'Inter', sans-serif;
+            text-align: left;
+            padding: 50px 70px;
+            box-sizing: border-box;
+            font-size: 22px;
+        }
+        
+        /* Centered Cover Slide Layout */
+        .reveal .slides section.lead-slide {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+        
+        /* Premium Typography Styles */
+        .reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6 {
+            font-family: 'Outfit', sans-serif;
+            text-transform: none;
+            color: #38bdf8;
+            font-weight: 800;
+            text-shadow: none;
+        }
+        
+        .reveal h1 {
+            font-size: 1.7em;
+            margin-bottom: 12px;
+            border-bottom: 2px solid #3b82f6;
+            padding-bottom: 10px;
+        }
+        
+        .reveal .lead-slide h1 {
+            border-bottom: none;
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            color: #38bdf8;
+        }
+        
+        .reveal h2 {
+            font-size: 1.25em;
+            color: #818cf8;
+            font-weight: 700;
+            margin-top: 0px;
+        }
+        
+        .reveal .lead-slide h2 {
+            font-size: 1.55em;
+            color: #818cf8;
+            margin-bottom: 30px;
+        }
+        
+        .reveal h3 {
+            font-size: 1.1em;
+            color: #a78bfa;
+        }
+        
+        /* List and Text Formatting */
+        .reveal p, .reveal li {
+            color: #cbd5e1;
+            line-height: 1.6;
+        }
+        
+        .reveal ul {
+            list-style-type: square;
+            margin-left: 1.5em;
+        }
+        
+        .reveal li {
+            margin-bottom: 12px;
+        }
+        
+        .reveal strong {
+            color: #f43f5e;
+            font-weight: 600;
+        }
+        
+        .reveal em {
+            color: #fb7185;
+            font-style: italic;
+        }
+        
+        .reveal footer {
+            font-size: 0.5em;
+            color: #6b7280;
+            position: absolute;
+            bottom: 20px;
+            right: 50px;
+        }
+        
+        /* Code Block Containers and Inlines */
+        .reveal code {
+            font-family: 'Fira Code', monospace;
+            background-color: #030712;
+            color: #38bdf8;
+            border-radius: 4px;
+            padding: 2px 8px;
+            font-size: 0.85em;
+        }
+        
+        .reveal pre {
+            background-color: #030712 !important;
+            border: 1px solid #1f2937;
+            border-radius: 10px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
+            width: 100%;
+            margin: 20px 0;
+            box-sizing: border-box;
+        }
+        
+        .reveal pre code {
+            background-color: transparent;
+            color: inherit;
+            font-size: 0.8em;
+            line-height: 1.55;
+            padding: 18px;
+            max-height: 520px;
+        }
+        
+        /* Control Nav Arrows & Progress Bar */
+        .reveal .controls-arrow {
+            color: #38bdf8 !important;
+        }
+        
+        .reveal .progress span {
+            background-color: #38bdf8 !important;
+        }
+
+        /* Custom style overrides parsed from Marp frontmatter */
+        section {
+  background-color: #0f172a;
+  color: #f8fafc;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+}
+h1, h2 {
+  color: #38bdf8;
+}
+h3 {
+  color: #7dd3fc;
+}
+footer {
+  color: #64748b;
+}
+code {
+  background-color: #1e293b;
+  color: #38bdf8;
+}
+pre code {
+  background-color: transparent;
+  color: #f8fafc;
+}
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <section >
+<h1>IF0009 - Desarrollo de Software IV</h1>
+
+<h2>Tema 3.2: Capa de Negocios, Inyección de Dependencias y Transacciones</h2>
+
+Universidad de Costa Rica <br>
+Sede del Atlántico - Recinto Paraíso <br>
+Carrera de Informática Empresarial <br>
+<strong>Profesor:</strong> Mag. Jonathan Granados C. <br>
+<strong>Semestre:</strong> II-2026
+
+<footer>UCR - Informática Empresarial</footer>
+            </section>
+
+            <section >
+<h1>¿Qué es la Capa de Negocios?</h1>
+
+<ul>
+<li><strong>Núcleo Lógico del Sistema:</strong>
+<ul>
+<li>Representa el lugar donde residen las reglas, políticas y flujos del negocio.
+</li>
+<li>Independiente del canal de entrega (ej. API REST, interfaz gráfica, cola de mensajería).
+</li>
+</ul>
+</li>
+<li><strong>Responsabilidades Clave:</strong>
+<ul>
+<li>Validar reglas de dominio complejas (ej. verificar cupos o saldos).
+</li>
+<li>Coordinar llamadas entre múltiples repositorios.
+</li>
+<li>Controlar la consistencia mediante límites transaccionales.
+</li>
+<li>Declarada mediante la anotación estereotipo <code>@Service</code> en Spring Boot.
+</li>
+</ul>
+</li>
+</ul>
+
+<footer>Tema 3.2: Capa de Negocios y Transacciones</footer>
+            </section>
+
+            <section >
+<h1>Inyección de Dependencias: Campo vs Constructor</h1>
+
+<ul>
+<li><strong>Inyección por Campos (Mala Práctica):</strong>
+<ul>
+<li>Uso de <code>@Autowired</code> directo en los atributos privados.
+</li>
+<li>Dificulta pruebas unitarias porque requiere levantar el contexto de Spring.
+</li>
+</ul>
+</li>
+<li><strong>Inyección por Constructor (Buena Práctica - Estándar):</strong>
+<ul>
+<li>Declarar los atributos como finales (<code>final</code>) y proveer un constructor.
+</li>
+<li><strong>Inmutabilidad:</strong> Garantiza que no cambien tras instanciar.
+</li>
+<li><strong>Fácil de testear:</strong> Permite pasar mocks usando <code>new</code> en pruebas unitarias.
+</li>
+<li><strong>Luz de alerta:</strong> Si hay más de 5 parámetros, indica baja cohesión.
+</li>
+</ul>
+</li>
+</ul>
+
+<footer>Tema 3.2: Capa de Negocios y Transacciones</footer>
+            </section>
+
+            <section >
+<h1>Transacciones y la Anotación <code>@Transactional</code></h1>
+
+<ul>
+<li><strong>Transacción:</strong> Conjunto de operaciones en BD ejecutadas como unidad única.
+<ul>
+<li>Debe cumplir las propiedades <strong>ACID</strong>.
+</li>
+</ul>
+</li>
+<li><strong>Gestión en Spring Boot:</strong>
+<ul>
+<li>Anotación <code>@Transactional</code> para manejar de forma declarativa.
+</li>
+</ul>
+</li>
+<li><strong>Parámetros Esenciales:</strong>
+<ul>
+<li><code>propagation</code>: Cómo se unen o separan las transacciones en llamadas.
+</li>
+<li><code>isolation</code>: Visibilidad de cambios concurrentes (evita lecturas sucias).
+</li>
+<li><code>rollbackFor</code>: Especificar ante qué excepciones deshacer cambios.
+</li>
+<li><code>readOnly</code>: Optimización para consultas puras.
+</li>
+</ul>
+</li>
+</ul>
+
+<footer>Tema 3.2: Capa de Negocios y Transacciones</footer>
+            </section>
+
+            <section >
+<h1>Propagación y Aislamiento Transaccional</h1>
+
+<ul>
+<li><strong>Niveles de Propagación:</strong>
+<ul>
+<li><code>REQUIRED</code> (Por defecto): Se une a la existente o crea una nueva.
+</li>
+<li><code>REQUIRES_NEW</code>: Suspende la transacción actual y crea una nueva separada.
+</li>
+<li><code>MANDATORY</code>: Exige que exista una transacción previa.
+</li>
+</ul>
+</li>
+<li><strong>Niveles de Aislamiento:</strong>
+<ul>
+<li><code>READ_COMMITTED</code>: Solo lee registros ya confirmados.
+</li>
+<li><code>REPEATABLE_READ</code>: Lecturas consistentes del mismo registro.
+</li>
+<li><code>SERIALIZABLE</code>: Ejecución secuencial (máxima seguridad, menor rendimiento).
+</li>
+</ul>
+</li>
+</ul>
+
+<footer>Tema 3.2: Capa de Negocios y Transacciones</footer>
+            </section>
+
+            <section >
+<h1>Políticas de Rollback y Optimización</h1>
+
+<ul>
+<li><strong>Comportamiento ante Excepciones por Defecto:</strong>
+<ul>
+<li>Hace rollback para excepciones <strong>no marcadas</strong> (<code>RuntimeException</code>).
+</li>
+<li><strong>No</strong> hace rollback por defecto para excepciones <strong>marcadas</strong> (<code>Exception</code>).
+</li>
+</ul>
+</li>
+<li><strong>Personalización de Rollback:</strong>
+<ul>
+<li>Usar <code>@Transactional(rollbackFor = Exception.class)</code> para revertir ante todo error.
+</li>
+</ul>
+</li>
+<li><strong>Optimización con <code>readOnly</code>:</strong>
+<ul>
+<li><code>@Transactional(readOnly = true)</code> desactiva el dirty checking en Hibernate.
+</li>
+<li>Ahorra CPU y memoria en métodos de solo consulta.
+</li>
+</ul>
+</li>
+</ul>
+
+<footer>Tema 3.2: Capa de Negocios y Transacciones</footer>
+            </section>
+
+            <section >
+<h1>Analogías del Tema</h1>
+
+<ul>
+<li><strong>El Chef y la Transacción de Cocina:</strong>
+<ul>
+<li>Si la carne se quema, el Chef descarta también el puré (hace <em>rollback</em>) para no entregar un plato incompleto. Solo si ambos están perfectos, la orden se confirma (se hace <em>commit</em>).
+</li>
+</ul>
+</li>
+<li><strong>Inyección por Constructor vs Campo:</strong>
+<ul>
+<li>Por constructor es un carro ensamblado con sus piezas en fábrica.
+</li>
+<li>Por campo es como tratar de colocar el motor al carro mágicamente mientras va en marcha por la autopista.
+</li>
+</ul>
+</li>
+</ul>
+
+<footer>Tema 3.2: Capa de Negocios y Transacciones</footer>
+            </section>
+
+            <section >
+<h1>Código: Modelo de Dominio (<code>Curso.java</code>)</h1>
+
+<pre><code class="language-java">@Entity
+@Table(name = "cursos")
+public class Curso {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+    private String nombre;
+    private int cuposDisponibles;
+
+    public void disminuirCupo() {
+        if (this.cuposDisponibles &lt;= 0) {
+            throw new IllegalStateException("No hay cupos.");
+        }
+        this.cuposDisponibles--;
+    }
+    // Getters y setters...
+}</code></pre>
+
+<footer>Tema 3.2: Capa de Negocios y Transacciones</footer>
+            </section>
+
+            <section >
+<h1>Código: El Servicio Transaccional</h1>
+
+<pre><code class="language-java">@Service
+public class MatriculaService {
+    private final EstudianteRepository estudianteRepository;
+    private final CursoRepository cursoRepository;
+    private final MatriculaRepository matriculaRepository;
+
+    public MatriculaService(
+            EstudianteRepository estudianteRepository,
+            CursoRepository cursoRepository,
+            MatriculaRepository matriculaRepository) {
+        this.estudianteRepository = estudianteRepository;
+        this.cursoRepository = cursoRepository;
+        this.matriculaRepository = matriculaRepository;
+    }
+    // Sigue en la siguiente diapositiva...
+}</code></pre>
+
+<footer>Tema 3.2: Capa de Negocios y Transacciones</footer>
+            </section>
+
+            <section >
+<h1>Código: Lógica y Control de Rollback</h1>
+
+<pre><code class="language-java">    @Transactional(rollbackFor = MatriculaException.class)
+    public Matricula matricularCurso(Integer estudianteId, Integer cursoId) {
+        Estudiante estudiante = estudianteRepository.findById(estudianteId)
+                .orElseThrow(() -&gt; new MatriculaException("No existe."));
+
+        Curso curso = cursoRepository.findById(cursoId)
+                .orElseThrow(() -&gt; new MatriculaException("No existe."));
+
+        if (curso.getCuposDisponibles() &lt;= 0) {
+            throw new MatriculaException("Sin cupos.");
+        }
+
+        curso.disminuirCupo();
+        cursoRepository.save(curso);
+
+        Matricula matricula = new Matricula(estudiante, curso);
+        return matriculaRepository.save(matricula);
+    }</code></pre>
+
+<footer>Tema 3.2: Capa de Negocios y Transacciones</footer>
+            </section>
+
+            <section >
+<h1>Trampas Comunes en Servicios</h1>
+
+<ul>
+<li><strong>Auto-Invocación (Self-Invocation):</strong>
+<ul>
+<li>Invocar un método <code>@Transactional</code> desde otro método interno de la misma clase. Se evade el proxy de Spring y la transacción no se ejecuta.
+</li>
+</ul>
+</li>
+<li><strong>Ignorar Excepciones Marcadas:</strong>
+<ul>
+<li>Creer que Spring hace rollback ante errores de lectura de archivo u otros sin configurar <code>rollbackFor</code>.
+</li>
+</ul>
+</li>
+<li><strong>Falta de Transaccionalidad de Solo Lectura:</strong>
+<ul>
+<li>Omitir <code>readOnly = true</code> en búsquedas largas de registros, ralentizando el backend.
+</li>
+</ul>
+</li>
+</ul>
+
+<footer>Tema 3.2: Capa de Negocios y Transacciones</footer>
+            </section>
+
+            <section >
+<h1>Pregunta de Reflexión</h1>
+
+<ul>
+<li>Si un método con <code>@Transactional(propagation = Propagation.REQUIRED)</code> llama a otro anotado con <code>Propagation.REQUIRES_NEW</code>, y el segundo método falla lanzando una excepción:
+<ul>
+<li>¿Cómo afecta esto los cambios realizados por el método que inició la llamada?
+</li>
+<li>¿Cómo deberíamos capturar y procesar el error en la primera capa para evitar que toda la transacción global falle y se descarte?
+</li>
+</ul>
+</li>
+</ul>
+
+<footer>Tema 3.2: Capa de Negocios y Transacciones</footer>
+            </section>
+
+        </div>
+    </div>
+
+    <!-- Highlight.js and Reveal.js Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.js"></script>
+
+    <script>
+        // Initialize Highlight.js for code syntax coloring
+        hljs.highlightAll();
+
+        // Initialize Reveal.js with modern layout configurations
+        Reveal.initialize({
+            hash: true,
+            respondToHashChanges: true,
+            history: true,
+            transition: 'slide', // none/fade/slide/convex/concave/zoom
+            transitionSpeed: 'default',
+            backgroundTransition: 'fade',
+            width: 960,
+            height: 700,
+            margin: 0.05,
+            minScale: 0.2,
+            maxScale: 2.0,
+            plugins: []
+        });
+    </script>
+</body>
+</html>

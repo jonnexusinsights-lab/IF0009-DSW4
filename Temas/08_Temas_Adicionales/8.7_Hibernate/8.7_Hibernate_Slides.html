@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <title>Tema 8.7 - Hibernate Internals y Rendimiento - Desarrollo de Software IV</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <!-- Reveal.js Base Stylesheets -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reset.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.css">
+    
+    <!-- Tokyo Night Dark Theme for Code Syntax Resaltation -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/tokyo-night-dark.min.css">
+
+    <!-- Premium Google Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* Modern Web Design Aesthetics & Layout Tokens */
+        .reveal {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0b0f19 0%, #111827 50%, #1e1b4b 100%);
+            color: #f8fafc;
+        }
+        
+        .reveal .slides section {
+            font-family: 'Outfit', 'Inter', sans-serif;
+            text-align: left;
+            padding: 50px 70px;
+            box-sizing: border-box;
+            font-size: 22px;
+        }
+        
+        /* Centered Cover Slide Layout */
+        .reveal .slides section.lead-slide {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+        
+        /* Premium Typography Styles */
+        .reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6 {
+            font-family: 'Outfit', sans-serif;
+            text-transform: none;
+            color: #38bdf8;
+            font-weight: 800;
+            text-shadow: none;
+        }
+        
+        .reveal h1 {
+            font-size: 1.7em;
+            margin-bottom: 12px;
+            border-bottom: 2px solid #3b82f6;
+            padding-bottom: 10px;
+        }
+        
+        .reveal .lead-slide h1 {
+            border-bottom: none;
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            color: #38bdf8;
+        }
+        
+        .reveal h2 {
+            font-size: 1.25em;
+            color: #818cf8;
+            font-weight: 700;
+            margin-top: 0px;
+        }
+        
+        .reveal .lead-slide h2 {
+            font-size: 1.55em;
+            color: #818cf8;
+            margin-bottom: 30px;
+        }
+        
+        .reveal h3 {
+            font-size: 1.1em;
+            color: #a78bfa;
+        }
+        
+        /* List and Text Formatting */
+        .reveal p, .reveal li {
+            color: #cbd5e1;
+            line-height: 1.6;
+        }
+        
+        .reveal ul {
+            list-style-type: square;
+            margin-left: 1.5em;
+        }
+        
+        .reveal li {
+            margin-bottom: 12px;
+        }
+        
+        .reveal strong {
+            color: #f43f5e;
+            font-weight: 600;
+        }
+        
+        .reveal em {
+            color: #fb7185;
+            font-style: italic;
+        }
+        
+        .reveal footer {
+            font-size: 0.5em;
+            color: #6b7280;
+            position: absolute;
+            bottom: 20px;
+            right: 50px;
+        }
+        
+        /* Code Block Containers and Inlines */
+        .reveal code {
+            font-family: 'Fira Code', monospace;
+            background-color: #030712;
+            color: #38bdf8;
+            border-radius: 4px;
+            padding: 2px 8px;
+            font-size: 0.85em;
+        }
+        
+        .reveal pre {
+            background-color: #030712 !important;
+            border: 1px solid #1f2937;
+            border-radius: 10px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
+            width: 100%;
+            margin: 20px 0;
+            box-sizing: border-box;
+        }
+        
+        .reveal pre code {
+            background-color: transparent;
+            color: inherit;
+            font-size: 0.8em;
+            line-height: 1.55;
+            padding: 18px;
+            max-height: 520px;
+        }
+        
+        /* Control Nav Arrows & Progress Bar */
+        .reveal .controls-arrow {
+            color: #38bdf8 !important;
+        }
+        
+        .reveal .progress span {
+            background-color: #38bdf8 !important;
+        }
+
+        /* Custom style overrides parsed from Marp frontmatter */
+        section {
+  background-color: #0f172a;
+  color: #f8fafc;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+}
+h1, h2 {
+  color: #38bdf8;
+}
+h3 {
+  color: #7dd3fc;
+}
+footer {
+  color: #64748b;
+}
+code {
+  background-color: #1e293b;
+  color: #38bdf8;
+}
+pre code {
+  background-color: transparent;
+  color: #f8fafc;
+}
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <section >
+<h1>IF0009 - Desarrollo de Software IV</h1>
+
+<h2>Tema 8.7: Hibernate — Funcionamiento Interno, Ciclo de Vida y Rendimiento</h2>
+
+Universidad de Costa Rica <br>
+Sede del Atlántico - Recinto Paraíso <br>
+Carrera de Informática Empresarial <br>
+<strong>Profesor:</strong> Mag. Jonathan Granados C. <br>
+<strong>Semestre:</strong> II-2026
+
+<footer>UCR - Informática Empresarial</footer>
+            </section>
+
+            <section >
+<h1>JPA vs Hibernate: Especificación y Motor</h1>
+
+<ul>
+<li><strong>JPA (Java Persistence API):</strong>
+<ul>
+<li>Es una <strong>especificación</strong> estándar (reglas y anotaciones, ej. <code>@Entity</code>).
+</li>
+<li>Define la interfaz general pero no contiene código ejecutable.
+</li>
+</ul>
+</li>
+<li><strong>Hibernate:</strong>
+<ul>
+<li>Es la <strong>implementación</strong> (el motor de persistencia).
+</li>
+<li>Traduce las operaciones del estándar JPA en consultas SQL nativas del motor (ej. SQL Server, PostgreSQL) en tiempo de ejecución.
+</li>
+<li>Proveedor por defecto en el ecosistema Spring Boot.
+</li>
+</ul>
+</li>
+</ul>
+
+<footer>Tema 8.7: Hibernate y Rendimiento</footer>
+            </section>
+
+            <section >
+<h1>El Contexto de Persistencia (Caché L1)</h1>
+
+<ul>
+<li><strong>¿Qué es el Contexto de Persistencia?</strong>
+<ul>
+<li>Memoria caché a nivel de transacción (Caché de Primer Nivel).
+</li>
+<li>Administrado por el <code>EntityManager</code> de JPA.
+</li>
+</ul>
+</li>
+<li><strong>Funciones Clave:</strong>
+<ul>
+<li>Rastrear todos los objetos cargados durante una transacción activa.
+</li>
+<li>Garantizar la identidad de objetos (un registro de base de datos se mapea a una única instancia en memoria RAM).
+</li>
+<li>Evitar consultas redundantes a la base de datos dentro de la misma transacción.
+</li>
+</ul>
+</li>
+</ul>
+
+<footer>Tema 8.7: Hibernate y Rendimiento</footer>
+            </section>
+
+            <section >
+<h1>Ciclo de Vida de las Entidades</h1>
+
+<ul>
+<li>Las entidades transicionan por <strong>cuatro estados</strong> administrados por Hibernate:
+<ol>
+<li><strong>Transient (Transitorio):</strong> Objeto creado con <code>new</code>. No tiene ID en base de datos ni asociación al context de persistencia.
+</li>
+<li><strong>Persistent (Persistente / Managed):</strong> Asociado al contexto y con ID en base de datos. Los cambios en atributos se guardarán de forma automática.
+</li>
+<li><strong>Detached (Desprendido):</strong> Tiene ID en base de datos, pero la sesión de persistencia está cerrada. Modificaciones no se guardan automáticamente.
+</li>
+<li><strong>Removed (Eliminado):</strong> Marcado para borrado físico al finalizar la transacción.
+</li>
+</ol>
+</li>
+</ul>
+
+<footer>Tema 8.7: Hibernate y Rendimiento</footer>
+            </section>
+
+            <section >
+<h1>Dirty Checking (Comprobación de Cambios)</h1>
+
+<ul>
+<li><strong>Mecanismo de Detección:</strong>
+<ul>
+<li>Hibernate guarda una copia instantánea (<em>snapshot</em>) al cargar la entidad.
+</li>
+<li>Al hacer commit de la transacción, compara el estado actual con el snapshot.
+</li>
+</ul>
+</li>
+<li><strong>Flushing Automático:</strong>
+<ul>
+<li>Si detecta modificaciones, Hibernate genera y ejecuta los <code>UPDATE</code> en SQL automáticamente.
+</li>
+<li><strong>Regla de oro:</strong> No es necesario llamar a <code>.save()</code> o <code>.update()</code> para entidades persistentes dentro de métodos <code>@Transactional</code>.
+</li>
+</ul>
+</li>
+</ul>
+
+<footer>Tema 8.7: Hibernate y Rendimiento</footer>
+            </section>
+
+            <section >
+<h1>El Problema de Consultas N+1 SELECT</h1>
+
+<ul>
+<li><strong>¿Por qué ocurre?</strong>
+<ul>
+<li>Cargar una lista de $N$ registros con relaciones de carga perezosa (<code>Lazy</code>).
+</li>
+<li>Al iterar y leer la propiedad hija de cada registro, Hibernate realiza $N$ consultas adicionales a base de datos.
+</li>
+<li><strong>Total consultas:</strong> 1 consulta inicial + $N$ consultas secundarias.
+</li>
+</ul>
+</li>
+<li><strong>Solución: JOIN FETCH:</strong>
+<ul>
+<li>Indica a Hibernate cargar la relación de forma anticipada mediante una sola consulta SQL combinada (<code>JOIN</code>) a nivel de base de datos.
+</li>
+</ul>
+</li>
+</ul>
+
+<footer>Tema 8.7: Hibernate y Rendimiento</footer>
+            </section>
+
+            <section >
+<h1>Analogías del Tema</h1>
+
+<ul>
+<li><strong>La Pizarra de Borrador (Contexto de Persistencia):</strong>
+<ul>
+<li>Modificar variables en la pizarra (Caché L1) no altera el archivador físico (Base de Datos). Los cambios se escriben en el papel oficial solo al presionar "Imprimir" (flushing al hacer commit).
+</li>
+</ul>
+</li>
+<li><strong>El Inspector de Entrega (Dirty Checking):</strong>
+<ul>
+<li>La rentadora compara el estado actual del auto contra la foto inicial. Detecta y cobra raspones (updates) sin que usted deba notificarlos.
+</li>
+</ul>
+</li>
+</ul>
+
+<footer>Tema 8.7: Hibernate y Rendimiento</footer>
+            </section>
+
+            <section >
+<h1>Código: Ciclo de Vida y Dirty Checking</h1>
+
+<pre><code class="language-java">@Transactional
+public void demostrarCicloVida(Integer peliculaId) {
+    // 1. Estado Transitorio (Transient)
+    Pelicula nueva = new Pelicula();
+    nueva.setTitulo("Inception");
+
+    // 2. Estado Persistente (Managed)
+    entityManager.persist(nueva);
+
+    // 3. Dirty Checking en acción
+    Pelicula existente = repository.findById(peliculaId).orElseThrow();
+    existente.setTitulo("The Matrix Resurrections");
+    
+    // Hibernate ejecutará automáticamente el UPDATE para 'existente'
+    // al finalizar el método @Transactional sin llamar a save()
+}</code></pre>
+
+<footer>Tema 8.7: Hibernate y Rendimiento</footer>
+            </section>
+
+            <section >
+<h1>Código: Estado Detached (Desasociado)</h1>
+
+<pre><code class="language-java">@Transactional
+public void demostrarDetached(Integer peliculaId) {
+    Pelicula p = repository.findById(peliculaId).orElseThrow();
+
+    // Desasociar del contexto de persistencia L1
+    entityManager.detach(p); // Ahora está DETACHED
+
+    p.setTitulo("Título Modificado en Memoria");
+    
+    // Al concluir el método, el cambio de título NO se guardará
+    // en la base de datos debido a que la entidad ya no es administrada
+}</code></pre>
+
+<footer>Tema 8.7: Hibernate y Rendimiento</footer>
+            </section>
+
+            <section >
+<h1>Código: Solución a N+1 con JOIN FETCH</h1>
+
+<pre><code class="language-java">@Repository
+public interface PeliculaRepository extends JpaRepository&lt;Pelicula, Integer&gt; {
+
+    // JOIN FETCH: Trae películas y reviews asociadas en un único SELECT
+    @Query("SELECT DISTINCT p FROM Pelicula p LEFT JOIN FETCH p.reviews")
+    List&lt;Pelicula&gt; obtenerPeliculasConReviewsOptimizadas();
+}</code></pre>
+
+<footer>Tema 8.7: Hibernate y Rendimiento</footer>
+            </section>
+
+            <section >
+<h1>Trampas Comunes de Rendimiento</h1>
+
+<ul>
+<li><strong>Llamar Redundadamente a <code>.save()</code>:</strong>
+<ul>
+<li>Sobrecarga de llamadas en métodos transaccionales donde el Dirty Checking ya opera por defecto.
+</li>
+</ul>
+</li>
+<li><strong>LazyInitializationException:</strong>
+<ul>
+<li>Intentar acceder a atributos LAZY fuera del servicio transaccional (entidad en estado Detached).
+</li>
+</ul>
+</li>
+<li><strong>Agotamiento de Memoria en Cargas Masivas:</strong>
+<ul>
+<li>Guardar miles de objetos llena la Caché L1 y ralentiza el Dirty Checking.
+</li>
+<li><em>Solución:</em> Usar procesos por lotes llamando periódicamente a <code>flush()</code> y <code>clear()</code>.
+</li>
+</ul>
+</li>
+</ul>
+
+<footer>Tema 8.7: Hibernate y Rendimiento</footer>
+            </section>
+
+            <section >
+<h1>Pregunta de Reflexión</h1>
+
+<ul>
+<li>Hibernate cuenta con la memoria Caché L1 activa por defecto:
+<ul>
+<li>Si dentro del mismo método <code>@Transactional</code> ejecutamos tres llamadas consecutivas a <code>findById(1)</code>, ¿cuántas consultas SELECT físicas se enviarán al servidor de SQL Server?
+</li>
+<li>¿Cómo impactaría este comportamiento si otro usuario modifica simultáneamente ese mismo registro desde una sesión externa de base de datos mientras nuestra transacción sigue abierta?
+</li>
+</ul>
+</li>
+</ul>
+
+<footer>Tema 8.7: Hibernate y Rendimiento</footer>
+            </section>
+
+        </div>
+    </div>
+
+    <!-- Highlight.js and Reveal.js Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.js"></script>
+
+    <script>
+        // Initialize Highlight.js for code syntax coloring
+        hljs.highlightAll();
+
+        // Initialize Reveal.js with modern layout configurations
+        Reveal.initialize({
+            hash: true,
+            respondToHashChanges: true,
+            history: true,
+            transition: 'slide', // none/fade/slide/convex/concave/zoom
+            transitionSpeed: 'default',
+            backgroundTransition: 'fade',
+            width: 960,
+            height: 700,
+            margin: 0.05,
+            minScale: 0.2,
+            maxScale: 2.0,
+            plugins: []
+        });
+    </script>
+</body>
+</html>

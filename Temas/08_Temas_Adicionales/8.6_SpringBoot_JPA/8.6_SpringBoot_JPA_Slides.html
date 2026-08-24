@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <title>Tema 8.6 - Spring Boot y JPA Avanzado - Desarrollo de Software IV</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <!-- Reveal.js Base Stylesheets -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reset.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.css">
+    
+    <!-- Tokyo Night Dark Theme for Code Syntax Resaltation -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/tokyo-night-dark.min.css">
+
+    <!-- Premium Google Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* Modern Web Design Aesthetics & Layout Tokens */
+        .reveal {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0b0f19 0%, #111827 50%, #1e1b4b 100%);
+            color: #f8fafc;
+        }
+        
+        .reveal .slides section {
+            font-family: 'Outfit', 'Inter', sans-serif;
+            text-align: left;
+            padding: 50px 70px;
+            box-sizing: border-box;
+            font-size: 22px;
+        }
+        
+        /* Centered Cover Slide Layout */
+        .reveal .slides section.lead-slide {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+        
+        /* Premium Typography Styles */
+        .reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6 {
+            font-family: 'Outfit', sans-serif;
+            text-transform: none;
+            color: #38bdf8;
+            font-weight: 800;
+            text-shadow: none;
+        }
+        
+        .reveal h1 {
+            font-size: 1.7em;
+            margin-bottom: 12px;
+            border-bottom: 2px solid #3b82f6;
+            padding-bottom: 10px;
+        }
+        
+        .reveal .lead-slide h1 {
+            border-bottom: none;
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            color: #38bdf8;
+        }
+        
+        .reveal h2 {
+            font-size: 1.25em;
+            color: #818cf8;
+            font-weight: 700;
+            margin-top: 0px;
+        }
+        
+        .reveal .lead-slide h2 {
+            font-size: 1.55em;
+            color: #818cf8;
+            margin-bottom: 30px;
+        }
+        
+        .reveal h3 {
+            font-size: 1.1em;
+            color: #a78bfa;
+        }
+        
+        /* List and Text Formatting */
+        .reveal p, .reveal li {
+            color: #cbd5e1;
+            line-height: 1.6;
+        }
+        
+        .reveal ul {
+            list-style-type: square;
+            margin-left: 1.5em;
+        }
+        
+        .reveal li {
+            margin-bottom: 12px;
+        }
+        
+        .reveal strong {
+            color: #f43f5e;
+            font-weight: 600;
+        }
+        
+        .reveal em {
+            color: #fb7185;
+            font-style: italic;
+        }
+        
+        .reveal footer {
+            font-size: 0.5em;
+            color: #6b7280;
+            position: absolute;
+            bottom: 20px;
+            right: 50px;
+        }
+        
+        /* Code Block Containers and Inlines */
+        .reveal code {
+            font-family: 'Fira Code', monospace;
+            background-color: #030712;
+            color: #38bdf8;
+            border-radius: 4px;
+            padding: 2px 8px;
+            font-size: 0.85em;
+        }
+        
+        .reveal pre {
+            background-color: #030712 !important;
+            border: 1px solid #1f2937;
+            border-radius: 10px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
+            width: 100%;
+            margin: 20px 0;
+            box-sizing: border-box;
+        }
+        
+        .reveal pre code {
+            background-color: transparent;
+            color: inherit;
+            font-size: 0.8em;
+            line-height: 1.55;
+            padding: 18px;
+            max-height: 520px;
+        }
+        
+        /* Control Nav Arrows & Progress Bar */
+        .reveal .controls-arrow {
+            color: #38bdf8 !important;
+        }
+        
+        .reveal .progress span {
+            background-color: #38bdf8 !important;
+        }
+
+        /* Custom style overrides parsed from Marp frontmatter */
+        section {
+  background-color: #0f172a;
+  color: #f8fafc;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+}
+h1, h2 {
+  color: #38bdf8;
+}
+h3 {
+  color: #7dd3fc;
+}
+footer {
+  color: #64748b;
+}
+code {
+  background-color: #1e293b;
+  color: #38bdf8;
+}
+pre code {
+  background-color: transparent;
+  color: #f8fafc;
+}
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <section >
+<h1>IF0009 - Desarrollo de Software IV</h1>
+
+<h2>Tema 8.6: Spring Boot y JPA — Persistencia Avanzada y Buenas Prácticas</h2>
+
+Universidad de Costa Rica <br>
+Sede del Atlántico - Recinto Paraíso <br>
+Carrera de Informática Empresarial <br>
+<strong>Profesor:</strong> Mag. Jonathan Granados C. <br>
+<strong>Semestre:</strong> II-2026
+
+<footer>UCR - Informática Empresarial</footer>
+            </section>
+
+            <section >
+<h1>Mapeo de Relaciones Bidireccionales</h1>
+
+<ul>
+<li><strong>Relaciones en JPA:</strong>
+<ul>
+<li><strong>Unidireccional:</strong> Solo una clase conoce la relación (ej. Pelicula -> Genero).
+</li>
+<li><strong>Bidireccional:</strong> Ambas clases se conocen en memoria.
+</li>
+</ul>
+</li>
+<li><strong>Propietario de la Relación:</strong>
+<ul>
+<li>La entidad con la clave foránea física (dueña) lleva la anotación <code>@ManyToOne</code>.
+</li>
+<li>La entidad inversa mapea la relación con el atributo <code>mappedBy</code>.
+</li>
+</ul>
+</li>
+<li><strong>orphanRemoval = true:</strong>
+<ul>
+<li>Elimina físicamente registros secundarios huérfanos al sacarlos de la lista.
+</li>
+<li>Se combina con <code>CascadeType.ALL</code> para persistencia en cascada.
+</li>
+</ul>
+</li>
+</ul>
+
+<footer>Tema 8.6: Spring Boot y JPA Avanzado</footer>
+            </section>
+
+            <section >
+<h1>Consultas Personalizadas: JPQL vs SQL Nativo</h1>
+
+<ul>
+<li><strong>Anotación <code>@Query</code>:</strong> Permite escribir consultas complejas fuera del estándar.
+</li>
+<li><strong>JPQL (Java Persistence Query Language):</strong>
+<ul>
+<li>Basado en el grafo de objetos Java (entidades y atributos).
+</li>
+<li>Independiente del motor de base de datos (portabilidad de base de datos).
+</li>
+</ul>
+</li>
+<li><strong>SQL Nativo (<code>nativeQuery = true</code>):</strong>
+<ul>
+<li>Sentencias SQL directas contra las tablas y columnas físicas.
+</li>
+<li>Permite consumir optimizaciones específicas del motor (ej. SQL Server).
+</li>
+</ul>
+</li>
+</ul>
+
+<footer>Tema 8.6: Spring Boot y JPA Avanzado</footer>
+            </section>
+
+            <section >
+<h1>Operaciones de Modificación Masiva</h1>
+
+<ul>
+<li><strong>Consultas de Actualización o Borrado Masivo (<code>UPDATE</code> / <code>DELETE</code>):</strong>
+<ul>
+<li>Se declaran con <code>@Query</code> y requieren obligatoriamente <code>@Modifying</code>.
+</li>
+<li>Deben ejecutarse dentro de un límite transaccional <code>@Transactional</code>.
+</li>
+</ul>
+</li>
+<li><strong>La Trampa de la Memoria Caché:</strong>
+<ul>
+<li>Las consultas masivas evaden el contexto de persistencia (L1 Cache).
+</li>
+<li><em>Solución:</em> Usar <code>@Modifying(clearAutomatically = true)</code> para limpiar RAM.
+</li>
+</ul>
+</li>
+</ul>
+
+<footer>Tema 8.6: Spring Boot y JPA Avanzado</footer>
+            </section>
+
+            <section >
+<h1>Auditoría Automática (Spring Data Auditing)</h1>
+
+<ul>
+<li><strong>Rastreo Automático de Metadata:</strong>
+<ul>
+<li>Registro automatizado de fechas de creación y modificación de filas.
+</li>
+</ul>
+</li>
+<li><strong>Anotaciones de Propiedad:</strong>
+<ul>
+<li><code>@CreatedDate</code>: Registra la fecha y hora inicial de guardado.
+</li>
+<li><code>@LastModifiedDate</code>: Sobrescribe la fecha en actualizaciones.
+</li>
+</ul>
+</li>
+<li><strong>Activación en Spring Boot:</strong>
+<ul>
+<li><code>@MappedSuperclass</code> y <code>@EntityListeners(AuditingEntityListener.class)</code> en el padre.
+</li>
+<li><code>@EnableJpaAuditing</code> en una clase de configuración <code>@Configuration</code>.
+</li>
+</ul>
+</li>
+</ul>
+
+<footer>Tema 8.6: Spring Boot y JPA Avanzado</footer>
+            </section>
+
+            <section >
+<h1>Analogías del Tema</h1>
+
+<ul>
+<li><strong>JPA como Archivador Inteligente con RFID:</strong>
+<ul>
+<li>Colocar un libro (objeto) en el estante de "Acción" (asociación en memoria) actualiza el sistema de inventario (base de datos) sin escribir fichas manuales.
+</li>
+</ul>
+</li>
+<li><strong>La Auditoría como Caja Fuerte con Huella Digital:</strong>
+<ul>
+<li>El sistema registra automáticamente quién abrió la puerta y a qué hora (Auditing), sin que el cajero deba completar un libro de firmas manuales.
+</li>
+</ul>
+</li>
+</ul>
+
+<footer>Tema 8.6: Spring Boot y JPA Avanzado</footer>
+            </section>
+
+            <section >
+<h1>Código: Entidad Base de Auditoría</h1>
+
+<pre><code class="language-java">@MappedSuperclass
+@EntityListeners(AuditingEntityListener.class)
+public abstract class AuditableEntity {
+    @CreatedDate
+    @Column(name = "fecha_creacion", updatable = false)
+    private LocalDateTime fechaCreacion;
+
+    @LastModifiedDate
+    @Column(name = "fecha_modificacion")
+    private LocalDateTime fechaModificacion;
+
+    // Getters y setters...
+}</code></pre>
+
+<footer>Tema 8.6: Spring Boot y JPA Avanzado</footer>
+            </section>
+
+            <section >
+<h1>Código: Relación Bidireccional (<code>Pelicula.java</code>)</h1>
+
+<pre><code class="language-java">@Entity
+@Table(name = "Pelicula")
+public class Pelicula extends AuditableEntity {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+    private String titulo;
+
+    @OneToMany(mappedBy = "pelicula", cascade = CascadeType.ALL, 
+               orphanRemoval = true, fetch = FetchType.LAZY)
+    private List&lt;Review&gt; reviews = new ArrayList&lt;&gt;();
+
+    // Helpers bidireccionales en memoria:
+    public void addReview(Review review) {
+        reviews.add(review);
+        review.setPelicula(this);
+    }
+}</code></pre>
+
+<footer>Tema 8.6: Spring Boot y JPA Avanzado</footer>
+            </section>
+
+            <section >
+<h1>Código: Entidad Reseña (<code>Review.java</code>)</h1>
+
+<pre><code class="language-java">@Entity
+@Table(name = "Review")
+public class Review extends AuditableEntity {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+    private String comentario;
+    private int calificacion;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "pelicula_id", nullable = false)
+    private Pelicula pelicula;
+
+    // Getters y setters...
+}</code></pre>
+
+<footer>Tema 8.6: Spring Boot y JPA Avanzado</footer>
+            </section>
+
+            <section >
+<h1>Código: Repositorio (JPQL, Nativo y Modifying)</h1>
+
+<pre><code class="language-java">@Repository
+public interface PeliculaRepository extends JpaRepository&lt;Pelicula, Integer&gt; {
+    // JPQL
+    @Query("SELECT p FROM Pelicula p JOIN p.reviews r WHERE r.calificacion &gt;= :score")
+    List&lt;Pelicula&gt; buscarPeliculasConBuenasResenas(@Param("score") int score);
+
+    // SQL Nativo
+    @Query(value = "SELECT * FROM Pelicula p WHERE p.titulo LIKE %:keyword%", 
+           nativeQuery = true)
+    List&lt;Pelicula&gt; buscarPorTituloNativo(@Param("keyword") String keyword);
+
+    // Modifying
+    @Modifying(clearAutomatically = true)
+    @Query("UPDATE Pelicula p SET p.titulo = UPPER(p.titulo) WHERE p.id = :id")
+    int convertirTituloAMayusculas(@Param("id") Integer id);
+}</code></pre>
+
+<footer>Tema 8.6: Spring Boot y JPA Avanzado</footer>
+            </section>
+
+            <section >
+<h1>Trampas Comunes en Persistencia Avanzada</h1>
+
+<ul>
+<li><strong>Mapeo Bidireccional sin <code>mappedBy</code>:</strong>
+<ul>
+<li>Hibernate creará una tabla puente redundante degradando el rendimiento.
+</li>
+</ul>
+</li>
+<li><strong>orphanRemoval sin Cascade:</strong>
+<ul>
+<li>Si saca un objeto de la lista e intenta salvar, Hibernate no propagará el borrado.
+</li>
+</ul>
+</li>
+<li><strong>Evadir Caché L1 en <code>@Modifying</code>:</strong>
+<ul>
+<li>Modificaciones en base de datos que no se refrescan en los objetos en memoria RAM.
+</li>
+<li><em>Solución:</em> Usar siempre <code>clearAutomatically = true</code>.
+</li>
+</ul>
+</li>
+</ul>
+
+<footer>Tema 8.6: Spring Boot y JPA Avanzado</footer>
+            </section>
+
+            <section >
+<h1>Pregunta de Reflexión</h1>
+
+<ul>
+<li>Si ejecutamos un borrado masivo utilizando una consulta <code>@Modifying</code> en lugar de recuperar y borrar los objetos uno a uno con <code>delete()</code>:
+<ul>
+<li>¿Por qué el borrado masivo es órdenes de magnitud más rápido?
+</li>
+<li>¿Qué sucede con los interceptores de ciclo de vida de JPA (como <code>@PreRemove</code> de auditoría o de logs) al realizar este borrado directo en base de datos?
+</li>
+</ul>
+</li>
+</ul>
+
+<footer>Tema 8.6: Spring Boot y JPA Avanzado</footer>
+            </section>
+
+        </div>
+    </div>
+
+    <!-- Highlight.js and Reveal.js Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.js"></script>
+
+    <script>
+        // Initialize Highlight.js for code syntax coloring
+        hljs.highlightAll();
+
+        // Initialize Reveal.js with modern layout configurations
+        Reveal.initialize({
+            hash: true,
+            respondToHashChanges: true,
+            history: true,
+            transition: 'slide', // none/fade/slide/convex/concave/zoom
+            transitionSpeed: 'default',
+            backgroundTransition: 'fade',
+            width: 960,
+            height: 700,
+            margin: 0.05,
+            minScale: 0.2,
+            maxScale: 2.0,
+            plugins: []
+        });
+    </script>
+</body>
+</html>

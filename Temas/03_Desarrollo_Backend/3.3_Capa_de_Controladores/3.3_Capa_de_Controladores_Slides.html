@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <title>Tema 3.3 - Capa de Controladores y OpenAPI - Desarrollo de Software IV</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <!-- Reveal.js Base Stylesheets -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reset.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.css">
+    
+    <!-- Tokyo Night Dark Theme for Code Syntax Resaltation -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/tokyo-night-dark.min.css">
+
+    <!-- Premium Google Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* Modern Web Design Aesthetics & Layout Tokens */
+        .reveal {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0b0f19 0%, #111827 50%, #1e1b4b 100%);
+            color: #f8fafc;
+        }
+        
+        .reveal .slides section {
+            font-family: 'Outfit', 'Inter', sans-serif;
+            text-align: left;
+            padding: 50px 70px;
+            box-sizing: border-box;
+            font-size: 22px;
+        }
+        
+        /* Centered Cover Slide Layout */
+        .reveal .slides section.lead-slide {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+        
+        /* Premium Typography Styles */
+        .reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6 {
+            font-family: 'Outfit', sans-serif;
+            text-transform: none;
+            color: #38bdf8;
+            font-weight: 800;
+            text-shadow: none;
+        }
+        
+        .reveal h1 {
+            font-size: 1.7em;
+            margin-bottom: 12px;
+            border-bottom: 2px solid #3b82f6;
+            padding-bottom: 10px;
+        }
+        
+        .reveal .lead-slide h1 {
+            border-bottom: none;
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            color: #38bdf8;
+        }
+        
+        .reveal h2 {
+            font-size: 1.25em;
+            color: #818cf8;
+            font-weight: 700;
+            margin-top: 0px;
+        }
+        
+        .reveal .lead-slide h2 {
+            font-size: 1.55em;
+            color: #818cf8;
+            margin-bottom: 30px;
+        }
+        
+        .reveal h3 {
+            font-size: 1.1em;
+            color: #a78bfa;
+        }
+        
+        /* List and Text Formatting */
+        .reveal p, .reveal li {
+            color: #cbd5e1;
+            line-height: 1.6;
+        }
+        
+        .reveal ul {
+            list-style-type: square;
+            margin-left: 1.5em;
+        }
+        
+        .reveal li {
+            margin-bottom: 12px;
+        }
+        
+        .reveal strong {
+            color: #f43f5e;
+            font-weight: 600;
+        }
+        
+        .reveal em {
+            color: #fb7185;
+            font-style: italic;
+        }
+        
+        .reveal footer {
+            font-size: 0.5em;
+            color: #6b7280;
+            position: absolute;
+            bottom: 20px;
+            right: 50px;
+        }
+        
+        /* Code Block Containers and Inlines */
+        .reveal code {
+            font-family: 'Fira Code', monospace;
+            background-color: #030712;
+            color: #38bdf8;
+            border-radius: 4px;
+            padding: 2px 8px;
+            font-size: 0.85em;
+        }
+        
+        .reveal pre {
+            background-color: #030712 !important;
+            border: 1px solid #1f2937;
+            border-radius: 10px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
+            width: 100%;
+            margin: 20px 0;
+            box-sizing: border-box;
+        }
+        
+        .reveal pre code {
+            background-color: transparent;
+            color: inherit;
+            font-size: 0.8em;
+            line-height: 1.55;
+            padding: 18px;
+            max-height: 520px;
+        }
+        
+        /* Control Nav Arrows & Progress Bar */
+        .reveal .controls-arrow {
+            color: #38bdf8 !important;
+        }
+        
+        .reveal .progress span {
+            background-color: #38bdf8 !important;
+        }
+
+        /* Custom style overrides parsed from Marp frontmatter */
+        section {
+  background-color: #0f172a;
+  color: #f8fafc;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+}
+h1, h2 {
+  color: #38bdf8;
+}
+h3 {
+  color: #7dd3fc;
+}
+footer {
+  color: #64748b;
+}
+code {
+  background-color: #1e293b;
+  color: #38bdf8;
+}
+pre code {
+  background-color: transparent;
+  color: #f8fafc;
+}
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <section >
+<h1>IF0009 - Desarrollo de Software IV</h1>
+
+<h2>Tema 3.3: Capa de Controladores, APIs RESTful y Documentación con OpenAPI</h2>
+
+Universidad de Costa Rica <br>
+Sede del Atlántico - Recinto Paraíso <br>
+Carrera de Informática Empresarial <br>
+<strong>Profesor:</strong> Mag. Jonathan Granados C. <br>
+<strong>Semestre:</strong> II-2026
+
+<footer>UCR - Informática Empresarial</footer>
+            </section>
+
+            <section >
+<h1>La Capa de Controladores (<code>@RestController</code>)</h1>
+
+<ul>
+<li><strong>Definición de Entrada al Sistema:</strong>
+<ul>
+<li>Responsable de recibir las solicitudes de red del cliente.
+</li>
+<li>Valida formalmente la estructura y contenido de los datos (DTOs).
+</li>
+<li>Delega la lógica de negocio a la capa de servicios.
+</li>
+<li>Construye y retorna la respuesta de red correspondiente.
+</li>
+</ul>
+</li>
+<li><strong>Componente de Spring Boot:</strong>
+<ul>
+<li>Declarado con la anotación estereotipo <code>@RestController</code>.
+</li>
+<li>Combina <code>@Controller</code> (manejo de endpoints) y <code>@ResponseBody</code> (retorno directo en formato JSON).
+</li>
+</ul>
+</li>
+</ul>
+
+<footer>Tema 3.3: Capa de Controladores y OpenAPI</footer>
+            </section>
+
+            <section >
+<h1>Fundamentos de HTTP y Verbos de Red</h1>
+
+<ul>
+<li><strong>HTTP es Stateless (Sin Estado):</strong>
+<ul>
+<li>Cada petición-respuesta es independiente. No se guarda sesión local en RAM.
+</li>
+</ul>
+</li>
+<li><strong>Verbos HTTP Principales:</strong>
+<ul>
+<li><code>GET</code>: Recupera recursos. Operación segura e idempotente.
+</li>
+<li><code>POST</code>: Registra nuevos recursos en base de datos.
+</li>
+<li><code>PUT</code>: Reemplaza la totalidad del recurso indicado. Idempotente.
+</li>
+<li><code>PATCH</code>: Modificación parcial de los campos de un recurso.
+</li>
+<li><code>DELETE</code>: Elimina permanentemente el recurso del servidor. Idempotente.
+</li>
+</ul>
+</li>
+</ul>
+
+<footer>Tema 3.3: Capa de Controladores y OpenAPI</footer>
+            </section>
+
+            <section >
+<h1>Semántica de Códigos de Respuesta HTTP</h1>
+
+<ul>
+<li><strong>2xx (Éxito):</strong>
+<ul>
+<li><code>200 OK</code> (Operación exitosa), <code>201 Created</code> (Creación de recurso exitosa), <code>204 No Content</code> (Éxito sin datos de retorno).
+</li>
+</ul>
+</li>
+<li><strong>4xx (Error del Cliente):</strong>
+<ul>
+<li><code>400 Bad Request</code> (Datos inválidos o nulos).
+</li>
+<li><code>401 Unauthorized</code> (Autenticación ausente), <code>403 Forbidden</code> (Acceso denegado por roles).
+</li>
+<li><code>404 Not Found</code> (Recurso no encontrado), <code>409 Conflict</code> (Violación de unicidad).
+</li>
+</ul>
+</li>
+<li><strong>5xx (Error de Servidor):</strong>
+<ul>
+<li><code>500 Internal Error</code> (Excepción no controlada), <code>503 Unavailable</code> (Caída de red).
+</li>
+</ul>
+</li>
+</ul>
+
+<footer>Tema 3.3: Capa de Controladores y OpenAPI</footer>
+            </section>
+
+            <section >
+<h1>De Arquitectura SOA a Microservicios</h1>
+
+<ul>
+<li><strong>SOA (Arquitectura Orientada a Servicios):</strong>
+<ul>
+<li>Tradicionalmente pesada. Integra aplicaciones usando buses de servicios (ESB) y mensajes XML grandes sobre SOAP.
+</li>
+</ul>
+</li>
+<li><strong>Microservicios y Desacoplamiento:</strong>
+<ul>
+<li>Descompone la aplicación en servicios autónomos e independientes.
+</li>
+<li>Cada microservicio gestiona su base de datos.
+</li>
+<li>Comunicación ágil utilizando <strong>APIs RESTful</strong> y formato liviano <strong>JSON</strong>.
+</li>
+<li>Permite desacoplar el desarrollo del backend de clientes web (Angular) o móviles.
+</li>
+</ul>
+</li>
+</ul>
+
+<footer>Tema 3.3: Capa de Controladores y OpenAPI</footer>
+            </section>
+
+            <section >
+<h1>Documentación con OpenAPI y Swagger</h1>
+
+<ul>
+<li><strong>Especificación OpenAPI:</strong>
+<ul>
+<li>Estándar para describir servicios REST de forma legible para humanos y máquinas.
+</li>
+</ul>
+</li>
+<li><strong>Swagger UI:</strong>
+<ul>
+<li>Interfaz interactiva autogenerada en tiempo de ejecución.
+</li>
+<li>Accesible en la ruta local: <code>/swagger-ui/index.html</code>.
+</li>
+</ul>
+</li>
+<li><strong>Biblioteca Spring Boot:</strong>
+<ul>
+<li>Integración directa añadiendo el starter en <code>pom.xml</code>:
+</li>
+</ul>
+</li>
+</ul>
+  <code>springdoc-openapi-starter-webmvc-ui</code>
+
+<footer>Tema 3.3: Capa de Controladores y OpenAPI</footer>
+            </section>
+
+            <section >
+<h1>Analogías del Tema</h1>
+
+<ul>
+<li><strong>El Mesero de la Pizzería (El Controlador):</strong>
+<ul>
+<li>Usted no cocina los ingredientes ni enciende el horno. Le pide al mesero (Controlador) su orden. El mesero valida la petición y la envía a la cocina (Capa de Negocios). Si la pizza está lista, se la entrega (<code>200 OK</code>). Si pide sushi, le dice directamente que no se puede (<code>400 Bad Request</code>).
+</li>
+</ul>
+</li>
+<li><strong>El Menú Exterior (OpenAPI/Swagger):</strong>
+<ul>
+<li>El letrero en la entrada del restaurante describe exactamente qué puede ordenar, qué ingredientes lleva y qué precio tiene, permitiéndole interactuar de forma segura sin adivinar.
+</li>
+</ul>
+</li>
+</ul>
+
+<footer>Tema 3.3: Capa de Controladores y OpenAPI</footer>
+            </section>
+
+            <section >
+<h1>Código: Objeto de Transferencia (<code>CursoDTO.java</code>)</h1>
+
+<pre><code class="language-java">@Schema(description = "Modelo para la creación de un curso")
+public class CursoDTO {
+    @Schema(description = "Nombre del curso", example = "Sistemas")
+    @NotBlank(message = "El nombre del curso no puede estar vacío.")
+    private String nombre;
+
+    @Schema(description = "Cupos máximos", example = "30")
+    @NotNull(message = "Los cupos son obligatorios.")
+    @Min(value = 1, message = "Mínimo 1 cupo.")
+    private Integer cuposDisponibles;
+
+    // Getters y setters...
+}</code></pre>
+
+<footer>Tema 3.3: Capa de Controladores y OpenAPI</footer>
+            </section>
+
+            <section >
+<h1>Código: El Controlador REST y Swagger (Tag y GET)</h1>
+
+<pre><code class="language-java">@RestController
+@RequestMapping("/api/cursos")
+@Tag(name = "Cursos", description = "Gestión de cursos académicos")
+public class CursoRestController {
+    private final MatriculaService matriculaService;
+
+    public CursoRestController(MatriculaService matriculaService) {
+        this.matriculaService = matriculaService;
+    }
+
+    @Operation(summary = "Obtener un curso por ID", description = "Busca curso.")
+    @ApiResponses({
+        @ApiResponse(responseCode = "200", description = "Encontrado"),
+        @ApiResponse(responseCode = "404", description = "No encontrado")
+    })
+    @GetMapping("/{id}")
+    public ResponseEntity&lt;Curso&gt; obtenerPorId(@PathVariable Integer id) {
+        // ... Lógica ...
+    }
+}</code></pre>
+
+<footer>Tema 3.3: Capa de Controladores y OpenAPI</footer>
+            </section>
+
+            <section >
+<h1>Código: Método POST y Validación DTO</h1>
+
+<pre><code class="language-java">    @Operation(summary = "Crear curso", description = "Guarda curso validado.")
+    @ApiResponses({
+        @ApiResponse(responseCode = "201", description = "Curso creado"),
+        @ApiResponse(responseCode = "400", description = "Datos inválidos")
+    })
+    @PostMapping
+    public ResponseEntity&lt;Curso&gt; crear(
+            @Validated @RequestBody CursoDTO dto) {
+        Curso nuevoCurso = new Curso(dto.getNombre(), dto.getCuposDisponibles());
+        nuevoCurso.setId(10); // Simulación
+        return ResponseEntity.status(HttpStatus.CREATED).body(nuevoCurso);
+    }</code></pre>
+
+<footer>Tema 3.3: Capa de Controladores y OpenAPI</footer>
+            </section>
+
+            <section >
+<h1>Trampas Comunes en Controladores</h1>
+
+<ul>
+<li><strong>Ignorar Códigos HTTP (Retornar siempre 200 OK):</strong>
+<ul>
+<li>Retornar un body de error con código HTTP 200. Esto confunde a los clientes de red (Angular) e impide procesar fallas por interceptores.
+</li>
+</ul>
+</li>
+<li><strong>Exposición Directa de Entidades JPA:</strong>
+<ul>
+<li>Provoca bucles de mapeo JSON infinito si hay relaciones <code>@ManyToMany</code> o <code>@OneToMany</code>.
+</li>
+</ul>
+</li>
+<li><strong>Ignorar Validación Automática:</strong>
+<ul>
+<li>Omitir <code>@Validated</code> o <code>@Valid</code> en el <code>@RequestBody</code>, ingresando registros con campos inválidos o nulos.
+</li>
+</ul>
+</li>
+</ul>
+
+<footer>Tema 3.3: Capa de Controladores y OpenAPI</footer>
+            </section>
+
+            <section >
+<h1>Pregunta de Reflexión</h1>
+
+<ul>
+<li>Dado que el diseño REST es sin estado (<em>stateless</em>), el servidor de aplicaciones no almacena información de login de los usuarios en la memoria RAM:
+<ul>
+<li>¿Cómo contribuye esta propiedad del protocolo a la tolerancia a fallas y la escalabilidad horizontal en entornos de la nube con microservicios?
+</li>
+<li>¿Qué metadatos en la petición HTTP reemplazan la necesidad de mantener el estado de sesión en el servidor?
+</li>
+</ul>
+</li>
+</ul>
+
+<footer>Tema 3.3: Capa de Controladores y OpenAPI</footer>
+            </section>
+
+        </div>
+    </div>
+
+    <!-- Highlight.js and Reveal.js Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.js"></script>
+
+    <script>
+        // Initialize Highlight.js for code syntax coloring
+        hljs.highlightAll();
+
+        // Initialize Reveal.js with modern layout configurations
+        Reveal.initialize({
+            hash: true,
+            respondToHashChanges: true,
+            history: true,
+            transition: 'slide', // none/fade/slide/convex/concave/zoom
+            transitionSpeed: 'default',
+            backgroundTransition: 'fade',
+            width: 960,
+            height: 700,
+            margin: 0.05,
+            minScale: 0.2,
+            maxScale: 2.0,
+            plugins: []
+        });
+    </script>
+</body>
+</html>
