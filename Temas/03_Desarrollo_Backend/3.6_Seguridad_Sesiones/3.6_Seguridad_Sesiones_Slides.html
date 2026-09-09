@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <title>Tema 3.6 - Seguridad en el Manejo de Sesiones y JWT - Desarrollo de Software IV</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <!-- Reveal.js Base Stylesheets -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reset.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.css">
+    
+    <!-- Tokyo Night Dark Theme for Code Syntax Resaltation -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/tokyo-night-dark.min.css">
+
+    <!-- Premium Google Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* Modern Web Design Aesthetics & Layout Tokens */
+        html, body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background-color: #0b0f19 !important;
+            color: #f8fafc;
+            overflow: hidden;
+        }
+
+        .reveal {
+            width: 100%;
+            height: 100%;
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0b0f19 0%, #111827 50%, #1e1b4b 100%) !important;
+            color: #f8fafc;
+        }
+        
+        .reveal .slides section {
+            font-family: 'Outfit', 'Inter', sans-serif;
+            text-align: left;
+            padding: 50px 70px;
+            box-sizing: border-box;
+            font-size: 22px;
+            color: #f8fafc;
+        }
+        
+        /* Centered Cover Slide Layout */
+        .reveal .slides section.lead-slide {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+        
+        /* Premium Typography Styles */
+        .reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6 {
+            font-family: 'Outfit', sans-serif;
+            text-transform: none;
+            color: #38bdf8;
+            font-weight: 800;
+            text-shadow: none;
+        }
+        
+        .reveal h1 {
+            font-size: 1.7em;
+            margin-bottom: 12px;
+            border-bottom: 2px solid #3b82f6;
+            padding-bottom: 10px;
+        }
+        
+        .reveal .lead-slide h1 {
+            border-bottom: none;
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            color: #38bdf8;
+        }
+        
+        .reveal h2 {
+            font-size: 1.25em;
+            color: #818cf8;
+            font-weight: 700;
+            margin-top: 0px;
+        }
+        
+        .reveal .lead-slide h2 {
+            font-size: 1.55em;
+            color: #818cf8;
+            margin-bottom: 30px;
+        }
+        
+        .reveal h3 {
+            font-size: 1.1em;
+            color: #a78bfa;
+        }
+        
+        /* List and Text Formatting */
+        .reveal p, .reveal li {
+            color: #cbd5e1;
+            line-height: 1.6;
+        }
+        
+        .reveal ul {
+            list-style-type: square;
+            margin-left: 1.5em;
+        }
+        
+        .reveal li {
+            margin-bottom: 12px;
+        }
+        
+        .reveal strong {
+            color: #f43f5e;
+            font-weight: 600;
+        }
+        
+        .reveal em {
+            color: #fb7185;
+            font-style: italic;
+        }
+        
+        .reveal footer {
+            font-size: 0.5em;
+            color: #6b7280;
+            position: absolute;
+            bottom: 20px;
+            right: 50px;
+        }
+        
+        /* Code Block Containers and Inlines */
+        .reveal code {
+            font-family: 'Fira Code', monospace;
+            background-color: #030712;
+            color: #38bdf8;
+            border-radius: 4px;
+            padding: 2px 8px;
+            font-size: 0.85em;
+        }
+        
+        .reveal pre {
+            background-color: #030712 !important;
+            border: 1px solid #1f2937;
+            border-radius: 10px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
+            width: 100%;
+            margin: 20px 0;
+            box-sizing: border-box;
+        }
+        
+        .reveal pre code {
+            background-color: transparent;
+            color: inherit;
+            font-size: 0.8em;
+            line-height: 1.55;
+            padding: 18px;
+            max-height: 520px;
+        }
+        
+        /* Control Nav Arrows & Progress Bar */
+        .reveal .controls-arrow {
+            color: #38bdf8 !important;
+        }
+        
+        .reveal .progress span {
+            background-color: #38bdf8 !important;
+        }
+
+        /* Custom style overrides parsed from Marp frontmatter */
+        .reveal .slides section {
+  background-color: #0f172a;
+  color: #f8fafc;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+}
+h1, h2 {
+  color: #38bdf8;
+}
+h3 {
+  color: #7dd3fc;
+}
+footer {
+  color: #64748b;
+}
+code {
+  background-color: #1e293b;
+  color: #38bdf8;
+}
+pre code {
+  background-color: transparent;
+  color: #f8fafc;
+}
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <section >
+<h1>IF0009 - Desarrollo de Software IV</h1>
+
+<h2>Tema 3.6: Seguridad en el Manejo de Sesiones y JSON Web Tokens (JWT)</h2>
+
+Universidad de Costa Rica <br>
+Sede del Atlántico - Recinto Paraíso <br>
+Carrera de Informática Empresarial <br>
+<strong>Profesor:</strong> Mag. Jonathan Granados C. <br>
+<strong>Semestre:</strong> II-2026
+
+<footer>UCR - Informática Empresarial</footer>
+            </section>
+
+            <section >
+<h1>Evolución de las Sesiones Web</h1>
+
+<ul>
+<li><strong>Enfoque Basado en Estado (Stateful):</strong>
+<ul>
+<li>Servidor almacena la sesión en memoria (<code>HttpSession</code> / <code>JSESSIONID</code>).
+</li>
+<li>Dificulta el escalado horizontal de microservicios.
+</li>
+<li>Vulnerable a ataques CSRF si se apoya únicamente en cookies.
+</li>
+</ul>
+</li>
+<li><strong>Enfoque Sin Estado (Stateless):</strong>
+<ul>
+<li>Servidor <strong>no almacena nada</strong> en memoria.
+</li>
+<li>Emite credenciales autónomas en cada solicitud: <strong>JSON Web Tokens (JWT)</strong>.
+</li>
+<li>Facilita el escalamiento elástico de microservicios.
+</li>
+</ul>
+</li>
+</ul>
+
+<footer>Tema 3.6: Seguridad en el Manejo de Sesiones</footer>
+            </section>
+
+            <section >
+<h1>Anatomía de un JSON Web Token (RFC 7519)</h1>
+
+Cadena compacta dividida en 3 partes por puntos: <code>HEADER.PAYLOAD.SIGNATURE</code>
+
+<ol>
+<li><strong>Header (Encabezado):</strong> Algoritmo (<code>HS256</code>) y tipo (<code>JWT</code>) en Base64Url.
+</li>
+<li><strong>Payload (Carga Útil):</strong> Claims del usuario (<code>sub</code>, <code>exp</code>, <code>roles</code>) en Base64Url. <em>(¡Es público, no incluya contraseñas!)</em>
+</li>
+<li><strong>Signature (Firma):</strong> HMAC-SHA256 del Header + Payload con la clave secreta. Garantiza la integridad infalsificable.
+</li>
+</ol>
+
+<pre><code class="language-text">eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsInJvbGVzIjoiUk9MRV9BRE1JTiJ9.f7A9...</code></pre>
+
+<footer>Tema 3.6: Seguridad en el Manejo de Sesiones</footer>
+            </section>
+
+            <section >
+<h1>Generación de Tokens: <code>JwtTokenProvider</code></h1>
+
+<pre><code class="language-java">@Component
+public class JwtTokenProvider {
+
+    public String generarToken(Authentication authentication) {
+        String username = authentication.getName();
+        Date ahora = new Date();
+        Date expiracion = new Date(ahora.getTime() + jwtExpirationInMs);
+
+        return Jwts.builder()
+            .subject(username)
+            .claim("roles", obtenerRoles(authentication))
+            .issuedAt(ahora)
+            .expiration(expiracion)
+            .signWith(key)
+            .compact();
+    }
+}</code></pre>
+
+<footer>Tema 3.6: Seguridad en el Manejo de Sesiones</footer>
+            </section>
+
+            <section >
+<h1>Intercepción de Peticiones: <code>JwtAuthenticationFilter</code></h1>
+
+<pre><code class="language-java">public class JwtAuthenticationFilter extends OncePerRequestFilter {
+
+    @Override
+    protected void doFilterInternal(HttpServletRequest req, HttpServletResponse res, 
+                                    FilterChain chain) throws ServletException, IOException {
+        String token = obtenerJwt(req);
+        if (StringUtils.hasText(token) &amp;&amp; tokenProvider.validarToken(token)) {
+            String username = tokenProvider.obtenerUsernameDelJWT(token);
+            UserDetails userDetails = userDetailsService.loadUserByUsername(username);
+
+            UsernamePasswordAuthenticationToken auth = 
+                new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+            SecurityContextHolder.getContext().setAuthentication(auth);
+        }
+        chain.doFilter(req, res);
+    }
+}</code></pre>
+
+<footer>Tema 3.6: Seguridad en el Manejo de Sesiones</footer>
+            </section>
+
+            <section >
+<h1>Configuración Stateless en Spring Security</h1>
+
+<pre><code class="language-java">@Bean
+public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    return http
+        .csrf(csrf -&gt; csrf.disable())
+        .sessionManagement(sess -&gt; sess
+            .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+        )
+        .authorizeHttpRequests(auth -&gt; auth
+            .requestMatchers("/api/auth/**").permitAll()
+            .anyRequest().authenticated()
+        )
+        .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
+        .build();
+}</code></pre>
+
+<footer>Tema 3.6: Seguridad en el Manejo de Sesiones</footer>
+            </section>
+
+            <section >
+<h1>Trampas Comunes y Buenas Prácticas</h1>
+
+<ul>
+<li><strong>Claves Secretas Débiles:</strong> Deben tener al menos 256 bits (32 caracteres) de entropía. Cárguelas desde variables de entorno.
+</li>
+<li><strong>Payload No Encriptado:</strong> Nunca coloque contraseñas o datos médicos en el Payload.
+</li>
+<li><strong>Almacenamiento en Cliente:</strong> Proteja contra XSS. Use cookies <code>HttpOnly</code> y <code>SameSite=Strict</code> cuando sea viable.
+</li>
+</ul>
+
+<footer>Tema 3.6: Seguridad en el Manejo de Sesiones</footer>
+            </section>
+
+            <section >
+<h1>Pregunta de Reflexión</h1>
+
+Dado que los tokens JWT son infalsificables y totalmente stateless:
+
+¿De qué manera una arquitectura de software puede revocar inmediatamente el token JWT de un usuario cuya cuenta ha sido comprometida antes de que el token alcance su tiempo límite de expiración (<code>exp</code>)?
+
+<footer>Tema 3.6: Seguridad en el Manejo de Sesiones</footer>
+            </section>
+
+        </div>
+    </div>
+
+    <!-- Highlight.js and Reveal.js Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.js"></script>
+
+    <script>
+        // Initialize Highlight.js for code syntax coloring
+        hljs.highlightAll();
+
+        // Initialize Reveal.js with modern layout configurations
+        Reveal.initialize({
+            hash: true,
+            respondToHashChanges: true,
+            history: true,
+            transition: 'slide', // none/fade/slide/convex/concave/zoom
+            transitionSpeed: 'default',
+            backgroundTransition: 'fade',
+            width: 960,
+            height: 700,
+            margin: 0.05,
+            minScale: 0.2,
+            maxScale: 2.0,
+            plugins: []
+        });
+    </script>
+</body>
+</html>

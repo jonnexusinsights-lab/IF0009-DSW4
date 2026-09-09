@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <title>Tema 3.5 - Autenticación y Autorización en APIs RESTful - Desarrollo de Software IV</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <!-- Reveal.js Base Stylesheets -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reset.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.css">
+    
+    <!-- Tokyo Night Dark Theme for Code Syntax Resaltation -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/tokyo-night-dark.min.css">
+
+    <!-- Premium Google Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* Modern Web Design Aesthetics & Layout Tokens */
+        html, body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background-color: #0b0f19 !important;
+            color: #f8fafc;
+            overflow: hidden;
+        }
+
+        .reveal {
+            width: 100%;
+            height: 100%;
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0b0f19 0%, #111827 50%, #1e1b4b 100%) !important;
+            color: #f8fafc;
+        }
+        
+        .reveal .slides section {
+            font-family: 'Outfit', 'Inter', sans-serif;
+            text-align: left;
+            padding: 50px 70px;
+            box-sizing: border-box;
+            font-size: 22px;
+            color: #f8fafc;
+        }
+        
+        /* Centered Cover Slide Layout */
+        .reveal .slides section.lead-slide {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+        
+        /* Premium Typography Styles */
+        .reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6 {
+            font-family: 'Outfit', sans-serif;
+            text-transform: none;
+            color: #38bdf8;
+            font-weight: 800;
+            text-shadow: none;
+        }
+        
+        .reveal h1 {
+            font-size: 1.7em;
+            margin-bottom: 12px;
+            border-bottom: 2px solid #3b82f6;
+            padding-bottom: 10px;
+        }
+        
+        .reveal .lead-slide h1 {
+            border-bottom: none;
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            color: #38bdf8;
+        }
+        
+        .reveal h2 {
+            font-size: 1.25em;
+            color: #818cf8;
+            font-weight: 700;
+            margin-top: 0px;
+        }
+        
+        .reveal .lead-slide h2 {
+            font-size: 1.55em;
+            color: #818cf8;
+            margin-bottom: 30px;
+        }
+        
+        .reveal h3 {
+            font-size: 1.1em;
+            color: #a78bfa;
+        }
+        
+        /* List and Text Formatting */
+        .reveal p, .reveal li {
+            color: #cbd5e1;
+            line-height: 1.6;
+        }
+        
+        .reveal ul {
+            list-style-type: square;
+            margin-left: 1.5em;
+        }
+        
+        .reveal li {
+            margin-bottom: 12px;
+        }
+        
+        .reveal strong {
+            color: #f43f5e;
+            font-weight: 600;
+        }
+        
+        .reveal em {
+            color: #fb7185;
+            font-style: italic;
+        }
+        
+        .reveal footer {
+            font-size: 0.5em;
+            color: #6b7280;
+            position: absolute;
+            bottom: 20px;
+            right: 50px;
+        }
+        
+        /* Code Block Containers and Inlines */
+        .reveal code {
+            font-family: 'Fira Code', monospace;
+            background-color: #030712;
+            color: #38bdf8;
+            border-radius: 4px;
+            padding: 2px 8px;
+            font-size: 0.85em;
+        }
+        
+        .reveal pre {
+            background-color: #030712 !important;
+            border: 1px solid #1f2937;
+            border-radius: 10px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
+            width: 100%;
+            margin: 20px 0;
+            box-sizing: border-box;
+        }
+        
+        .reveal pre code {
+            background-color: transparent;
+            color: inherit;
+            font-size: 0.8em;
+            line-height: 1.55;
+            padding: 18px;
+            max-height: 520px;
+        }
+        
+        /* Control Nav Arrows & Progress Bar */
+        .reveal .controls-arrow {
+            color: #38bdf8 !important;
+        }
+        
+        .reveal .progress span {
+            background-color: #38bdf8 !important;
+        }
+
+        /* Custom style overrides parsed from Marp frontmatter */
+        .reveal .slides section {
+  background-color: #0f172a;
+  color: #f8fafc;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+}
+h1, h2 {
+  color: #38bdf8;
+}
+h3 {
+  color: #7dd3fc;
+}
+footer {
+  color: #64748b;
+}
+code {
+  background-color: #1e293b;
+  color: #38bdf8;
+}
+pre code {
+  background-color: transparent;
+  color: #f8fafc;
+}
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <section >
+<h1>IF0009 - Desarrollo de Software IV</h1>
+
+<h2>Tema 3.5: Autenticación y Autorización en APIs RESTful (Spring Security)</h2>
+
+Universidad de Costa Rica <br>
+Sede del Atlántico - Recinto Paraíso <br>
+Carrera de Informática Empresarial <br>
+<strong>Profesor:</strong> Mag. Jonathan Granados C. <br>
+<strong>Semestre:</strong> II-2026
+
+<footer>UCR - Informática Empresarial</footer>
+            </section>
+
+            <section >
+<h1>Fundamentos de Seguridad: Autenticación vs Autorización</h1>
+
+<ul>
+<li><strong>Autenticación (Authentication):</strong>
+<ul>
+<li>Verificación inequívoca de la identidad presentada por el usuario.
+</li>
+<li>Responde a: <em>¿Quién es usted?</em>
+</li>
+<li>Mecanismos: Credenciales (Usuario/Password), Factores Biométricos, Certificados.
+</li>
+</ul>
+</li>
+<li><strong>Autorización (Authorization):</strong>
+<ul>
+<li>Evaluación de permisos y privilegios asignados al sujeto autenticado.
+</li>
+<li>Responde a: <em>¿Qué operaciones tiene permitido ejecutar?</em>
+</li>
+<li>Mecanismos: RBAC (Role-Based Access Control), ABAC (Attribute-Based).
+</li>
+</ul>
+</li>
+</ul>
+
+<footer>Tema 3.5: Autenticación y Autorización</footer>
+            </section>
+
+            <section >
+<h1>Arquitectura de Spring Security 6</h1>
+
+<ul>
+<li><strong><code>SecurityContextHolder</code>:</strong> Almacena el <code>SecurityContext</code> en el hilo actual (<code>ThreadLocal</code>).
+</li>
+<li><strong><code>Authentication</code>:</strong> Objeto con la identidad, credenciales y privilegios (<code>GrantedAuthority</code>).
+</li>
+<li><strong><code>UserDetailsService</code>:</strong> Interfaz para recuperar datos de usuarios desde la BD.
+</li>
+<li><strong><code>PasswordEncoder</code>:</strong> Encriptación salada unidireccional (BCrypt).
+</li>
+</ul>
+
+<pre><code class="language-text">[HTTP Request] ──&gt; [SecurityFilterChain] ──&gt; [AuthenticationManager] ──&gt; [UserDetailsService]</code></pre>
+
+<footer>Tema 3.5: Autenticación y Autorización</footer>
+            </section>
+
+            <section >
+<h1>Creación Explícita: <code>UserDetailsService</code> & <code>BCrypt</code></h1>
+
+<pre><code class="language-java">@Service
+public class CustomUserDetailsService implements UserDetailsService {
+
+    private final UsuarioRepository usuarioRepository;
+
+    @Override
+    public UserDetails loadUserByUsername(String username) {
+        Usuario u = usuarioRepository.findByUsername(username)
+            .orElseThrow(() -&gt; new UsernameNotFoundException("No existe"));
+
+        Set&lt;GrantedAuthority&gt; authorities = u.getRoles().stream()
+            .map(r -&gt; new SimpleGrantedAuthority(r.getNombreRol()))
+            .collect(Collectors.toSet());
+
+        return new User(u.getUsername(), u.getPassword(), u.isActivo(), 
+                        true, true, true, authorities);
+    }
+}</code></pre>
+
+<footer>Tema 3.5: Autenticación y Autorización</footer>
+            </section>
+
+            <section >
+<h1>Configuración Explícita: <code>SecurityFilterChain</code></h1>
+
+<pre><code class="language-java">@Configuration
+@EnableWebSecurity
+@EnableMethodSecurity(prePostEnabled = true)
+public class SecurityConfig {
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder(10);
+    }
+
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        return http
+            .csrf(csrf -&gt; csrf.disable())
+            .authorizeHttpRequests(auth -&gt; auth
+                .requestMatchers("/api/auth/**").permitAll()
+                .requestMatchers(HttpMethod.GET, "/api/envios/**")
+                    .hasAnyRole("ADMIN", "OPERADOR", "CONDUCTOR")
+                .requestMatchers("/api/vehiculos/**").hasRole("ADMIN")
+                .anyRequest().authenticated()
+            )
+            .build();
+    }
+}</code></pre>
+
+<footer>Tema 3.5: Autenticación y Autorización</footer>
+            </section>
+
+            <section >
+<h1>Autorización Declarativa con <code>@PreAuthorize</code></h1>
+
+<ul>
+<li>Permite validar privilegios directamente sobre métodos de controladores o servicios.
+</li>
+</ul>
+
+<pre><code class="language-java">@RestController
+@RequestMapping("/api/admin/flotas")
+public class FlotaController {
+
+    @DeleteMapping("/{vehiculoId}")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity&lt;Void&gt; darDeBajaVehiculo(@PathVariable Integer vehiculoId) {
+        envioService.darDeBajaVehiculo(vehiculoId);
+        return ResponseEntity.noContent().build();
+    }
+}</code></pre>
+
+<footer>Tema 3.5: Autenticación y Autorización</footer>
+            </section>
+
+            <section >
+<h1>Trampas Comunes y Buenas Prácticas</h1>
+
+<ul>
+<li><strong>Contraseñas en Texto Plano:</strong> Prohibidas. Use <code>BCryptPasswordEncoder(10)</code>.
+</li>
+<li><strong>Prefijo de Roles:</strong> <code>hasRole('ADMIN')</code> exige que el permiso en BD sea <code>ROLE_ADMIN</code>.
+</li>
+<li><strong>CSRF en APIs REST:</strong> Deshabilite CSRF (<code>csrf.disable()</code>) únicamente en APIs REST stateless con tokens JWT.
+</li>
+</ul>
+            </section>
+
+            <section >
+<h1>Pregunta de Reflexión</h1>
+
+En aplicaciones empresariales de gran escala:
+
+¿Cuáles son las ventajas y desventajas de migrar de un modelo <strong>RBAC</strong> (Basado en Roles) a un modelo <strong>ABAC</strong> (Basado en Atributos dinámicos en tiempo de ejecución)?
+
+<footer>Tema 3.5: Autenticación y Autorización</footer>
+            </section>
+
+        </div>
+    </div>
+
+    <!-- Highlight.js and Reveal.js Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.js"></script>
+
+    <script>
+        // Initialize Highlight.js for code syntax coloring
+        hljs.highlightAll();
+
+        // Initialize Reveal.js with modern layout configurations
+        Reveal.initialize({
+            hash: true,
+            respondToHashChanges: true,
+            history: true,
+            transition: 'slide', // none/fade/slide/convex/concave/zoom
+            transitionSpeed: 'default',
+            backgroundTransition: 'fade',
+            width: 960,
+            height: 700,
+            margin: 0.05,
+            minScale: 0.2,
+            maxScale: 2.0,
+            plugins: []
+        });
+    </script>
+</body>
+</html>

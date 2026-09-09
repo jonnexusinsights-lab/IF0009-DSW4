@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <title>Tema 3.4 - Manejo Centralizado de Errores y Middleware HTTP - Desarrollo de Software IV</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <!-- Reveal.js Base Stylesheets -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reset.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.css">
+    
+    <!-- Tokyo Night Dark Theme for Code Syntax Resaltation -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/tokyo-night-dark.min.css">
+
+    <!-- Premium Google Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* Modern Web Design Aesthetics & Layout Tokens */
+        html, body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background-color: #0b0f19 !important;
+            color: #f8fafc;
+            overflow: hidden;
+        }
+
+        .reveal {
+            width: 100%;
+            height: 100%;
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0b0f19 0%, #111827 50%, #1e1b4b 100%) !important;
+            color: #f8fafc;
+        }
+        
+        .reveal .slides section {
+            font-family: 'Outfit', 'Inter', sans-serif;
+            text-align: left;
+            padding: 50px 70px;
+            box-sizing: border-box;
+            font-size: 22px;
+            color: #f8fafc;
+        }
+        
+        /* Centered Cover Slide Layout */
+        .reveal .slides section.lead-slide {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+        
+        /* Premium Typography Styles */
+        .reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6 {
+            font-family: 'Outfit', sans-serif;
+            text-transform: none;
+            color: #38bdf8;
+            font-weight: 800;
+            text-shadow: none;
+        }
+        
+        .reveal h1 {
+            font-size: 1.7em;
+            margin-bottom: 12px;
+            border-bottom: 2px solid #3b82f6;
+            padding-bottom: 10px;
+        }
+        
+        .reveal .lead-slide h1 {
+            border-bottom: none;
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            color: #38bdf8;
+        }
+        
+        .reveal h2 {
+            font-size: 1.25em;
+            color: #818cf8;
+            font-weight: 700;
+            margin-top: 0px;
+        }
+        
+        .reveal .lead-slide h2 {
+            font-size: 1.55em;
+            color: #818cf8;
+            margin-bottom: 30px;
+        }
+        
+        .reveal h3 {
+            font-size: 1.1em;
+            color: #a78bfa;
+        }
+        
+        /* List and Text Formatting */
+        .reveal p, .reveal li {
+            color: #cbd5e1;
+            line-height: 1.6;
+        }
+        
+        .reveal ul {
+            list-style-type: square;
+            margin-left: 1.5em;
+        }
+        
+        .reveal li {
+            margin-bottom: 12px;
+        }
+        
+        .reveal strong {
+            color: #f43f5e;
+            font-weight: 600;
+        }
+        
+        .reveal em {
+            color: #fb7185;
+            font-style: italic;
+        }
+        
+        .reveal footer {
+            font-size: 0.5em;
+            color: #6b7280;
+            position: absolute;
+            bottom: 20px;
+            right: 50px;
+        }
+        
+        /* Code Block Containers and Inlines */
+        .reveal code {
+            font-family: 'Fira Code', monospace;
+            background-color: #030712;
+            color: #38bdf8;
+            border-radius: 4px;
+            padding: 2px 8px;
+            font-size: 0.85em;
+        }
+        
+        .reveal pre {
+            background-color: #030712 !important;
+            border: 1px solid #1f2937;
+            border-radius: 10px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
+            width: 100%;
+            margin: 20px 0;
+            box-sizing: border-box;
+        }
+        
+        .reveal pre code {
+            background-color: transparent;
+            color: inherit;
+            font-size: 0.8em;
+            line-height: 1.55;
+            padding: 18px;
+            max-height: 520px;
+        }
+        
+        /* Control Nav Arrows & Progress Bar */
+        .reveal .controls-arrow {
+            color: #38bdf8 !important;
+        }
+        
+        .reveal .progress span {
+            background-color: #38bdf8 !important;
+        }
+
+        /* Custom style overrides parsed from Marp frontmatter */
+        .reveal .slides section {
+  background-color: #0f172a;
+  color: #f8fafc;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+}
+h1, h2 {
+  color: #38bdf8;
+}
+h3 {
+  color: #7dd3fc;
+}
+footer {
+  color: #64748b;
+}
+code {
+  background-color: #1e293b;
+  color: #38bdf8;
+}
+pre code {
+  background-color: transparent;
+  color: #f8fafc;
+}
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <section >
+<h1>IF0009 - Desarrollo de Software IV</h1>
+
+<h2>Tema 3.4: Manejo Centralizado de Excepciones y Middleware de Errores HTTP</h2>
+
+Universidad de Costa Rica <br>
+Sede del Atlántico - Recinto Paraíso <br>
+Carrera de Informática Empresarial <br>
+<strong>Profesor:</strong> Mag. Jonathan Granados C. <br>
+<strong>Semestre:</strong> II-2026
+
+<footer>UCR - Informática Empresarial</footer>
+            </section>
+
+            <section >
+<h1>El Problema del Manejo Descentralizado de Errores</h1>
+
+<ul>
+<li><strong>Acoplamiento y Repetición de Código:</strong>
+<ul>
+<li>Bloques <code>try-catch</code> dispersos en cada controlador REST.
+</li>
+<li>Violación directa del <em>Principio de Responsabilidad Única (SRP)</em>.
+</li>
+</ul>
+</li>
+<li><strong>Fuga de Información Sensible (OWASP Top 10):</strong>
+<ul>
+<li>Traza de pila (<em>stack trace</em>) expuesta directamente al cliente en respuestas por defecto.
+</li>
+<li>Revelación de nombres de tablas, clases internas y consultas SQL.
+</li>
+</ul>
+</li>
+<li><strong>Inconsistencia de Respuestas:</strong>
+<ul>
+<li>Respuestas HTTP sin estructura JSON homogénea entre diferentes controladores.
+</li>
+</ul>
+</li>
+</ul>
+
+<footer>Tema 3.4: Manejo Centralizado de Errores</footer>
+            </section>
+
+            <section >
+<h1>Patrón de Manejo Centralizado con Spring Boot</h1>
+
+<ul>
+<li><strong>Anotación Estereotipo <code>@RestControllerAdvice</code>:</strong>
+<ul>
+<li>Intercepta excepciones de forma global mediante Programación Orientada a Aspectos (AOP).
+</li>
+<li>Se aplica a todos los controladores anotados con <code>@RestController</code>.
+</li>
+</ul>
+</li>
+<li><strong>Anotación <code>@ExceptionHandler</code>:</strong>
+<ul>
+<li>Asocia un método Java con un tipo específico de excepción.
+</li>
+<li>Construye la respuesta HTTP personalizada.
+</li>
+</ul>
+</li>
+<li><strong>Estándar RFC 7807 (Problem Details):</strong>
+<ul>
+<li>Estructura unificada para errores REST (<code>title</code>, <code>status</code>, <code>detail</code>, <code>instance</code>, <code>timestamp</code>).
+</li>
+</ul>
+</li>
+</ul>
+
+<footer>Tema 3.4: Manejo Centralizado de Errores</footer>
+            </section>
+
+            <section >
+<h1>Ejemplo: Middleware Centralizado (<code>GlobalExceptionHandler</code>)</h1>
+
+<pre><code class="language-java">@RestControllerAdvice
+public class GlobalExceptionHandler {
+
+    @ExceptionHandler(ResourceNotFoundException.class)
+    public ResponseEntity&lt;ErrorResponseDTO&gt; handleNotFound(
+            ResourceNotFoundException ex, HttpServletRequest request) {
+        
+        ErrorResponseDTO error = new ErrorResponseDTO(
+            "Recurso No Encontrado", 404, ex.getMessage(), request.getRequestURI()
+        );
+        return new ResponseEntity&lt;&gt;(error, HttpStatus.NOT_FOUND);
+    }
+}</code></pre>
+
+<footer>Tema 3.4: Manejo Centralizado de Errores</footer>
+            </section>
+
+            <section >
+<h1>Captura de Errores de Validación (<code>@Valid</code>)</h1>
+
+<pre><code class="language-java">@ExceptionHandler(MethodArgumentNotValidException.class)
+public ResponseEntity&lt;ErrorResponseDTO&gt; handleValidation(
+        MethodArgumentNotValidException ex, HttpServletRequest request) {
+    
+    Map&lt;String, String&gt; errors = new HashMap&lt;&gt;();
+    for (FieldError err : ex.getBindingResult().getFieldErrors()) {
+        errors.put(err.getField(), err.getDefaultMessage());
+    }
+
+    ErrorResponseDTO response = new ErrorResponseDTO(
+        "Error de Validación", 400, "Campos inválidos", 
+        request.getRequestURI(), errors
+    );
+    return new ResponseEntity&lt;&gt;(response, HttpStatus.BAD_REQUEST);
+}</code></pre>
+
+<footer>Tema 3.4: Manejo Centralizado de Errores</footer>
+            </section>
+
+            <section >
+<h1>Buenas Prácticas y Trampas Comunes</h1>
+
+<ul>
+<li><strong>NUNCA retorne código HTTP 200 OK con un JSON de error interno.</strong>
+</li>
+<li><strong>Filtro Catch-All (<code>Exception.class</code>):</strong>
+<ul>
+<li>Captura fallos inesperados y devuelve <code>500 Internal Server Error</code> sanitizado.
+</li>
+<li>Registra el stacktrace completo en los logs del servidor mediante <code>Logger</code>.
+</li>
+</ul>
+</li>
+<li><strong>Desacoplamiento:</strong>
+<ul>
+<li>Defina excepciones de dominio personalizadas (<code>ResourceNotFoundException</code>, <code>BusinessRuleException</code>).
+</li>
+</ul>
+</li>
+</ul>
+
+<footer>Tema 3.4: Manejo Centralizado de Errores</footer>
+            </section>
+
+            <section >
+<h1>Pregunta de Reflexión</h1>
+
+En una arquitectura de microservicios distribuida:
+
+¿De qué manera la captura centralizada de errores debe gestionar los fallos de red y tiempos de espera (<em>Timeouts</em>) para evitar errores en cascada entre servicios?
+
+<footer>Tema 3.4: Manejo Centralizado de Errores</footer>
+            </section>
+
+        </div>
+    </div>
+
+    <!-- Highlight.js and Reveal.js Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.js"></script>
+
+    <script>
+        // Initialize Highlight.js for code syntax coloring
+        hljs.highlightAll();
+
+        // Initialize Reveal.js with modern layout configurations
+        Reveal.initialize({
+            hash: true,
+            respondToHashChanges: true,
+            history: true,
+            transition: 'slide', // none/fade/slide/convex/concave/zoom
+            transitionSpeed: 'default',
+            backgroundTransition: 'fade',
+            width: 960,
+            height: 700,
+            margin: 0.05,
+            minScale: 0.2,
+            maxScale: 2.0,
+            plugins: []
+        });
+    </script>
+</body>
+</html>

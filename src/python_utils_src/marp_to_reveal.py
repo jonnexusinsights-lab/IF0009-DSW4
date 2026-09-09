@@ -187,6 +187,9 @@ def compile_marp_to_reveal(input_path, output_path):
         reveal_slides_html += f'            <section {section_class}>\n{slide_html}\n            </section>\n\n'
         
     # Core Reveal.js HTML Template
+    # Transform section selectors in style_content to increase CSS specificity
+    scoped_style_content = re.sub(r'(^|\s)section\s*\{', r'\1.reveal .slides section {', style_content)
+
     html_output = f"""<!DOCTYPE html>
 <html lang="es">
 <head>
@@ -208,9 +211,21 @@ def compile_marp_to_reveal(input_path, output_path):
 
     <style>
         /* Modern Web Design Aesthetics & Layout Tokens */
+        html, body {{
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background-color: #0b0f19 !important;
+            color: #f8fafc;
+            overflow: hidden;
+        }}
+
         .reveal {{
+            width: 100%;
+            height: 100%;
             font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #0b0f19 0%, #111827 50%, #1e1b4b 100%);
+            background: linear-gradient(135deg, #0b0f19 0%, #111827 50%, #1e1b4b 100%) !important;
             color: #f8fafc;
         }}
         
@@ -220,6 +235,7 @@ def compile_marp_to_reveal(input_path, output_path):
             padding: 50px 70px;
             box-sizing: border-box;
             font-size: 22px;
+            color: #f8fafc;
         }}
         
         /* Centered Cover Slide Layout */
@@ -345,7 +361,7 @@ def compile_marp_to_reveal(input_path, output_path):
         }}
 
         /* Custom style overrides parsed from Marp frontmatter */
-        {style_content}
+        {scoped_style_content}
     </style>
 </head>
 <body>
