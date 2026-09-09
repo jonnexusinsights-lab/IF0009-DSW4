@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VideoRent - Servicio de Reseñas</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="app-header">
+        <div class="logo-container">
+            <h1>VideoRent Portal</h1>
+            <span class="subtitle">IF0009 - Desarrollo de Software IV</span>
+        </div>
+        <nav class="nav-menu">
+            <a href="index.html" class="nav-link">Inicio</a>
+            <a href="peliculas.html" class="nav-link">Servicio Películas</a>
+            <a href="alquileres.html" class="nav-link">Servicio Alquileres</a>
+            <a href="reviews.html" class="nav-link active">Servicio Reseñas</a>
+        </nav>
+    </header>
+
+    <main class="main-container">
+        <section class="page-title-bar">
+            <h2>Servicio de Gestión de Reseñas</h2>
+            <p>Módulo para la administración de opiniones y calificaciones de usuarios.</p>
+        </section>
+
+        <div class="service-layout">
+            <!-- Formulario HTML de Nueva Reseña -->
+            <aside>
+                <section class="card-box">
+                    <h3>Publicar Reseña</h3>
+                    <form action="#" method="POST">
+                        <div class="form-group">
+                            <label for="peliculaId">Película:</label>
+                            <select id="peliculaId" name="peliculaId" required>
+                                <option value="">Seleccione Película</option>
+                                <option value="1">The Matrix</option>
+                                <option value="2">Inception</option>
+                                <option value="3">The Dark Knight</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="calificacion">Calificación (1 a 5 Estrellas):</label>
+                            <select id="calificacion" name="calificacion" required>
+                                <option value="5">5 ★★★★★ (Excelente)</option>
+                                <option value="4">4 ★★★★☆ (Muy Buena)</option>
+                                <option value="3">3 ★★★☆☆ (Buena)</option>
+                                <option value="2">2 ★★☆☆☆ (Regular)</option>
+                                <option value="1">1 ★☆☆☆☆ (Mala)</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="comentario">Comentario / Opinión:</label>
+                            <textarea id="comentario" name="comentario" rows="4" required
+                                      placeholder="Escriba su reseña sobre la película..."></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-block">
+                            Enviar Reseña
+                        </button>
+                    </form>
+                </section>
+            </aside>
+
+            <!-- Tabla de Reseñas Publicadas -->
+            <section class="card-box">
+                <h3>Reseñas de Usuarios Registradas</h3>
+                <table class="table-custom">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Película</th>
+                            <th>Calificación</th>
+                            <th>Comentario</th>
+                            <th>Acción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>#101</td>
+                            <td>The Matrix</td>
+                            <td><span class="pill-status pill-estreno">5 ★★★★★</span></td>
+                            <td>Excelente película, un clásico revolucionario del cine.</td>
+                            <td>
+                                <form action="#" method="POST" style="display:inline;">
+                                    <button type="submit" class="btn btn-danger btn-sm">
+                                        Archivar
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>#102</td>
+                            <td>The Matrix</td>
+                            <td><span class="pill-status pill-info">4 ★★★★☆</span></td>
+                            <td>Efectos especiales y trama sumamente innovadores.</td>
+                            <td>
+                                <form action="#" method="POST" style="display:inline;">
+                                    <button type="submit" class="btn btn-danger btn-sm">
+                                        Archivar
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>#103</td>
+                            <td>Inception</td>
+                            <td><span class="pill-status pill-estreno">5 ★★★★★</span></td>
+                            <td>Obra maestra del cine de ciencia ficción.</td>
+                            <td>
+                                <form action="#" method="POST" style="display:inline;">
+                                    <button type="submit" class="btn btn-danger btn-sm">
+                                        Archivar
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+        </div>
+    </main>
+
+    <footer class="app-footer">
+        <p>&copy; 2026 Universidad de Costa Rica - Carrera de Informática Empresarial</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VideoRent - Portal de Servicios</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="app-header">
+        <div class="logo-container">
+            <h1>VideoRent Portal</h1>
+            <span class="subtitle">IF0009 - Desarrollo de Software IV</span>
+        </div>
+        <nav class="nav-menu">
+            <a href="index.html" class="nav-link active">Inicio</a>
+            <a href="peliculas.html" class="nav-link">Servicio Películas</a>
+            <a href="alquileres.html" class="nav-link">Servicio Alquileres</a>
+            <a href="reviews.html" class="nav-link">Servicio Reseñas</a>
+        </nav>
+    </header>
+
+    <main class="main-container">
+        <section class="page-title-bar">
+            <h2>Arquitectura de Servicios Frontend</h2>
+            <p>
+                Distribución modular de vistas en HTML5 y CSS3 orientada a la 
+                futura migración hacia arquitectura de componentes Angular.
+            </p>
+        </section>
+
+        <section class="services-grid">
+            <!-- Servicio 1: Peliculas -->
+            <article class="service-card">
+                <div>
+                    <h3>Servicio de Películas</h3>
+                    <p>
+                        Gestión del catálogo de películas, géneros, títulos 
+                        estreno y clasificaciones subtituladas.
+                    </p>
+                </div>
+                <a href="peliculas.html" class="btn btn-primary btn-block">
+                    Acceder a Películas
+                </a>
+            </article>
+
+            <!-- Servicio 2: Alquileres -->
+            <article class="service-card">
+                <div>
+                    <h3>Servicio de Alquileres</h3>
+                    <p>
+                        Control de contratos de renta activos, montos diarios 
+                        y registro de devoluciones por cliente.
+                    </p>
+                </div>
+                <a href="alquileres.html" class="btn btn-primary btn-block">
+                    Acceder a Alquileres
+                </a>
+            </article>
+
+            <!-- Servicio 3: Reseñas -->
+            <article class="service-card">
+                <div>
+                    <h3>Servicio de Reseñas</h3>
+                    <p>
+                        Administración de calificaciones y opiniones de clientes 
+                        sobre las películas del catálogo.
+                    </p>
+                </div>
+                <a href="reviews.html" class="btn btn-primary btn-block">
+                    Acceder a Reseñas
+                </a>
+            </article>
+        </section>
+
+        <!-- Seccion Informativa de Arquitectura Angular Futura -->
+        <section class="card-box" style="margin-top: 3rem;">
+            <h3>Estructura de Componentes Futura (Angular)</h3>
+            <p>
+                Cada vista HTML desarrollada en esta carpeta corresponde a un futuro 
+                módulo/componente Angular independiente (`PeliculaComponent`, 
+                `AlquilerComponent`, `ReviewComponent`), garantizando una transición 
+                desacoplada desde plantillas HTML5 puras hacia Single Page Applications (SPA).
+            </p>
+        </section>
+    </main>
+
+    <footer class="app-footer">
+        <p>&copy; 2026 Universidad de Costa Rica - Carrera de Informática Empresarial</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VideoRent - Servicio de Alquileres</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="app-header">
+        <div class="logo-container">
+            <h1>VideoRent Portal</h1>
+            <span class="subtitle">IF0009 - Desarrollo de Software IV</span>
+        </div>
+        <nav class="nav-menu">
+            <a href="index.html" class="nav-link">Inicio</a>
+            <a href="peliculas.html" class="nav-link">Servicio Películas</a>
+            <a href="alquileres.html" class="nav-link active">Servicio Alquileres</a>
+            <a href="reviews.html" class="nav-link">Servicio Reseñas</a>
+        </nav>
+    </header>
+
+    <main class="main-container">
+        <section class="page-title-bar">
+            <h2>Servicio de Gestión de Alquileres</h2>
+            <p>Módulo para el control de rentas activas y procesamiento de devoluciones.</p>
+        </section>
+
+        <div class="service-layout">
+            <!-- Formulario HTML de Nuevo Alquiler -->
+            <aside>
+                <section class="card-box">
+                    <h3>Registrar Nuevo Alquiler</h3>
+                    <form action="#" method="POST">
+                        <div class="form-group">
+                            <label for="cliente">Nombre del Cliente:</label>
+                            <input type="text" id="cliente" name="cliente" required
+                                   placeholder="Ej: Maria Rodriguez">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="peliculaId">Película a Rentar:</label>
+                            <select id="peliculaId" name="peliculaId" required>
+                                <option value="">Seleccione Película</option>
+                                <option value="1">#1 - The Matrix</option>
+                                <option value="2">#2 - Inception</option>
+                                <option value="3">#3 - The Dark Knight</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="monto">Monto Diario (CRC):</label>
+                            <input type="number" id="monto" name="monto" step="0.01" required
+                                   placeholder="Ej: 1500.00">
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-block">
+                            Procesar Contrato
+                        </button>
+                    </form>
+                </section>
+            </aside>
+
+            <!-- Tabla de Alquileres Activos -->
+            <section class="card-box">
+                <h3>Contratos de Alquiler Registrados</h3>
+                <table class="table-custom">
+                    <thead>
+                        <tr>
+                            <th>Contrato #</th>
+                            <th>Cliente</th>
+                            <th>Película</th>
+                            <th>Monto/Día</th>
+                            <th>Estado</th>
+                            <th>Acción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>ALQ-101</td>
+                            <td>Maria Rodriguez</td>
+                            <td>The Matrix</td>
+                            <td>CRC 1,500.00</td>
+                            <td><span class="pill-status pill-activo">ACTIVO</span></td>
+                            <td>
+                                <form action="#" method="POST" style="display:inline;">
+                                    <button type="submit" class="btn btn-success btn-sm">
+                                        Devolver
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>ALQ-102</td>
+                            <td>Carlos Gomez</td>
+                            <td>Inception</td>
+                            <td>CRC 1,200.00</td>
+                            <td><span class="pill-status pill-devuelto">DEVUELTO</span></td>
+                            <td>
+                                <span class="pill-status pill-devuelto">Finalizado</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>ALQ-103</td>
+                            <td>Laura Mora</td>
+                            <td>The Dark Knight</td>
+                            <td>CRC 1,500.00</td>
+                            <td><span class="pill-status pill-activo">ACTIVO</span></td>
+                            <td>
+                                <form action="#" method="POST" style="display:inline;">
+                                    <button type="submit" class="btn btn-success btn-sm">
+                                        Devolver
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+        </div>
+    </main>
+
+    <footer class="app-footer">
+        <p>&copy; 2026 Universidad de Costa Rica - Carrera de Informática Empresarial</p>
+    </footer>
+</body>
+</html>

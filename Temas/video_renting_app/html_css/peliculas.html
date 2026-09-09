@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VideoRent - Servicio de Peliculas</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="app-header">
+        <div class="logo-container">
+            <h1>VideoRent Portal</h1>
+            <span class="subtitle">IF0009 - Desarrollo de Software IV</span>
+        </div>
+        <nav class="nav-menu">
+            <a href="index.html" class="nav-link">Inicio</a>
+            <a href="peliculas.html" class="nav-link active">Servicio Películas</a>
+            <a href="alquileres.html" class="nav-link">Servicio Alquileres</a>
+            <a href="reviews.html" class="nav-link">Servicio Reseñas</a>
+        </nav>
+    </header>
+
+    <main class="main-container">
+        <section class="page-title-bar">
+            <h2>Servicio de Gestión de Películas</h2>
+            <p>Módulo para el registro y visualización del catálogo cinematográfico.</p>
+        </section>
+
+        <div class="service-layout">
+            <!-- Formulario HTML Puro de Registro -->
+            <aside>
+                <section class="card-box">
+                    <h3>Registrar Película</h3>
+                    <form action="#" method="POST">
+                        <div class="form-group">
+                            <label for="titulo">Título de la Película:</label>
+                            <input type="text" id="titulo" name="titulo" required
+                                   placeholder="Ej: Inception">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="genero">Género Cinematográfico:</label>
+                            <select id="genero" name="genero" required>
+                                <option value="">Seleccione Género</option>
+                                <option value="1">Acción</option>
+                                <option value="2">Sci-Fi</option>
+                                <option value="3">Drama</option>
+                                <option value="4">Comedia</option>
+                            </select>
+                        </div>
+
+                        <div class="checkbox-group">
+                            <label>
+                                <input type="checkbox" id="subtitulada" name="subtitulada" checked>
+                                Subtitulada
+                            </label>
+                            <label>
+                                <input type="checkbox" id="estreno" name="estreno" checked>
+                                Estreno
+                            </label>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-block">
+                            Guardar Película
+                        </button>
+                    </form>
+                </section>
+            </aside>
+
+            <!-- Listado Tabular / Catalogo HTML -->
+            <section class="card-box">
+                <h3>Catálogo de Películas Registradas</h3>
+                <table class="table-custom">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Título</th>
+                            <th>Género</th>
+                            <th>Características</th>
+                            <th>Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>#1</td>
+                            <td>The Matrix</td>
+                            <td>Sci-Fi</td>
+                            <td>Subtitulada</td>
+                            <td><span class="pill-status pill-estreno">Estreno</span></td>
+                        </tr>
+                        <tr>
+                            <td>#2</td>
+                            <td>Inception</td>
+                            <td>Sci-Fi</td>
+                            <td>Subtitulada</td>
+                            <td><span class="pill-status pill-info">Catálogo</span></td>
+                        </tr>
+                        <tr>
+                            <td>#3</td>
+                            <td>The Dark Knight</td>
+                            <td>Acción</td>
+                            <td>Doblada / Subtitulada</td>
+                            <td><span class="pill-status pill-estreno">Estreno</span></td>
+                        </tr>
+                        <tr>
+                            <td>#4</td>
+                            <td>Interstellar</td>
+                            <td>Sci-Fi</td>
+                            <td>Subtitulada</td>
+                            <td><span class="pill-status pill-info">Catálogo</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+        </div>
+    </main>
+
+    <footer class="app-footer">
+        <p>&copy; 2026 Universidad de Costa Rica - Carrera de Informática Empresarial</p>
+    </footer>
+</body>
+</html>
