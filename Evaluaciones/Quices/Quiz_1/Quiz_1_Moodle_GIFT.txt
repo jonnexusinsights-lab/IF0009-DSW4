@@ -1,0 +1,58 @@
+// ==============================================================================
+// Cuestionario: Quiz 1 - Fundamentos de Desarrollo Web y Arquitectura RESTful
+// Curso: IF0009 - Desarrollo de Software IV (UCR)
+// Plataforma: Mediación Virtual (Moodle)
+// Formato: GIFT (Moodle Quiz Import)
+// ==============================================================================
+
+$CATEGORY: $course$/Quiz 1 - Arquitectura RESTful
+
+// ------------------------------------------------------------------------------
+// Pregunta 1: Arquitecturas Web: SPA vs MPA y Ciclo de Renderizado
+// ------------------------------------------------------------------------------
+::Q1_SPA_vs_MPA:: [html]Un equipo de arquitectura de software debe seleccionar la arquitectura adecuada para una aplicación web empresarial con alta interactividad. Se requiere reducir el tráfico de red general al navegar entre vistas y evitar recargas completas de la página (<i>full page reload</i>). ¿Cuál es la diferencia fundamental entre una Single-Page Application (SPA) y una Multi-Page Application (MPA) en términos de entrega de contenidos? {
+	~A) La MPA descarga una sola vez la plantilla HTML/JS base y actualiza la interfaz mediante peticiones asíncronas de datos (JSON), mientras que la SPA solicita al servidor un nuevo documento HTML completo en cada interacción. #Incorrecto. Invierte los conceptos; la SPA es la que descarga el cascarón base y realiza peticiones asíncronas de datos JSON.
+	=B) La SPA procesa la lógica de renderizado visual en el navegador del cliente consumiendo APIs RESTful, mientras que la MPA delega el renderizado de cada vista HTML al servidor ante cada petición del usuario. #¡Correcto! En una SPA el renderizado ocurre en el navegador (Client-Side Rendering) consumiendo datos JSON de una API REST, mientras que en una MPA el servidor renderiza la página HTML completa (Server-Side Rendering).
+	~C) La SPA no puede consumir servicios web de back-end debido a restricciones de seguridad del navegador, obligando al uso de arquitecturas monolíticas de renderizado en servidor. #Incorrecto. Las SPAs consumen rutinariamente servicios web RESTful mediante Fetch API o HttpClient.
+	~D) La MPA elimina el uso de hojas de estilo CSS y archivos JavaScript, transfiriendo únicamente etiquetas HTML nativas sin soporte para interactividad. #Incorrecto. Las MPAs tradicionales emplean CSS y JavaScript activamente; la diferencia radica en el ciclo de vida de la página y el renderizado en servidor.
+}
+
+// ------------------------------------------------------------------------------
+// Pregunta 2: Semántica de Verbos HTTP, Idempotencia y Códigos de Estado
+// ------------------------------------------------------------------------------
+::Q2_HTTP_Verbs_REST:: [html]En el diseño de una API RESTful para la gestión de productos en un catálogo de comercio electrónico, se requiere implementar un endpoint para crear un nuevo producto y otro para reemplazar de forma integral la información de un producto existente con ID conocido. ¿Cuál es la especificación correcta de verbos HTTP, propiedad de idempotencia y códigos de respuesta esperados? {
+	=A) Usar POST para creación (retornando 201 Created, no idempotente) y PUT para reemplazo total (retornando 200 OK o 204 No Content, idempotente). #¡Correcto! POST crea recursos (no idempotente, 201 Created) y PUT reemplaza la entidad completa (idempotente, 200 OK / 204 No Content).
+	~B) Usar GET para creación (retornando 200 OK, idempotente) y POST para reemplazo total (retornando 201 Created, no idempotente). #Incorrecto. GET es exclusivo para lectura segura y nunca debe alterar el estado del servidor ni crear entidades.
+	~C) Usar PUT para creación (retornando 404 Not Found) y PATCH para reemplazo total (retornando 500 Internal Server Error). #Incorrecto. 404 y 500 son códigos de error, no de éxito en la creación/actualización.
+	~D) Usar POST tanto para creación como para reemplazo total, garantizando que ambas operaciones sean estrictamente idempotentes por estándar. #Incorrecto. POST no es una operación idempotente por definición técnica del estándar HTTP RFC 7231.
+}
+
+// ------------------------------------------------------------------------------
+// Pregunta 3: Arquitectura en Capas y Patrón de Inyección de Dependencias
+// ------------------------------------------------------------------------------
+::Q3_Layered_Architecture_DI:: [html]En un proyecto de back-end desarrollado con Spring Boot, se aplica una arquitectura desacoplada estructurada en capas (<i>controller</i>, <i>business/service</i>, <i>data/repository</i>). ¿Cuál es la responsabilidad estricta del Controlador REST (<code>@RestController</code>) y cuál es la buena práctica recomendada para inyectar la capa de negocio (<code>@Service</code>)? {
+	~A) El Controlador debe ejecutar directamente las consultas SQL a la base de datos e inyectar el Servicio mediante modificación directa de variables globales estáticas. #Incorrecto. Acceder a la base de datos desde el controlador viola la separación de capas y acopla la persistencia al transporte.
+	=B) El Controlador debe gestionar únicamente la recepción de solicitudes HTTP, mapeo de parámetros/DTOs y retorno de respuestas HTTP, inyectando el Servicio a través del constructor de la clase. #¡Correcto! El controlador actúa como capa de transporte HTTP y la inyección por constructor es la buena práctica oficial en Spring Boot.
+	~C) El Controlador debe contener la lógica de validación de reglas de negocio pesadas y crear instancias del Servicio manualmente utilizando el operador new. #Incorrecto. Instanciar servicios manualmente con new destruye la gestión del contenedor IoC (Inversion of Control) de Spring.
+	~D) El Controlador actúa como repositorio de persistencia JPA y debe estar anotado obligatoriamente con @Entity y @Table. #Incorrecto. @Entity y @Table corresponden exclusivamente a clases del modelo de datos/persistencia JPA.
+}
+
+// ------------------------------------------------------------------------------
+// Pregunta 4: Ejercicio de Rastreo de Código (Code Tracing) - Rutas y Parámetros
+// ------------------------------------------------------------------------------
+::Q4_Code_Tracing_Controller:: [html]Analice detenidamente la siguiente implementación de un controlador en Spring Boot:<br/><br/><pre><code>@RestController\n@RequestMapping("/api/v1/estudiantes")\npublic class EstudianteController \{\n\n    private final EstudianteService estudianteService;\n\n    public EstudianteController(EstudianteService estudianteService) \{\n        this.estudianteService = estudianteService;\n    \}\n\n    @GetMapping("/{id}")\n    public ResponseEntity&lt;EstudianteDto&gt; obtenerPorId(\n            @PathVariable("id") Long id,\n            @RequestParam(value = "incluirDetalles", \n                          defaultValue = "false") boolean incluirDetalles) \{\n        \n        EstudianteDto dto = estudianteService\n            .buscarEstudiante(id, incluirDetalles);\n        return ResponseEntity.ok(dto);\n    \}\n\}</code></pre><br/>Suponga que un cliente efectúa la siguiente solicitud HTTP:<br/><code>GET /api/v1/estudiantes/105?incluirDetalles=true</code><br/><br/>¿Qué valores exactos pasarán como argumentos al método <code>buscarEstudiante</code> del servicio durante la ejecución del controlador? {
+	~A) id = null e incluirDetalles = false, debido a que los parámetros de ruta requieren @RequestParam. #Incorrecto. @PathVariable procesa correctamente variables de plantilla en la URI.
+	=B) id = 105L e incluirDetalles = true, extraídos correctamente de la variable de plantilla URI y del parámetro de consulta (query param). #¡Correcto! @PathVariable extrae id = 105L y @RequestParam convierte "true" al valor booleano true.
+	~C) id = "105" e incluirDetalles = "true", lanzando una excepción ClassCastException por no usar el tipo String. #Incorrecto. Spring realiza la conversión automática de cadenas a tipos primitivos y envoltorios (Long, boolean).
+	~D) id = 0L e incluirDetalles = false, ignorando el parámetro de la URI por falta de la anotación @RequestBody. #Incorrecto. @RequestBody se usa para leer el cuerpo JSON en POST/PUT, no para variables de ruta en GET.
+}
+
+// ------------------------------------------------------------------------------
+// Pregunta 5: Contratos de API RESTful y Documentación con OpenAPI / Swagger
+// ------------------------------------------------------------------------------
+::Q5_OpenAPI_Swagger_Contracts:: [html]Al construir sistemas distribuidos desacoplados, es fundamental establecer un "contrato de API" claro y legible entre los desarrolladores de back-end y front-end. ¿Cuál es el propósito principal de integrar la especificación OpenAPI 3.0 (mediante herramientas como Swagger UI) en una API RESTful? {
+	~A) Compilar el código Java directamente a componentes nativos del navegador web sin necesidad de usar JavaScript. #Incorrecto. Swagger/OpenAPI no transpila Java a JavaScript ni genera código ejecutable para el cliente.
+	=B) Documentar e interactuar dinámicamente con los endpoints, parámetros, estructuras DTO y respuestas HTTP de la API sin necesidad de acceder al código fuente. #¡Correcto! OpenAPI/Swagger proporciona un portal interactivo para consultar endpoints, probar peticiones y entender contratos DTO sin acceder al código fuente.
+	~C) Reemplazar la base de datos relacional del sistema por una interfaz gráfica estática de consulta temporal. #Incorrecto. OpenAPI no reemplaza el motor de persistencia ni la base de datos relacional.
+	~D) Bloquear la ejecución de peticiones HTTP que no provengan del servidor local Tomcat. #Incorrecto. OpenAPI no actúa como un firewall de restricciones de origen ni bloquea peticiones HTTP.
+}

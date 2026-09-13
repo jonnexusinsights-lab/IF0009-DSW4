@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <title>Tema 4.3.4 - TypeScript Avanzado, Genéricos y Utility Types - Desarrollo de Software IV</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <!-- Reveal.js Base Stylesheets -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reset.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.css">
+    
+    <!-- Tokyo Night Dark Theme for Code Syntax Resaltation -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/tokyo-night-dark.min.css">
+
+    <!-- Premium Google Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* Modern Web Design Aesthetics & Layout Tokens */
+        html, body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background-color: #0b0f19 !important;
+            color: #f8fafc;
+            overflow: hidden;
+        }
+
+        .reveal {
+            width: 100%;
+            height: 100%;
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0b0f19 0%, #111827 50%, #1e1b4b 100%) !important;
+            color: #f8fafc;
+        }
+        
+        .reveal .slides section {
+            font-family: 'Outfit', 'Inter', sans-serif;
+            text-align: left;
+            padding: 50px 70px;
+            box-sizing: border-box;
+            font-size: 22px;
+            color: #f8fafc;
+        }
+        
+        /* Centered Cover Slide Layout */
+        .reveal .slides section.lead-slide {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+        
+        /* Premium Typography Styles */
+        .reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6 {
+            font-family: 'Outfit', sans-serif;
+            text-transform: none;
+            color: #38bdf8;
+            font-weight: 800;
+            text-shadow: none;
+        }
+        
+        .reveal h1 {
+            font-size: 1.7em;
+            margin-bottom: 12px;
+            border-bottom: 2px solid #3b82f6;
+            padding-bottom: 10px;
+        }
+        
+        .reveal .lead-slide h1 {
+            border-bottom: none;
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            color: #38bdf8;
+        }
+        
+        .reveal h2 {
+            font-size: 1.25em;
+            color: #818cf8;
+            font-weight: 700;
+            margin-top: 0px;
+        }
+        
+        .reveal .lead-slide h2 {
+            font-size: 1.55em;
+            color: #818cf8;
+            margin-bottom: 30px;
+        }
+        
+        .reveal h3 {
+            font-size: 1.1em;
+            color: #a78bfa;
+        }
+        
+        /* List and Text Formatting */
+        .reveal p, .reveal li {
+            color: #cbd5e1;
+            line-height: 1.6;
+        }
+        
+        .reveal ul {
+            list-style-type: square;
+            margin-left: 1.5em;
+        }
+        
+        .reveal li {
+            margin-bottom: 12px;
+        }
+        
+        .reveal strong {
+            color: #f43f5e;
+            font-weight: 600;
+        }
+        
+        .reveal em {
+            color: #fb7185;
+            font-style: italic;
+        }
+        
+        .reveal footer {
+            font-size: 0.5em;
+            color: #6b7280;
+            position: absolute;
+            bottom: 20px;
+            right: 50px;
+        }
+        
+        /* Code Block Containers and Inlines */
+        .reveal code {
+            font-family: 'Fira Code', monospace;
+            background-color: #030712;
+            color: #38bdf8;
+            border-radius: 4px;
+            padding: 2px 8px;
+            font-size: 0.85em;
+        }
+        
+        .reveal pre {
+            background-color: #030712 !important;
+            border: 1px solid #1f2937;
+            border-radius: 10px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
+            width: 100%;
+            margin: 20px 0;
+            box-sizing: border-box;
+        }
+        
+        .reveal pre code {
+            background-color: transparent;
+            color: inherit;
+            font-size: 0.8em;
+            line-height: 1.55;
+            padding: 18px;
+            max-height: 520px;
+        }
+        
+        /* Control Nav Arrows & Progress Bar */
+        .reveal .controls-arrow {
+            color: #38bdf8 !important;
+        }
+        
+        .reveal .progress span {
+            background-color: #38bdf8 !important;
+        }
+
+        /* Custom style overrides parsed from Marp frontmatter */
+        .reveal .slides section {
+  background-color: #0f172a;
+  color: #f8fafc;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+}
+h1, h2 {
+  color: #38bdf8;
+}
+h3 {
+  color: #7dd3fc;
+}
+footer {
+  color: #64748b;
+}
+code {
+  background-color: #1e293b;
+  color: #38bdf8;
+}
+pre code {
+  background-color: transparent;
+  color: #f8fafc;
+}
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <section >
+<h1>IF0009 - Desarrollo de Software IV</h1>
+
+<h2>Tema 4.3.4: TypeScript Avanzado, Genéricos, Tipos de Utilidad y Decoradores</h2>
+
+Universidad de Costa Rica <br>
+Sede del Atlántico - Recinto Paraíso <br>
+Carrera de Informática Empresarial <br>
+<strong>Profesor:</strong> Mag. Jonathan Granados C. <br>
+<strong>Semestre:</strong> II-2026
+
+<footer>UCR - Informática Empresarial</footer>
+            </section>
+
+            <section >
+<h1>Genéricos en TypeScript (<code>&lt;T&gt;</code>)</h1>
+
+Permiten crear estructuras y componentes reutilizables sin perder el rigor del tipado estático:
+
+<pre><code class="language-typescript">// Interface Genérica para Respuestas de APIs Paginadas
+export interface RespuestaPaginada&lt;T&gt; {
+    contenido: T[];
+    totalElementos: number;
+    paginaActual: number;
+}</code></pre>
+
+<ul>
+<li><strong>Restricciones (<code>extends</code>):</strong>
+<ul>
+<li>Limitan los tipos pasados al parámetro genérico: <code>&lt;T extends { id: number }&gt;</code>.
+</li>
+</ul>
+</li>
+</ul>
+
+<footer>Tema 4.3.4: TypeScript Avanzado</footer>
+            </section>
+
+            <section >
+<h1>Type Narrowing y Type Guards</h1>
+
+<ul>
+<li><strong>Estrechamiento de Tipos (<em>Type Narrowing</em>):</strong>
+<ul>
+<li>Permite operar de forma segura con Tipos de Unión (<code>string | number</code>).
+</li>
+</ul>
+</li>
+<li><strong>Operadores Nativo y Predicados de Tipo (<code>is</code>):</strong>
+</li>
+</ul>
+
+<pre><code class="language-typescript">// Predicado de Tipo (Type Guard Personalizado)
+export function esVehiculo(objeto: any): objeto is VehiculoDto {
+    return objeto &amp;&amp; typeof objeto.placa === 'string';
+}</code></pre>
+
+<footer>Tema 4.3.4: TypeScript Avanzado</footer>
+            </section>
+
+            <section >
+<h1>Tipos de Utilidad (<em>Utility Types</em>)</h1>
+
+Manipulación y transformación de tipos existentes sin duplicación de código:
+
+<ul>
+<li><strong><code>Partial&lt;T&gt;</code>:</strong> Convierte todas las propiedades en opcionales (<code>?</code>). Ideal para <code>PATCH</code>.
+</li>
+<li><strong><code>Required&lt;T&gt;</code>:</strong> Hace obligatorias todas las propiedades.
+</li>
+<li><strong><code>Readonly&lt;T&gt;</code>:</strong> Inmutabilidad total de propiedades.
+</li>
+<li><strong><code>Pick&lt;T, K&gt;</code>:</strong> Selecciona un subconjunto de claves <code>K</code>.
+</li>
+<li><strong><code>Omit&lt;T, K&gt;</code>:</strong> Omite un subconjunto de claves <code>K</code>. Ideal para DTOs de creación sin <code>id</code>.
+</li>
+<li><strong><code>Record&lt;K, T&gt;</code>:</strong> Diccionarios / mapas tipados.
+</li>
+</ul>
+
+<footer>Tema 4.3.4: TypeScript Avanzado</footer>
+            </section>
+
+            <section >
+<h1>Servicio Genérico REST con Utility Types</h1>
+
+<pre><code class="language-typescript">export type CrearVehiculoDto = Omit&lt;VehiculoDto, 'id'&gt;;
+export type ActualizarVehiculoDto = Partial&lt;CrearVehiculoDto&gt;;
+
+export class ClienteRestGenerico&lt;T extends { id: number }&gt; {
+    constructor(private endpointBase: string) {}
+
+    async buscarPorId(id: number): Promise&lt;T&gt; {
+        const res = await fetch(`${this.endpointBase}/${id}`);
+        return await res.json();
+    }
+
+    async actualizarParcial(id: number, cambios: Partial&lt;T&gt;): Promise&lt;T&gt; {
+        const res = await fetch(`${this.endpointBase}/${id}`, {
+            method: 'PATCH',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(cambios)
+        });
+        return await res.json();
+    }
+}</code></pre>
+
+<footer>Tema 4.3.4: TypeScript Avanzado</footer>
+            </section>
+
+            <section >
+<h1>Decoradores y Metaprogramación</h1>
+
+Anotaciones declarativas (precedidas por <code>@</code>) para extender componentes. Base de la arquitectura de <strong>Angular</strong>:
+
+<pre><code class="language-typescript">// Uso Declarativo de Decoradores en Angular (Vista previa)
+@Component({
+  selector: 'app-vehiculo-lista',
+  templateUrl: './vehiculo-lista.component.html'
+})
+export class VehiculoListaComponent {
+  // Propiedades e inyección de servicios
+}</code></pre>
+
+<footer>Tema 4.3.4: TypeScript Avanzado</footer>
+            </section>
+
+            <section >
+<h1>Antipatrones Avanzados</h1>
+
+<ul>
+<li><strong>Aserciones Forzadas (<code>as Type</code>):</strong>
+<ul>
+<li>Forzar tipos sin validaciones runtime oculta bugs silenciosos.
+</li>
+</ul>
+</li>
+<li><strong>Abuso de Genéricos Innecesarios:</strong>
+<ul>
+<li>Crear múltiples parámetros <code>&lt;T, U, V&gt;</code> cuando interfaces simples resuelven el caso.
+</li>
+</ul>
+</li>
+<li><strong>Confundir <code>Omit</code> con <code>Pick</code>:</strong>
+<ul>
+<li>Usar <code>Omit</code> para seleccionar 2 campos de una estructura con 20 propiedades.
+</li>
+</ul>
+</li>
+</ul>
+
+<footer>Tema 4.3.4: TypeScript Avanzado</footer>
+            </section>
+
+            <section >
+<h1>Pregunta de Reflexión</h1>
+
+En la arquitectura del framework Angular:
+
+¿De qué manera la combinación de <strong>Genéricos</strong> (en servicios <code>HttpClient.get&lt;T&gt;()</code>), <strong>Utility Types</strong> (en el manejo de formularios reactivos) y <strong>Decoradores</strong> (<code>@Component</code>, <code>@Injectable</code>) permite construir aplicaciones empresariales escalables con autocompletado y detección de errores en tiempo de compilación?
+
+<footer>Tema 4.3.4: TypeScript Avanzado</footer>
+            </section>
+
+        </div>
+    </div>
+
+    <!-- Highlight.js and Reveal.js Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.js"></script>
+
+    <script>
+        // Initialize Highlight.js for code syntax coloring
+        hljs.highlightAll();
+
+        // Initialize Reveal.js with modern layout configurations
+        Reveal.initialize({
+            hash: true,
+            respondToHashChanges: true,
+            history: true,
+            transition: 'slide', // none/fade/slide/convex/concave/zoom
+            transitionSpeed: 'default',
+            backgroundTransition: 'fade',
+            width: 960,
+            height: 700,
+            margin: 0.05,
+            minScale: 0.2,
+            maxScale: 2.0,
+            plugins: []
+        });
+    </script>
+</body>
+</html>

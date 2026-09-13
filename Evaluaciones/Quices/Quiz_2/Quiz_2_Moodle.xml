@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <!-- Categoría del Banco de Preguntas en Mediación Virtual -->
+  <question type="category">
+    <category>
+      <text>$course$/top/Quiz 2 - Persistencia Avanzada y Seguridad JWT</text>
+    </category>
+    <info format="moodle_auto_format">
+      <text>Preguntas del Quiz 2: Persistencia Avanzada, Hibernate Internals, Manejo de Errores y Seguridad JWT (IF0009 - Desarrollo de Software IV)</text>
+    </info>
+  </question>
+
+  <!-- Pregunta 1 -->
+  <question type="multichoice">
+    <name>
+      <text>Q1 - JPA/Hibernate: Ciclo de Vida y Dirty Checking</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Un desarrollador ejecuta un método anotado con <code>@Transactional</code> en la capa de servicio para actualizar el precio de un producto en el sistema. Dentro del método, busca la entidad por ID mediante <code>productoRepository.findById(id)</code>, ejecuta la modificación mediante el método modificador <code>producto.setPrecio(nuevoPrecio)</code> y <strong>NO</strong> invoca explícitamente el método <code>productoRepository.save(producto)</code>. Sin embargo, al concluir la ejecución de la transacción, la base de datos ejecuta automáticamente la instrucción SQL <code>UPDATE</code>.</p><p>¿Cuál es el mecanismo interno de Hibernate que produce esta sincronización implícita y en qué estado se encuentra la entidad durante la transacción?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>En estado <em>Persistent</em> (asociada al Contexto de Persistencia), Hibernate ejecuta el algoritmo <em>Dirty Checking</em> al momento del <em>flush</em> automático y sincroniza las modificaciones sin requerir llamadas explícitas a <code>save()</code>.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>5.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="0" format="html">
+      <text><![CDATA[La entidad se encuentra en estado <em>Transient</em> y Spring Data JPA dispara un evento asíncrono que recrea la tabla en la base de datos mediante sentencias DDL.]]></text>
+      <feedback format="html">
+        <text><![CDATA[Incorrecto. El estado <em>Transient</em> corresponde a objetos instanciados con <code>new</code> sin identificador ni contexto de persistencia.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="100" format="html">
+      <text><![CDATA[La entidad se encuentra en estado <em>Persistent</em> (asociada al Contexto de Persistencia), por lo que Hibernate realiza <em>Dirty Checking</em> al ejecutar el <em>flush</em> automático y sincroniza los cambios en la base de datos sin requerir <code>save()</code>.]]></text>
+      <feedback format="html">
+        <text><![CDATA[¡Correcto! Al estar en estado <em>Persistent</em>, Hibernate realiza <em>Dirty Checking</em> durante el <em>flush</em> automático de la transacción e invalida el estado emitiendo la sentencia SQL <code>UPDATE</code>.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[La entidad se encuentra en estado <em>Detached</em> y el repositorio activa una captura de excepciones de base de datos que reintenta la modificación mediante disparadores (<em>triggers</em>) SQL.]]></text>
+      <feedback format="html">
+        <text><![CDATA[Incorrecto. Las entidades en estado <em>Detached</em> requieren una llamada explícita a <code>merge()</code> para reconectarse a la sesión.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[El comportamiento se debe a un error de compilación de Hibernate; las entidades en JPA nunca pueden sincronizarse con la base de datos a menos que se anote la clase con <code>@DynamicUpdate</code>.]]></text>
+      <feedback format="html">
+        <text><![CDATA[Incorrecto. <em>Dirty Checking</em> es una característica central de JPA/Hibernate y no exige <code>@DynamicUpdate</code> para operar.]]></text>
+      </feedback>
+    </answer>
+  </question>
+
+  <!-- Pregunta 2 -->
+  <question type="multichoice">
+    <name>
+      <text>Q2 - Rendimiento ORM: Problema N+1 SELECT y JOIN FETCH</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>En una API REST de logística y envíos, un endpoint <code>@GetMapping("/api/v1/empresas")</code> retorna una lista de 50 empresas de transporte. Cada entidad <code>EmpresaLogistica</code> mantiene una relación <code>@OneToMany</code> mapeada hacia su colección de <code>Vehiculo</code> con la estrategia por defecto (<code>FetchType.LAZY</code>). Al consultar la lista completa de empresas junto con sus vehículos asociados para la respuesta JSON, las herramientas de perfilado muestran que Hibernate ejecuta <strong>51 consultas SQL <code>SELECT</code> independientes</strong> para atender una sola petición HTTP.</p><p>¿Cómo se denomina esta falla de rendimiento en mapeadores relacionales y cuál es la solución técnica más eficiente mediante Spring Data JPA?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Se denomina Problema N+1 SELECT y se soluciona ejecutando un <code>JOIN FETCH</code> en JPQL para cargar la entidad y sus colecciones asociadas en un único viaje SQL a la base de datos.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>5.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="0" format="html">
+      <text><![CDATA[Se denomina <em>Heap Overflow Failure</em> y se soluciona cambiando la anotación de la relación a <code>@OneToOne(fetch = FetchType.EAGER)</code>.]]></text>
+      <feedback format="html">
+        <text><![CDATA[Incorrecto. Modificar a <code>@OneToOne</code> altera la cardinalidad del modelo de dominio y no soluciona el patrón de carga.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="100" format="html">
+      <text><![CDATA[Se denomina <em>Problema N+1 SELECT</em> y se soluciona definiendo una consulta JPQL con <code>JOIN FETCH</code> (ej. <code>@Query("SELECT e FROM EmpresaLogistica e JOIN FETCH e.vehiculos")</code>) para recuperar las empresas y sus colecciones en una única consulta SQL.]]></text>
+      <feedback format="html">
+        <text><![CDATA[¡Correcto! El problema N+1 SELECT genera 1 consulta principal y N secundarias. Se resuelve mediante <code>JOIN FETCH</code> en JPQL para traer los datos en un solo <em>round-trip</em>.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[Se denomina <em>Deadlock de Persistencia</em> y se resuelve eliminando la anotación <code>@Entity</code> e instanciando un controlador nativo JDBC con cursores en memoria.]]></text>
+      <feedback format="html">
+        <text><![CDATA[Incorrecto. No se trata de un bloqueo de concurrencia (<em>Deadlock</em>) ni exige abandonar JPA.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[Se denomina <em>Circular Dependency Defect</em> y se remedia agregando la directiva <code>@JsonIgnoreProperties</code> en la interfaz del repositorio de datos.]]></text>
+      <feedback format="html">
+        <text><![CDATA[Incorrecto. <code>@JsonIgnoreProperties</code> evita bucles infinitos en serialización Jackson, pero no resuelve la ejecución de consultas SQL secundarias.]]></text>
+      </feedback>
+    </answer>
+  </question>
+
+  <!-- Pregunta 3 -->
+  <question type="multichoice">
+    <name>
+      <text>Q3 - Rastreo de Código: Manejo Centralizado de Excepciones @RestControllerAdvice</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Analice la siguiente implementación de un manejador centralizado de excepciones en Spring Boot:</p>
+<pre><code>@RestControllerAdvice
+public class GlobalExceptionHandler {
+
+    @ExceptionHandler(RecursoNoEncontradoException.class)
+    public ResponseEntity&lt;Map&lt;String, Object&gt;&gt; manejarNoEncontrado(
+            RecursoNoEncontradoException ex) {
+        
+        Map&lt;String, Object&gt; error = new HashMap&lt;&gt;();
+        error.put("timestamp", LocalDateTime.now());
+        error.put("status", 404);
+        error.put("error", "Not Found");
+        error.put("message", ex.getMessage());
+        
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
+    }
+}</code></pre>
+<p>Suponga que un cliente realiza una consulta HTTP a un endpoint inexistente y el servicio lanza <code>throw new RecursoNoEncontradoException("El vehículo con placa ABC-123 no existe")</code>.</p>
+<p>¿Qué inconsistencia de protocolo ocurre en la respuesta entregada al cliente HTTP al ejecutar este código?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>El cliente recibe el código de estado <code>HTTP 400 Bad Request</code> debido a que <code>ResponseEntity.status(...)</code> fija la cabecera real HTTP, desalineándose del valor 404 declarado en el cuerpo JSON.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>5.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+      <text><![CDATA[El cliente recibe una cabecera con código de estado <code>HTTP 400 Bad Request</code>, a pesar de que el cuerpo JSON interno indica <code>"status": 404</code>, debido a que <code>ResponseEntity.status(...)</code> fija el código HTTP final del paquete.]]></text>
+      <feedback format="html">
+        <text><![CDATA[¡Correcto! <code>ResponseEntity.status(...)</code> define la cabecera real HTTP de la red (HTTP 400), creando una discrepancia de protocolo contra el cuerpo JSON (404).]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[El cliente recibe un código <code>HTTP status 500 Internal Server Error</code> porque las excepciones personalizadas no permiten el retorno de colecciones <code>Map</code>.]]></text>
+      <feedback format="html">
+        <text><![CDATA[Incorrecto. Spring Boot serializa mapas Java a JSON mediante la librería Jackson sin problemas.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[El cliente recibe una respuesta exitosa <code>HTTP status 200 OK</code> con un cuerpo vacío debido a la falta de la anotación <code>@ResponseBody</code>.]]></text>
+      <feedback format="html">
+        <text><![CDATA[Incorrecto. <code>@RestControllerAdvice</code> incluye sintácticamente <code>@ResponseBody</code> implícito para todos sus métodos.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[El código genera una excepción de compilación <code>TypeMismatchException</code> en Spring Boot porque <code>@ExceptionHandler</code> solo admite tipos primitivos.]]></text>
+      <feedback format="html">
+        <text><![CDATA[Incorrecto. <code>@ExceptionHandler</code> acepta cualquier tipo de excepción personalizada que derive de <code>Throwable</code>.]]></text>
+      </feedback>
+    </answer>
+  </question>
+
+  <!-- Pregunta 4 -->
+  <question type="multichoice">
+    <name>
+      <text>Q4 - Rastreo de Código: Seguridad Spring Security & RBAC</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Examine la siguiente configuración de la cadena de filtros de seguridad en un sistema Spring Boot 3:</p>
+<pre><code>@Bean
+public SecurityFilterChain filterChain(HttpSecurity http) 
+        throws Exception {
+    http
+        .csrf(csrf -&gt; csrf.disable())
+        .authorizeHttpRequests(auth -&gt; auth
+            .requestMatchers("/api/v1/auth/**").permitAll()
+            .requestMatchers(HttpMethod.GET, "/api/v1/envios/**")
+                .hasAnyRole("CONDUCTOR", "ADMIN")
+            .requestMatchers(HttpMethod.POST, "/api/v1/envios/**")
+                .hasRole("ADMIN")
+            .anyRequest().authenticated()
+        )
+        .sessionManagement(sess -&gt; sess
+            .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+        );
+    return http.build();
+}</code></pre>
+<p>Un usuario autenticado cuyos datos en el token JWT otorgan la autoridad <code>ROLE_CONDUCTOR</code> intenta enviar la siguiente solicitud HTTP a la API REST:</p>
+<p><code>POST /api/v1/envios/</code> con el cuerpo JSON de un nuevo paquete.</p>
+<p>¿Cuál es el resultado exacto generado por el módulo de seguridad ante esta solicitud?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>La capa de seguridad rechaza la petición con <code>HTTP status 403 Forbidden</code> porque <code>ROLE_CONDUCTOR</code> no posee el rol <code>ROLE_ADMIN</code> exigido para el verbo <code>POST</code>.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>5.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="0" format="html">
+      <text><![CDATA[La solicitud se procesa con éxito retornando <code>201 Created</code>, ya que la directiva <code>permitAll()</code> al inicio del bloque anula los controles posteriores.]]></text>
+      <feedback format="html">
+        <text><![CDATA[Incorrecto. <code>permitAll()</code> sólo aplica para las rutas autorizadas expresamente bajo <code>/api/v1/auth/**</code>.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="100" format="html">
+      <text><![CDATA[La capa de seguridad deniega el acceso y retorna el código de estado <code>HTTP status 403 Forbidden</code>, debido a que el rol <code>ROLE_CONDUCTOR</code> no cuenta con la autoridad <code>ROLE_ADMIN</code> exigida para el verbo <code>POST</code> en esa ruta.]]></text>
+      <feedback format="html">
+        <text><![CDATA[¡Correcto! Al no tener el rol <code>ROLE_ADMIN</code> requerido para <code>POST</code>, Spring Security rechaza el acceso devolviendo <code>HTTP 403 Forbidden</code>.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[La solicitud redirige automáticamente al usuario a una página HTML de inicio de sesión con el código <code>HTTP 302 Found</code>.]]></text>
+      <feedback format="html">
+        <text><![CDATA[Incorrecto. En arquitecturas <em>stateless</em> REST no se utilizan redirecciones 302 a formularios HTML de login.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[Spring Security genera una excepción runtime <code>ExpiredJwtException</code> y reinicia el contenedor embebido Tomcat.]]></text>
+      <feedback format="html">
+        <text><![CDATA[Incorrecto. Faltas de autorización deniegan el acceso con 403 y no reinician los servidores web.]]></text>
+      </feedback>
+    </answer>
+  </question>
+
+  <!-- Pregunta 5 -->
+  <question type="multichoice">
+    <name>
+      <text>Q5 - Seguridad JWT: Anatomía y Mecanismo de Revocado (RFC 7519)</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Una empresa implementa autenticación mediante JSON Web Tokens (JWT) con arquitectura <em>stateless</em>. Durante una prueba de penetración, el equipo de ciberseguridad descubre que si un cliente realiza un cierre de sesión (<em>logout</em>) en la interfaz web eliminando el token de su almacenamiento local (<code>localStorage</code>), una cadena JWT interceptada previamente por un tercero continúa siendo aceptada como válida por los endpoints del back-end hasta que se cumpla su tiempo de expiración (<code>exp</code>).</p><p>¿A qué característica del estándar JWT se debe este comportamiento y cuál es la solución técnica recomendada para permitir la invalidación inmediata de tokens?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Los JWTs son tokens autosuficientes de estado cliente (stateless). Se soluciona implementando una lista negra de tokens revocados (Token Blacklist / Denylist) consultando el identificador jti en el filtro de autenticación.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>5.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="0" format="html">
+      <text><![CDATA[Ocurre porque los JWTs no soportan firma digital. Se soluciona cambiando la codificación de Base64URL a XML estático.]]></text>
+      <feedback format="html">
+        <text><![CDATA[Incorrecto. Los JWTs se firman digitalmente; la falta de revocado automático responde a su diseño <em>stateless</em> autocontenido.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="100" format="html">
+      <text><![CDATA[Ocurre porque los JWTs son tokens autosuficientes de estado cliente (<em>stateless</em>) y el servidor no guarda sesión. Se resuelve implementando una lista de revocado (<em>Token Blacklist / Denylist</em>) que registre los identificadores <code>jti</code> invalidados y los verifique en el filtro <code>JwtAuthenticationFilter</code>.]]></text>
+      <feedback format="html">
+        <text><![CDATA[¡Correcto! Al ser tokens sin estado, la única forma de revocación inmediata previa a la expiración es mantener una lista negra (<em>Blacklist</em>) de <code>jti</code>.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[Ocurre porque se omitió la anotación <code>@CrossOrigin</code> en el controlador de autenticación. Se soluciona activando las cookies de sesión tradicionales <code>JSESSIONID</code>.]]></text>
+      <feedback format="html">
+        <text><![CDATA[Incorrecto. <code>@CrossOrigin</code> gestiona CORS en navegadores y no tiene relación con la validez de los tokens JWT.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[Ocurre porque la clave secreta HMAC-SHA256 ha caducado en el servidor. Se soluciona reiniciando la aplicación Spring Boot.]]></text>
+      <feedback format="html">
+        <text><![CDATA[Incorrecto. Reiniciar el servidor no invalida firmas JWT que compartan la misma clave secreta.]]></text>
+      </feedback>
+    </answer>
+  </question>
+
+</quiz>

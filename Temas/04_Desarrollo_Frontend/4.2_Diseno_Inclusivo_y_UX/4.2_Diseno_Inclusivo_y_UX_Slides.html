@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <title>Tema 4.2 - Diseño Inclusivo, UX, Internacionalización y Accesibilidad Web - Desarrollo de Software IV</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <!-- Reveal.js Base Stylesheets -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reset.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.css">
+    
+    <!-- Tokyo Night Dark Theme for Code Syntax Resaltation -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/tokyo-night-dark.min.css">
+
+    <!-- Premium Google Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* Modern Web Design Aesthetics & Layout Tokens */
+        html, body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background-color: #0b0f19 !important;
+            color: #f8fafc;
+            overflow: hidden;
+        }
+
+        .reveal {
+            width: 100%;
+            height: 100%;
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0b0f19 0%, #111827 50%, #1e1b4b 100%) !important;
+            color: #f8fafc;
+        }
+        
+        .reveal .slides section {
+            font-family: 'Outfit', 'Inter', sans-serif;
+            text-align: left;
+            padding: 50px 70px;
+            box-sizing: border-box;
+            font-size: 22px;
+            color: #f8fafc;
+        }
+        
+        /* Centered Cover Slide Layout */
+        .reveal .slides section.lead-slide {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+        
+        /* Premium Typography Styles */
+        .reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6 {
+            font-family: 'Outfit', sans-serif;
+            text-transform: none;
+            color: #38bdf8;
+            font-weight: 800;
+            text-shadow: none;
+        }
+        
+        .reveal h1 {
+            font-size: 1.7em;
+            margin-bottom: 12px;
+            border-bottom: 2px solid #3b82f6;
+            padding-bottom: 10px;
+        }
+        
+        .reveal .lead-slide h1 {
+            border-bottom: none;
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            color: #38bdf8;
+        }
+        
+        .reveal h2 {
+            font-size: 1.25em;
+            color: #818cf8;
+            font-weight: 700;
+            margin-top: 0px;
+        }
+        
+        .reveal .lead-slide h2 {
+            font-size: 1.55em;
+            color: #818cf8;
+            margin-bottom: 30px;
+        }
+        
+        .reveal h3 {
+            font-size: 1.1em;
+            color: #a78bfa;
+        }
+        
+        /* List and Text Formatting */
+        .reveal p, .reveal li {
+            color: #cbd5e1;
+            line-height: 1.6;
+        }
+        
+        .reveal ul {
+            list-style-type: square;
+            margin-left: 1.5em;
+        }
+        
+        .reveal li {
+            margin-bottom: 12px;
+        }
+        
+        .reveal strong {
+            color: #f43f5e;
+            font-weight: 600;
+        }
+        
+        .reveal em {
+            color: #fb7185;
+            font-style: italic;
+        }
+        
+        .reveal footer {
+            font-size: 0.5em;
+            color: #6b7280;
+            position: absolute;
+            bottom: 20px;
+            right: 50px;
+        }
+        
+        /* Code Block Containers and Inlines */
+        .reveal code {
+            font-family: 'Fira Code', monospace;
+            background-color: #030712;
+            color: #38bdf8;
+            border-radius: 4px;
+            padding: 2px 8px;
+            font-size: 0.85em;
+        }
+        
+        .reveal pre {
+            background-color: #030712 !important;
+            border: 1px solid #1f2937;
+            border-radius: 10px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
+            width: 100%;
+            margin: 20px 0;
+            box-sizing: border-box;
+        }
+        
+        .reveal pre code {
+            background-color: transparent;
+            color: inherit;
+            font-size: 0.8em;
+            line-height: 1.55;
+            padding: 18px;
+            max-height: 520px;
+        }
+        
+        /* Control Nav Arrows & Progress Bar */
+        .reveal .controls-arrow {
+            color: #38bdf8 !important;
+        }
+        
+        .reveal .progress span {
+            background-color: #38bdf8 !important;
+        }
+
+        /* Custom style overrides parsed from Marp frontmatter */
+        .reveal .slides section {
+  background-color: #0f172a;
+  color: #f8fafc;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+}
+h1, h2 {
+  color: #38bdf8;
+}
+h3 {
+  color: #7dd3fc;
+}
+footer {
+  color: #64748b;
+}
+code {
+  background-color: #1e293b;
+  color: #38bdf8;
+}
+pre code {
+  background-color: transparent;
+  color: #f8fafc;
+}
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <section >
+<h1>IF0009 - Desarrollo de Software IV</h1>
+
+<h2>Tema 4.2: Diseño Inclusivo, Experiencia de Usuario (UX), Internacionalización (i18n) y Accesibilidad Web (A11y)</h2>
+
+Universidad de Costa Rica <br>
+Sede del Atlántico - Recinto Paraíso <br>
+Carrera de Informática Empresarial <br>
+<strong>Profesor:</strong> Mag. Jonathan Granados C. <br>
+<strong>Semestre:</strong> II-2026
+
+<footer>UCR - Informática Empresarial</footer>
+            </section>
+
+            <section >
+<h1>UI vs UX: Estética vs Experiencia</h1>
+
+<ul>
+<li><strong>Interfaz de Usuario (UI - User Interface):</strong>
+<ul>
+<li>Componentes gráficos, tipografía, paleta de colores, controles y estética visual.
+</li>
+</ul>
+</li>
+<li><strong>Experiencia de Usuario (UX - User Experience):</strong>
+<ul>
+<li>Respuesta emocional, grado de eficiencia y satisfacción integral al interactuar con el sistema.
+</li>
+</ul>
+</li>
+<li><strong>Los 5 Pilares de Usabilidad de Nielsen (U8y):</strong>
+<ol>
+<li>Facilidad de Aprendizaje (<em>Learnability</em>).
+</li>
+<li>Eficiencia de Uso (<em>Efficiency</em>).
+</li>
+<li>Facilidad de Memorización (<em>Memorability</em>).
+</li>
+<li>Tolerancia a Errores (<em>Errors</em>).
+</li>
+<li>Satisfacción de Uso (<em>Satisfaction</em>).
+</li>
+</ol>
+</li>
+</ul>
+
+<footer>Tema 4.2: Diseño Inclusivo, UX, i18n y A11y</footer>
+            </section>
+
+            <section >
+<h1>Internacionalización (i18n) y Localización (l10n)</h1>
+
+<ul>
+<li><strong>Internacionalización (i18n):</strong>
+<ul>
+<li>Diseño arquitectónico desacoplado para soportar múltiples lenguajes y regiones sin alterar el código fuente base.
+</li>
+</ul>
+</li>
+<li><strong>Localización (l10n):</strong>
+<ul>
+<li>Adaptación regional de textos, formatos de fecha, moneda, zona horaria y números (<code>Intl.DateTimeFormat</code>).
+</li>
+</ul>
+</li>
+<li><strong>Regla de Oro HTML:</strong>
+<ul>
+<li>Actualizar el atributo de idioma global <code>&lt;html lang="es"&gt;</code> / <code>&lt;html lang="en"&gt;</code> para guiar a los motores de síntesis de voz.
+</li>
+</ul>
+</li>
+</ul>
+
+<footer>Tema 4.2: Diseño Inclusivo, UX, i18n y A11y</footer>
+            </section>
+
+            <section >
+<h1>Accesibilidad Web (A11y) y Estándar WCAG 2.1</h1>
+
+Garantiza que la web sea utilizable por personas con diversas capacidades sensoriales, motoras o cognitivas.
+
+<strong>Principios WCAG 2.1 (POUR):</strong>
+
+<ul>
+<li><strong>P - Perceptible:</strong> Texto alternativo (<code>alt</code>), subtítulos y contraste de color mínimo de <strong>4.5:1</strong> (Nivel AA).
+</li>
+<li><strong>O - Operable:</strong> Navegación 100% mediante <strong>teclado</strong> (<code>Tab</code>, <code>Enter</code>, <code>Space</code>) e indicadores de foco visibles.
+</li>
+<li><strong>U - Comprensible:</strong> Formularios predecibles e indicación clara de errores.
+</li>
+<li><strong>R - Robusto:</strong> Compatibilidad con lectores de pantalla vía <strong>WAI-ARIA</strong> (<code>aria-label</code>, <code>aria-live</code>, <code>role</code>).
+</li>
+</ul>
+
+<footer>Tema 4.2: Diseño Inclusivo, UX, i18n y A11y</footer>
+            </section>
+
+            <section >
+<h1>HTML5 Semántico y WAI-ARIA</h1>
+
+<pre><code class="language-html">&lt;!-- Formulario Accesible e Internacionalizado --&gt;
+&lt;form id="formEnvio" novalidate&gt;
+    &lt;label for="txtPlaca" id="lblPlaca"&gt;Placa del Vehículo:&lt;/label&gt;
+    &lt;input type="text" id="txtPlaca" name="placa" required 
+           aria-describedby="ayudaPlaca errorPlaca"&gt;
+    &lt;small id="ayudaPlaca"&gt;Formato: ABC-1234&lt;/small&gt;
+    &lt;span id="errorPlaca" role="alert"&gt;&lt;/span&gt;
+
+    &lt;button type="submit" id="btnEnviar"&gt;Registrar&lt;/button&gt;
+&lt;/form&gt;
+
+&lt;!-- Región viva notificadora --&gt;
+&lt;div id="regionMensajes" aria-live="assertive"&gt;&lt;/div&gt;</code></pre>
+
+<footer>Tema 4.2: Diseño Inclusivo, UX, i18n y A11y</footer>
+            </section>
+
+            <section >
+<h1>CSS Inclusivo e i18n en JavaScript</h1>
+
+<pre><code class="language-css">/* Obligatorio: Anillo de foco de alto contraste para teclado */
+input:focus, select:focus, button:focus {
+    outline: 3px solid #38bdf8;
+    outline-offset: 2px;
+}</code></pre>
+
+<pre><code class="language-javascript">// i18n y Notificación Dinámica en JS
+selectIdioma.addEventListener('change', (e) =&gt; {
+    document.documentElement.lang = e.target.value; // Ajusta sintetizador de voz
+});
+
+if (error) {
+    txtPlaca.setAttribute('aria-invalid', 'true');
+    regionMensajes.textContent = "Error al validar la placa."; // aria-live
+}</code></pre>
+
+<footer>Tema 4.2: Diseño Inclusivo, UX, i18n y A11y</footer>
+            </section>
+
+            <section >
+<h1>Antipatrones Comunes de Accesibilidad</h1>
+
+<ul>
+<li><strong>Eliminar el Anillo de Foco (<code>outline: none</code>):</strong>
+<ul>
+<li>Deja sin guía visual a los usuarios que navegan exclusivamente mediante la tecla <code>Tab</code>.
+</li>
+</ul>
+</li>
+<li><strong>Depender Únicamente del Color para Indicar Estado:</strong>
+<ul>
+<li>Usar solo colores (rojo/verde) sin texto ni íconos discrimina a personas con daltonismo.
+</li>
+</ul>
+</li>
+<li><strong>Botones e Íconos Sin Texto Alternativo:</strong>
+<ul>
+<li>Botones SVG sin <code>aria-label</code> resultan completamente invisibles para los lectores de pantalla.
+</li>
+</ul>
+</li>
+</ul>
+
+<footer>Tema 4.2: Diseño Inclusivo, UX, i18n y A11y</footer>
+            </section>
+
+            <section >
+<h1>Pregunta de Reflexión</h1>
+
+Al auditar una aplicación web con la herramienta Google Lighthouse y alcanzar una puntuación perfecta de <strong>100/100 en Accesibilidad</strong>:
+
+¿Por qué esa calificación automatizada <strong>no garantiza</strong> el 100% de accesibilidad real para un usuario que depende de un lector de pantalla como NVDA o VoiceOver en su vida diaria?
+
+<footer>Tema 4.2: Diseño Inclusivo, UX, i18n y A11y</footer>
+            </section>
+
+        </div>
+    </div>
+
+    <!-- Highlight.js and Reveal.js Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.js"></script>
+
+    <script>
+        // Initialize Highlight.js for code syntax coloring
+        hljs.highlightAll();
+
+        // Initialize Reveal.js with modern layout configurations
+        Reveal.initialize({
+            hash: true,
+            respondToHashChanges: true,
+            history: true,
+            transition: 'slide', // none/fade/slide/convex/concave/zoom
+            transitionSpeed: 'default',
+            backgroundTransition: 'fade',
+            width: 960,
+            height: 700,
+            margin: 0.05,
+            minScale: 0.2,
+            maxScale: 2.0,
+            plugins: []
+        });
+    </script>
+</body>
+</html>

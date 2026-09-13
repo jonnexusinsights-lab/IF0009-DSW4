@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <title>Tema 4.3.2 - JavaScript Avanzado, Programación Funcional y Asincronía - Desarrollo de Software IV</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <!-- Reveal.js Base Stylesheets -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reset.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.css">
+    
+    <!-- Tokyo Night Dark Theme for Code Syntax Resaltation -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/tokyo-night-dark.min.css">
+
+    <!-- Premium Google Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* Modern Web Design Aesthetics & Layout Tokens */
+        html, body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background-color: #0b0f19 !important;
+            color: #f8fafc;
+            overflow: hidden;
+        }
+
+        .reveal {
+            width: 100%;
+            height: 100%;
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0b0f19 0%, #111827 50%, #1e1b4b 100%) !important;
+            color: #f8fafc;
+        }
+        
+        .reveal .slides section {
+            font-family: 'Outfit', 'Inter', sans-serif;
+            text-align: left;
+            padding: 50px 70px;
+            box-sizing: border-box;
+            font-size: 22px;
+            color: #f8fafc;
+        }
+        
+        /* Centered Cover Slide Layout */
+        .reveal .slides section.lead-slide {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+        
+        /* Premium Typography Styles */
+        .reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6 {
+            font-family: 'Outfit', sans-serif;
+            text-transform: none;
+            color: #38bdf8;
+            font-weight: 800;
+            text-shadow: none;
+        }
+        
+        .reveal h1 {
+            font-size: 1.7em;
+            margin-bottom: 12px;
+            border-bottom: 2px solid #3b82f6;
+            padding-bottom: 10px;
+        }
+        
+        .reveal .lead-slide h1 {
+            border-bottom: none;
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            color: #38bdf8;
+        }
+        
+        .reveal h2 {
+            font-size: 1.25em;
+            color: #818cf8;
+            font-weight: 700;
+            margin-top: 0px;
+        }
+        
+        .reveal .lead-slide h2 {
+            font-size: 1.55em;
+            color: #818cf8;
+            margin-bottom: 30px;
+        }
+        
+        .reveal h3 {
+            font-size: 1.1em;
+            color: #a78bfa;
+        }
+        
+        /* List and Text Formatting */
+        .reveal p, .reveal li {
+            color: #cbd5e1;
+            line-height: 1.6;
+        }
+        
+        .reveal ul {
+            list-style-type: square;
+            margin-left: 1.5em;
+        }
+        
+        .reveal li {
+            margin-bottom: 12px;
+        }
+        
+        .reveal strong {
+            color: #f43f5e;
+            font-weight: 600;
+        }
+        
+        .reveal em {
+            color: #fb7185;
+            font-style: italic;
+        }
+        
+        .reveal footer {
+            font-size: 0.5em;
+            color: #6b7280;
+            position: absolute;
+            bottom: 20px;
+            right: 50px;
+        }
+        
+        /* Code Block Containers and Inlines */
+        .reveal code {
+            font-family: 'Fira Code', monospace;
+            background-color: #030712;
+            color: #38bdf8;
+            border-radius: 4px;
+            padding: 2px 8px;
+            font-size: 0.85em;
+        }
+        
+        .reveal pre {
+            background-color: #030712 !important;
+            border: 1px solid #1f2937;
+            border-radius: 10px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
+            width: 100%;
+            margin: 20px 0;
+            box-sizing: border-box;
+        }
+        
+        .reveal pre code {
+            background-color: transparent;
+            color: inherit;
+            font-size: 0.8em;
+            line-height: 1.55;
+            padding: 18px;
+            max-height: 520px;
+        }
+        
+        /* Control Nav Arrows & Progress Bar */
+        .reveal .controls-arrow {
+            color: #38bdf8 !important;
+        }
+        
+        .reveal .progress span {
+            background-color: #38bdf8 !important;
+        }
+
+        /* Custom style overrides parsed from Marp frontmatter */
+        .reveal .slides section {
+  background-color: #0f172a;
+  color: #f8fafc;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+}
+h1, h2 {
+  color: #38bdf8;
+}
+h3 {
+  color: #7dd3fc;
+}
+footer {
+  color: #64748b;
+}
+code {
+  background-color: #1e293b;
+  color: #38bdf8;
+}
+pre code {
+  background-color: transparent;
+  color: #f8fafc;
+}
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <section >
+<h1>IF0009 - Desarrollo de Software IV</h1>
+
+<h2>Tema 4.3.2: JavaScript Avanzado, Programación Funcional y Asincronía</h2>
+
+Universidad de Costa Rica <br>
+Sede del Atlántico - Recinto Paraíso <br>
+Carrera de Informática Empresarial <br>
+<strong>Profesor:</strong> Mag. Jonathan Granados C. <br>
+<strong>Semestre:</strong> II-2026
+
+<footer>UCR - Informática Empresarial</footer>
+            </section>
+
+            <section >
+<h1>Programación Funcional en Arreglos</h1>
+
+Reemplazo de bucles <code>for</code> tradicionales por operaciones inmutables de orden superior:
+
+<ul>
+<li><strong><code>map(fn)</code>:</strong> Transforma elementos y retorna un <strong>nuevo arreglo</strong> de igual longitud.
+</li>
+<li><strong><code>filter(fn)</code>:</strong> Retorna un <strong>nuevo arreglo</strong> con los elementos que cumplen un predicado booleano.
+</li>
+<li><strong><code>reduce(fn, init)</code>:</strong> Acumula y reduce la colección a un <strong>único valor resultante</strong>.
+</li>
+<li><strong><code>find(fn)</code> / <code>some(fn)</code> / <code>every(fn)</code>:</strong> Métodos de búsqueda e inspección lógica rápida.
+</li>
+</ul>
+
+<footer>Tema 4.3.2: JavaScript Avanzado y Asincronía</footer>
+            </section>
+
+            <section >
+<h1>Sintaxis Moderna: Desestructuración y Operador <code>...</code></h1>
+
+<ul>
+<li><strong>Desestructuración:</strong> Extracción limpia de propiedades de objetos o posiciones de arreglos.
+</li>
+<li><strong>Operador Spread (<code>...</code>):</strong> Copia inmutable de estructuras.
+</li>
+<li><strong>Operador Rest (<code>...</code>):</strong> Agrupa parámetros sobrantes.
+</li>
+</ul>
+
+<pre><code class="language-javascript">const usuario = { id: 101, nombre: 'Ana', rol: 'ADMIN' };
+const { nombre, rol } = usuario;
+
+// Copia inmutable y sobreescritura de propiedades
+const usuarioActualizado = { ...usuario, rol: 'SUPERADMIN' };</code></pre>
+
+<footer>Tema 4.3.2: JavaScript Avanzado y Asincronía</footer>
+            </section>
+
+            <section >
+<h1>Arquitectura del Event Loop de V8</h1>
+
+Mecanismo monohilo (<em>single-threaded</em>) no bloqueante para procesamiento asíncrono:
+
+<ol>
+<li><strong>Call Stack:</strong> Pila de invocación de funciones síncronas.
+</li>
+<li><strong>Web APIs:</strong> Delegación externa de tareas lentas (<code>fetch</code>, <code>setTimeout</code>).
+</li>
+<li><strong>Microtask Queue (Promesas):</strong> Pila de alta prioridad resuelta en <code>async/await</code>.
+</li>
+<li><strong>Macrotask Queue:</strong> Callbacks ordinarios de temporizadores.
+</li>
+</ol>
+
+<footer>Tema 4.3.2: JavaScript Avanzado y Asincronía</footer>
+            </section>
+
+            <section >
+<h1>Promesas Concurrente y OOP en ES6+</h1>
+
+<pre><code class="language-javascript">export class ServicioEnvios {
+    #apiKey; // Campo privado de clase (ES2022)
+
+    constructor(apiKey) { this.#apiKey = apiKey; }
+
+    async obtenerEnviosParalelos(listaIds) {
+        // Ejecución concurrente en paralelo con Promise.all
+        const promesas = listaIds.map(id =&gt; 
+            fetch(`/api/v1/envios/${id}`, {
+                headers: { 'Authorization': `Bearer ${this.#apiKey}` }
+            }).then(res =&gt; res.json())
+        );
+        return await Promise.all(promesas);
+    }
+}</code></pre>
+
+<footer>Tema 4.3.2: JavaScript Avanzado y Asincronía</footer>
+            </section>
+
+            <section >
+<h1>Operadores de Encadenamiento Opcional y Respaldo</h1>
+
+<ul>
+<li><strong>Optional Chaining (<code>?.</code>):</strong> Evita errores <code>TypeError: Cannot read properties of undefined</code>.
+</li>
+<li><strong>Nullish Coalescing (<code>??</code>):</strong> Asigna valores por defecto sólo ante <code>null</code> o <code>undefined</code>.
+</li>
+</ul>
+
+<pre><code class="language-javascript">// Seguridad al acceder a estructuras anidadas
+const clienteNombre = envio?.cliente?.nombre ?? 'Cliente Anónimo';</code></pre>
+
+<footer>Tema 4.3.2: JavaScript Avanzado y Asincronía</footer>
+            </section>
+
+            <section >
+<h1>Antipatrones Avanzados</h1>
+
+<ul>
+<li><strong><code>await</code> en Bucles <code>for...of</code> Secuenciales:</strong>
+<ul>
+<li>Suma latencias en serie. Use <code>Promise.all()</code> con <code>map()</code>.
+</li>
+</ul>
+</li>
+<li><strong>Mutación Accidental de Arreglos Originales:</strong>
+<ul>
+<li>El uso de <code>sort()</code> o <code>splice()</code> modifica el arreglo original. Use <code>[...arr].sort()</code> o <code>toSorted()</code>.
+</li>
+</ul>
+</li>
+<li><strong>Olvidar Retornar Valores en <code>map()</code> / <code>reduce()</code>:</strong>
+<ul>
+<li>Produce arreglos con valores <code>undefined</code>.
+</li>
+</ul>
+</li>
+</ul>
+
+<footer>Tema 4.3.2: JavaScript Avanzado y Asincronía</footer>
+            </section>
+
+            <section >
+<h1>Pregunta de Reflexión</h1>
+
+¿Por qué una Promesa resuelta colocada en la <em>Microtask Queue</em> se ejecuta con prioridad absoluta por el <em>Event Loop</em> antes de que el motor V8 procese cualquier temporizador <code>setTimeout</code> ubicado en la <em>Macrotask Queue</em>, y qué impacto tiene este orden en la fluidez de renderizado del navegador?
+
+<footer>Tema 4.3.2: JavaScript Avanzado y Asincronía</footer>
+            </section>
+
+        </div>
+    </div>
+
+    <!-- Highlight.js and Reveal.js Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.js"></script>
+
+    <script>
+        // Initialize Highlight.js for code syntax coloring
+        hljs.highlightAll();
+
+        // Initialize Reveal.js with modern layout configurations
+        Reveal.initialize({
+            hash: true,
+            respondToHashChanges: true,
+            history: true,
+            transition: 'slide', // none/fade/slide/convex/concave/zoom
+            transitionSpeed: 'default',
+            backgroundTransition: 'fade',
+            width: 960,
+            height: 700,
+            margin: 0.05,
+            minScale: 0.2,
+            maxScale: 2.0,
+            plugins: []
+        });
+    </script>
+</body>
+</html>

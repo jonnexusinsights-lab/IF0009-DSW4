@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <title>Tema 4.3.3 - Fundamentos de TypeScript y Sistema de Tipos Estático - Desarrollo de Software IV</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <!-- Reveal.js Base Stylesheets -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reset.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.css">
+    
+    <!-- Tokyo Night Dark Theme for Code Syntax Resaltation -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/tokyo-night-dark.min.css">
+
+    <!-- Premium Google Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* Modern Web Design Aesthetics & Layout Tokens */
+        html, body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background-color: #0b0f19 !important;
+            color: #f8fafc;
+            overflow: hidden;
+        }
+
+        .reveal {
+            width: 100%;
+            height: 100%;
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0b0f19 0%, #111827 50%, #1e1b4b 100%) !important;
+            color: #f8fafc;
+        }
+        
+        .reveal .slides section {
+            font-family: 'Outfit', 'Inter', sans-serif;
+            text-align: left;
+            padding: 50px 70px;
+            box-sizing: border-box;
+            font-size: 22px;
+            color: #f8fafc;
+        }
+        
+        /* Centered Cover Slide Layout */
+        .reveal .slides section.lead-slide {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+        
+        /* Premium Typography Styles */
+        .reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6 {
+            font-family: 'Outfit', sans-serif;
+            text-transform: none;
+            color: #38bdf8;
+            font-weight: 800;
+            text-shadow: none;
+        }
+        
+        .reveal h1 {
+            font-size: 1.7em;
+            margin-bottom: 12px;
+            border-bottom: 2px solid #3b82f6;
+            padding-bottom: 10px;
+        }
+        
+        .reveal .lead-slide h1 {
+            border-bottom: none;
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            color: #38bdf8;
+        }
+        
+        .reveal h2 {
+            font-size: 1.25em;
+            color: #818cf8;
+            font-weight: 700;
+            margin-top: 0px;
+        }
+        
+        .reveal .lead-slide h2 {
+            font-size: 1.55em;
+            color: #818cf8;
+            margin-bottom: 30px;
+        }
+        
+        .reveal h3 {
+            font-size: 1.1em;
+            color: #a78bfa;
+        }
+        
+        /* List and Text Formatting */
+        .reveal p, .reveal li {
+            color: #cbd5e1;
+            line-height: 1.6;
+        }
+        
+        .reveal ul {
+            list-style-type: square;
+            margin-left: 1.5em;
+        }
+        
+        .reveal li {
+            margin-bottom: 12px;
+        }
+        
+        .reveal strong {
+            color: #f43f5e;
+            font-weight: 600;
+        }
+        
+        .reveal em {
+            color: #fb7185;
+            font-style: italic;
+        }
+        
+        .reveal footer {
+            font-size: 0.5em;
+            color: #6b7280;
+            position: absolute;
+            bottom: 20px;
+            right: 50px;
+        }
+        
+        /* Code Block Containers and Inlines */
+        .reveal code {
+            font-family: 'Fira Code', monospace;
+            background-color: #030712;
+            color: #38bdf8;
+            border-radius: 4px;
+            padding: 2px 8px;
+            font-size: 0.85em;
+        }
+        
+        .reveal pre {
+            background-color: #030712 !important;
+            border: 1px solid #1f2937;
+            border-radius: 10px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
+            width: 100%;
+            margin: 20px 0;
+            box-sizing: border-box;
+        }
+        
+        .reveal pre code {
+            background-color: transparent;
+            color: inherit;
+            font-size: 0.8em;
+            line-height: 1.55;
+            padding: 18px;
+            max-height: 520px;
+        }
+        
+        /* Control Nav Arrows & Progress Bar */
+        .reveal .controls-arrow {
+            color: #38bdf8 !important;
+        }
+        
+        .reveal .progress span {
+            background-color: #38bdf8 !important;
+        }
+
+        /* Custom style overrides parsed from Marp frontmatter */
+        .reveal .slides section {
+  background-color: #0f172a;
+  color: #f8fafc;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+}
+h1, h2 {
+  color: #38bdf8;
+}
+h3 {
+  color: #7dd3fc;
+}
+footer {
+  color: #64748b;
+}
+code {
+  background-color: #1e293b;
+  color: #38bdf8;
+}
+pre code {
+  background-color: transparent;
+  color: #f8fafc;
+}
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <section >
+<h1>IF0009 - Desarrollo de Software IV</h1>
+
+<h2>Tema 4.3.3: Fundamentos de TypeScript y Sistema de Tipos Estático</h2>
+
+Universidad de Costa Rica <br>
+Sede del Atlántico - Recinto Paraíso <br>
+Carrera de Informática Empresarial <br>
+<strong>Profesor:</strong> Mag. Jonathan Granados C. <br>
+<strong>Semestre:</strong> II-2026
+
+<footer>UCR - Informática Empresarial</footer>
+            </section>
+
+            <section >
+<h1>¿Qué es TypeScript?</h1>
+
+Superconjunto tipado (<em>superset</em>) de JavaScript desarrollado por Microsoft que se transpila a JavaScript puro ejecutable en cualquier navegador.
+
+$$\text{TypeScript} = \text{JavaScript} + \text{Tipado Estático} + \text{Herramientas Compilación}$$
+
+<ul>
+<li><strong>El Compilador <code>tsc</code> y <code>tsconfig.json</code>:</strong>
+<ul>
+<li>Define las reglas de transpilación y rigor (<code>"strict": true</code>).
+</li>
+<li>Las comprobaciones ocurren en <strong>tiempo de compilación</strong> (prevención de bugs previa a producción).
+</li>
+</ul>
+</li>
+</ul>
+
+<footer>Tema 4.3.3: Fundamentos de TypeScript</footer>
+            </section>
+
+            <section >
+<h1>Tipos Primitivos y Tipos Especiales</h1>
+
+<ul>
+<li><strong>Primitivos:</strong> <code>string</code>, <code>number</code>, <code>boolean</code>.
+</li>
+<li><strong>Arreglos y Tuplas:</strong> <code>let lista: string[]</code>, <code>let tupla: [number, string]</code>.
+</li>
+<li><strong><code>any</code> (Escape Hatch - ¡Evitar!):</strong> Desactiva la verificación de tipos.
+</li>
+<li><strong><code>unknown</code> (Tipo Seguro Desconocido):</strong> Alternativa segura a <code>any</code>. Exige <em>Type Guards</em> antes de operarse.
+</li>
+<li><strong><code>void</code> y <code>never</code>:</strong> Ausencia de retorno vs funciones que lanzan excepciones o no terminan.
+</li>
+</ul>
+
+<footer>Tema 4.3.3: Fundamentos de TypeScript</footer>
+            </section>
+
+            <section >
+<h1>Contratos de Datos: <code>interface</code> vs <code>type</code></h1>
+
+<ul>
+<li><strong><code>interface</code>:</strong> Estructura extensible y orientada a objetos. Estándar para modelos DTO en Angular.
+</li>
+<li><strong><code>type</code> (Type Alias):</strong> Para uniones de tipos, tuplas y tipos complejos.
+</li>
+</ul>
+
+<pre><code class="language-typescript">export enum EstadoEnvio {
+    PENDIENTE = 'PENDIENTE',
+    ENTREGADO = 'ENTREGADO'
+}
+
+export interface Envio {
+    id: number;
+    trackingCode: string;
+    pesoKg: number;
+    estado: EstadoEnvio;
+    descripcion?: string; // Campo opcional
+}</code></pre>
+
+<footer>Tema 4.3.3: Fundamentos de TypeScript</footer>
+            </section>
+
+            <section >
+<h1>Funciones Tipadas y Cálculo Seguro</h1>
+
+<pre><code class="language-typescript">// Función fuertemente tipada con retorno explícito
+export const calcularFlete = (
+    pesoKg: number, 
+    tarifaPorKg: number = 1500
+): number =&gt; {
+    if (pesoKg &lt;= 0) {
+        throw new Error("El peso debe ser mayor a cero.");
+    }
+    return pesoKg * tarifaPorKg;
+};
+
+export const procesarEnvio = (envio: Envio): string =&gt; {
+    const costo = calcularFlete(envio.pesoKg);
+    return `Envío #${envio.id} [${envio.estado}] - Costo: ₡${costo}`;
+};</code></pre>
+
+<footer>Tema 4.3.3: Fundamentos de TypeScript</footer>
+            </section>
+
+            <section >
+<h1>Antipatrones Comunes</h1>
+
+<ul>
+<li><strong>Uso Abusivo de <code>any</code> (Any-script):</strong>
+<ul>
+<li>Elimina los beneficios del compilador. Use <code>unknown</code> o interfaces explícitas.
+</li>
+</ul>
+</li>
+<li><strong>Asumir que las Interfaces Existen en Runtime:</strong>
+<ul>
+<li>Las interfaces se eliminan por completo (<em>Type Erasure</em>) al transpilar a JavaScript.
+</li>
+</ul>
+</li>
+<li><strong>Ignorar el Indicador de Strictness (<code>"strict": false</code>):</strong>
+<ul>
+<li>Permite nulos implícitos provocando errores en ejecución.
+</li>
+</ul>
+</li>
+</ul>
+
+<footer>Tema 4.3.3: Fundamentos de TypeScript</footer>
+            </section>
+
+            <section >
+<h1>Pregunta de Reflexión</h1>
+
+En proyectos de software empresarial con equipos de desarrollo distribuidos:
+
+¿De qué manera el uso de TypeScript e interfaces fuertemente tipadas reduce la necesidad de pruebas unitarias defensivas de tipo primitivo (ejemplo: validar que <code>typeof id === 'number'</code>) y cómo impacta la productividad en el refactoring de código masivo en comparación con JavaScript puro?
+
+<footer>Tema 4.3.3: Fundamentos de TypeScript</footer>
+            </section>
+
+        </div>
+    </div>
+
+    <!-- Highlight.js and Reveal.js Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.js"></script>
+
+    <script>
+        // Initialize Highlight.js for code syntax coloring
+        hljs.highlightAll();
+
+        // Initialize Reveal.js with modern layout configurations
+        Reveal.initialize({
+            hash: true,
+            respondToHashChanges: true,
+            history: true,
+            transition: 'slide', // none/fade/slide/convex/concave/zoom
+            transitionSpeed: 'default',
+            backgroundTransition: 'fade',
+            width: 960,
+            height: 700,
+            margin: 0.05,
+            minScale: 0.2,
+            maxScale: 2.0,
+            plugins: []
+        });
+    </script>
+</body>
+</html>

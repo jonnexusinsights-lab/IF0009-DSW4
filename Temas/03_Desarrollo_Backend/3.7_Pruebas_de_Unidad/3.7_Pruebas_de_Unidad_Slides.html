@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <title>Tema 3.7 - Pruebas Unitarias con Spring Boot, Maven, JUnit Jupiter y Mockito - Desarrollo de Software IV</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <!-- Reveal.js Base Stylesheets -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reset.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.css">
+    
+    <!-- Tokyo Night Dark Theme for Code Syntax Resaltation -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/tokyo-night-dark.min.css">
+
+    <!-- Premium Google Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* Modern Web Design Aesthetics & Layout Tokens */
+        html, body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background-color: #0b0f19 !important;
+            color: #f8fafc;
+            overflow: hidden;
+        }
+
+        .reveal {
+            width: 100%;
+            height: 100%;
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0b0f19 0%, #111827 50%, #1e1b4b 100%) !important;
+            color: #f8fafc;
+        }
+        
+        .reveal .slides section {
+            font-family: 'Outfit', 'Inter', sans-serif;
+            text-align: left;
+            padding: 50px 70px;
+            box-sizing: border-box;
+            font-size: 22px;
+            color: #f8fafc;
+        }
+        
+        /* Centered Cover Slide Layout */
+        .reveal .slides section.lead-slide {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+        
+        /* Premium Typography Styles */
+        .reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6 {
+            font-family: 'Outfit', sans-serif;
+            text-transform: none;
+            color: #38bdf8;
+            font-weight: 800;
+            text-shadow: none;
+        }
+        
+        .reveal h1 {
+            font-size: 1.7em;
+            margin-bottom: 12px;
+            border-bottom: 2px solid #3b82f6;
+            padding-bottom: 10px;
+        }
+        
+        .reveal .lead-slide h1 {
+            border-bottom: none;
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            color: #38bdf8;
+        }
+        
+        .reveal h2 {
+            font-size: 1.25em;
+            color: #818cf8;
+            font-weight: 700;
+            margin-top: 0px;
+        }
+        
+        .reveal .lead-slide h2 {
+            font-size: 1.55em;
+            color: #818cf8;
+            margin-bottom: 30px;
+        }
+        
+        .reveal h3 {
+            font-size: 1.1em;
+            color: #a78bfa;
+        }
+        
+        /* List and Text Formatting */
+        .reveal p, .reveal li {
+            color: #cbd5e1;
+            line-height: 1.6;
+        }
+        
+        .reveal ul {
+            list-style-type: square;
+            margin-left: 1.5em;
+        }
+        
+        .reveal li {
+            margin-bottom: 12px;
+        }
+        
+        .reveal strong {
+            color: #f43f5e;
+            font-weight: 600;
+        }
+        
+        .reveal em {
+            color: #fb7185;
+            font-style: italic;
+        }
+        
+        .reveal footer {
+            font-size: 0.5em;
+            color: #6b7280;
+            position: absolute;
+            bottom: 20px;
+            right: 50px;
+        }
+        
+        /* Code Block Containers and Inlines */
+        .reveal code {
+            font-family: 'Fira Code', monospace;
+            background-color: #030712;
+            color: #38bdf8;
+            border-radius: 4px;
+            padding: 2px 8px;
+            font-size: 0.85em;
+        }
+        
+        .reveal pre {
+            background-color: #030712 !important;
+            border: 1px solid #1f2937;
+            border-radius: 10px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
+            width: 100%;
+            margin: 20px 0;
+            box-sizing: border-box;
+        }
+        
+        .reveal pre code {
+            background-color: transparent;
+            color: inherit;
+            font-size: 0.8em;
+            line-height: 1.55;
+            padding: 18px;
+            max-height: 520px;
+        }
+        
+        /* Control Nav Arrows & Progress Bar */
+        .reveal .controls-arrow {
+            color: #38bdf8 !important;
+        }
+        
+        .reveal .progress span {
+            background-color: #38bdf8 !important;
+        }
+
+        /* Custom style overrides parsed from Marp frontmatter */
+        .reveal .slides section {
+  background-color: #0f172a;
+  color: #f8fafc;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+}
+h1, h2 {
+  color: #38bdf8;
+}
+h3 {
+  color: #7dd3fc;
+}
+footer {
+  color: #64748b;
+}
+code {
+  background-color: #1e293b;
+  color: #38bdf8;
+}
+pre code {
+  background-color: transparent;
+  color: #f8fafc;
+}
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <section >
+<h1>IF0009 - Desarrollo de Software IV</h1>
+
+<h2>Tema 3.7: Pruebas Unitarias en Back-End con Spring Boot, Maven, JUnit Jupiter y Mockito</h2>
+
+Universidad de Costa Rica <br>
+Sede del Atlántico - Recinto Paraíso <br>
+Carrera de Informática Empresarial <br>
+<strong>Profesor:</strong> Mag. Jonathan Granados C. <br>
+<strong>Semestre:</strong> II-2026
+
+<footer>UCR - Informática Empresarial</footer>
+            </section>
+
+            <section >
+<h1>Integración con Apache Maven</h1>
+
+Gestión de dependencias y ejecución automatizada en el ciclo de construcción:
+
+<ul>
+<li><strong><code>spring-boot-starter-test</code>:</strong>
+<ul>
+<li>Incluye JUnit Jupiter, Mockito, AssertJ, Hamcrest y Spring Test.
+</li>
+<li>Se declara con el ámbito <code>&lt;scope&gt;test&lt;/scope&gt;</code> para no contaminar el JAR productivo.
+</li>
+</ul>
+</li>
+<li><strong><code>maven-surefire-plugin</code>:</strong>
+<ul>
+<li>Ejecuta la fase <code>mvn test</code>.
+</li>
+<li>Escanea clases <code>*Test.java</code> y genera reportes XML/texto en <code>target/surefire-reports/</code>.
+</li>
+</ul>
+</li>
+</ul>
+
+<pre><code class="language-xml">&lt;dependency&gt;
+    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-boot-starter-test&lt;/artifactId&gt;
+    &lt;scope&gt;test&lt;/scope&gt;
+&lt;/dependency&gt;</code></pre>
+
+<footer>Tema 3.7: Pruebas Unitarias en Back-End</footer>
+            </section>
+
+            <section >
+<h1>Arquitectura Modular de JUnit 5</h1>
+
+$$\text{JUnit 5} = \text{JUnit Platform} + \text{JUnit Jupiter} + \text{JUnit Vintage}$$
+
+<ul>
+<li><strong>JUnit Platform:</strong> Infraestructura base para lanzar motores de prueba en la JVM. Conecta IDEs (VS Code, IntelliJ) y herramientas de build (Maven, Gradle).
+</li>
+<li><strong>JUnit Jupiter:</strong> Nuevo modelo de programación y extensión. Aporta anotaciones avanzadas, pruebas parametrizadas y el motor principal <code>TestEngine</code>.
+</li>
+<li><strong>JUnit Vintage:</strong> Motor de compatibilidad para ejecutar pruebas legacy de JUnit 3 y 4.
+</li>
+</ul>
+
+<footer>Tema 3.7: Pruebas Unitarias en Back-End</footer>
+            </section>
+
+            <section >
+<h1>Anotaciones Principales de JUnit Jupiter</h1>
+
+<ul>
+<li><strong><code>@Test</code>:</strong> Identifica un método de prueba automatizada.
+</li>
+<li><strong><code>@BeforeEach</code> / <code>@AfterEach</code>:</strong> Se ejecuta antes o después de <strong>cada</strong> prueba (reseteo de estado/mocks).
+</li>
+<li><strong><code>@DisplayName("...")</code>:</strong> Etiqueta descriptiva para reportes de Maven y consola.
+</li>
+<li><strong><code>@Disabled</code>:</strong> Desactiva una prueba temporalmente.
+</li>
+<li><strong><code>@ParameterizedTest</code>:</strong> Ejecuta el mismo test con múltiples fuentes de datos (<code>@ValueSource</code>, <code>@CsvSource</code>).
+</li>
+</ul>
+
+<footer>Tema 3.7: Pruebas Unitarias en Back-End</footer>
+            </section>
+
+            <section >
+<h1>Aserciones Avanzadas en JUnit Jupiter</h1>
+
+<ul>
+<li><strong>Aserciones Agrupadas (<code>assertAll</code>):</strong>
+<ul>
+<li>Evalúa múltiples condiciones y reporta todas las fallas simultáneamente sin detener la ejecución en la primera.
+</li>
+</ul>
+</li>
+</ul>
+
+<pre><code class="language-java">assertAll("Verificaciones del Vehículo",
+    () -&gt; assertNotNull(resultado),
+    () -&gt; assertEquals(1L, resultado.getId()),
+    () -&gt; assertEquals("SJB-9876", resultado.getPlaca())
+);</code></pre>
+
+<ul>
+<li><strong>Control de Excepciones (<code>assertThrows</code>):</strong>
+</li>
+</ul>
+
+<pre><code class="language-java">assertThrows(RecursoNoEncontradoException.class, 
+    () -&gt; vehiculoService.obtenerPorId(99L));</code></pre>
+
+<footer>Tema 3.7: Pruebas Unitarias en Back-End</footer>
+            </section>
+
+            <section >
+<h1>Dobles de Prueba con Mockito 5.x</h1>
+
+Aislamiento de la lógica de negocio sin cargar Spring ni bases de datos:
+
+<ul>
+<li><strong><code>@ExtendWith(MockitoExtension.class)</code>:</strong> Integra el motor ligero de Mockito en JUnit Jupiter.
+</li>
+<li><strong><code>@Mock</code>:</strong> Crea una implementación simulada e inerte de una dependencia (ej. <code>Repository</code>).
+</li>
+<li><strong><code>@InjectMocks</code>:</strong> Instancia la clase bajo prueba e inyecta los <em>mocks</em> automáticamente.
+</li>
+<li><strong><code>when(mock.metodo()).thenReturn(valor)</code>:</strong> Programa respuestas controladas.
+</li>
+</ul>
+
+<footer>Tema 3.7: Pruebas Unitarias en Back-End</footer>
+            </section>
+
+            <section >
+<h1>Pruebas Parametrizadas en JUnit Jupiter + Mockito</h1>
+
+<pre><code class="language-java">@ExtendWith(MockitoExtension.class)
+@DisplayName("Pruebas Unitarias de VehiculoService")
+class VehiculoServiceTest {
+
+    @Mock
+    private VehiculoRepository vehiculoRepository;
+
+    @InjectMocks
+    private VehiculoService vehiculoService;
+
+    @ParameterizedTest
+    @ValueSource(longs = {99L, 100L, 500L})
+    @DisplayName("Debe lanzar excepción para múltiples IDs inexistentes")
+    void obtenerPorId_IdInexistente_LanzaExcepcion(Long idInexistente) {
+        when(vehiculoRepository.findById(idInexistente)).thenReturn(Optional.empty());
+
+        assertThrows(RecursoNoEncontradoException.class,
+            () -&gt; vehiculoService.obtenerPorId(idInexistente));
+
+        verify(vehiculoRepository, times(1)).findById(idInexistente);
+    }
+}</code></pre>
+
+<footer>Tema 3.7: Pruebas Unitarias en Back-End</footer>
+            </section>
+
+            <section >
+<h1>Pruebas de Rebanada en Controladores REST (<code>@WebMvcTest</code>)</h1>
+
+Aísla la capa web probando la serialización JSON y mapeos HTTP sin arrancar Tomcat:
+
+<pre><code class="language-java">@WebMvcTest(VehiculoController.class)
+@DisplayName("Pruebas de Rebanada en Controlador REST")
+class VehiculoControllerTest {
+
+    @Autowired
+    private MockMvc mockMvc;
+
+    @MockBean
+    private VehiculoService vehiculoService;
+
+    @Test
+    void obtenerPorId_Responde200OkYJson() throws Exception {
+        given(vehiculoService.obtenerPorId(1L)).willReturn(new Vehiculo(1L, "SJB-9876"));
+
+        mockMvc.perform(get("/api/v1/vehiculos/1").accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.placa").value("SJB-9876"));
+    }
+}</code></pre>
+
+<footer>Tema 3.7: Pruebas Unitarias en Back-End</footer>
+            </section>
+
+            <section >
+<h1>Trampas Comunes y Antipatrones</h1>
+
+<ul>
+<li><strong>Mezclar Importaciones de JUnit 4 y JUnit Jupiter:</strong>
+<ul>
+<li>Importar <code>org.junit.Test</code> en lugar de <code>org.junit.jupiter.api.Test</code>.
+</li>
+</ul>
+</li>
+<li><strong>Omisión del Ámbito <code>&lt;scope&gt;test&lt;/scope&gt;</code> en Maven:</strong>
+<ul>
+<li>Empaquetar librerías de testeo dentro del artefacto <code>.jar</code> ejecutable de producción.
+</li>
+</ul>
+</li>
+<li><strong>Uso Indiscriminado de <code>@SpringBootTest</code> para Pruebas Unitarias:</strong>
+<ul>
+<li>Carga innecesaria del contexto completo de Spring; eleva los tiempos de ejecución de milisegundos a segundos.
+</li>
+</ul>
+</li>
+</ul>
+
+<footer>Tema 3.7: Pruebas Unitarias en Back-End</footer>
+            </section>
+
+            <section >
+<h1>Pregunta de Reflexión</h1>
+
+Dado que Maven ejecuta la fase <code>test</code> automáticamente al compilar (<code>mvn clean package</code>):
+
+¿Qué ventajas operativas y de calidad aporta el uso de pruebas parametrizadas con JUnit Jupiter (<code>@ParameterizedTest</code>) combinadas con el plugin <code>maven-surefire-plugin</code> en un servidor de Integración Continua (CI/CD) cuando se requiere validar reglas de negocio complejas ante múltiples bordes de datos?
+
+<footer>Tema 3.7: Pruebas Unitarias en Back-End</footer>
+            </section>
+
+        </div>
+    </div>
+
+    <!-- Highlight.js and Reveal.js Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.js"></script>
+
+    <script>
+        // Initialize Highlight.js for code syntax coloring
+        hljs.highlightAll();
+
+        // Initialize Reveal.js with modern layout configurations
+        Reveal.initialize({
+            hash: true,
+            respondToHashChanges: true,
+            history: true,
+            transition: 'slide', // none/fade/slide/convex/concave/zoom
+            transitionSpeed: 'default',
+            backgroundTransition: 'fade',
+            width: 960,
+            height: 700,
+            margin: 0.05,
+            minScale: 0.2,
+            maxScale: 2.0,
+            plugins: []
+        });
+    </script>
+</body>
+</html>

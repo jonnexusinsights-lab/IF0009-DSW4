@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <!-- Categoría del Banco de Preguntas en Mediación Virtual -->
+  <question type="category">
+    <category>
+      <text>$course$/top/Quiz 1 - Arquitectura RESTful</text>
+    </category>
+    <info format="moodle_auto_format">
+      <text>Preguntas del Quiz 1: Fundamentos Web y Arquitectura RESTful (IF0009 - Desarrollo de Software IV)</text>
+    </info>
+  </question>
+
+  <!-- Pregunta 1 -->
+  <question type="multichoice">
+    <name>
+      <text>Q1 - Arquitecturas Web: SPA vs MPA</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Un equipo de arquitectura de software debe seleccionar la arquitectura adecuada para una aplicación web empresarial con alta interactividad. Se requiere reducir el tráfico de red general al navegar entre vistas y evitar recargas completas de la página (<em>full page reload</em>). ¿Cuál es la diferencia fundamental entre una Single-Page Application (SPA) y una Multi-Page Application (MPA) en términos de entrega de contenidos?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>En una SPA el renderizado ocurre en el navegador (Client-Side Rendering) consumiendo datos JSON de una API REST, mientras que en una MPA el servidor renderiza la página HTML completa (Server-Side Rendering) ante cada navegación.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>5.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="0" format="html">
+      <text><![CDATA[La MPA descarga una sola vez la plantilla HTML/JS base y actualiza la interfaz mediante peticiones asíncronas de datos (JSON), mientras que la SPA solicita al servidor un nuevo documento HTML completo en cada interacción.]]></text>
+      <feedback format="html">
+        <text><![CDATA[Incorrecto. Invierte los conceptos; la SPA es la que descarga el cascarón base y realiza peticiones asíncronas de datos JSON.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="100" format="html">
+      <text><![CDATA[La SPA procesa la lógica de renderizado visual en el navegador del cliente consumiendo APIs RESTful, mientras que la MPA delega el renderizado de cada vista HTML al servidor ante cada petición del usuario.]]></text>
+      <feedback format="html">
+        <text><![CDATA[¡Correcto! En una SPA el renderizado ocurre en el navegador (Client-Side Rendering) consumiendo datos JSON de una API REST, mientras que en una MPA el servidor renderiza la página HTML completa (Server-Side Rendering).]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[La SPA no puede consumir servicios web de back-end debido a restricciones de seguridad del navegador, obligando al uso de arquitecturas monolíticas de renderizado en servidor.]]></text>
+      <feedback format="html">
+        <text><![CDATA[Incorrecto. Las SPAs consumen rutinariamente servicios web RESTful mediante Fetch API o HttpClient.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[La MPA elimina el uso de hojas de estilo CSS y archivos JavaScript, transfiriendo únicamente etiquetas HTML nativas sin soporte para interactividad.]]></text>
+      <feedback format="html">
+        <text><![CDATA[Incorrecto. Las MPAs tradicionales emplean CSS y JavaScript activamente; la diferencia radica en el ciclo de vida de la página y el renderizado en servidor.]]></text>
+      </feedback>
+    </answer>
+  </question>
+
+  <!-- Pregunta 2 -->
+  <question type="multichoice">
+    <name>
+      <text>Q2 - Semántica de Verbos HTTP y REST</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>En el diseño de una API RESTful para la gestión de productos en un catálogo de comercio electrónico, se requiere implementar un endpoint para crear un nuevo producto y otro para reemplazar de forma integral la información de un producto existente con ID conocido. ¿Cuál es la especificación correcta de verbos HTTP, propiedad de idempotencia y códigos de respuesta esperados?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>POST crea recursos (no idempotente, 201 Created) y PUT reemplaza la entidad completa (idempotente, 200 OK / 204 No Content).</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>5.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+      <text><![CDATA[Usar POST para creación (retornando 201 Created, no idempotente) y PUT para reemplazo total (retornando 200 OK o 204 No Content, idempotente).]]></text>
+      <feedback format="html">
+        <text><![CDATA[¡Correcto! POST crea recursos (no idempotente, 201 Created) y PUT reemplaza la entidad completa (idempotente, 200 OK / 204 No Content).]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[Usar GET para creación (retornando 200 OK, idempotente) y POST para reemplazo total (retornando 201 Created, no idempotente).]]></text>
+      <feedback format="html">
+        <text><![CDATA[Incorrecto. GET es exclusivo para lectura segura y nunca debe alterar el estado del servidor ni crear entidades.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[Usar PUT para creación (retornando 404 Not Found) y PATCH para reemplazo total (retornando 500 Internal Server Error).]]></text>
+      <feedback format="html">
+        <text><![CDATA[Incorrecto. 404 y 500 son códigos de error, no de éxito en la creación/actualización.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[Usar POST tanto para creación como para reemplazo total, garantizando que ambas operaciones sean estrictamente idempotentes por estándar.]]></text>
+      <feedback format="html">
+        <text><![CDATA[Incorrecto. POST no es una operación idempotente por definición técnica del estándar HTTP RFC 7231.]]></text>
+      </feedback>
+    </answer>
+  </question>
+
+  <!-- Pregunta 3 -->
+  <question type="multichoice">
+    <name>
+      <text>Q3 - Arquitectura en Capas e Inyección de Dependencias</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>En un proyecto de back-end desarrollado con Spring Boot, se aplica una arquitectura desacoplada estructurada en capas (<em>controller</em>, <em>business/service</em>, <em>data/repository</em>). ¿Cuál es la responsabilidad estricta del Controlador REST (<code>@RestController</code>) y cuál es la buena práctica recomendada para inyectar la capa de negocio (<code>@Service</code>)?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>El controlador gestiona el transporte HTTP y la inyección por constructor es la buena práctica oficial de Spring Boot.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>5.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="0" format="html">
+      <text><![CDATA[El Controlador debe ejecutar directamente las consultas SQL a la base de datos e inyectar el Servicio mediante modificación directa de variables globales estáticas.]]></text>
+      <feedback format="html">
+        <text><![CDATA[Incorrecto. Acceder a la base de datos desde el controlador viola la separación de capas y acopla la persistencia al transporte.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="100" format="html">
+      <text><![CDATA[El Controlador debe gestionar únicamente la recepción de solicitudes HTTP, mapeo de parámetros/DTOs y retorno de respuestas HTTP, inyectando el Servicio a través del constructor de la clase.]]></text>
+      <feedback format="html">
+        <text><![CDATA[¡Correcto! El controlador actúa como capa de transporte HTTP y la inyección por constructor es la buena práctica oficial en Spring Boot.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[El Controlador debe contener la lógica de validación de reglas de negocio pesadas y crear instancias del Servicio manualmente utilizando el operador new.]]></text>
+      <feedback format="html">
+        <text><![CDATA[Incorrecto. Instanciar servicios manualmente con new destruye la gestión del contenedor IoC (Inversion of Control) de Spring.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[El Controlador actúa como repositorio de persistencia JPA y debe estar anotado obligatoriamente con @Entity y @Table.]]></text>
+      <feedback format="html">
+        <text><![CDATA[Incorrecto. @Entity y @Table corresponden exclusivamente a clases del modelo de datos/persistencia JPA.]]></text>
+      </feedback>
+    </answer>
+  </question>
+
+  <!-- Pregunta 4 -->
+  <question type="multichoice">
+    <name>
+      <text>Q4 - Rastreo de Código: Controller REST y Parámetros</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Analice detenidamente la siguiente implementación de un controlador en Spring Boot:</p>
+<pre><code>@RestController
+@RequestMapping("/api/v1/estudiantes")
+public class EstudianteController {
+
+    private final EstudianteService estudianteService;
+
+    public EstudianteController(EstudianteService estudianteService) {
+        this.estudianteService = estudianteService;
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity&lt;EstudianteDto&gt; obtenerPorId(
+            @PathVariable("id") Long id,
+            @RequestParam(value = "incluirDetalles", 
+                          defaultValue = "false") boolean incluirDetalles) {
+        
+        EstudianteDto dto = estudianteService
+            .buscarEstudiante(id, incluirDetalles);
+        return ResponseEntity.ok(dto);
+    }
+}</code></pre>
+<p>Suponga que un cliente efectúa la siguiente solicitud HTTP:<br/>
+<code>GET /api/v1/estudiantes/105?incluirDetalles=true</code></p>
+<p>¿Qué valores exactos pasarán como argumentos al método <code>buscarEstudiante</code> del servicio durante la ejecución del controlador?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>@PathVariable extrae id = 105L y @RequestParam convierte "true" al valor booleano true.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>5.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="0" format="html">
+      <text><![CDATA[id = null e incluirDetalles = false, debido a que los parámetros de ruta requieren @RequestParam.]]></text>
+      <feedback format="html">
+        <text><![CDATA[Incorrecto. @PathVariable procesa correctamente variables de plantilla en la URI.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="100" format="html">
+      <text><![CDATA[id = 105L e incluirDetalles = true, extraídos correctamente de la variable de plantilla URI y del parámetro de consulta (query param).]]></text>
+      <feedback format="html">
+        <text><![CDATA[¡Correcto! @PathVariable extrae id = 105L y @RequestParam convierte "true" al valor booleano true.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[id = "105" e incluirDetalles = "true", lanzando una excepción ClassCastException por no usar el tipo String.]]></text>
+      <feedback format="html">
+        <text><![CDATA[Incorrecto. Spring realiza la conversión automática de cadenas a tipos primitivos y envoltorios (Long, boolean).]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[id = 0L e incluirDetalles = false, ignorando el parámetro de la URI por falta de la anotación @RequestBody.]]></text>
+      <feedback format="html">
+        <text><![CDATA[Incorrecto. @RequestBody se usa para leer el cuerpo JSON en POST/PUT, no para variables de ruta en GET.]]></text>
+      </feedback>
+    </answer>
+  </question>
+
+  <!-- Pregunta 5 -->
+  <question type="multichoice">
+    <name>
+      <text>Q5 - Contratos de API RESTful y OpenAPI / Swagger</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Al construir sistemas distribuidos desacoplados, es fundamental establecer un "contrato de API" claro y legible entre los desarrolladores de back-end y front-end. ¿Cuál es el propósito principal de integrar la especificación OpenAPI 3.0 (mediante herramientas como Swagger UI) en una API RESTful?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>OpenAPI/Swagger proporciona un portal interactivo para consultar endpoints, probar peticiones y entender contratos DTO sin acceder al código fuente.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>5.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="0" format="html">
+      <text><![CDATA[Compilar el código Java directamente a componentes nativos del navegador web sin necesidad de usar JavaScript.]]></text>
+      <feedback format="html">
+        <text><![CDATA[Incorrecto. Swagger/OpenAPI no transpila Java a JavaScript ni genera código ejecutable para el cliente.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="100" format="html">
+      <text><![CDATA[Documentar e interactuar dinámicamente con los endpoints, parámetros, estructuras DTO y respuestas HTTP de la API sin necesidad de acceder al código fuente.]]></text>
+      <feedback format="html">
+        <text><![CDATA[¡Correcto! OpenAPI/Swagger proporciona un portal interactivo para consultar endpoints, probar peticiones y entender contratos DTO sin acceder al código fuente.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[Reemplazar la base de datos relacional del sistema por una interfaz gráfica estática de consulta temporal.]]></text>
+      <feedback format="html">
+        <text><![CDATA[Incorrecto. OpenAPI no reemplaza el motor de persistencia ni la base de datos relacional.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[Bloquear la ejecución de peticiones HTTP que no provengan del servidor local Tomcat.]]></text>
+      <feedback format="html">
+        <text><![CDATA[Incorrecto. OpenAPI no actúa como un firewall de restricciones de origen ni bloquea peticiones HTTP.]]></text>
+      </feedback>
+    </answer>
+  </question>
+
+</quiz>
