@@ -272,6 +272,166 @@
             padding-top: 25px;
             width: 100%;
         }
+
+        /* Cheatsheets Section Styles */
+        .cheatsheets-section {
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.6) 0%, rgba(15, 23, 42, 0.7) 100%);
+            border: 1px solid rgba(56, 189, 248, 0.25);
+            border-radius: 20px;
+            padding: 28px 30px;
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
+            box-shadow: 0 15px 35px -10px rgba(0, 0, 0, 0.4);
+            display: flex;
+            flex-direction: column;
+            gap: 22px;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
+
+        .cheatsheets-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #38bdf8, #818cf8, #c084fc);
+        }
+
+        .cheatsheets-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            padding-bottom: 18px;
+        }
+
+        .cheatsheets-title-box h2 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .cheatsheets-title-box p {
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            margin-top: 4px;
+        }
+
+        .download-all-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+            color: #ffffff;
+            font-weight: 700;
+            font-size: 0.9rem;
+            padding: 12px 22px;
+            border-radius: 12px;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(2, 132, 199, 0.35);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .download-all-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(2, 132, 199, 0.5);
+            background: linear-gradient(135deg, #0369a1 0%, #0284c7 100%);
+        }
+
+        .cheatsheets-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 16px;
+        }
+
+        .cheatsheet-card {
+            background: rgba(15, 23, 42, 0.45);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 14px;
+            padding: 18px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .cheatsheet-card:hover {
+            background: rgba(56, 189, 248, 0.06);
+            border-color: rgba(56, 189, 248, 0.3);
+            transform: translateY(-3px);
+        }
+
+        .cheatsheet-info h3 {
+            font-size: 0.98rem;
+            font-weight: 700;
+            color: #f8fafc;
+            margin-bottom: 4px;
+        }
+
+        .cheatsheet-info p {
+            font-size: 0.82rem;
+            color: #94a3b8;
+            line-height: 1.4;
+        }
+
+        .cheatsheet-actions {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .btn-download-pdf {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(239, 68, 68, 0.15);
+            color: #fca5a5;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            padding: 7px 14px;
+            border-radius: 8px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .btn-download-pdf:hover {
+            background: rgba(239, 68, 68, 0.3);
+            color: #ffffff;
+            border-color: #ef4444;
+        }
+
+        .btn-download-md {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(56, 189, 248, 0.15);
+            color: #7dd3fc;
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            padding: 7px 14px;
+            border-radius: 8px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .btn-download-md:hover {
+            background: rgba(56, 189, 248, 0.3);
+            color: #ffffff;
+            border-color: #38bdf8;
+        }
     </style>
 </head>
 <body>
@@ -287,6 +447,148 @@
                 <span>Ciclo: <strong>II-2026</strong></span>
             </div>
         </header>
+
+        <!-- SECCIÓN DE HOJAS DE REFERENCIA RÁPIDA (CHEATSHEETS) -->
+        <section class="cheatsheets-section">
+            <div class="cheatsheets-header">
+                <div class="cheatsheets-title-box">
+                    <h2>⚡ Hojas de Referencia Rápida (Cheatsheets)</h2>
+                    <p>Recursos de consulta rápida y guías de sintaxis en formato PDF y Markdown para apoyo en clases y evaluaciones.</p>
+                </div>
+                <a href="cheatsheets/Cheatsheets_IF0009_Full_Pack.zip" class="download-all-btn" download>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                    Descargar Pack Completo (.ZIP)
+                </a>
+            </div>
+
+            <div class="cheatsheets-grid">
+                <!-- 1. HTML5 -->
+                <div class="cheatsheet-card">
+                    <div class="cheatsheet-info">
+                        <h3>📄 HTML5 Semántico &amp; Accesibilidad</h3>
+                        <p>Estructura de documento, etiquetas semánticas HTML5, atributos universales y buenas prácticas WCAG.</p>
+                    </div>
+                    <div class="cheatsheet-actions">
+                        <a href="cheatsheets/html.pdf" class="btn-download-pdf" target="_blank">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+                            PDF
+                        </a>
+                        <a href="cheatsheets/html.md" class="btn-download-md" target="_blank">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+                            Markdown
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 2. CSS3 -->
+                <div class="cheatsheet-card">
+                    <div class="cheatsheet-info">
+                        <h3>🎨 CSS3 Avanzado &amp; Flexbox / Grid</h3>
+                        <p>Modelo de caja, Flexbox, CSS Grid Layout, variables personalizadas y responsive design.</p>
+                    </div>
+                    <div class="cheatsheet-actions">
+                        <a href="cheatsheets/css.pdf" class="btn-download-pdf" target="_blank">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+                            PDF
+                        </a>
+                        <a href="cheatsheets/css.md" class="btn-download-md" target="_blank">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+                            Markdown
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 3. JavaScript -->
+                <div class="cheatsheet-card">
+                    <div class="cheatsheet-info">
+                        <h3>⚡ JavaScript Moderno (ES6+)</h3>
+                        <p>Sintaxis ES6+, destructuración, funciones flecha, promesas, async/await y manipulación del DOM.</p>
+                    </div>
+                    <div class="cheatsheet-actions">
+                        <a href="cheatsheets/Cheatsheet_JavaScript.pdf" class="btn-download-pdf" target="_blank">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+                            PDF
+                        </a>
+                        <a href="cheatsheets/Cheatsheet_JavaScript.md" class="btn-download-md" target="_blank">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+                            Markdown
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 4. TypeScript -->
+                <div class="cheatsheet-card">
+                    <div class="cheatsheet-info">
+                        <h3>🔷 TypeScript &amp; Tipado Estático</h3>
+                        <p>Interfaces, Type Aliases, enums, genéricos (&lt;T&gt;), utility types y decoradores en TypeScript.</p>
+                    </div>
+                    <div class="cheatsheet-actions">
+                        <a href="cheatsheets/Cheatsheet_TypeScript.pdf" class="btn-download-pdf" target="_blank">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+                            PDF
+                        </a>
+                        <a href="cheatsheets/Cheatsheet_TypeScript.md" class="btn-download-md" target="_blank">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+                            Markdown
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 5. Git & GitHub -->
+                <div class="cheatsheet-card">
+                    <div class="cheatsheet-info">
+                        <h3>🌿 Control de Versiones con Git &amp; GitHub</h3>
+                        <p>Comandos de consola, flujo Feature Branching, Pull Requests, merge de conflictos y Conventional Commits.</p>
+                    </div>
+                    <div class="cheatsheet-actions">
+                        <a href="cheatsheets/git_github.pdf" class="btn-download-pdf" target="_blank">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+                            PDF
+                        </a>
+                        <a href="cheatsheets/git_github.md" class="btn-download-md" target="_blank">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+                            Markdown
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 6. Maven -->
+                <div class="cheatsheet-card">
+                    <div class="cheatsheet-info">
+                        <h3>🛠️ Apache Maven Build Tool</h3>
+                        <p>Estructura del pom.xml, ciclo de vida de construcción (compile, test, package), dependencias y plugins Java.</p>
+                    </div>
+                    <div class="cheatsheet-actions">
+                        <a href="cheatsheets/maven.pdf" class="btn-download-pdf" target="_blank">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+                            PDF
+                        </a>
+                        <a href="cheatsheets/maven.md" class="btn-download-md" target="_blank">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+                            Markdown
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 7. Spring Boot Testing -->
+                <div class="cheatsheet-card">
+                    <div class="cheatsheet-info">
+                        <h3>🧪 Pruebas de Unidad en Spring Boot</h3>
+                        <p>JUnit 5, Mockito (`@Mock`, `@InjectMocks`), `@WebMvcTest`, MockMvc y aserciones con AssertJ.</p>
+                    </div>
+                    <div class="cheatsheet-actions">
+                        <a href="cheatsheets/Cheatsheet_Pruebas_de_Unidad_SpringBoot.pdf" class="btn-download-pdf" target="_blank">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+                            PDF
+                        </a>
+                        <a href="cheatsheets/Cheatsheet_Pruebas_de_Unidad_SpringBoot.md" class="btn-download-md" target="_blank">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+                            Markdown
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
 
         <div class="grid">
             
