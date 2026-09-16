@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <title>Tema 4.5 - Introducción al Framework Angular - Desarrollo de Software IV</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <!-- Reveal.js Base Stylesheets -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reset.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.css">
+    
+    <!-- Tokyo Night Dark Theme for Code Syntax Resaltation -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/tokyo-night-dark.min.css">
+
+    <!-- Premium Google Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* Modern Web Design Aesthetics & Layout Tokens */
+        html, body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background-color: #0b0f19 !important;
+            color: #f8fafc;
+            overflow: hidden;
+        }
+
+        .reveal {
+            width: 100%;
+            height: 100%;
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0b0f19 0%, #111827 50%, #1e1b4b 100%) !important;
+            color: #f8fafc;
+        }
+        
+        .reveal .slides section {
+            font-family: 'Outfit', 'Inter', sans-serif;
+            text-align: left;
+            padding: 50px 70px;
+            box-sizing: border-box;
+            font-size: 22px;
+            color: #f8fafc;
+        }
+        
+        /* Centered Cover Slide Layout */
+        .reveal .slides section.lead-slide {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+        
+        /* Premium Typography Styles */
+        .reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6 {
+            font-family: 'Outfit', sans-serif;
+            text-transform: none;
+            color: #38bdf8;
+            font-weight: 800;
+            text-shadow: none;
+        }
+        
+        .reveal h1 {
+            font-size: 1.7em;
+            margin-bottom: 12px;
+            border-bottom: 2px solid #3b82f6;
+            padding-bottom: 10px;
+        }
+        
+        .reveal .lead-slide h1 {
+            border-bottom: none;
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            color: #38bdf8;
+        }
+        
+        .reveal h2 {
+            font-size: 1.25em;
+            color: #818cf8;
+            font-weight: 700;
+            margin-top: 0px;
+        }
+        
+        .reveal .lead-slide h2 {
+            font-size: 1.55em;
+            color: #818cf8;
+            margin-bottom: 30px;
+        }
+        
+        .reveal h3 {
+            font-size: 1.1em;
+            color: #a78bfa;
+        }
+        
+        /* List and Text Formatting */
+        .reveal p, .reveal li {
+            color: #cbd5e1;
+            line-height: 1.6;
+        }
+        
+        .reveal ul {
+            list-style-type: square;
+            margin-left: 1.5em;
+        }
+        
+        .reveal li {
+            margin-bottom: 12px;
+        }
+        
+        .reveal strong {
+            color: #f43f5e;
+            font-weight: 600;
+        }
+        
+        .reveal em {
+            color: #fb7185;
+            font-style: italic;
+        }
+        
+        .reveal footer {
+            font-size: 0.5em;
+            color: #6b7280;
+            position: absolute;
+            bottom: 20px;
+            right: 50px;
+        }
+        
+        /* Code Block Containers and Inlines */
+        .reveal code {
+            font-family: 'Fira Code', monospace;
+            background-color: #030712;
+            color: #38bdf8;
+            border-radius: 4px;
+            padding: 2px 8px;
+            font-size: 0.85em;
+        }
+        
+        .reveal pre {
+            background-color: #030712 !important;
+            border: 1px solid #1f2937;
+            border-radius: 10px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
+            width: 100%;
+            margin: 20px 0;
+            box-sizing: border-box;
+        }
+        
+        .reveal pre code {
+            background-color: transparent;
+            color: inherit;
+            font-size: 0.8em;
+            line-height: 1.55;
+            padding: 18px;
+            max-height: 520px;
+        }
+        
+        /* Control Nav Arrows & Progress Bar */
+        .reveal .controls-arrow {
+            color: #38bdf8 !important;
+        }
+        
+        .reveal .progress span {
+            background-color: #38bdf8 !important;
+        }
+
+        /* Custom style overrides parsed from Marp frontmatter */
+        .reveal .slides section {
+  background-color: #0f172a;
+  color: #f8fafc;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+}
+h1, h2 {
+  color: #38bdf8;
+}
+h3 {
+  color: #7dd3fc;
+}
+footer {
+  color: #64748b;
+}
+code {
+  background-color: #1e293b;
+  color: #38bdf8;
+}
+pre code {
+  background-color: transparent;
+  color: #f8fafc;
+}
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <section >
+<h1>IF0009 - Desarrollo de Software IV</h1>
+
+<h2>Tema 4.5: Introducción al Framework Angular (Conceptos Básicos, CLI, Componentes y Servicios)</h2>
+
+Universidad de Costa Rica <br>
+Sede del Atlántico - Recinto Paraíso <br>
+Carrera de Informática Empresarial <br>
+<strong>Profesor:</strong> Mag. Jonathan Granados C. <br>
+<strong>Semestre:</strong> II-2026
+
+<footer>UCR - Informática Empresarial</footer>
+            </section>
+
+            <section >
+<h1>¿Qué es Angular?</h1>
+
+Framework de desarrollo web empresarial multiplataforma diseñado para la construcción de <strong>Single-Page Applications (SPA)</strong> escalables.
+
+<ul>
+<li><strong>Características Clave:</strong>
+<ul>
+<li>Desarrollado en <strong>TypeScript</strong> (superconjunto tipado de JavaScript).
+</li>
+<li>Arquitectura orientada a <strong>Componentes</strong>, <strong>Servicios</strong>, <strong>Pipes</strong> y <strong>Directivas</strong>.
+</li>
+<li>Soporte multiplataforma: Aplicaciones Web, Móviles y de Escritorio.
+</li>
+<li>Inyección de dependencias nativa y control de estado reactivo.
+</li>
+</ul>
+</li>
+</ul>
+
+<footer>Tema 4.5: Introducción al Framework Angular</footer>
+            </section>
+
+            <section >
+<h1>¿Por qué usar un Framework Front-End?</h1>
+
+<ul>
+<li><strong>Múltiples Factores de Forma:</strong> Adaptabilidad visual dinámica para diversos tamaños de pantalla y dispositivos.
+</li>
+<li><strong>Rich UI & UX:</strong> Interfaces interactivas de alto rendimiento sin recarga completa de página (<em>No Full Page Reload</em>).
+</li>
+<li><strong>Single-Page Application (SPA):</strong>
+<ul>
+<li>Renderizado dinámico de contenido cliente.
+</li>
+<li>Preservación del contexto del usuario y comunicación asíncrona mediante JSON.
+</li>
+</ul>
+</li>
+</ul>
+
+<footer>Tema 4.5: Introducción al Framework Angular</footer>
+            </section>
+
+            <section >
+<h1>Configuración del Ambiente de Trabajo</h1>
+
+<ol>
+<li><strong>Node.js & NPM:</strong>
+<ul>
+<li>Entorno de ejecución JavaScript e instalador de paquetes.
+</li>
+<li>Verificar versión: <code>node --version</code> (Recomendado v20+ / v22+).
+</li>
+</ul>
+</li>
+</ol>
+
+<ol>
+<li><strong>Angular CLI (<code>@angular/cli</code>):</strong>
+</li>
+</ol>
+   ```bash
+   npm install -g @angular/cli
+   ```
+<ul>
+<li>Comandos principales:
+<ul>
+<li><code>ng new mi-app</code>: Crea un nuevo proyecto Angular.
+</li>
+<li><code>ng serve</code>: Inicia el servidor de desarrollo (<code>http://localhost:4200</code>).
+</li>
+<li><code>ng generate service actor</code>: Genera un nuevo servicio inyectable.
+</li>
+</ul>
+</li>
+</ul>
+
+<footer>Tema 4.5: Introducción al Framework Angular</footer>
+            </section>
+
+            <section >
+<h1>Arquitectura de Componentes en Angular</h1>
+
+Un <strong>Componente</strong> encapsula la estructura visual (HTML), la lógica de negocio (TS) y la maquetación visual (CSS).
+
+<pre><code class="language-typescript">import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-saludo',
+  standalone: true,
+  template: `&lt;h1&gt;{{ titulo }}&lt;/h1&gt;`,
+  styles: [`h1 { color: #38bdf8; }`]
+})
+export class SaludoComponent {
+  titulo: string = 'Bienvenido a Angular 19';
+}</code></pre>
+
+<footer>Tema 4.5: Introducción al Framework Angular</footer>
+            </section>
+
+            <section >
+<h1>Servicios Inyectables e HttpClient</h1>
+
+Los <strong>Servicios</strong> contienen la lógica de negocio desacoplada de la vista y la integración con APIs RESTful.
+
+<pre><code class="language-typescript">import { Injectable, inject } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { Actor } from '../domain/actor.model';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class ActorService {
+  private readonly http = inject(HttpClient);
+  private readonly url = 'http://localhost:8080/api/v1/actores';
+
+  actores$: Observable&lt;Actor[]&gt; = this.http.get&lt;Actor[]&gt;(this.url);
+}</code></pre>
+
+<footer>Tema 4.5: Introducción al Framework Angular</footer>
+            </section>
+
+            <section >
+<h1>Integración en Plantilla HTML (<code>@for</code> y Pipe <code>async</code>)</h1>
+
+<pre><code class="language-html">&lt;label for="cboActor"&gt;Seleccionar Actor:&lt;/label&gt;
+&lt;select id="cboActor" [(ngModel)]="idActorSeleccionado"&gt;
+  &lt;!-- El pipe async suscribe y cancela automáticamente el Observable --&gt;
+  @for (actor of actores$ | async; track actor.id) {
+    &lt;option [value]="actor.id"&gt;
+      {{ actor.nombre }} {{ actor.apellidos }}
+    &lt;/option&gt;
+  }
+&lt;/select&gt;
+&lt;button (click)="agregarActor()"&gt;Agregar Actor&lt;/button&gt;</code></pre>
+
+<ul>
+<li><strong>Data Binding:</strong>
+<ul>
+<li><code>[(ngModel)]</code>: Enlace bidireccional (<em>Two-Way Data Binding</em>).
+</li>
+<li><code>(click)</code>: Enlace de eventos (<em>Event Binding</em>).
+</li>
+<li><code>[value]</code>: Enlace de propiedades (<em>Property Binding</em>).
+</li>
+</ul>
+</li>
+</ul>
+
+<footer>Tema 4.5: Introducción al Framework Angular</footer>
+            </section>
+
+            <section >
+<h1>Configuración del Enrutamiento Básico</h1>
+
+<pre><code class="language-typescript">// app.routes.ts
+import { Routes } from '@angular/router';
+import { PeliculaInsertComponent } 
+       from './peliculas/pelicula-insert/pelicula-insert.component';
+
+export const routes: Routes = [
+  { path: 'insertar-pelicula', component: PeliculaInsertComponent },
+  { path: '', redirectTo: 'insertar-pelicula', pathMatch: 'full' }
+];</code></pre>
+
+<ul>
+<li><strong>Acceso HTTP:</strong> <code>http://localhost:4200/insertar-pelicula</code>
+</li>
+</ul>
+
+<footer>Tema 4.5: Introducción al Framework Angular</footer>
+            </section>
+
+            <section >
+<h1>Conclusión del Tema Introductorio</h1>
+
+<ul>
+<li>Angular proporciona una arquitectura sólida para aplicaciones web empresariales.
+</li>
+<li>La separación en <strong>Componentes</strong>, <strong>Servicios</strong> y <strong>Modelos</strong> garantiza un código limpio y mantenible.
+</li>
+<li><strong>Próximo Paso Avanzado (Tema 4.6):</strong> Signals, Control Flow moderno, Interceptores JWT y Route Guards.
+</li>
+</ul>
+
+<footer>UCR - Informática Empresarial</footer>
+            </section>
+
+        </div>
+    </div>
+
+    <!-- Highlight.js and Reveal.js Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.js"></script>
+
+    <script>
+        // Initialize Highlight.js for code syntax coloring
+        hljs.highlightAll();
+
+        // Initialize Reveal.js with modern layout configurations
+        Reveal.initialize({
+            hash: true,
+            respondToHashChanges: true,
+            history: true,
+            transition: 'slide', // none/fade/slide/convex/concave/zoom
+            transitionSpeed: 'default',
+            backgroundTransition: 'fade',
+            width: 960,
+            height: 700,
+            margin: 0.05,
+            minScale: 0.2,
+            maxScale: 2.0,
+            plugins: []
+        });
+    </script>
+</body>
+</html>

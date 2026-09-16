@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <!-- Categoría del Banco de Preguntas en Mediación Virtual -->
+  <question type="category">
+    <category>
+      <text>$course$/top/Quiz 3 - Desarrollo Front-End, UX/A11y y JavaScript/TypeScript</text>
+    </category>
+    <info format="html">
+      <text><![CDATA[Preguntas del Quiz 3: Desarrollo Front-End, UX/A11y, JavaScript ES6+ y TypeScript Avanzado (IF0009 - Desarrollo de Software IV)]]></text>
+    </info>
+  </question>
+
+  <!-- Pregunta 1 -->
+  <question type="multichoice">
+    <name>
+      <text>Q1 - Arquitectura Front-End y Optimización de Rendimiento (Core Web Vitals)</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Un equipo de ingeniería de software migra un portal de comercio electrónico desde un esquema tradicional renderizado en servidor (SSR) hacia una aplicación de página única (SPA - <em>Single-Page Application</em>) en el cliente. Al auditar la aplicación con Google Lighthouse, observan que el indicador LCP (<em>Largest Contentful Paint</em>) empeoró significativamente debido a la descarga de un paquete JavaScript monolítico inicial, y además se generan saltos visuales molestos (<em>Cumulative Layout Shift - CLS</em>) al desplegar imágenes y datos asíncronos.</p><p>¿Cuál es la combinación de estrategias de arquitectura front-end y optimización de renderizado recomendada para resolver estos defectos de rendimiento?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Se debe aplicar división de código (<em>code-splitting</em>) y carga diferida (<em>lazy loading</em>) mediante importaciones dinámicas, reservar dimensiones explícitas (<code>width</code>/<code>height</code> o <code>aspect-ratio</code>) en elementos multimedia para evitar CLS, y aplicar <em>tree-shaking</em> para eliminar código muerto.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>5.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="0" format="html">
+      <text><![CDATA[Desactivar las hojas de estilo CSS3 y reemplazar todos los componentes de la interfaz por gráficos SVG incrustados en línea dentro del evento <code>window.onload</code>.]]></text>
+      <feedback format="html">
+        <text><![CDATA[Incorrecto. Desactivar CSS3 e insertar SVG inline en <code>onload</code> empeora las métricas de rendimiento y destruye la separación semántica.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="100" format="html">
+      <text><![CDATA[Aplicar división de código (<em>code-splitting</em>) y carga diferida (<em>lazy loading</em>) de rutas/módulos, reservar dimensiones explícitas (<code>width</code>/<code>height</code> o <code>aspect-ratio</code>) en elementos multimedia para evitar CLS, y optimizar el empaquetado eliminando código muerto (<em>tree-shaking</em>).]]></text>
+      <feedback format="html">
+        <text><![CDATA[¡Correcto! El <em>code-splitting</em> reduce el tamaño del paquete inicial mejorando LCP, reservar espacio previene el CLS y <em>tree-shaking</em> elimina código muerto.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[Reemplazar la API Fetch cliente por peticiones síncronas <code>XMLHttpRequest</code> invocadas directamente en el hilo principal para bloquear el DOM hasta recibir todos los datos del servidor.]]></text>
+      <feedback format="html">
+        <text><![CDATA[Incorrecto. Las peticiones síncronas en el hilo principal congelan la interfaz de usuario, degradando drásticamente la UX.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[Unificar todo el código JavaScript de la aplicación en un script global sin módulos usando declaraciones <code>var</code> para acelerar la interpretación del motor V8.]]></text>
+      <feedback format="html">
+        <text><![CDATA[Incorrecto. Evitar módulos y usar variables globales contamina el objeto <code>window</code> y previene optimizaciones del bundler.]]></text>
+      </feedback>
+    </answer>
+  </question>
+
+  <!-- Pregunta 2 -->
+  <question type="multichoice">
+    <name>
+      <text>Q2 - Accesibilidad Web (WCAG 2.1 AA) y Semántica WAI-ARIA</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>En una plataforma bancaria web, un desarrollador construye una ventana modal dinámico de confirmación de transferencia utilizando una etiqueta genérica <code>&lt;div class="modal"&gt;</code> con estilos CSS. Los usuarios que navegan mediante teclado y lectores de pantalla (NVDA/VoiceOver) reportan tres fallas severas:</p><ol><li>Al abrir el modal, el foco del teclado se queda atrapado en los elementos del fondo de la página.</li><li>El lector de pantalla no anuncia la apertura ni el contenido del diálogo de alerta.</li><li>El usuario puede seguir presionando <code>Tab</code> y activar accidentalmente botones ocultos detrás del modal.</li></ol><p>¿Qué patrón de accesibilidad (WCAG 2.1 AA - Principios Operable y Robusto) soluciona de forma integral esta falla de interfaz?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Se debe asignar <code>role="dialog"</code> y <code>aria-modal="true"</code> al contenedor del modal, transferir programáticamente el foco (<code>element.focus()</code>), implementar confinamiento de foco (<em>focus trap</em>), y utilizar <code>aria-live="assertive"</code> para notificaciones inmediatas.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>5.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+      <text><![CDATA[Incorporar <code>role="dialog"</code> y <code>aria-modal="true"</code> al contenedor del modal, transferir programáticamente el foco del teclado al primer elemento enfocable dentro del diálogo (<code>element.focus()</code>), implementar confinamiento de foco (<em>focus trap</em>), y utilizar una región viva <code>aria-live="assertive"</code> para los mensajes.]]></text>
+      <feedback format="html">
+        <text><![CDATA[¡Correcto! Cumple rigurosamente WCAG 2.1 AA informando al lector de pantalla mediante WAI-ARIA y asegurando la navegabilidad completa mediante teclado.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[Colocar el atributo <code>alt="modal-dialog"</code> en el <code>&lt;div&gt;</code> principal y deshabilitar los eventos del teclado del sistema operativo mediante JavaScript.]]></text>
+      <feedback format="html">
+        <text><![CDATA[Incorrecto. El atributo <code>alt</code> solo aplica para imágenes (<code>&lt;img&gt;</code>) y deshabilitar el teclado del sistema no es factible ni accesible.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[Reemplazar la estructura HTML del modal por una imagen PNG estática renderizada con la captura del texto de confirmación.]]></text>
+      <feedback format="html">
+        <text><![CDATA[Incorrecto. Las imágenes de texto violan el principio Perceptible de WCAG al no escalar ni permitir lectura directa por software de voz.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[Asignar un valor <code>tabindex="100"</code> a todos los botones del fondo de la página para forzar al navegador a omitir su navegación por teclado.]]></text>
+      <feedback format="html">
+        <text><![CDATA[Incorrecto. Asignar <code>tabindex</code> positivos altera drásticamente el orden del DOM y rompe la accesibilidad.]]></text>
+      </feedback>
+    </answer>
+  </question>
+
+  <!-- Pregunta 3 -->
+  <question type="multichoice">
+    <name>
+      <text>Q3 - Rastreo de Código: Motor V8, Event Loop y Microtask Queue</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Analice la siguiente secuencia de ejecución asíncrona en JavaScript moderno (ES6+):</p>
+<pre><code>console.log("1. Inicio");
+
+setTimeout(() =&gt; {
+    console.log("2. Timer Macrotarea");
+}, 0);
+
+Promise.resolve().then(() =&gt; {
+    console.log("3. Promesa Microtarea");
+});
+
+(async () =&gt; {
+    await null;
+    console.log("4. Async/Await Microtarea");
+})();
+
+console.log("5. Fin");</code></pre>
+<p>¿Cuál es el orden exacto de salida por consola producido al ejecutar este script en el navegador o motor Node.js?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>El orden es <code>1. Inicio</code>, <code>5. Fin</code>, <code>3. Promesa Microtarea</code>, <code>4. Async/Await Microtarea</code>, <code>2. Timer Macrotarea</code>. Las tareas síncronas se ejecutan primero; luego la Microtask Queue procesa las promesas con prioridad sobre la Macrotask Queue (setTimeout).</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>5.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<code>1. Inicio</code> &rarr; <code>5. Fin</code> &rarr; <code>3. Promesa Microtarea</code> &rarr; <code>4. Async/Await Microtarea</code> &rarr; <code>2. Timer Macrotarea</code>]]></text>
+      <feedback format="html">
+        <text><![CDATA[¡Correcto! El Call Stack ejecuta las instrucciones síncronas (1 y 5). Luego, el Event Loop vacía la Microtask Queue (3 y 4) antes de atender la Macrotask Queue (2).]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<code>1. Inicio</code> &rarr; <code>2. Timer Macrotarea</code> &rarr; <code>3. Promesa Microtarea</code> &rarr; <code>4. Async/Await Microtarea</code> &rarr; <code>5. Fin</code>]]></text>
+      <feedback format="html">
+        <text><![CDATA[Incorrecto. Asume ejecución síncrona secuencial ignorando el funcionamiento del Event Loop y la delegación de asincronía.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<code>1. Inicio</code> &rarr; <code>5. Fin</code> &rarr; <code>2. Timer Macrotarea</code> &rarr; <code>3. Promesa Microtarea</code> &rarr; <code>4. Async/Await Microtarea</code>]]></text>
+      <feedback format="html">
+        <text><![CDATA[Incorrecto. <code>setTimeout</code> a 0ms entra en la Macrotask Queue y debe esperar a que finalicen todas las microtareas de la Microtask Queue.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<code>1. Inicio</code> &rarr; <code>3. Promesa Microtarea</code> &rarr; <code>4. Async/Await Microtarea</code> &rarr; <code>2. Timer Macrotarea</code> &rarr; <code>5. Fin</code>]]></text>
+      <feedback format="html">
+        <text><![CDATA[Incorrecto. Las promesas se registran de forma asíncrona en la cola de microtareas y no bloquean el Call Stack principal.]]></text>
+      </feedback>
+    </answer>
+  </question>
+
+  <!-- Pregunta 4 -->
+  <question type="multichoice">
+    <name>
+      <text>Q4 - Rastreo de Código: Programación Funcional e Inmutabilidad de Arreglos</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Un desarrollador debe procesar una lista de paquetes de envío representada en el siguiente arreglo de objetos:</p>
+<pre><code>const paquetes = [
+    { id: 'P1', pesoKg: 10, estado: 'ENTREGADO' },
+    { id: 'P2', pesoKg: 25, estado: 'EN_TRANSITO' },
+    { id: 'P3', pesoKg: 15, estado: 'ENTREGADO' },
+    { id: 'P4', pesoKg: 5,  estado: 'CANCELADO' }
+];
+
+const totalPesoEntregado = paquetes
+    .filter(p =&gt; p.estado === 'ENTREGADO')
+    .map(p =&gt; p.pesoKg)
+    .reduce((acum, peso) =&gt; acum + peso, 0);</code></pre>
+<p>¿Cuál es el valor final de la variable <code>totalPesoEntregado</code> y cuál es el impacto de esta operación sobre el arreglo original <code>paquetes</code>?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>El valor es <code>25</code> (10 + 15) y el arreglo original <code>paquetes</code> permanece totalmente intacto. Los métodos <code>filter</code>, <code>map</code> y <code>reduce</code> son funciones puras e inmutables.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>5.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="0" format="html">
+      <text><![CDATA[Retorna <code>25</code> y modifica directamente el arreglo original <code>paquetes</code>, eliminando de la memoria los objetos cuyo estado no sea <code>'ENTREGADO'</code>.]]></text>
+      <feedback format="html">
+        <text><![CDATA[Incorrecto. <code>filter</code> y <code>map</code> no mutan el arreglo original; generan nuevas instancias en memoria.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="100" format="html">
+      <text><![CDATA[Retorna <code>25</code> (suma de 10 + 15) y mantiene el arreglo original <code>paquetes</code> completamente inalterado (inmutabilidad estricta), debido a que <code>filter</code> y <code>map</code> retornan nuevas instancias de arreglos en memoria.]]></text>
+      <feedback format="html">
+        <text><![CDATA[¡Correcto! El encadenamiento filtra los 2 elementos entregados, mapea a sus pesos numéricos y reduce a 25 sin alterar el arreglo original.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[Retorna <code>55</code> porque el método <code>reduce</code> omite la condición del filtro y procesa el peso acumulado de los 4 elementos de la colección.]]></text>
+      <feedback format="html">
+        <text><![CDATA[Incorrecto. <code>reduce</code> se ejecuta sobre el resultado del filtro previo (que solo incluye P1 y P3).]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[Lanza un error de ejecución <code>TypeError</code> porque el valor inicial <code>0</code> en <code>reduce</code> no es válido cuando se procesan arreglos de objetos.]]></text>
+      <feedback format="html">
+        <text><![CDATA[Incorrecto. El valor inicial <code>0</code> es totalmente válido para acumular sumas numéricas en <code>reduce</code>.]]></text>
+      </feedback>
+    </answer>
+  </question>
+
+  <!-- Pregunta 5 -->
+  <question type="multichoice">
+    <name>
+      <text>Q5 - TypeScript Avanzado: Utility Types, Genéricos y Payload REST</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Analice la siguiente declaración de modelos DTO en TypeScript para un módulo de gestión de envíos:</p>
+<pre><code>export interface EnvioDto {
+    id: number;
+    trackingCode: string;
+    pesoKg: number;
+    destinatario: string;
+    entregado: boolean;
+}
+
+export type ActualizarEnvioPayload = Partial&lt;Omit&lt;EnvioDto, 'id' | 'trackingCode'&gt;&gt;;</code></pre>
+<p>¿Qué propiedades conforman la estructura del tipo <code>ActualizarEnvioPayload</code> y para qué tipo de operación en una API RESTful está diseñado este patrón de tipo?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>La estructura es <code>{ pesoKg?: number; destinatario?: string; entregado?: boolean; }</code>. <code>Omit</code> remueve las claves inmutables <code>id</code> y <code>trackingCode</code>, y <code>Partial</code> hace el resto opcional, perfecto para operaciones HTTP <code>PATCH</code>.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>5.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="0" format="html">
+      <text><![CDATA[Incluye únicamente las propiedades <code>{ id?: number; trackingCode?: string; }</code> en formato opcional y está diseñado para peticiones HTTP <code>DELETE</code>.]]></text>
+      <feedback format="html">
+        <text><![CDATA[Incorrecto. <code>Omit</code> elimina las llaves especificadas en lugar de conservarlas.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="100" format="html">
+      <text><![CDATA[Incluye las propiedades <code>{ pesoKg?: number; destinatario?: string; entregado?: boolean; }</code> totalmente opcionales, omitiendo las llaves inmutables <code>id</code> y <code>trackingCode</code>, diseñado para peticiones HTTP <code>PATCH</code> de actualización parcial.]]></text>
+      <feedback format="html">
+        <text><![CDATA[¡Correcto! <code>Omit</code> elimina los identificadores no editables y <code>Partial</code> vuelve opcionales los atributos restantes para peticiones HTTP <code>PATCH</code>.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[Convierte todas las propiedades de <code>EnvioDto</code> en campos de sólo lectura (<code>Readonly</code>) e inmutables para peticiones HTTP <code>POST</code>.]]></text>
+      <feedback format="html">
+        <text><![CDATA[Incorrecto. Para inmutabilidad se utiliza el Utility Type <code>Readonly&lt;T&gt;</code>, no <code>Partial&lt;T&gt;</code>.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[Genera un error de compilación en <code>tsc</code> debido a que TypeScript prohíbe anidar Utility Types como <code>Partial</code> y <code>Omit</code>.]]></text>
+      <feedback format="html">
+        <text><![CDATA[Incorrecto. TypeScript permite la composición anidada y versátil de Utility Types.]]></text>
+      </feedback>
+    </answer>
+  </question>
+
+</quiz>

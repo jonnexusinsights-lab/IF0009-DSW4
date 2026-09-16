@@ -1,0 +1,58 @@
+// ==============================================================================
+// Cuestionario: Quiz 3 - Desarrollo Front-End, UX/A11y, JavaScript ES6+ y TypeScript Avanzado
+// Curso: IF0009 - Desarrollo de Software IV (UCR)
+// Plataforma: Mediación Virtual (Moodle)
+// Formato: GIFT (Moodle Quiz Import)
+// ==============================================================================
+
+$CATEGORY: $course$/Quiz 3 - Desarrollo Front-End, UX/A11y y JavaScript/TypeScript
+
+// ------------------------------------------------------------------------------
+// Pregunta 1: Arquitectura Front-End y Optimización de Rendimiento (Core Web Vitals)
+// ------------------------------------------------------------------------------
+::Q1_Frontend_Core_Web_Vitals:: [html]Un equipo de ingeniería de software migra un portal de comercio electrónico desde un esquema tradicional renderizado en servidor (SSR) hacia una aplicación de página única (SPA - <i>Single-Page Application</i>) en el cliente. Al auditar la aplicación con Google Lighthouse, observan que el indicador LCP (<i>Largest Contentful Paint</i>) empeoró significativamente debido a la descarga de un paquete JavaScript monolítico inicial, y además se generan saltos visuales molestos (<i>Cumulative Layout Shift - CLS</i>) al desplegar imágenes y datos asíncronos.<br/><br/>¿Cuál es la combinación de estrategias de arquitectura front-end y optimización de renderizado recomendada para resolver estos defectos de rendimiento? {
+	~Desactivar las hojas de estilo CSS3 y reemplazar todos los componentes de la interfaz por gráficos SVG incrustados en línea dentro del evento <code>window.onload</code>. #Incorrecto. Desactivar CSS3 e insertar SVG inline en onload empeora las métricas de rendimiento y destruye la separación semántica.
+	=Aplicar división de código (<i>code-splitting</i>) y carga diferida (<i>lazy loading</i>) de rutas/módulos, reservar dimensiones explícitas (<code>width</code>/<code>height</code> o <code>aspect-ratio</code>) en elementos multimedia para evitar CLS, y optimizar el empaquetado eliminando código muerto (<i>tree-shaking</i>). #¡Correcto! El code-splitting reduce el tamaño del paquete inicial mejorando LCP, reservar espacio previene el CLS y tree-shaking elimina código muerto.
+	~Reemplazar la API Fetch cliente por peticiones síncronas <code>XMLHttpRequest</code> invocadas directamente en el hilo principal para bloquear el DOM hasta recibir todos los datos del servidor. #Incorrecto. Las peticiones síncronas en el hilo principal congelan la interfaz de usuario, degradando drásticamente la UX.
+	~Unificar todo el código JavaScript de la aplicación en un script global sin módulos usando declaraciones <code>var</code> para acelerar la interpretación del motor V8. #Incorrecto. Evitar módulos y usar variables globales contamina el objeto window y previene optimizaciones del bundler.
+}
+
+// ------------------------------------------------------------------------------
+// Pregunta 2: Accesibilidad Web (WCAG 2.1 AA) y Semántica WAI-ARIA
+// ------------------------------------------------------------------------------
+::Q2_WCAG_WAI_ARIA_Modal:: [html]En una plataforma bancaria web, un desarrollador construye una ventana modal dinámico de confirmación de transferencia utilizando una etiqueta genérica <code>&lt;div class="modal"&gt;</code> con estilos CSS. Los usuarios que navegan mediante teclado y lectores de pantalla (NVDA/VoiceOver) reportan tres fallas severas:<br/><br/>1. Al abrir el modal, el foco del teclado se queda atrapado en los elementos del fondo de la página.<br/>2. El lector de pantalla no anuncia la apertura ni el contenido del diálogo de alerta.<br/>3. El usuario puede seguir presionando <code>Tab</code> y activar accidentalmente botones ocultos detrás del modal.<br/><br/>¿Qué patrón de accesibilidad (WCAG 2.1 AA - Principios Operable y Robusto) soluciona de forma integral esta falla de interfaz? {
+	=Incorporar <code>role="dialog"</code> y <code>aria-modal="true"</code> al contenedor del modal, transferir programáticamente el foco del teclado al primer elemento enfocable dentro del diálogo (<code>element.focus()</code>), implementar confinamiento de foco (<i>focus trap</i>), y utilizar una región viva <code>aria-live="assertive"</code> para los mensajes. #¡Correcto! Cumple rigurosamente WCAG 2.1 AA informando al lector de pantalla mediante WAI-ARIA y asegurando la navegabilidad completa mediante teclado.
+	~Colocar el atributo <code>alt="modal-dialog"</code> en el <code>&lt;div&gt;</code> principal y deshabilitar los eventos del teclado del sistema operativo mediante JavaScript. #Incorrecto. El atributo alt solo aplica para imágenes (<img>) y deshabilitar el teclado del sistema no es factible ni accesible.
+	~Reemplazar la estructura HTML del modal por una imagen PNG estática renderizada con la captura del texto de confirmación. #Incorrecto. Las imágenes de texto violan el principio Perceptible de WCAG al no escalar ni permitir lectura directa por software de voz.
+	~Asignar un valor <code>tabindex="100"</code> a todos los botones del fondo de la página para forzar al navegador a omitir su navegación por teclado. #Incorrecto. Asignar tabindex positivos altera drásticamente el orden del DOM y rompe la accesibilidad.
+}
+
+// ------------------------------------------------------------------------------
+// Pregunta 3: Ejercicio de Rastreo de Código: Motor V8, Event Loop y Microtask Queue
+// ------------------------------------------------------------------------------
+::Q3_Event_Loop_Microtask_Queue:: [html]Analice la siguiente secuencia de ejecución asíncrona en JavaScript moderno (ES6+):<br/><br/><pre><code>console.log("1. Inicio");<br/><br/>setTimeout(() =&gt; \{<br/>    console.log("2. Timer Macrotarea");<br/>\}, 0);<br/><br/>Promise.resolve().then(() =&gt; \{<br/>    console.log("3. Promesa Microtarea");<br/>\});<br/><br/>(async () =&gt; \{<br/>    await null;<br/>    console.log("4. Async/Await Microtarea");<br/>\})();<br/><br/>console.log("5. Fin");</code></pre><br/>¿Cuál es el orden exacto de salida por consola producido al ejecutar este script en el navegador o motor Node.js? {
+	=<code>1. Inicio</code> &rarr; <code>5. Fin</code> &rarr; <code>3. Promesa Microtarea</code> &rarr; <code>4. Async/Await Microtarea</code> &rarr; <code>2. Timer Macrotarea</code> #¡Correcto! El Call Stack ejecuta las instrucciones síncronas (1 y 5). Luego, el Event Loop vacía la Microtask Queue (3 y 4) antes de atender la Macrotask Queue (2).
+	~<code>1. Inicio</code> &rarr; <code>2. Timer Macrotarea</code> &rarr; <code>3. Promesa Microtarea</code> &rarr; <code>4. Async/Await Microtarea</code> &rarr; <code>5. Fin</code> #Incorrecto. Asume ejecución síncrona secuencial ignorando el funcionamiento del Event Loop y la delegación de asincronía.
+	~<code>1. Inicio</code> &rarr; <code>5. Fin</code> &rarr; <code>2. Timer Macrotarea</code> &rarr; <code>3. Promesa Microtarea</code> &rarr; <code>4. Async/Await Microtarea</code> #Incorrecto. setTimeout a 0ms entra en la Macrotask Queue y debe esperar a que finalicen todas las microtareas de la Microtask Queue.
+	~<code>1. Inicio</code> &rarr; <code>3. Promesa Microtarea</code> &rarr; <code>4. Async/Await Microtarea</code> &rarr; <code>2. Timer Macrotarea</code> &rarr; <code>5. Fin</code> #Incorrecto. Las promesas se registran de forma asíncrona en la cola de microtareas y no bloquean el Call Stack principal.
+}
+
+// ------------------------------------------------------------------------------
+// Pregunta 4: Ejercicio de Rastreo de Código: Programación Funcional e Inmutabilidad de Arreglos
+// ------------------------------------------------------------------------------
+::Q4_Functional_JS_Array_Methods:: [html]Un desarrollador debe procesar una lista de paquetes de envío representada en el siguiente arreglo de objetos:<br/><br/><pre><code>const paquetes \= [<br/>    \{ id: 'P1', pesoKg: 10, estado: 'ENTREGADO' \},<br/>    \{ id: 'P2', pesoKg: 25, estado: 'EN_TRANSITO' \},<br/>    \{ id: 'P3', pesoKg: 15, estado: 'ENTREGADO' \},<br/>    \{ id: 'P4', pesoKg: 5,  estado: 'CANCELADO' \}<br/>];<br/><br/>const totalPesoEntregado \= paquetes<br/>    .filter(p =&gt; p.estado === 'ENTREGADO')<br/>    .map(p =&gt; p.pesoKg)<br/>    .reduce((acum, peso) =&gt; acum + peso, 0);</code></pre><br/>¿Cuál es el valor final de la variable <code>totalPesoEntregado</code> y cuál es el impacto de esta operación sobre el arreglo original <code>paquetes</code>? {
+	~Retorna <code>25</code> y modifica directamente el arreglo original <code>paquetes</code>, eliminando de la memoria los objetos cuyo estado no sea <code>'ENTREGADO'</code>. #Incorrecto. filter y map no mutan el arreglo original; generan nuevas instancias en memoria.
+	=Retorna <code>25</code> (suma de 10 + 15) y mantiene el arreglo original <code>paquetes</code> completamente inalterado (inmutabilidad estricta), debido a que <code>filter</code> y <code>map</code> retornan nuevas instancias de arreglos en memoria. #¡Correcto! El encadenamiento filtra los 2 elementos entregados, mapea a sus pesos numéricos y reduce a 25 sin alterar el arreglo original.
+	~Retorna <code>55</code> porque el método <code>reduce</code> omite la condición del filtro y procesa el peso acumulado de los 4 elementos de la colección. #Incorrecto. reduce se ejecuta sobre el resultado del filtro previo (que solo incluye P1 y P3).
+	~Lanza un error de ejecución <code>TypeError</code> porque el valor inicial <code>0</code> en <code>reduce</code> no es válido cuando se procesan arreglos de objetos. #Incorrecto. El valor inicial 0 es totalmente válido para acumular sumas numéricas en reduce.
+}
+
+// ------------------------------------------------------------------------------
+// Pregunta 5: TypeScript Avanzado: Utility Types, Genéricos y Payload REST
+// ------------------------------------------------------------------------------
+::Q5_TS_Utility_Types_Composition:: [html]Analice la siguiente declaración de modelos DTO en TypeScript para un módulo de gestión de envíos:<br/><br/><pre><code>export interface EnvioDto \{<br/>    id: number;<br/>    trackingCode: string;<br/>    pesoKg: number;<br/>    destinatario: string;<br/>    entregado: boolean;<br/>\}<br/><br/>export type ActualizarEnvioPayload \= Partial&lt;Omit&lt;EnvioDto, 'id' | 'trackingCode'&gt;&gt;;</code></pre><br/>¿Qué propiedades conforman la estructura del tipo <code>ActualizarEnvioPayload</code> y para qué tipo de operación en una API RESTful está diseñado este patrón de tipo? {
+	~Incluye únicamente las propiedades <code>\{ id?: number; trackingCode?: string; \}</code> en formato opcional y está diseñado para peticiones HTTP <code>DELETE</code>. #Incorrecto. Omit elimina las llaves especificadas en lugar de conservarlas.
+	=Incluye las propiedades <code>\{ pesoKg?: number; destinatario?: string; entregado?: boolean; \}</code> totalmente opcionales, omitiendo las llaves inmutables <code>id</code> y <code>trackingCode</code>, diseñado para peticiones HTTP <code>PATCH</code> de actualización parcial. #¡Correcto! Omit elimina los identificadores no editables y Partial vuelve opcionales los atributos restantes para peticiones HTTP PATCH.
+	~Convierte todas las propiedades de <code>EnvioDto</code> en campos de sólo lectura (<code>Readonly</code>) e inmutables para peticiones HTTP <code>POST</code>. #Incorrecto. Para inmutabilidad se utiliza el Utility Type Readonly<T>, no Partial<T>.
+	~Genera un error de compilación en <code>tsc</code> debido a que TypeScript prohíbe anidar Utility Types como <code>Partial</code> y <code>Omit</code>. #Incorrecto. TypeScript permite la composición anidada y versátil de Utility Types.
+}

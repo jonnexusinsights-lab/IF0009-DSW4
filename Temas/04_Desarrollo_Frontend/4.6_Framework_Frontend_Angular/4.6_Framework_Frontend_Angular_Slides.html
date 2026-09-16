@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <title>Tema 4.6 - Framework Front-End Avanzado (Angular 19) - Desarrollo de Software IV</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <!-- Reveal.js Base Stylesheets -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reset.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.css">
+    
+    <!-- Tokyo Night Dark Theme for Code Syntax Resaltation -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/tokyo-night-dark.min.css">
+
+    <!-- Premium Google Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* Modern Web Design Aesthetics & Layout Tokens */
+        html, body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background-color: #0b0f19 !important;
+            color: #f8fafc;
+            overflow: hidden;
+        }
+
+        .reveal {
+            width: 100%;
+            height: 100%;
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0b0f19 0%, #111827 50%, #1e1b4b 100%) !important;
+            color: #f8fafc;
+        }
+        
+        .reveal .slides section {
+            font-family: 'Outfit', 'Inter', sans-serif;
+            text-align: left;
+            padding: 50px 70px;
+            box-sizing: border-box;
+            font-size: 22px;
+            color: #f8fafc;
+        }
+        
+        /* Centered Cover Slide Layout */
+        .reveal .slides section.lead-slide {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+        
+        /* Premium Typography Styles */
+        .reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6 {
+            font-family: 'Outfit', sans-serif;
+            text-transform: none;
+            color: #38bdf8;
+            font-weight: 800;
+            text-shadow: none;
+        }
+        
+        .reveal h1 {
+            font-size: 1.7em;
+            margin-bottom: 12px;
+            border-bottom: 2px solid #3b82f6;
+            padding-bottom: 10px;
+        }
+        
+        .reveal .lead-slide h1 {
+            border-bottom: none;
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            color: #38bdf8;
+        }
+        
+        .reveal h2 {
+            font-size: 1.25em;
+            color: #818cf8;
+            font-weight: 700;
+            margin-top: 0px;
+        }
+        
+        .reveal .lead-slide h2 {
+            font-size: 1.55em;
+            color: #818cf8;
+            margin-bottom: 30px;
+        }
+        
+        .reveal h3 {
+            font-size: 1.1em;
+            color: #a78bfa;
+        }
+        
+        /* List and Text Formatting */
+        .reveal p, .reveal li {
+            color: #cbd5e1;
+            line-height: 1.6;
+        }
+        
+        .reveal ul {
+            list-style-type: square;
+            margin-left: 1.5em;
+        }
+        
+        .reveal li {
+            margin-bottom: 12px;
+        }
+        
+        .reveal strong {
+            color: #f43f5e;
+            font-weight: 600;
+        }
+        
+        .reveal em {
+            color: #fb7185;
+            font-style: italic;
+        }
+        
+        .reveal footer {
+            font-size: 0.5em;
+            color: #6b7280;
+            position: absolute;
+            bottom: 20px;
+            right: 50px;
+        }
+        
+        /* Code Block Containers and Inlines */
+        .reveal code {
+            font-family: 'Fira Code', monospace;
+            background-color: #030712;
+            color: #38bdf8;
+            border-radius: 4px;
+            padding: 2px 8px;
+            font-size: 0.85em;
+        }
+        
+        .reveal pre {
+            background-color: #030712 !important;
+            border: 1px solid #1f2937;
+            border-radius: 10px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
+            width: 100%;
+            margin: 20px 0;
+            box-sizing: border-box;
+        }
+        
+        .reveal pre code {
+            background-color: transparent;
+            color: inherit;
+            font-size: 0.8em;
+            line-height: 1.55;
+            padding: 18px;
+            max-height: 520px;
+        }
+        
+        /* Control Nav Arrows & Progress Bar */
+        .reveal .controls-arrow {
+            color: #38bdf8 !important;
+        }
+        
+        .reveal .progress span {
+            background-color: #38bdf8 !important;
+        }
+
+        /* Custom style overrides parsed from Marp frontmatter */
+        .reveal .slides section {
+  background-color: #0f172a;
+  color: #f8fafc;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+}
+h1, h2 {
+  color: #38bdf8;
+}
+h3 {
+  color: #7dd3fc;
+}
+footer {
+  color: #64748b;
+}
+code {
+  background-color: #1e293b;
+  color: #38bdf8;
+}
+pre code {
+  background-color: transparent;
+  color: #f8fafc;
+}
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <section >
+<h1>IF0009 - Desarrollo de Software IV</h1>
+
+<h2>Tema 4.6: Framework Front-End Avanzado (Angular 19, Signals, Interceptores JWT y Testing)</h2>
+
+Universidad de Costa Rica <br>
+Sede del Atlántico - Recinto Paraíso <br>
+Carrera de Informática Empresarial <br>
+<strong>Profesor:</strong> Mag. Jonathan Granados C. <br>
+<strong>Semestre:</strong> II-2026
+
+<footer>UCR - Informática Empresarial</footer>
+            </section>
+
+            <section >
+<h1>Arquitectura Standalone en Angular 19</h1>
+
+Angular ha sustituido los tradicionales <code>NgModule</code> por <strong>Componentes Standalone</strong>.
+
+<pre><code class="language-typescript">import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+
+@Component({
+  selector: 'app-mi-componente',
+  standalone: true,
+  imports: [CommonModule],
+  template: `&lt;h1&gt;Componente Independiente&lt;/h1&gt;`
+})
+export class MiComponente {}</code></pre>
+
+<ul>
+<li><strong>Ventajas Principales:</strong>
+<ul>
+<li>Desacoplamiento total del árbol de componentes.
+</li>
+<li>Carga diferida (<em>Lazy Loading</em>) directa de componentes por ruta.
+</li>
+<li>Menor fricción de aprendizaje y proyectos más ligeros.
+</li>
+</ul>
+</li>
+</ul>
+
+<footer>Tema 4.6: Framework Front-End Avanzado (Angular 19)</footer>
+            </section>
+
+            <section >
+<h1>El Nuevo Paradigma: Angular Signals</h1>
+
+Mecanismo de reactividad granular que notifica al DOM qué nodos específicos actualizar sin re-evaluar todo el árbol de componentes (<em>Zone.js</em>).
+
+<pre><code class="language-typescript">import { Component, signal, computed } from '@angular/core';
+
+@Component({
+  selector: 'app-demo-signal',
+  standalone: true,
+  template: `&lt;p&gt;Total: {{ total() }}&lt;/p&gt;`
+})
+export class DemoSignalComponent {
+  // 1. Writable Signal
+  precio = signal&lt;number&gt;(100);
+  cantidad = signal&lt;number&gt;(2);
+
+  // 2. Computed Signal (Estado Derivado de Solo Lectura)
+  total = computed(() =&gt; this.precio() * this.cantidad());
+}</code></pre>
+
+<footer>Tema 4.6: Framework Front-End Avanzado (Angular 19)</footer>
+            </section>
+
+            <section >
+<h1>Control de Flujo Moderno en Plantillas</h1>
+
+Angular 17+ reemplazó <code>&lt;em&gt;ngIf</code> y <code>&lt;/em&gt;ngFor</code> por bloques nativos compilados:
+
+<pre><code class="language-html">&lt;!-- Condicional @if / @else --&gt;
+@if (cargando()) {
+    &lt;p&gt;Cargando datos...&lt;/p&gt;
+} @else {
+    &lt;!-- Iteracion @for con tracking obligatorio --&gt;
+    &lt;ul&gt;
+        @for (item of items(); track item.id) {
+            &lt;li&gt;{{ item.nombre }}&lt;/li&gt;
+        } @empty {
+            &lt;p&gt;No existen elementos.&lt;/p&gt;
+        }
+    &lt;/ul&gt;
+}</code></pre>
+
+<footer>Tema 4.6: Framework Front-End Avanzado (Angular 19)</footer>
+            </section>
+
+            <section >
+<h1>Interceptores HTTP y Route Guards Funcionales</h1>
+
+<ul>
+<li><strong>Interceptor HTTP Funcional (<code>HttpInterceptorFn</code>):</strong>
+<ul>
+<li>Adjunta automáticamente el token JWT (<code>Authorization: Bearer</code>).
+</li>
+</ul>
+</li>
+</ul>
+
+<ul>
+<li><strong>Route Guard Funcional (<code>CanActivateFn</code>):</strong>
+<ul>
+<li>Protege rutas revisando si el usuario está autenticado.
+</li>
+</ul>
+</li>
+</ul>
+
+<pre><code class="language-typescript">export const authGuard: CanActivateFn = (route, state) =&gt; {
+  const authService = inject(AuthService);
+  const router = inject(Router);
+  return authService.estaAutenticado() ? true : router.parseUrl('/login');
+};</code></pre>
+
+<footer>Tema 4.6: Framework Front-End Avanzado (Angular 19)</footer>
+            </section>
+
+            <section >
+<h1>Pruebas Unitarias de Servicios (<code>TestBed</code>)</h1>
+
+<pre><code class="language-typescript">describe('PaqueteService', () =&gt; {
+  let service: PaqueteService;
+  let httpMock: HttpTestingController;
+
+  beforeEach(() =&gt; {
+    TestBed.configureTestingModule({
+      providers: [
+        PaqueteService,
+        provideHttpClient(),
+        provideHttpClientTesting()
+      ]
+    });
+    service = TestBed.inject(PaqueteService);
+    httpMock = TestBed.inject(HttpTestingController);
+  });
+
+  it('debe solicitar la lista de paquetes via GET', () =&gt; {
+    service.obtenerPaquetes().subscribe();
+    const req = httpMock.expectOne('http://localhost:8080/api/v1/paquetes');
+    expect(req.request.method).toBe('GET');
+  });
+});</code></pre>
+
+<footer>Tema 4.6: Framework Front-End Avanzado (Angular 19)</footer>
+            </section>
+
+            <section >
+<h1>💻 Ejercicio de Codificación en Vivo (Live Coding)</h1>
+
+Desarrollaremos paso a paso en tiempo real la <strong>Arquitectura Front-End LogiExpress</strong> en Angular 19.
+
+<ul>
+<li><strong>Requerimientos a Implementar:</strong>
+<ol>
+<li>Configuración Global HTTP e Interceptores JWT.
+</li>
+<li>Servicio de Autenticación con <strong>Signals</strong> (<code>signal()</code>, <code>computed()</code>).
+</li>
+<li>Interceptor JWT Funcional (<code>HttpInterceptorFn</code>).
+</li>
+<li>Guard de Ruta Funcional (<code>CanActivateFn</code>).
+</li>
+<li>Servicio REST con <code>HttpClient</code> y RxJS.
+</li>
+<li>Componente Standalone con Control de Flujo (<code>@if</code>, <code>@for</code>, <code>@switch</code>).
+</li>
+<li>Enrutamiento con Lazy Loading (<code>loadComponent</code>).
+</li>
+</ol>
+</li>
+</ul>
+
+<footer>Live Coding: Angular 19 LogiExpress SPA</footer>
+            </section>
+
+            <section >
+<h1>Live Coding - Paso 1: Configuración Global (<code>app.config.ts</code>)</h1>
+
+<pre><code class="language-typescript">import { ApplicationConfig } from '@angular/core';
+import { provideRouter, withComponentInputBinding } from '@angular/router';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
+import { routes } from './app.routes';
+import { jwtInterceptor } from './interceptors/jwt.interceptor';
+
+export const appConfig: ApplicationConfig = {
+  providers: [
+    provideRouter(routes, withComponentInputBinding()),
+    provideHttpClient(withInterceptors([jwtInterceptor]))
+  ]
+};</code></pre>
+
+<footer>Live Coding: Paso 1</footer>
+            </section>
+
+            <section >
+<h1>Live Coding - Paso 2: Dominio (<code>domain/paquete.model.ts</code>)</h1>
+
+<pre><code class="language-typescript">export type EstadoPaquete = 'REGISTRADO' | 'EN_TRANSITO' | 'ENTREGADO';
+
+export interface Paquete {
+  id?: number;
+  codigoRastreo: string;
+  descripcion: string;
+  pesoKg: number;
+  estado: EstadoPaquete;
+  clienteId: number;
+}</code></pre>
+
+<footer>Live Coding: Paso 2</footer>
+            </section>
+
+            <section >
+<h1>Live Coding - Paso 3: Servicio Auth con Signals</h1>
+
+<pre><code class="language-typescript">import { Injectable, signal, computed } from '@angular/core';
+
+@Injectable({ providedIn: 'root' })
+export class AuthService {
+  private tokenSignal = signal&lt;string | null&gt;(
+    localStorage.getItem('jwt_token')
+  );
+
+  estaAutenticado = computed(() =&gt; this.tokenSignal() !== null);
+
+  obtenerToken(): string | null {
+    return this.tokenSignal();
+  }
+
+  guardarToken(token: string): void {
+    localStorage.setItem('jwt_token', token);
+    this.tokenSignal.set(token);
+  }
+}</code></pre>
+
+<footer>Live Coding: Paso 3</footer>
+            </section>
+
+            <section >
+<h1>Live Coding - Paso 4: Interceptor JWT Funcional</h1>
+
+<pre><code class="language-typescript">import { HttpInterceptorFn } from '@angular/common/http';
+import { inject } from '@angular/core';
+import { AuthService } from '../services/auth.service';
+
+export const jwtInterceptor: HttpInterceptorFn = (req, next) =&gt; {
+  const authService = inject(AuthService);
+  const token = authService.obtenerToken();
+
+  if (token) {
+    const reqClonada = req.clone({
+      setHeaders: { Authorization: `Bearer ${token}` }
+    });
+    return next(reqClonada);
+  }
+
+  return next(req);
+};</code></pre>
+
+<footer>Live Coding: Paso 4</footer>
+            </section>
+
+            <section >
+<h1>Live Coding - Paso 5: Guard de Ruta Funcional</h1>
+
+<pre><code class="language-typescript">import { CanActivateFn, Router } from '@angular/router';
+import { inject } from '@angular/core';
+import { AuthService } from '../services/auth.service';
+
+export const authGuard: CanActivateFn = (route, state) =&gt; {
+  const authService = inject(AuthService);
+  const router = inject(Router);
+
+  if (authService.estaAutenticado()) {
+    return true;
+  }
+
+  router.navigate(['/login']);
+  return false;
+};</code></pre>
+
+<footer>Live Coding: Paso 5</footer>
+            </section>
+
+            <section >
+<h1>Live Coding - Paso 6: Servicio Paquete REST</h1>
+
+<pre><code class="language-typescript">import { Injectable, inject } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { Paquete } from '../domain/paquete.model';
+
+@Injectable({ providedIn: 'root' })
+export class PaqueteService {
+  private readonly http = inject(HttpClient);
+  private readonly apiUrl = 'http://localhost:8080/api/v1/paquetes';
+
+  obtenerPaquetes(): Observable&lt;Paquete[]&gt; {
+    return this.http.get&lt;Paquete[]&gt;(this.apiUrl);
+  }
+}</code></pre>
+
+<footer>Live Coding: Paso 6</footer>
+            </section>
+
+            <section >
+<h1>Live Coding - Paso 7: Componente Standalone con Signals</h1>
+
+<pre><code class="language-typescript">import { Component, inject, OnInit, signal } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { PaqueteService } from '../services/paquete.service';
+import { Paquete } from '../domain/paquete.model';
+
+@Component({
+  selector: 'app-paquete-list',
+  standalone: true,
+  imports: [CommonModule],
+  templateUrl: './paquete-list.component.html'
+})
+export class PaqueteListComponent implements OnInit {
+  private paqueteService = inject(PaqueteService);
+
+  paquetes = signal&lt;Paquete[]&gt;([]);
+  cargando = signal&lt;boolean&gt;(true);
+
+  ngOnInit(): void {
+    this.paqueteService.obtenerPaquetes().subscribe(data =&gt; {
+      this.paquetes.set(data);
+      this.cargando.set(false);
+    });
+  }
+}</code></pre>
+
+<footer>Live Coding: Paso 7</footer>
+            </section>
+
+            <section >
+<h1>Live Coding - Paso 8: Plantilla HTML con Control Flow</h1>
+
+<pre><code class="language-html">@if (cargando()) {
+  &lt;p&gt;Cargando paquetes de la API...&lt;/p&gt;
+} @else {
+  &lt;table&gt;
+    @for (item of paquetes(); track item.id) {
+      &lt;tr&gt;
+        &lt;td&gt;{{ item.codigoRastreo }}&lt;/td&gt;
+        &lt;td&gt;{{ item.pesoKg }} kg&lt;/td&gt;
+        &lt;td&gt;
+          @switch (item.estado) {
+            @case ('REGISTRADO') { &lt;span&gt;Registrado&lt;/span&gt; }
+            @case ('EN_TRANSITO') { &lt;span&gt;En Transito&lt;/span&gt; }
+            @case ('ENTREGADO') { &lt;span&gt;Entregado&lt;/span&gt; }
+          }
+        &lt;/td&gt;
+      &lt;/tr&gt;
+    }
+  &lt;/table&gt;
+}</code></pre>
+
+<footer>Live Coding: Paso 8</footer>
+            </section>
+
+            <section >
+<h1>Live Coding - Paso 9: Enrutamiento con Lazy Loading</h1>
+
+<pre><code class="language-typescript">import { Routes } from '@angular/router';
+import { authGuard } from './guards/auth.guard';
+
+export const routes: Routes = [
+  {
+    path: 'paquetes',
+    loadComponent: () =&gt; import('./components/paquete-list.component')
+      .then(m =&gt; m.PaqueteListComponent),
+    canActivate: [authGuard]
+  }
+];</code></pre>
+
+<footer>Live Coding: Paso 9</footer>
+            </section>
+
+            <section >
+<h1>Pregunta de Reflexión</h1>
+
+En aplicaciones web empresariales construidas con Angular 19:
+
+¿Qué beneficios arquitectónicos aporta combinar la reactividad granular de <strong>Signals</strong> (<code>signal</code>, <code>computed</code>) con <strong>HttpInterceptors</strong> funcionales y <strong>Lazy Loading</strong> de componentes standalone?
+
+<footer>UCR - Informática Empresarial</footer>
+            </section>
+
+        </div>
+    </div>
+
+    <!-- Highlight.js and Reveal.js Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.js"></script>
+
+    <script>
+        // Initialize Highlight.js for code syntax coloring
+        hljs.highlightAll();
+
+        // Initialize Reveal.js with modern layout configurations
+        Reveal.initialize({
+            hash: true,
+            respondToHashChanges: true,
+            history: true,
+            transition: 'slide', // none/fade/slide/convex/concave/zoom
+            transitionSpeed: 'default',
+            backgroundTransition: 'fade',
+            width: 960,
+            height: 700,
+            margin: 0.05,
+            minScale: 0.2,
+            maxScale: 2.0,
+            plugins: []
+        });
+    </script>
+</body>
+</html>

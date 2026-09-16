@@ -155,7 +155,7 @@ INSERT INTO UsuarioRol (usuario_id, rol_id) VALUES (2, 2); -- operador -> ROLE_O
 
 ---
 
-### Paso 3: Definición del DTO y Middleware Global de Excepciones
+### Paso 3: Definición de DTOs y Middleware Global de Excepciones
 
 Cree la clase `ErrorResponseDTO.java` dentro del paquete `dto`:
 
@@ -198,6 +198,114 @@ public class ErrorResponseDTO {
     public LocalDateTime getTimestamp() { return timestamp; }
     public Map<String, String> getInvalidFields() { 
         return invalidFields; 
+    }
+}
+```
+
+Cree la clase `AuthRequestDTO.java` dentro del paquete `dto`:
+
+```java
+package cr.ac.ucr.paraiso.ie.expresofast.dto;
+
+import jakarta.validation.constraints.NotBlank;
+
+public class AuthRequestDTO {
+
+    @NotBlank(message = "El nombre de usuario es obligatorio")
+    private String username;
+
+    @NotBlank(message = "La contraseña es obligatoria")
+    private String password;
+
+    public AuthRequestDTO() {
+    }
+
+    public AuthRequestDTO(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+}
+```
+
+Cree la clase `AuthResponseDTO.java` dentro del paquete `dto`:
+
+```java
+package cr.ac.ucr.paraiso.ie.expresofast.dto;
+
+import java.util.List;
+
+public class AuthResponseDTO {
+
+    private String token;
+    private String type = "Bearer";
+    private String username;
+    private List<String> roles;
+    private long expirationTime;
+
+    public AuthResponseDTO() {
+    }
+
+    public AuthResponseDTO(String token, String username, List<String> roles, long expirationTime) {
+        this.token = token;
+        this.username = username;
+        this.roles = roles;
+        this.expirationTime = expirationTime;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public List<String> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<String> roles) {
+        this.roles = roles;
+    }
+
+    public long getExpirationTime() {
+        return expirationTime;
+    }
+
+    public void setExpirationTime(long expirationTime) {
+        this.expirationTime = expirationTime;
     }
 }
 ```
@@ -286,7 +394,68 @@ public class GlobalExceptionHandler {
 
 ---
 
-### Paso 4: Proveedor de Tokens JWT (`JwtTokenProvider.java`)
+### Paso 4: Servicio de Carga de Usuarios (`CustomUserDetailsService.java`)
+
+Cree la clase `CustomUserDetailsService.java` dentro del paquete `security`:
+
+```java
+package cr.ac.ucr.paraiso.ie.expresofast.security;
+
+import cr.ac.ucr.paraiso.ie.expresofast.domain.Usuario;
+import cr.ac.ucr.paraiso.ie.expresofast.repository.UsuarioRepository;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+@Service
+public class CustomUserDetailsService implements UserDetailsService {
+
+    private final UsuarioRepository usuarioRepository;
+
+    public CustomUserDetailsService(UsuarioRepository usuarioRepository) {
+        this.usuarioRepository = usuarioRepository;
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        Usuario usuario = usuarioRepository.findByUsername(username)
+            .orElseThrow(() -> new UsernameNotFoundException(
+                "Usuario no encontrado con el nombre: " + username
+            ));
+
+        List<GrantedAuthority> authorities = usuario.getRoles().stream()
+            .map(rol -> {
+                String nombreRol = rol.getNombreRol().startsWith("ROLE_") ? 
+                    rol.getNombreRol() : "ROLE_" + rol.getNombreRol();
+                return new SimpleGrantedAuthority(nombreRol);
+            })
+            .collect(Collectors.toList());
+
+        return new User(
+            usuario.getUsername(),
+            usuario.getPasswordHash(),
+            usuario.getActivo(),
+            true,
+            true,
+            true,
+            authorities
+        );
+    }
+}
+```
+
+---
+
+### Paso 5: Proveedor de Tokens JWT (`JwtTokenProvider.java`)
 
 Cree la clase `JwtTokenProvider.java` en el paquete `security`:
 
@@ -360,7 +529,7 @@ public class JwtTokenProvider {
 
 ---
 
-### Paso 5: Filtro Interceptor de JWT (`JwtAuthenticationFilter.java`)
+### Paso 6: Filtro Interceptor de JWT (`JwtAuthenticationFilter.java`)
 
 Cree la clase `JwtAuthenticationFilter.java` en el paquete `security`:
 
@@ -393,6 +562,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     }
 
     @Override
+    @Transactional(readOnly = true)
     protected void doFilterInternal(HttpServletRequest request, 
                                     HttpServletResponse response, 
                                     FilterChain filterChain) 
@@ -430,7 +600,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
 ---
 
-### Paso 6: Configuración de Seguridad Spring Security 6 (`SecurityConfig.java`)
+### Paso 7: Configuración de Seguridad Spring Security 6 (`SecurityConfig.java`)
 
 Cree la clase de configuración `SecurityConfig.java` en el paquete `config`:
 
@@ -511,7 +681,7 @@ public class SecurityConfig {
 
 ---
 
-### Paso 7: Controlador de Autenticación (`AuthController.java`)
+### Paso 8: Controlador de Autenticación (`AuthController.java`)
 
 Cree `AuthController.java` en el paquete `controller`:
 

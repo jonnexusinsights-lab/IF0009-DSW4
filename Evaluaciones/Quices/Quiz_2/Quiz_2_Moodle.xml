@@ -160,7 +160,7 @@ public class GlobalExceptionHandler {
   <!-- Pregunta 4 -->
   <question type="multichoice">
     <name>
-      <text>Q4 - Rastreo de Código: Seguridad Spring Security & RBAC</text>
+      <text>Q4 - Rastreo de Código: Seguridad Spring Security &amp; RBAC</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Examine la siguiente configuración de la cadena de filtros de seguridad en un sistema Spring Boot 3:</p>

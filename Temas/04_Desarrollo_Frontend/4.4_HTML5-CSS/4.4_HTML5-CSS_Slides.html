@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <title>Tema 4.4 - HTML5 Semántico y CSS3 Avanzado - Desarrollo de Software IV</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <!-- Reveal.js Base Stylesheets -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reset.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.css">
+    
+    <!-- Tokyo Night Dark Theme for Code Syntax Resaltation -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/tokyo-night-dark.min.css">
+
+    <!-- Premium Google Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* Modern Web Design Aesthetics & Layout Tokens */
+        html, body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background-color: #0b0f19 !important;
+            color: #f8fafc;
+            overflow: hidden;
+        }
+
+        .reveal {
+            width: 100%;
+            height: 100%;
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0b0f19 0%, #111827 50%, #1e1b4b 100%) !important;
+            color: #f8fafc;
+        }
+        
+        .reveal .slides section {
+            font-family: 'Outfit', 'Inter', sans-serif;
+            text-align: left;
+            padding: 50px 70px;
+            box-sizing: border-box;
+            font-size: 22px;
+            color: #f8fafc;
+        }
+        
+        /* Centered Cover Slide Layout */
+        .reveal .slides section.lead-slide {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+        
+        /* Premium Typography Styles */
+        .reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6 {
+            font-family: 'Outfit', sans-serif;
+            text-transform: none;
+            color: #38bdf8;
+            font-weight: 800;
+            text-shadow: none;
+        }
+        
+        .reveal h1 {
+            font-size: 1.7em;
+            margin-bottom: 12px;
+            border-bottom: 2px solid #3b82f6;
+            padding-bottom: 10px;
+        }
+        
+        .reveal .lead-slide h1 {
+            border-bottom: none;
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            color: #38bdf8;
+        }
+        
+        .reveal h2 {
+            font-size: 1.25em;
+            color: #818cf8;
+            font-weight: 700;
+            margin-top: 0px;
+        }
+        
+        .reveal .lead-slide h2 {
+            font-size: 1.55em;
+            color: #818cf8;
+            margin-bottom: 30px;
+        }
+        
+        .reveal h3 {
+            font-size: 1.1em;
+            color: #a78bfa;
+        }
+        
+        /* List and Text Formatting */
+        .reveal p, .reveal li {
+            color: #cbd5e1;
+            line-height: 1.6;
+        }
+        
+        .reveal ul {
+            list-style-type: square;
+            margin-left: 1.5em;
+        }
+        
+        .reveal li {
+            margin-bottom: 12px;
+        }
+        
+        .reveal strong {
+            color: #f43f5e;
+            font-weight: 600;
+        }
+        
+        .reveal em {
+            color: #fb7185;
+            font-style: italic;
+        }
+        
+        .reveal footer {
+            font-size: 0.5em;
+            color: #6b7280;
+            position: absolute;
+            bottom: 20px;
+            right: 50px;
+        }
+        
+        /* Code Block Containers and Inlines */
+        .reveal code {
+            font-family: 'Fira Code', monospace;
+            background-color: #030712;
+            color: #38bdf8;
+            border-radius: 4px;
+            padding: 2px 8px;
+            font-size: 0.85em;
+        }
+        
+        .reveal pre {
+            background-color: #030712 !important;
+            border: 1px solid #1f2937;
+            border-radius: 10px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
+            width: 100%;
+            margin: 20px 0;
+            box-sizing: border-box;
+        }
+        
+        .reveal pre code {
+            background-color: transparent;
+            color: inherit;
+            font-size: 0.8em;
+            line-height: 1.55;
+            padding: 18px;
+            max-height: 520px;
+        }
+        
+        /* Control Nav Arrows & Progress Bar */
+        .reveal .controls-arrow {
+            color: #38bdf8 !important;
+        }
+        
+        .reveal .progress span {
+            background-color: #38bdf8 !important;
+        }
+
+        /* Custom style overrides parsed from Marp frontmatter */
+        .reveal .slides section {
+  background-color: #0f172a;
+  color: #f8fafc;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+}
+h1, h2 {
+  color: #38bdf8;
+}
+h3 {
+  color: #7dd3fc;
+}
+footer {
+  color: #64748b;
+}
+code {
+  background-color: #1e293b;
+  color: #38bdf8;
+}
+pre code {
+  background-color: transparent;
+  color: #f8fafc;
+}
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <section >
+<h1>IF0009 - Desarrollo de Software IV</h1>
+
+<h2>Tema 4.4: HTML5 Semántico y CSS3 Avanzado (Flexbox, Grid y Mobile-First)</h2>
+
+Universidad de Costa Rica <br>
+Sede del Atlántico - Recinto Paraíso <br>
+Carrera de Informática Empresarial <br>
+<strong>Profesor:</strong> Mag. Jonathan Granados C. <br>
+<strong>Semestre:</strong> II-2026
+
+<footer>UCR - Informática Empresarial</footer>
+            </section>
+
+            <section >
+<h1>HTML5 Semántico y el DOM Tree</h1>
+
+HTML5 estructura el significado del contenido y construye en memoria el <strong>Árbol del DOM (Document Object Model Tree)</strong>.
+
+<ul>
+<li><strong>Etiquetas Semánticas de Estructura:</strong>
+<ul>
+<li><code>&lt;header&gt;</code>: Encabezado del documento o sección.
+</li>
+<li><code>&lt;nav&gt;</code>: Bloque de navegación principal.
+</li>
+<li><code>&lt;main&gt;</code>: Contenido principal e incremental (1 por página).
+</li>
+<li><code>&lt;section&gt;</code>: Agrupación temática con encabezado.
+</li>
+<li><code>&lt;article&gt;</code>: Composición autónoma re-distribuible.
+</li>
+<li><code>&lt;aside&gt;</code>: Barra lateral o contenido tangencial.
+</li>
+<li><code>&lt;footer&gt;</code>: Pie de página o cierre legal/contacto.
+</li>
+</ul>
+</li>
+</ul>
+
+<footer>Tema 4.4: HTML5 Semántico y CSS3 Avanzado</footer>
+            </section>
+
+            <section >
+<h1>Formularios Accesibles en HTML5 (WCAG 2.1 AA)</h1>
+
+La vinculación explícita mediante <code>&lt;label for="id"&gt;</code> y atributos nativos garantiza accesibilidad universal para lectores de pantalla.
+
+<pre><code class="language-html">&lt;form id="frmUsuario"&gt;
+    &lt;div class="field"&gt;
+        &lt;label for="txtNombre"&gt;Nombre Completo:&lt;/label&gt;
+        &lt;input type="text" id="txtNombre" name="nombre" 
+               required minlength="3" autocomplete="name"&gt;
+    &lt;/div&gt;
+    &lt;div class="field"&gt;
+        &lt;label for="txtCorreo"&gt;Correo Electronico:&lt;/label&gt;
+        &lt;input type="email" id="txtCorreo" name="correo" required&gt;
+    &lt;/div&gt;
+    &lt;button type="submit"&gt;Guardar Registro&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+
+<footer>Tema 4.4: HTML5 Semántico y CSS3 Avanzado</footer>
+            </section>
+
+            <section >
+<h1>El Modelo de Caja CSS (Box Model)</h1>
+
+Cada elemento HTML se renderiza como una caja concéntrica de 4 capas: <strong>Content</strong>, <strong>Padding</strong>, <strong>Border</strong> y <strong>Margin</strong>.
+
+<pre><code class="language-css">/* Regla Universal Obligatoria */
+*, *::before, *::after {
+    box-sizing: border-box;
+}</code></pre>
+
+<ul>
+<li><strong>Sin <code>border-box</code> (<code>content-box</code>):</strong>
+<ul>
+<li><code>Ancho Final = width + padding + border</code> (Provoca desbordamientos).
+</li>
+</ul>
+</li>
+<li><strong>Con <code>border-box</code>:</strong>
+<ul>
+<li><code>width</code> incluye el <code>padding</code> y el <code>border</code> de forma elástica.
+</li>
+</ul>
+</li>
+</ul>
+
+<footer>Tema 4.4: HTML5 Semántico y CSS3 Avanzado</footer>
+            </section>
+
+            <section >
+<h1>Especificidad CSS <code>(a, b, c, d)</code></h1>
+
+Determina la prioridad de los estilos cuando múltiples selectores coinciden.
+
+<ul>
+<li><strong>a (1000):</strong> Estilos inline (<code>style="..."</code>).
+</li>
+<li><strong>b (100):</strong> Selectores de ID (<code>#txtNombre</code>).
+</li>
+<li><strong>c (10):</strong> Clases (<code>.btn</code>), Atributos (<code>[type="email"]</code>) y Pseudo-clases (<code>:hover</code>).
+</li>
+<li><strong>d (1):</strong> Elementos HTML (<code>h1</code>, <code>div</code>) y Pseudo-elementos (<code>::before</code>).
+</li>
+</ul>
+
+$$\text{Especificidad} = (a \cdot 1000) + (b \cdot 100) + (c \cdot 10) + d$$
+
+<footer>Tema 4.4: HTML5 Semántico y CSS3 Avanzado</footer>
+            </section>
+
+            <section >
+<h1>CSS Flexbox (Diagramación Unidimensional)</h1>
+
+Ideal para organizar elementos en un único eje (Fila o Columna).
+
+<pre><code class="language-css">.flex-container {
+    display: flex;
+    flex-direction: row; /* Eje Principal: Horizontal */
+    justify-content: space-between; /* Alineacion Eje Principal */
+    align-items: center; /* Alineacion Eje Cruzado */
+    flex-wrap: wrap; /* Permitir salto de linea */
+}</code></pre>
+
+<ul>
+<li><strong>Propiedades Clave:</strong>
+<ul>
+<li><code>justify-content</code>: <code>flex-start</code>, <code>center</code>, <code>space-between</code>.
+</li>
+<li><code>align-items</code>: <code>stretch</code>, <code>center</code>, <code>flex-end</code>.
+</li>
+</ul>
+</li>
+</ul>
+
+<footer>Tema 4.4: HTML5 Semántico y CSS3 Avanzado</footer>
+            </section>
+
+            <section >
+<h1>CSS Grid Layout (Diagramación Bidimensional)</h1>
+
+Maquetación fluida en Filas y Columnas simultáneas.
+
+<pre><code class="language-css">.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+}</code></pre>
+
+<ul>
+<li><strong><code>repeat(auto-fit, minmax(250px, 1fr))</code>:</strong>
+<ul>
+<li>Crea una retícula elástica autoadaptable.
+</li>
+<li>Mantiene las columnas en un tamaño mínimo de <code>250px</code>.
+</li>
+<li>Rena y distribuye proporcionalmente (<code>1fr</code>) el espacio sobrante.
+</li>
+</ul>
+</li>
+</ul>
+
+<footer>Tema 4.4: HTML5 Semántico y CSS3 Avanzado</footer>
+            </section>
+
+            <section >
+<h1>Variables CSS y Enfoque Mobile-First</h1>
+
+<pre><code class="language-css">:root {
+    --primary: #38bdf8;
+    --bg-dark: #0f172a;
+}
+
+/* 1. Estilos Base para Dispositivos Moviles */
+.layout {
+    display: flex;
+    flex-direction: column;
+}
+
+/* 2. Media Query Adaptativa para Escritorio */
+@media (min-width: 768px) {
+    .layout {
+        display: grid;
+        grid-template-columns: 240px 1fr;
+    }
+}</code></pre>
+
+<footer>Tema 4.4: HTML5 Semántico y CSS3 Avanzado</footer>
+            </section>
+
+            <section >
+<h1>🛠️ Práctica Paso a Paso: Dashboard LogiExpress</h1>
+
+Construiremos paso a paso un <strong>Panel de Control de Envíos Responsivo</strong>:
+
+<ul>
+<li><strong>Objetivo:</strong> Aplicar HTML5 Semántico, CSS Variables, Flexbox, Grid y Media Queries Mobile-First.
+</li>
+<li><strong>Componentes del Dashboard:</strong>
+<ol>
+<li>Encabezado Flexbox con Logo y Perfil.
+</li>
+<li>Menú de Navegación Lateral (Sidebar).
+</li>
+<li>Retícula de Métricas con CSS Grid (<code>auto-fit</code>).
+</li>
+<li>Formulario de Registro Accesible.
+</li>
+</ol>
+</li>
+</ul>
+
+<footer>Tema 4.4: HTML5 Semántico y CSS3 Avanzado - Práctica</footer>
+            </section>
+
+            <section >
+<h1>Práctica Paso 1: Estructura HTML5 Semántica</h1>
+
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="es"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;LogiExpress Dashboard&lt;/title&gt;
+    &lt;link rel="stylesheet" href="styles.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;header class="app-header"&gt;
+        &lt;div class="logo"&gt;🚚 LogiExpress&lt;/div&gt;
+        &lt;nav class="user-info"&gt;Admin Ops&lt;/nav&gt;
+    &lt;/header&gt;
+    &lt;div class="dashboard-layout"&gt;
+        &lt;!-- Sidebar y Main Content --&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+<footer>Tema 4.4: HTML5 Semántico y CSS3 Avanzado - Práctica</footer>
+            </section>
+
+            <section >
+<h1>Práctica Paso 2: Reset Global y CSS Variables</h1>
+
+<pre><code class="language-css">:root {
+    --bg-main: #0b0f19;
+    --bg-surface: #111827;
+    --bg-card: #1e293b;
+    --primary: #38bdf8;
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+    --border: #334155;
+    --gap: 1.25rem;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: system-ui, sans-serif;
+    background-color: var(--bg-main);
+    color: var(--text-main);
+}</code></pre>
+
+<footer>Tema 4.4: HTML5 Semántico y CSS3 Avanzado - Práctica</footer>
+            </section>
+
+            <section >
+<h1>Práctica Paso 3: Encabezado Flexbox</h1>
+
+<pre><code class="language-css">.app-header {
+    background-color: var(--bg-surface);
+    border-bottom: 1px solid var(--border);
+    padding: 1rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: var(--primary);
+}
+
+.user-info {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}</code></pre>
+
+<footer>Tema 4.4: HTML5 Semántico y CSS3 Avanzado - Práctica</footer>
+            </section>
+
+            <section >
+<h1>Práctica Paso 4: Retícula de Métricas con CSS Grid</h1>
+
+<pre><code class="language-html">&lt;section class="metrics-grid"&gt;
+    &lt;article class="card-metric"&gt;
+        &lt;h3&gt;Envíos Activos&lt;/h3&gt;
+        &lt;p class="value"&gt;1,248&lt;/p&gt;
+    &lt;/article&gt;
+    &lt;article class="card-metric"&gt;
+        &lt;h3&gt;En Tránsito&lt;/h3&gt;
+        &lt;p class="value"&gt;856&lt;/p&gt;
+    &lt;/article&gt;
+&lt;/section&gt;</code></pre>
+
+<pre><code class="language-css">.metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--gap);
+}</code></pre>
+
+<footer>Tema 4.4: HTML5 Semántico y CSS3 Avanzado - Práctica</footer>
+            </section>
+
+            <section >
+<h1>Práctica Paso 5: Formulario Accesible Responsivo</h1>
+
+<pre><code class="language-html">&lt;form id="frmPaquete" class="form-grid"&gt;
+    &lt;div class="field"&gt;
+        &lt;label for="txtTracking"&gt;Codigo Rastreo:&lt;/label&gt;
+        &lt;input type="text" id="txtTracking" required&gt;
+    &lt;/div&gt;
+    &lt;div class="field"&gt;
+        &lt;label for="numPeso"&gt;Peso (kg):&lt;/label&gt;
+        &lt;input type="number" id="numPeso" step="0.1" required&gt;
+    &lt;/div&gt;
+    &lt;button type="submit" class="btn-primary"&gt;Guardar Paquete&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+
+<footer>Tema 4.4: HTML5 Semántico y CSS3 Avanzado - Práctica</footer>
+            </section>
+
+            <section >
+<h1>Práctica Paso 6: Estilos del Formulario Grid</h1>
+
+<pre><code class="language-css">.form-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.field input {
+    background: var(--bg-main);
+    border: 1px solid var(--border);
+    color: var(--text-main);
+    padding: 0.6rem;
+    border-radius: 6px;
+}</code></pre>
+
+<footer>Tema 4.4: HTML5 Semántico y CSS3 Avanzado - Práctica</footer>
+            </section>
+
+            <section >
+<h1>Práctica Paso 7: Media Queries (Breakpoint Desktop)</h1>
+
+<pre><code class="language-css">/* Adaptacion para Pantallas &gt;= 768px */
+@media (min-width: 768px) {
+    .dashboard-layout {
+        display: grid;
+        grid-template-columns: 200px 1fr;
+    }
+
+    .form-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .btn-primary {
+        grid-column: span 2;
+        justify-self: end;
+        width: auto;
+    }
+}</code></pre>
+
+<footer>Tema 4.4: HTML5 Semántico y CSS3 Avanzado - Práctica</footer>
+            </section>
+
+            <section >
+<h1>Pregunta de Reflexión</h1>
+
+En el desarrollo de una Single-Page Application (SPA) moderna:
+
+¿Qué ventajas técnicas en Accesibilidad (WCAG 2.1 AA), rendimiento y mantenibilidad ofrece utilizar etiquetas semánticas nativas (<code>&lt;button&gt;</code>, <code>&lt;header&gt;</code>, <code>&lt;nav&gt;</code>) en lugar de contenedores genéricos <code>&lt;div class="..."&gt;</code> con controladores <code>onclick</code>?
+
+<footer>UCR - Informática Empresarial</footer>
+            </section>
+
+        </div>
+    </div>
+
+    <!-- Highlight.js and Reveal.js Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.js"></script>
+
+    <script>
+        // Initialize Highlight.js for code syntax coloring
+        hljs.highlightAll();
+
+        // Initialize Reveal.js with modern layout configurations
+        Reveal.initialize({
+            hash: true,
+            respondToHashChanges: true,
+            history: true,
+            transition: 'slide', // none/fade/slide/convex/concave/zoom
+            transitionSpeed: 'default',
+            backgroundTransition: 'fade',
+            width: 960,
+            height: 700,
+            margin: 0.05,
+            minScale: 0.2,
+            maxScale: 2.0,
+            plugins: []
+        });
+    </script>
+</body>
+</html>
