@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <title>Tema 8.7.1.1 - Consumo y Mapeo Avanzado de Procedimientos Almacenados - Desarrollo de Software IV</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <!-- Reveal.js Base Stylesheets -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reset.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.css">
+    
+    <!-- Tokyo Night Dark Theme for Code Syntax Resaltation -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/tokyo-night-dark.min.css">
+
+    <!-- Premium Google Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* Modern Web Design Aesthetics & Layout Tokens */
+        html, body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background-color: #0b0f19 !important;
+            color: #f8fafc;
+            overflow: hidden;
+        }
+
+        .reveal {
+            width: 100%;
+            height: 100%;
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0b0f19 0%, #111827 50%, #1e1b4b 100%) !important;
+            color: #f8fafc;
+        }
+        
+        .reveal .slides section {
+            font-family: 'Outfit', 'Inter', sans-serif;
+            text-align: left;
+            padding: 50px 70px;
+            box-sizing: border-box;
+            font-size: 22px;
+            color: #f8fafc;
+        }
+        
+        /* Centered Cover Slide Layout */
+        .reveal .slides section.lead-slide {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+        
+        /* Premium Typography Styles */
+        .reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6 {
+            font-family: 'Outfit', sans-serif;
+            text-transform: none;
+            color: #38bdf8;
+            font-weight: 800;
+            text-shadow: none;
+        }
+        
+        .reveal h1 {
+            font-size: 1.7em;
+            margin-bottom: 12px;
+            border-bottom: 2px solid #3b82f6;
+            padding-bottom: 10px;
+        }
+        
+        .reveal .lead-slide h1 {
+            border-bottom: none;
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            color: #38bdf8;
+        }
+        
+        .reveal h2 {
+            font-size: 1.25em;
+            color: #818cf8;
+            font-weight: 700;
+            margin-top: 0px;
+        }
+        
+        .reveal .lead-slide h2 {
+            font-size: 1.55em;
+            color: #818cf8;
+            margin-bottom: 30px;
+        }
+        
+        .reveal h3 {
+            font-size: 1.1em;
+            color: #a78bfa;
+        }
+        
+        /* List and Text Formatting */
+        .reveal p, .reveal li {
+            color: #cbd5e1;
+            line-height: 1.6;
+        }
+        
+        .reveal ul {
+            list-style-type: square;
+            margin-left: 1.5em;
+        }
+        
+        .reveal li {
+            margin-bottom: 12px;
+        }
+        
+        .reveal strong {
+            color: #f43f5e;
+            font-weight: 600;
+        }
+        
+        .reveal em {
+            color: #fb7185;
+            font-style: italic;
+        }
+        
+        .reveal footer {
+            font-size: 0.5em;
+            color: #6b7280;
+            position: absolute;
+            bottom: 20px;
+            right: 50px;
+        }
+        
+        /* Code Block Containers and Inlines */
+        .reveal code {
+            font-family: 'Fira Code', monospace;
+            background-color: #030712;
+            color: #38bdf8;
+            border-radius: 4px;
+            padding: 2px 8px;
+            font-size: 0.85em;
+        }
+        
+        .reveal pre {
+            background-color: #030712 !important;
+            border: 1px solid #1f2937;
+            border-radius: 10px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
+            width: 100%;
+            margin: 20px 0;
+            box-sizing: border-box;
+        }
+        
+        .reveal pre code {
+            background-color: transparent;
+            color: inherit;
+            font-size: 0.8em;
+            line-height: 1.55;
+            padding: 18px;
+            max-height: 520px;
+        }
+        
+        /* Control Nav Arrows & Progress Bar */
+        .reveal .controls-arrow {
+            color: #38bdf8 !important;
+        }
+        
+        .reveal .progress span {
+            background-color: #38bdf8 !important;
+        }
+
+        /* Custom style overrides parsed from Marp frontmatter */
+        .reveal .slides section {
+  background-color: #0f172a;
+  color: #f8fafc;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  padding: 40px 60px;
+  font-size: 22px;
+}
+h1 {
+  color: #38bdf8;
+  font-size: 1.8em;
+  border-bottom: 2px solid #0284c7;
+  padding-bottom: 8px;
+  margin-bottom: 15px;
+}
+h2 {
+  color: #38bdf8;
+  font-size: 1.4em;
+}
+h3 {
+  color: #7dd3fc;
+}
+footer {
+  color: #64748b;
+  font-size: 0.75em;
+}
+code {
+  background-color: #1e293b;
+  color: #38bdf8;
+}
+pre code {
+  background-color: transparent;
+  color: #f8fafc;
+}
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <section >
+<h1>IF0009 - Desarrollo de Software IV</h1>
+
+<h2>Tema 8.7.1.1: Consumo y Mapeo Avanzado de Procedimientos Almacenados en Hibernate y Spring Data JPA</h2>
+
+Universidad de Costa Rica <br>
+Sede del Atlántico - Recinto Paraíso <br>
+Carrera de Informática Empresarial <br>
+<strong>Profesor:</strong> Mag. Jonathan Granados C. <br>
+<strong>Semestre:</strong> II-2026
+
+<footer>UCR - Informática Empresarial</footer>
+            </section>
+
+            <section >
+<h1>¿Qué es un Procedimiento Almacenado?</h1>
+
+<ul>
+<li><strong>Definición:</strong> Bloque de código SQL compilado y guardado directamente en el servidor de base de datos (SQL Server, PostgreSQL, Oracle).
+</li>
+<li><strong>Ventajas Empresariales:</strong>
+<ul>
+<li><strong>Rendimiento:</strong> Plan de ejecución precompilado y optimizado por el motor.
+</li>
+<li><strong>Seguridad:</strong> Abstracción de tablas y prevención de inyecciones SQL.
+</li>
+<li><strong>Centralización:</strong> Lógica de datos pesada ejecutada cerca de los datos.
+</li>
+</ul>
+</li>
+<li><strong>Integración con Hibernate:</strong> Hibernate actúa como puente para ejecutar el procedimiento y convertir sus resultados a objetos Java.
+</li>
+</ul>
+
+<footer>Tema 8.7.1.1: Stored Procedures en Hibernate</footer>
+            </section>
+
+            <section >
+<h1>Modos de Integración en el Stack Java</h1>
+
+<ol>
+<li><strong>Anotación <code>@Procedure</code> (Spring Data JPA):</strong>
+<ul>
+<li>El enfoque más limpio y declarativo.
+</li>
+<li>Mapea un método de interfaz <code>@Repository</code> directamente a la firma SQL.
+</li>
+</ul>
+</li>
+<li><strong>Anotación <code>@NamedStoredProcedureQuery</code> (JPA Standard):</strong>
+<ul>
+<li>Definida sobre la clase de Entidad (<code>@Entity</code>).
+</li>
+<li>Especifica el nombre, parámetros (<code>IN</code>, <code>OUT</code>, <code>REF_CURSOR</code>) y <code>ResultSets</code>.
+</li>
+</ul>
+</li>
+<li><strong>API <code>StoredProcedureQuery</code> (API <code>EntityManager</code>):</strong>
+<ul>
+<li>Control dinámico de bajo nivel para invocaciones complejas en tiempo de ejecución.
+</li>
+</ul>
+</li>
+</ol>
+
+<footer>Tema 8.7.1.1: Stored Procedures en Hibernate</footer>
+            </section>
+
+            <section >
+<h1>Tipos de Parámetros (<code>ParameterMode</code>)</h1>
+
+<ul>
+<li><strong><code>ParameterMode.IN</code>:</strong> Parámetro de entrada hacia el procedimiento.
+</li>
+<li><strong><code>ParameterMode.OUT</code>:</strong> Valor de retorno calculado por el procedimiento.
+</li>
+<li><strong><code>ParameterMode.INOUT</code>:</strong> Parámetro bidireccional (envía y recibe datos).
+</li>
+<li><strong><code>ParameterMode.REF_CURSOR</code>:</strong> Cursor para iterar múltiples filas en Oracle / PostgreSQL.
+</li>
+</ul>
+
+<pre><code class="language-java">@StoredProcedureParameter(mode = ParameterMode.IN, name = "p_dpto", type = String.class)
+@StoredProcedureParameter(mode = ParameterMode.OUT, name = "p_total", type = Integer.class)</code></pre>
+
+<footer>Tema 8.7.1.1: Stored Procedures en Hibernate</footer>
+            </section>
+
+            <section >
+<h1>Ejemplo SQL: Stored Procedure en SQL Server</h1>
+
+<pre><code class="language-sql">CREATE PROCEDURE sp_calcular_metricas_salario
+    @p_departamento VARCHAR(50),
+    @p_total_empleados INT OUTPUT,
+    @p_promedio_salario DECIMAL(12,2) OUTPUT
+AS
+BEGIN
+    SET NOCOUNT ON;
+    
+    SELECT 
+        @p_total_empleados = COUNT(*),
+        @p_promedio_salario = ISNULL(AVG(salario), 0.00)
+    FROM Empleado
+    WHERE departamento = @p_departamento AND activo = 1;
+END;
+GO</code></pre>
+
+<footer>Tema 8.7.1.1: Stored Procedures en Hibernate</footer>
+            </section>
+
+            <section >
+<h1>Mapeo en la Entidad con <code>@NamedStoredProcedureQuery</code></h1>
+
+<pre><code class="language-java">@Entity
+@Table(name = "Empleado")
+@NamedStoredProcedureQuery(
+    name = "Empleado.spCalcularMetricasSalario",
+    procedureName = "sp_calcular_metricas_salario",
+    parameters = {
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "p_departamento", type = String.class),
+        @StoredProcedureParameter(mode = ParameterMode.OUT, name = "p_total_empleados", type = Integer.class),
+        @StoredProcedureParameter(mode = ParameterMode.OUT, name = "p_promedio_salario", type = BigDecimal.class)
+    }
+)
+public class Empleado { ... }</code></pre>
+
+<footer>Tema 8.7.1.1: Stored Procedures en Hibernate</footer>
+            </section>
+
+            <section >
+<h1>Repositorio Declarativo con <code>@Procedure</code></h1>
+
+<pre><code class="language-java">@Repository
+public interface EmpleadoRepository extends JpaRepository&lt;Empleado, Long&gt; {
+
+    // Invocación directa del procedimiento por nombre nativo
+    @Procedure(procedureName = "sp_obtener_empleados_por_departamento")
+    List&lt;Empleado&gt; obtenerEmpleadosPorDepartamento(@Param("p_departamento") String dpto);
+
+    // Invocación del NamedStoredProcedureQuery de la entidad
+    @Procedure(name = "Empleado.spCalcularMetricasSalario")
+    Map&lt;String, Object&gt; spCalcularMetricasSalario(@Param("p_departamento") String dpto);
+}</code></pre>
+
+<footer>Tema 8.7.1.1: Stored Procedures en Hibernate</footer>
+            </section>
+
+            <section >
+<h1>Invocación Dinámica con <code>EntityManager</code></h1>
+
+<pre><code class="language-java">@Service
+public class EmpleadoService {
+
+    @PersistenceContext
+    private EntityManager entityManager;
+
+    @Transactional(readOnly = true)
+    public Map&lt;String, Object&gt; ejecutarSPMetricas(String dpto) {
+        StoredProcedureQuery query = entityManager.createStoredProcedureQuery("sp_calcular_metricas_salario");
+        query.registerStoredProcedureParameter("p_departamento", String.class, ParameterMode.IN);
+        query.registerStoredProcedureParameter("p_total_empleados", Integer.class, ParameterMode.OUT);
+        query.registerStoredProcedureParameter("p_promedio_salario", BigDecimal.class, ParameterMode.OUT);
+
+        query.setParameter("p_departamento", dpto);
+        query.execute();
+
+        Integer total = (Integer) query.getOutputParameterValue("p_total_empleados");
+        BigDecimal promedio = (BigDecimal) query.getOutputParameterValue("p_promedio_salario");
+        return Map.of("total", total, "promedio", promedio);
+    }
+}</code></pre>
+
+<footer>Tema 8.7.1.1: Stored Procedures en Hibernate</footer>
+            </section>
+
+            <section >
+<h1>Trampas Comunes y Buenas Prácticas</h1>
+
+<ul>
+<li><strong>Falta de <code>@Transactional</code>:</strong>
+<ul>
+<li>Causa <code>TransactionRequiredException</code> o desconexión de cursores.
+</li>
+</ul>
+</li>
+<li><strong>Incompatibilidad de Dialectos:</strong>
+<ul>
+<li>SQL Server usa <code>SELECT</code> directos; Oracle/PostgreSQL requieren <code>REF_CURSOR</code>.
+</li>
+</ul>
+</li>
+<li><strong>Pérdida de Portabilidad:</strong>
+<ul>
+<li>Migrar de motor de BD obliga a reescribir procedimientos SQL nativos.
+</li>
+</ul>
+</li>
+</ul>
+
+<footer>Tema 8.7.1.1: Stored Procedures en Hibernate</footer>
+            </section>
+
+            <section >
+<h1>Pregunta de Reflexión para el Estudiante</h1>
+
+> Si un procedimiento almacenado modifica registros en la base de datos pero ocurre una excepción Java antes de finalizar el método <code>@Transactional</code>, ¿qué ocurre con los datos?
+> 
+> * <strong>A)</strong> Se guardan porque el SP se ejecutó en la BD.
+> * <strong>B)</strong> Se aplica un Rollback transaccional deshaciendo los cambios del SP.
+> * <strong>C)</strong> Se guarda la mitad de los registros.
+
+<footer>Tema 8.7.1.1: Stored Procedures en Hibernate</footer>
+            </section>
+
+        </div>
+    </div>
+
+    <!-- Highlight.js and Reveal.js Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.js"></script>
+
+    <script>
+        // Initialize Highlight.js for code syntax coloring
+        hljs.highlightAll();
+
+        // Initialize Reveal.js with modern layout configurations
+        Reveal.initialize({
+            hash: true,
+            respondToHashChanges: true,
+            history: true,
+            transition: 'slide', // none/fade/slide/convex/concave/zoom
+            transitionSpeed: 'default',
+            backgroundTransition: 'fade',
+            width: 960,
+            height: 700,
+            margin: 0.05,
+            minScale: 0.2,
+            maxScale: 2.0,
+            plugins: []
+        });
+    </script>
+</body>
+</html>

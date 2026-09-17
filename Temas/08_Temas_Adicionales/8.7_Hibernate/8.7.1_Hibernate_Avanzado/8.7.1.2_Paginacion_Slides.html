@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <title>Tema 8.7.1.2 - Paginación de Resultados con Hibernate y Spring Data JPA - Desarrollo de Software IV</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <!-- Reveal.js Base Stylesheets -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reset.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.css">
+    
+    <!-- Tokyo Night Dark Theme for Code Syntax Resaltation -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/tokyo-night-dark.min.css">
+
+    <!-- Premium Google Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* Modern Web Design Aesthetics & Layout Tokens */
+        html, body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background-color: #0b0f19 !important;
+            color: #f8fafc;
+            overflow: hidden;
+        }
+
+        .reveal {
+            width: 100%;
+            height: 100%;
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0b0f19 0%, #111827 50%, #1e1b4b 100%) !important;
+            color: #f8fafc;
+        }
+        
+        .reveal .slides section {
+            font-family: 'Outfit', 'Inter', sans-serif;
+            text-align: left;
+            padding: 50px 70px;
+            box-sizing: border-box;
+            font-size: 22px;
+            color: #f8fafc;
+        }
+        
+        /* Centered Cover Slide Layout */
+        .reveal .slides section.lead-slide {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+        
+        /* Premium Typography Styles */
+        .reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6 {
+            font-family: 'Outfit', sans-serif;
+            text-transform: none;
+            color: #38bdf8;
+            font-weight: 800;
+            text-shadow: none;
+        }
+        
+        .reveal h1 {
+            font-size: 1.7em;
+            margin-bottom: 12px;
+            border-bottom: 2px solid #3b82f6;
+            padding-bottom: 10px;
+        }
+        
+        .reveal .lead-slide h1 {
+            border-bottom: none;
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            color: #38bdf8;
+        }
+        
+        .reveal h2 {
+            font-size: 1.25em;
+            color: #818cf8;
+            font-weight: 700;
+            margin-top: 0px;
+        }
+        
+        .reveal .lead-slide h2 {
+            font-size: 1.55em;
+            color: #818cf8;
+            margin-bottom: 30px;
+        }
+        
+        .reveal h3 {
+            font-size: 1.1em;
+            color: #a78bfa;
+        }
+        
+        /* List and Text Formatting */
+        .reveal p, .reveal li {
+            color: #cbd5e1;
+            line-height: 1.6;
+        }
+        
+        .reveal ul {
+            list-style-type: square;
+            margin-left: 1.5em;
+        }
+        
+        .reveal li {
+            margin-bottom: 12px;
+        }
+        
+        .reveal strong {
+            color: #f43f5e;
+            font-weight: 600;
+        }
+        
+        .reveal em {
+            color: #fb7185;
+            font-style: italic;
+        }
+        
+        .reveal footer {
+            font-size: 0.5em;
+            color: #6b7280;
+            position: absolute;
+            bottom: 20px;
+            right: 50px;
+        }
+        
+        /* Code Block Containers and Inlines */
+        .reveal code {
+            font-family: 'Fira Code', monospace;
+            background-color: #030712;
+            color: #38bdf8;
+            border-radius: 4px;
+            padding: 2px 8px;
+            font-size: 0.85em;
+        }
+        
+        .reveal pre {
+            background-color: #030712 !important;
+            border: 1px solid #1f2937;
+            border-radius: 10px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
+            width: 100%;
+            margin: 20px 0;
+            box-sizing: border-box;
+        }
+        
+        .reveal pre code {
+            background-color: transparent;
+            color: inherit;
+            font-size: 0.8em;
+            line-height: 1.55;
+            padding: 18px;
+            max-height: 520px;
+        }
+        
+        /* Control Nav Arrows & Progress Bar */
+        .reveal .controls-arrow {
+            color: #38bdf8 !important;
+        }
+        
+        .reveal .progress span {
+            background-color: #38bdf8 !important;
+        }
+
+        /* Custom style overrides parsed from Marp frontmatter */
+        .reveal .slides section {
+  background-color: #0f172a;
+  color: #f8fafc;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  padding: 40px 60px;
+  font-size: 22px;
+}
+h1 {
+  color: #38bdf8;
+  font-size: 1.8em;
+  border-bottom: 2px solid #0284c7;
+  padding-bottom: 8px;
+  margin-bottom: 15px;
+}
+h2 {
+  color: #38bdf8;
+  font-size: 1.4em;
+}
+h3 {
+  color: #7dd3fc;
+}
+footer {
+  color: #64748b;
+  font-size: 0.75em;
+}
+code {
+  background-color: #1e293b;
+  color: #38bdf8;
+}
+pre code {
+  background-color: transparent;
+  color: #f8fafc;
+}
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <section >
+<h1>IF0009 - Desarrollo de Software IV</h1>
+
+<h2>Tema 8.7.1.2: Paginación y Limitación de Resultados a Nivel de Base de Datos con Hibernate, JPA y Spring Data</h2>
+
+Universidad de Costa Rica <br>
+Sede del Atlántico - Recinto Paraíso <br>
+Carrera de Informática Empresarial <br>
+<strong>Profesor:</strong> Mag. Jonathan Granados C. <br>
+<strong>Semestre:</strong> II-2026
+
+<footer>UCR - Informática Empresarial</footer>
+            </section>
+
+            <section >
+<h1>El Problema de la Carga de Datos Masivos</h1>
+
+<ul>
+<li><strong>In-Memory Pagination (Carga en Memoria):</strong>
+<ul>
+<li>Traer miles de filas a la JVM y luego hacer <code>.subList(0, 10)</code> agota la memoria RAM y causa <code>OutOfMemoryError</code>.
+</li>
+</ul>
+</li>
+<li><strong>Paginación en Base de Datos (Database-Level Pagination):</strong>
+<ul>
+<li>El motor de base de datos corta y retorna únicamente las filas necesarias (<code>LIMIT / OFFSET</code>).
+</li>
+<li>Minimiza el tráfico de red y reduce el consumo de CPU en el servidor Java.
+</li>
+</ul>
+</li>
+</ul>
+
+<footer>Tema 8.7.1.2: Paginación en Hibernate</footer>
+            </section>
+
+            <section >
+<h1>Mecánica SQL e Internals de Hibernate</h1>
+
+<ul>
+<li>Hibernate traduce la configuración de paginación a sintaxis nativa según el dialéctico del motor:
+<ul>
+<li><strong>SQL Server:</strong> <code>OFFSET 20 ROWS FETCH NEXT 10 ROWS ONLY</code>
+</li>
+<li><strong>PostgreSQL / MySQL:</strong> <code>LIMIT 10 OFFSET 20</code>
+</li>
+</ul>
+</li>
+<li><strong>API nativa de Hibernate:</strong>
+<ul>
+<li><code>query.setFirstResult(20);</code> (desplazamiento u offset inicial)
+</li>
+<li><code>query.setMaxResults(10);</code> (límite o tamaño de página)
+</li>
+</ul>
+</li>
+</ul>
+
+<footer>Tema 8.7.1.2: Paginación en Hibernate</footer>
+            </section>
+
+            <section >
+<h1>Abstracciones Clave en Spring Data JPA</h1>
+
+<ul>
+<li><strong><code>Pageable</code>:</strong> Interfaz de solicitud (<code>page</code>, <code>size</code>, <code>Sort</code>).
+<ul>
+<li><code>PageRequest.of(0, 10, Sort.by("nombre").ascending())</code>
+</li>
+<li><em>Nota:</em> Los índices de página inician en <strong><code>0</code></strong>.
+</li>
+</ul>
+</li>
+<li><strong><code>Page&lt;T&gt;</code>:</strong> Respuesta completa.
+<ul>
+<li>Contiene los datos de la página + ejecución de <strong><code>SELECT COUNT(*)</code></strong> para metadatos (<code>totalElements</code>, <code>totalPages</code>).
+</li>
+</ul>
+</li>
+<li><strong><code>Slice&lt;T&gt;</code>:</strong> Respuesta ligera.
+<ul>
+<li>Indica solo si hay una página posterior (<code>hasNext()</code>) <strong>sin ejecutar <code>COUNT(*)</code></strong>. Ideal para scroll infinito.
+</li>
+</ul>
+</li>
+</ul>
+
+<footer>Tema 8.7.1.2: Paginación en Hibernate</footer>
+            </section>
+
+            <section >
+<h1>Mapeo en Repositorios y Servicios</h1>
+
+<pre><code class="language-java">@Repository
+public interface ProductoRepository extends JpaRepository&lt;Producto, Long&gt; {
+
+    // Paginación derivativa automática
+    Page&lt;Producto&gt; findByCategoria(String categoria, Pageable pageable);
+
+    // Optimización con Slice (Sin SELECT COUNT(*))
+    Slice&lt;Producto&gt; findByNombreContaining(String termino, Pageable pageable);
+}</code></pre>
+
+<pre><code class="language-java">// En la capa de Servicio:
+Pageable pageable = PageRequest.of(page, size, Sort.by(Sort.Direction.ASC, sortBy));
+Page&lt;Producto&gt; entidades = productoRepository.findAll(pageable);
+return entidades.map(p -&gt; new ProductoDTO(p.getId(), p.getNombre(), p.getPrecio()));</code></pre>
+
+<footer>Tema 8.7.1.2: Paginación en Hibernate</footer>
+            </section>
+
+            <section >
+<h1>Exposición RESTful en el Controller</h1>
+
+<pre><code class="language-java">@RestController
+@RequestMapping("/api/v1/productos")
+public class ProductoController {
+
+    private final ProductoService productoService;
+
+    public ProductoController(ProductoService productoService) {
+        this.productoService = productoService;
+    }
+
+    @GetMapping
+    public ResponseEntity&lt;Page&lt;ProductoDTO&gt;&gt; listar(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size,
+            @RequestParam(defaultValue = "id") String sortBy) {
+
+        return ResponseEntity.ok(productoService.obtenerProductosPaginados(page, size, sortBy));
+    }
+}</code></pre>
+
+<footer>Tema 8.7.1.2: Paginación en Hibernate</footer>
+            </section>
+
+            <section >
+<h1>Estructura del Payload JSON Resultante</h1>
+
+<pre><code class="language-json">{
+  "content": [
+    { "id": 1, "nombre": "Laptop Pro", "precio": 1200.00 }
+  ],
+  "pageable": {
+    "pageNumber": 0,
+    "pageSize": 10
+  },
+  "totalPages": 5,
+  "totalElements": 50,
+  "last": false,
+  "first": true
+}</code></pre>
+
+<footer>Tema 8.7.1.2: Paginación en Hibernate</footer>
+            </section>
+
+            <section >
+<h1>Advertencias y Trampas Comunes</h1>
+
+<ul>
+<li><strong><code>JOIN FETCH</code> con Colecciones <code>@OneToMany</code>:</strong>
+<ul>
+<li>Causa la advertencia <code>HHH000104: firstResult/maxResults specified with collection fetch; applying in-memory!</code>.
+</li>
+<li><em>Solución:</em> Usar <code>@EntityGraph</code> o paginar en dos pasos.
+</li>
+</ul>
+</li>
+<li><strong>Costo de <code>SELECT COUNT(*)</code>:</strong>
+<ul>
+<li>En tablas de millones de registros el conteo es costoso. Usar <code>Slice&lt;T&gt;</code> si no se requiere el total de páginas en la UI.
+</li>
+</ul>
+</li>
+<li><strong>Desfase de Índice 0 vs 1:</strong>
+<ul>
+<li><code>page = 0</code> es la primera página en Spring Boot; la UI debe ajustar el parámetro si expone índices base 1.
+</li>
+</ul>
+</li>
+</ul>
+
+<footer>Tema 8.7.1.2: Paginación en Hibernate</footer>
+            </section>
+
+            <section >
+<h1>Pregunta de Reflexión para el Estudiante</h1>
+
+> En una interfaz gráfica móvil tipo Instagram con scroll infinito, ¿cuál interfaz ofrece mayor rendimiento?
+> 
+> * <strong>A)</strong> <code>Page&lt;T&gt;</code>, porque calcula el total de páginas.
+> <em> <strong>B)</strong> <code>Slice&lt;T&gt;</code>, porque evita la consulta pesada <code>COUNT(&lt;/em&gt;)</code> en cada scroll.
+> * <strong>C)</strong> Ambas ofrecen exactamente el mismo rendimiento.
+
+<footer>Tema 8.7.1.2: Paginación en Hibernate</footer>
+            </section>
+
+        </div>
+    </div>
+
+    <!-- Highlight.js and Reveal.js Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.js"></script>
+
+    <script>
+        // Initialize Highlight.js for code syntax coloring
+        hljs.highlightAll();
+
+        // Initialize Reveal.js with modern layout configurations
+        Reveal.initialize({
+            hash: true,
+            respondToHashChanges: true,
+            history: true,
+            transition: 'slide', // none/fade/slide/convex/concave/zoom
+            transitionSpeed: 'default',
+            backgroundTransition: 'fade',
+            width: 960,
+            height: 700,
+            margin: 0.05,
+            minScale: 0.2,
+            maxScale: 2.0,
+            plugins: []
+        });
+    </script>
+</body>
+</html>
