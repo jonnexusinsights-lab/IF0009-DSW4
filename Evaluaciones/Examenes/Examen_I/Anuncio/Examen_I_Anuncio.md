@@ -30,7 +30,7 @@
 * Control de versiones con Git en rama principal `main`, estrategia de ramas de características (*Feature Branching*), mensajes de commit semánticos, archivo `.gitignore` y solución de conflictos.
 
 ### 3. Tema 3: Desarrollo Back-End Completo
-* Spring Boot 3 en Java 21, entidades relacionales JPA, repositorios JPQL paginados (`Pageable`), validaciones de negocio, manejador global de excepciones RFC 7807 (Problem Details), seguridad JWT RFC 7519, control de acceso por roles (RBAC) y pruebas unitarias con JUnit 5 Jupiter / Mockito.
+* Spring Boot 3 en la versión de Java disponible en su computadora, entidades relacionales JPA, repositorios JPQL paginados (`Pageable`), validaciones de negocio, manejador global de excepciones RFC 7807 (Problem Details), seguridad JWT RFC 7519, control de acceso por roles (RBAC) y pruebas unitarias con JUnit 5 Jupiter / Mockito.
 
 ### 4. Tema 4: Desarrollo Front-End Completo
 * HTML5 semántico, accesibilidad web (WCAG 2.1 AA), CSS3 (Flexbox y CSS Grid Layout), diseño Mobile-First, TypeScript avanzado, componentes standalone en Angular 19, Signals (`signal()`, `computed()`), control de flujo moderno y consumo asíncrono de APIs RESTful.

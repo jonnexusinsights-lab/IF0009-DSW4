@@ -9,25 +9,30 @@
 
 ---
 
-# Práctica Guiada 9: Procedimientos Almacenados y Paginación Web Dinámica con Hibernate, Spring Boot y HTML5
+# Práctica Guiada 9: Procedimientos Almacenados, Paginación Relacional y Consumo Web en VideoRent
 
 ## Resumen
 
-Esta práctica guiada consolida los temas avanzados de persistencia del **Tema 8.7.1 (Hibernate Avanzado)**, integrando la ejecución de **procedimientos almacenados** (*Stored Procedures*) y la **paginación de datos a nivel de base de datos** (`Pageable`, `Page<T>`) con una interfaz web en **HTML5, CSS3 y JavaScript asíncrono (Fetch API)**.
+Esta práctica guiada da continuidad directa a la **Práctica Guiada 8**, consolidando los temas avanzados de persistencia del **Tema 8.7.1 (Hibernate Avanzado)** e integrándolos en la plataforma de alquiler de películas **VideoRent**. Usted aprenderá a optimizar el acceso a datos combinando la ejecución de **procedimientos almacenados nativos** (*Stored Procedures*) y la **paginación relacional a nivel de base de datos** (`Pageable`, `Page<T>`) con una interfaz web en **HTML5, CSS3 y JavaScript asíncrono (Fetch API)**.
 
-A lo largo del laboratorio, usted construirá un módulo de consulta de facturación empresarial. Aprenderá a mapear llamadas a procedimientos almacenados en la base de datos, estructurar consultas paginadas en Spring Boot para evitar la carga masiva en memoria RAM, exponer endpoints RESTful paginados y consumir dichos resultados desde una tabla HTML interactiva con botones de navegación (`Anterior`, `Siguiente`, `Primera`, `Última`) y selector de tamaño de página.
+A lo largo del laboratorio, usted construirá el módulo de consulta y navegación del catálogo de películas de **VideoRent**. Mapeará llamadas a procedimientos almacenados en la base de datos, estructurará consultas paginadas en Spring Boot para evitar la carga masiva en memoria RAM, expondrá endpoints RESTful paginados y consumirá dichos resultados desde una tabla HTML interactiva con controles completos de navegación (`Primera`, `Anterior`, `Página X de Y`, `Siguiente`, `Última`) y selector de tamaño de página.
 
 ---
 
 ## Metadatos del Laboratorio
 
 *   **Tiempo estimado:** 4 horas.
-*   **Herramientas requeridas:** Java 21, Spring Boot 3.x, H2 Database (o SQL Server), Maven, VS Code / IntelliJ IDEA, Navegador Web (Chrome/Firefox).
+*   **Herramientas requeridas:** Java 21 (o versión local instalada), Spring Boot 3.x, H2 Database (o SQL Server), Maven, VS Code / IntelliJ IDEA, Navegador Web (Chrome/Firefox).
 *   **Metas de Aprendizaje:**
-    1.  Configurar y ejecutar procedimientos almacenados nativos mediante la anotación `@Procedure` y `EntityManager` de JPA.
-    2.  Implementar paginación relacional eficiente utilizando `Pageable`, `PageRequest` y `Page<T>` en Spring Data JPA.
-    3.  Construir un controlador RESTful que retorne payloads JSON paginados estandarizados.
-    4.  Desarrollar una interfaz de usuario cliente en HTML5 y Vanilla JavaScript que consuma datos paginados mediante `fetch()` y actualice dinámicamente el DOM.
+
+    1.  Configurar y ejecutar procedimientos almacenados nativos en la base de datos de `VideoRent` mediante la anotación `@Procedure` y `EntityManager` de JPA.
+
+    2.  Implementar paginación relacional eficiente utilizando `Pageable`, `PageRequest` y `Page<T>` en Spring Data JPA para el catálogo de películas.
+
+    3.  Construir un controlador RESTful en Spring Boot que retorne payloads JSON paginados estandarizados y filtrados.
+
+    4.  Desarrollar una interfaz cliente web en HTML5 y Vanilla JavaScript que consuma la API paginada con Fetch API y actualice el DOM en tiempo real con controles de navegación (`Primera`, `Anterior`, `Siguiente`, `Última`).
+
     5.  Diagnosticar y resolver errores comunes como el desajuste de índices de página (base 0 vs base 1) y advertencias de paginación en memoria (`HHH000104`).
 
 ---
@@ -35,187 +40,214 @@ A lo largo del laboratorio, usted construirá un módulo de consulta de facturac
 ## Conceptos Clave (El 'Qué')
 
 ### 1. Procedimientos Almacenados (`@Procedure`)
-Un procedimiento almacenado es una rutina precompilada en el motor de base de datos. Spring Data JPA permite invocar estos procedimientos mediante la anotación `@Procedure` en interfaces `@Repository`, mapeando parámetros de entrada (`IN`) y salida (`OUT`).
+Un procedimiento almacenado es una rutina precompilada en el motor de base de datos relacional. Spring Data JPA permite invocar estos procedimientos directamente mediante la anotación `@Procedure` en interfaces `@Repository`, mapeando parámetros de entrada (`IN`) y result sets o salidas (`OUT`).
 
 ### 2. Paginación Relacional (`Pageable` y `Page<T>`)
-La interfaz `Pageable` transmite el número de página deseado, el tamaño de lote y los criterios de ordenamiento. Hibernate traduce esto en cláusulas SQL nativas (`LIMIT / OFFSET` o `OFFSET ... FETCH NEXT`), evitando saturar la memoria de la JVM.
+La interfaz `Pageable` transmite el número de página solicitado, el tamaño de lote y los criterios de ordenamiento. Hibernate traduce esto en cláusulas SQL nativas (`LIMIT / OFFSET` en H2/PostgreSQL o `OFFSET ... FETCH NEXT` en SQL Server), procesando únicamente la subpágina requerida y evitando saturar la memoria RAM de la JVM.
 
 ### 3. Consumo Asíncrono Web (Fetch API)
-El navegador realiza peticiones HTTP asíncronas (`GET /api/v1/facturas?page=0&size=10`) sin recargar la página completa, renderizando únicamente las filas de la tabla y recalculando los botones de la barra de paginación.
+El navegador realiza peticiones HTTP asíncronas (ejemplo: `GET /api/v1/videos?page=0&size=5`) sin recargar la página completa, renderizando dinámicamente únicamente las filas de la tabla de películas y recalculando el estado activo de los botones de la barra de paginación.
 
 ---
 
 ## Parte 1: Práctica Guiada Paso a Paso
 
-### Paso 1: Configuración de la Entidad `Factura` y Script SQL con Procedimiento Almacenado
+### Paso 1: Configuración de la Entidad `Video` y Script SQL con Procedimiento Almacenado
 
-Cree la entidad `Factura.java` en el paquete `domain`:
+Asegúrese de contar con la entidad `Video.java` en el paquete `com.videorent.model`:
 
 ```java
-package cr.ac.ucr.ie.domain;
+package com.videorent.model;
 
 import jakarta.persistence.*;
-import java.math.BigDecimal;
-import java.time.LocalDate;
 
 @Entity
-@Table(name = "Factura")
-public class Factura {
+@Table(name = "Video")
+public class Video {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, length = 20, unique = true)
-    private String numeroFactura;
+    @Column(nullable = false, length = 100)
+    private String titulo;
 
     @Column(nullable = false, length = 100)
-    private String cliente;
+    private String director;
 
-    @Column(nullable = false, precision = 12, scale = 2)
-    private BigDecimal montoTotal;
+    @Column(nullable = false, length = 50)
+    private String categoria;
+
+    @Column(name = "precio_alquiler", nullable = false)
+    private Double precioAlquiler;
 
     @Column(nullable = false)
-    private LocalDate fecha;
+    private Boolean disponible;
 
-    @Column(nullable = false, length = 20)
-    private String estado;
+    public Video() {}
 
-    public Factura() {}
-
-    public Factura(String numeroFactura, 
-                   String cliente, 
-                   BigDecimal montoTotal, 
-                   LocalDate fecha, 
-                   String estado) {
-        this.numeroFactura = numeroFactura;
-        this.cliente = cliente;
-        this.montoTotal = montoTotal;
-        this.fecha = fecha;
-        this.estado = estado;
+    public Video(String titulo,
+                 String director,
+                 String categoria,
+                 Double precioAlquiler,
+                 Boolean disponible) {
+        this.titulo = titulo;
+        this.director = director;
+        this.categoria = categoria;
+        this.precioAlquiler = precioAlquiler;
+        this.disponible = disponible;
     }
 
-    public Long getId() { 
-        return id; 
+    public Long getId() {
+        return id;
     }
-    
-    public String getNumeroFactura() { 
-        return numeroFactura; 
+
+    public void setId(Long id) {
+        this.id = id;
     }
-    
-    public String getCliente() { 
-        return cliente; 
+
+    public String getTitulo() {
+        return titulo;
     }
-    
-    public BigDecimal getMontoTotal() { 
-        return montoTotal; 
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
     }
-    
-    public LocalDate getFecha() { 
-        return fecha; 
+
+    public String getDirector() {
+        return director;
     }
-    
-    public String getEstado() { 
-        return estado; 
+
+    public void setDirector(String director) {
+        this.director = director;
+    }
+
+    public String getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
+    }
+
+    public Double getPrecioAlquiler() {
+        return precioAlquiler;
+    }
+
+    public void setPrecioAlquiler(Double precioAlquiler) {
+        this.precioAlquiler = precioAlquiler;
+    }
+
+    public Boolean getDisponible() {
+        return disponible;
+    }
+
+    public void setDisponible(Boolean disponible) {
+        this.disponible = disponible;
     }
 }
 ```
 
-Cree el archivo de inicialización SQL `src/main/resources/schema.sql`:
+Cree el archivo de inicialización SQL en `src/main/resources/schema.sql` declarando la tabla y el Stored Procedure:
 
 ```sql
--- Script de esquema y Stored Procedure
-CREATE TABLE IF NOT EXISTS Factura (
+-- Script de esquema y Stored Procedure para VideoRent
+CREATE TABLE IF NOT EXISTS Video (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
-    numero_factura VARCHAR(20) NOT NULL UNIQUE,
-    cliente VARCHAR(100) NOT NULL,
-    monto_total DECIMAL(12,2) NOT NULL,
-    fecha DATE NOT NULL,
-    estado VARCHAR(20) NOT NULL
+    titulo VARCHAR(100) NOT NULL,
+    director VARCHAR(100) NOT NULL,
+    categoria VARCHAR(50) NOT NULL,
+    precio_alquiler DECIMAL(8,2) NOT NULL,
+    disponible BOOLEAN NOT NULL
 );
 
--- Stored Procedure compatible con H2 / SQL
-CREATE ALIAS IF NOT EXISTS SP_OBTENER_FACTURAS AS $$
+-- Stored Procedure nativo compatible con H2 / SQL
+CREATE ALIAS IF NOT EXISTS SP_FILTRAR_VIDEOS_DISPONIBLES AS $$
 import java.sql.*;
 @CODE
-ResultSet spObtenerFacturas(Connection conn, 
-                            String pEstado) 
+ResultSet spFiltrarVideos(Connection conn,
+                          Boolean pDisponible)
 throws SQLException {
-    String sql = "SELECT * FROM Factura " +
-                 "WHERE estado = ? " +
-                 "ORDER BY fecha DESC";
-    PreparedStatement ps = 
+    String sql = "SELECT * FROM Video " +
+                 "WHERE disponible = ? " +
+                 "ORDER BY titulo ASC";
+    PreparedStatement ps =
         conn.prepareStatement(sql);
-    ps.setString(1, pEstado);
+    ps.setBoolean(1, pDisponible);
     return ps.executeQuery();
 }
 $$;
 ```
 
-Cree el archivo de semillas `src/main/resources/data.sql`:
+Cree el archivo de semillas en `src/main/resources/data.sql`:
 
 ```sql
-INSERT INTO Factura 
-(numero_factura, cliente, monto_total, fecha, estado) 
-VALUES ('FAC-001', 'Alfa S.A.', 1500.00, '2026-09-01', 'PAGADA');
+INSERT INTO Video 
+(titulo, director, categoria, precio_alquiler, disponible)
+VALUES ('Inception', 'Christopher Nolan', 'Ciencia Ficcion', 3.99, true);
 
-INSERT INTO Factura 
-(numero_factura, cliente, monto_total, fecha, estado) 
-VALUES ('FAC-002', 'Beta Ltda.', 450.50, '2026-09-02', 'PENDIENTE');
+INSERT INTO Video 
+(titulo, director, categoria, precio_alquiler, disponible)
+VALUES ('The Matrix', 'Lana & Lilly Wachowski', 'Accion', 2.99, true);
 
-INSERT INTO Factura 
-(numero_factura, cliente, monto_total, fecha, estado) 
-VALUES ('FAC-003', 'Gamma Inc.', 3200.00, '2026-09-03', 'PAGADA');
+INSERT INTO Video 
+(titulo, director, categoria, precio_alquiler, disponible)
+VALUES ('Interstellar', 'Christopher Nolan', 'Ciencia Ficcion', 4.50, true);
 
-INSERT INTO Factura 
-(numero_factura, cliente, monto_total, fecha, estado) 
-VALUES ('FAC-004', 'Delta Corp.', 890.00, '2026-09-04', 'PENDIENTE');
+INSERT INTO Video 
+(titulo, director, categoria, precio_alquiler, disponible)
+VALUES ('Pulp Fiction', 'Quentin Tarantino', 'Drama', 3.50, false);
 
-INSERT INTO Factura 
-(numero_factura, cliente, monto_total, fecha, estado) 
-VALUES ('FAC-005', 'Epsilon S.A.', 2100.75, '2026-09-05', 'PAGADA');
+INSERT INTO Video 
+(titulo, director, categoria, precio_alquiler, disponible)
+VALUES ('The Dark Knight', 'Christopher Nolan', 'Accion', 4.00, true);
 
-INSERT INTO Factura 
-(numero_factura, cliente, monto_total, fecha, estado) 
-VALUES ('FAC-006', 'Zeta Ltda.', 670.20, '2026-09-06', 'ANULADA');
+INSERT INTO Video 
+(titulo, director, categoria, precio_alquiler, disponible)
+VALUES ('Forrest Gump', 'Robert Zemeckis', 'Drama', 2.50, true);
 
-INSERT INTO Factura 
-(numero_factura, cliente, monto_total, fecha, estado) 
-VALUES ('FAC-007', 'Eta Corp.', 4500.00, '2026-09-07', 'PAGADA');
+INSERT INTO Video 
+(titulo, director, categoria, precio_alquiler, disponible)
+VALUES ('Avatar', 'James Cameron', 'Ciencia Ficcion', 3.99, false);
 
-INSERT INTO Factura 
-(numero_factura, cliente, monto_total, fecha, estado) 
-VALUES ('FAC-008', 'Theta S.A.', 120.00, '2026-09-08', 'PENDIENTE');
+INSERT INTO Video 
+(titulo, director, categoria, precio_alquiler, disponible)
+VALUES ('Gladiator', 'Ridley Scott', 'Accion', 3.00, true);
+
+INSERT INTO Video 
+(titulo, director, categoria, precio_alquiler, disponible)
+VALUES ('Titanic', 'James Cameron', 'Romance', 2.99, true);
+
+INSERT INTO Video 
+(titulo, director, categoria, precio_alquiler, disponible)
+VALUES ('Jurassic Park', 'Steven Spielberg', 'Aventura', 3.50, true);
 ```
 
 ---
 
 ### Paso 2: Creación del DTO y Repositorio de Spring Data JPA
 
-Cree el DTO `FacturaDTO.java` en `dto`:
+Cree el DTO `VideoDTO.java` en `src/main/java/com/videorent/dto/VideoDTO.java`:
 
 ```java
-package cr.ac.ucr.ie.dto;
+package com.videorent.dto;
 
-import java.math.BigDecimal;
-import java.time.LocalDate;
-
-public record FacturaDTO(
+public record VideoDTO(
     Long id,
-    String numeroFactura,
-    String cliente,
-    BigDecimal montoTotal,
-    LocalDate fecha,
-    String estado
+    String titulo,
+    String director,
+    String categoria,
+    Double precioAlquiler,
+    Boolean disponible
 ) {}
 ```
 
-Cree el repositorio `FacturaRepository.java` en `data`:
+Cree la interfaz `VideoRepository.java` en `src/main/java/com/videorent/repository/VideoRepository.java`:
 
 ```java
-package cr.ac.ucr.ie.data;
+package com.videorent.repository;
 
-import cr.ac.ucr.ie.domain.Factura;
+import com.videorent.model.Video;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -226,21 +258,24 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface FacturaRepository 
-        extends JpaRepository<Factura, Long> {
+public interface VideoRepository
+        extends JpaRepository<Video, Long> {
 
     // Invocacion de Stored Procedure nativo
-    @Procedure(procedureName = "SP_OBTENER_FACTURAS")
-    List<Factura> obtenerPorEstado(@Param("pEstado") String est);
+    @Procedure(procedureName = "SP_FILTRAR_VIDEOS_DISPONIBLES")
+    List<Video> obtenerPorDisponible(
+        @Param("pDisponible") Boolean disponible
+    );
 
-    // Consulta paginada por nombre de cliente
-    Page<Factura> findByClienteContainingIgnoreCase(
-        String cliente, 
+    // Consulta paginada por titulo de pelicula
+    Page<Video> findByTituloContainingIgnoreCase(
+        String titulo,
         Pageable pageable
     );
 
-    Page<Factura> findByEstado(
-        String estado, 
+    // Consulta paginada por categoria
+    Page<Video> findByCategoriaIgnoreCase(
+        String categoria,
         Pageable pageable
     );
 }
@@ -248,16 +283,16 @@ public interface FacturaRepository
 
 ---
 
-### Paso 3: Capa de Servicio de Negocio (`FacturaService.java`)
+### Paso 3: Capa de Servicio de Negocio (`VideoService.java`)
 
-Cree la clase `FacturaService.java` en `business`:
+Cree la clase `VideoService.java` en `src/main/java/com/videorent/service/VideoService.java`:
 
 ```java
-package cr.ac.ucr.ie.business;
+package com.videorent.service;
 
-import cr.ac.ucr.ie.data.FacturaRepository;
-import cr.ac.ucr.ie.domain.Factura;
-import cr.ac.ucr.ie.dto.FacturaDTO;
+import com.videorent.dto.VideoDTO;
+import com.videorent.model.Video;
+import com.videorent.repository.VideoRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -268,56 +303,62 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-public class FacturaService {
+public class VideoService {
 
-    private final FacturaRepository facturaRepository;
+    private final VideoRepository videoRepository;
 
-    public FacturaService(FacturaRepository repository) {
-        this.facturaRepository = repository;
+    public VideoService(VideoRepository videoRepository) {
+        this.videoRepository = videoRepository;
     }
 
     @Transactional(readOnly = true)
-    public Page<FacturaDTO> listarPaginado(int page, 
-                                           int size, 
-                                           String sortBy, 
-                                           String dir, 
-                                           String cliente) {
-        Sort.Direction direction = 
-            dir.equalsIgnoreCase("DESC") ? 
+    public Page<VideoDTO> listarPaginado(int page,
+                                           int size,
+                                           String sortBy,
+                                           String dir,
+                                           String titulo,
+                                           String categoria) {
+        Sort.Direction direction =
+            dir.equalsIgnoreCase("DESC") ?
             Sort.Direction.DESC : Sort.Direction.ASC;
-            
-        Pageable pageable = 
-            PageRequest.of(page, size, 
+
+        Pageable pageable =
+            PageRequest.of(page, size,
                            Sort.by(direction, sortBy));
 
-        Page<Factura> facturasPage;
-        if (cliente != null && !cliente.trim().isEmpty()) {
-            facturasPage = facturaRepository
-                .findByClienteContainingIgnoreCase(
-                    cliente, pageable
+        Page<Video> videosPage;
+        if (titulo != null && !titulo.trim().isEmpty()) {
+            videosPage = videoRepository
+                .findByTituloContainingIgnoreCase(
+                    titulo, pageable
+                );
+        } else if (categoria != null && !categoria.trim().isEmpty()) {
+            videosPage = videoRepository
+                .findByCategoriaIgnoreCase(
+                    categoria, pageable
                 );
         } else {
-            facturasPage = 
-                facturaRepository.findAll(pageable);
+            videosPage =
+                videoRepository.findAll(pageable);
         }
 
-        return facturasPage.map(f -> new FacturaDTO(
-            f.getId(), f.getNumeroFactura(), 
-            f.getCliente(), f.getMontoTotal(), 
-            f.getFecha(), f.getEstado()
+        return videosPage.map(v -> new VideoDTO(
+            v.getId(), v.getTitulo(),
+            v.getDirector(), v.getCategoria(),
+            v.getPrecioAlquiler(), v.getDisponible()
         ));
     }
 
     @Transactional(readOnly = true)
-    public List<FacturaDTO> listarViaStoredProcedure(String estado) {
-        List<Factura> lista = 
-            facturaRepository.obtenerPorEstado(estado);
-            
+    public List<VideoDTO> listarViaStoredProcedure(Boolean disp) {
+        List<Video> lista =
+            videoRepository.obtenerPorDisponible(disp);
+
         return lista.stream()
-            .map(f -> new FacturaDTO(
-                f.getId(), f.getNumeroFactura(), 
-                f.getCliente(), f.getMontoTotal(), 
-                f.getFecha(), f.getEstado()
+            .map(v -> new VideoDTO(
+                v.getId(), v.getTitulo(),
+                v.getDirector(), v.getCategoria(),
+                v.getPrecioAlquiler(), v.getDisponible()
             ))
             .toList();
     }
@@ -326,15 +367,15 @@ public class FacturaService {
 
 ---
 
-### Paso 4: Controlador RESTful (`FacturaController.java`)
+### Paso 4: Controlador RESTful (`VideoController.java`)
 
-Cree el controlador `FacturaController.java` en `controller`:
+Cree la clase `VideoController.java` en `src/main/java/com/videorent/controller/VideoController.java`:
 
 ```java
-package cr.ac.ucr.ie.controller;
+package com.videorent.controller;
 
-import cr.ac.ucr.ie.business.FacturaService;
-import cr.ac.ucr.ie.dto.FacturaDTO;
+import com.videorent.dto.VideoDTO;
+import com.videorent.service.VideoService;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -342,37 +383,38 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/facturas")
+@RequestMapping("/api/v1/videos")
 @CrossOrigin(origins = "*")
-public class FacturaController {
+public class VideoController {
 
-    private final FacturaService facturaService;
+    private final VideoService videoService;
 
-    public FacturaController(FacturaService facturaService) {
-        this.facturaService = facturaService;
+    public VideoController(VideoService videoService) {
+        this.videoService = videoService;
     }
 
     @GetMapping
-    public ResponseEntity<Page<FacturaDTO>> listar(
+    public ResponseEntity<Page<VideoDTO>> listar(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "5") int size,
-            @RequestParam(defaultValue = "fecha") String sortBy,
-            @RequestParam(defaultValue = "DESC") String direction,
-            @RequestParam(required = false) String cliente) {
+            @RequestParam(defaultValue = "titulo") String sortBy,
+            @RequestParam(defaultValue = "ASC") String direction,
+            @RequestParam(required = false) String titulo,
+            @RequestParam(required = false) String categoria) {
 
-        Page<FacturaDTO> resultado = 
-            facturaService.listarPaginado(
-                page, size, sortBy, direction, cliente
+        Page<VideoDTO> resultado =
+            videoService.listarPaginado(
+                page, size, sortBy, direction, titulo, categoria
             );
         return ResponseEntity.ok(resultado);
     }
 
-    @GetMapping("/procedimiento/{estado}")
-    public ResponseEntity<List<FacturaDTO>> listarSP(
-            @PathVariable String estado) {
-            
-        List<FacturaDTO> resultado = 
-            facturaService.listarViaStoredProcedure(estado);
+    @GetMapping("/procedimiento/{disponible}")
+    public ResponseEntity<List<VideoDTO>> listarSP(
+            @PathVariable Boolean disponible) {
+
+        List<VideoDTO> resultado =
+            videoService.listarViaStoredProcedure(disponible);
         return ResponseEntity.ok(resultado);
     }
 }
@@ -382,16 +424,16 @@ public class FacturaController {
 
 ### Paso 5: Interfaz de Usuario Cliente (HTML5 + CSS3 + Vanilla JavaScript)
 
-Cree el archivo `src/main/resources/static/index.html`:
+Cree el archivo de vista en `src/main/resources/static/index.html`:
 
 ```html
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" 
+    <meta name="viewport"
           content="width=device-width, initial-scale=1.0">
-    <title>Gestion de Facturas - Paginacion</title>
+    <title>VideoRent - Catalogo Paginado</title>
     <style>
         :root {
             --bg-color: #0f172a;
@@ -399,6 +441,8 @@ Cree el archivo `src/main/resources/static/index.html`:
             --accent-color: #38bdf8;
             --text-color: #f8fafc;
             --border-color: #334155;
+            --badge-success: #22c55e;
+            --badge-danger: #ef4444;
         }
 
         body {
@@ -410,24 +454,24 @@ Cree el archivo `src/main/resources/static/index.html`:
         }
 
         .container {
-            max-width: 900px;
+            max-width: 950px;
             margin: 0 auto;
             background-color: var(--card-bg);
-            padding: 20px;
+            padding: 24px;
             border-radius: 10px;
         }
 
         h1 {
             color: var(--accent-color);
-            font-size: 20px;
+            font-size: 22px;
             border-bottom: 2px solid var(--border-color);
-            padding-bottom: 8px;
+            padding-bottom: 10px;
         }
 
         .filter-bar {
             display: flex;
             gap: 10px;
-            margin-bottom: 15px;
+            margin-bottom: 18px;
             flex-wrap: wrap;
         }
 
@@ -455,7 +499,7 @@ Cree el archivo `src/main/resources/static/index.html`:
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-bottom: 15px;
+            margin-bottom: 18px;
         }
 
         th, td {
@@ -470,6 +514,23 @@ Cree el archivo `src/main/resources/static/index.html`:
             color: var(--accent-color);
         }
 
+        .badge {
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: bold;
+        }
+
+        .badge-disponible {
+            background-color: rgba(34, 197, 94, 0.2);
+            color: var(--badge-success);
+        }
+
+        .badge-alquilado {
+            background-color: rgba(239, 68, 68, 0.2);
+            color: var(--badge-danger);
+        }
+
         .pagination-controls {
             display: flex;
             justify-content: space-between;
@@ -481,34 +542,35 @@ Cree el archivo `src/main/resources/static/index.html`:
 <body>
 
 <div class="container">
-    <h1>Facturacion Empresarial</h1>
+    <h1>VideoRent - Catalogo de Peliculas</h1>
 
     <div class="filter-bar">
-        <input type="text" id="inputCliente" 
-               placeholder="Buscar cliente...">
-        <button onclick="buscarCliente()">Buscar</button>
-        
-        <select id="selectSP" 
+        <input type="text" id="inputTitulo"
+               placeholder="Buscar por titulo...">
+        <button onclick="buscarTitulo()">Buscar</button>
+
+        <select id="selectSP"
                 onchange="ejecutarSP()">
-            <option value="">-- Probar SP --</option>
-            <option value="PAGADA">SP: PAGADA</option>
-            <option value="PENDIENTE">SP: PENDIENTE</option>
+            <option value="">-- Probar SP Nativo --</option>
+            <option value="true">SP: Solo Disponibles</option>
+            <option value="false">SP: Solo Alquilados</option>
         </select>
 
-        <select id="selectSize" 
+        <select id="selectSize"
                 onchange="cambiarTamano()">
-            <option value="5" selected>5 por pag</option>
-            <option value="10">10 por pag</option>
+            <option value="5" selected>5 por pagina</option>
+            <option value="10">10 por pagina</option>
         </select>
     </div>
 
     <table>
         <thead>
             <tr>
-                <th>No. Factura</th>
-                <th>Cliente</th>
-                <th>Monto</th>
-                <th>Fecha</th>
+                <th>ID</th>
+                <th>Titulo</th>
+                <th>Director</th>
+                <th>Categoria</th>
+                <th>Precio</th>
                 <th>Estado</th>
             </tr>
         </thead>
@@ -518,10 +580,14 @@ Cree el archivo `src/main/resources/static/index.html`:
     <div class="pagination-controls">
         <div id="infoPagina">Cargando...</div>
         <div>
-            <button id="btnAnterior" 
+            <button id="btnPrimera"
+                    onclick="primeraPagina()">&lt;&lt; Primera</button>
+            <button id="btnAnterior"
                     onclick="paginaAnterior()">&lt; Ant</button>
-            <button id="btnSiguiente" 
+            <button id="btnSiguiente"
                     onclick="paginaSiguiente()">Sig &gt;</button>
+            <button id="btnUltima"
+                    onclick="ultimaPagina()">Ultima &gt;&gt;</button>
         </div>
     </div>
 </div>
@@ -530,17 +596,17 @@ Cree el archivo `src/main/resources/static/index.html`:
     let currentPage = 0;
     let pageSize = 5;
     let totalPages = 0;
-    let filtroCliente = "";
+    let filtroTitulo = "";
 
     document.addEventListener("DOMContentLoaded", () => {
         cargar();
     });
 
     async function cargar() {
-        let url = `/api/v1/facturas?page=${currentPage}` +
+        let url = `/api/v1/videos?page=${currentPage}` +
                   `&size=${pageSize}`;
-        if (filtroCliente) {
-            url += `&cliente=${encodeURIComponent(filtroCliente)}`;
+        if (filtroTitulo) {
+            url += `&titulo=${encodeURIComponent(filtroTitulo)}`;
         }
         const resp = await fetch(url);
         const data = await resp.json();
@@ -551,14 +617,19 @@ Cree el archivo `src/main/resources/static/index.html`:
     function renderTabla(lista) {
         const body = document.getElementById("tablaBody");
         body.innerHTML = "";
-        lista.forEach(f => {
+        lista.forEach(v => {
             const tr = document.createElement("tr");
+            const badgeClass = v.disponible ?
+                "badge-disponible" : "badge-alquilado";
+            const estadoTexto = v.disponible ?
+                "DISPONIBLE" : "ALQUILADO";
             tr.innerHTML = `
-                <td><strong>${f.numeroFactura}</strong></td>
-                <td>${f.cliente}</td>
-                <td>$${f.montoTotal.toFixed(2)}</td>
-                <td>${f.fecha}</td>
-                <td>${f.estado}</td>
+                <td>${v.id}</td>
+                <td><strong>${v.titulo}</strong></td>
+                <td>${v.director}</td>
+                <td>${v.categoria}</td>
+                <td>$${v.precioAlquiler.toFixed(2)}</td>
+                <td><span class="badge ${badgeClass}">${estadoTexto}</span></td>
             `;
             body.appendChild(tr);
         });
@@ -568,12 +639,17 @@ Cree el archivo `src/main/resources/static/index.html`:
         totalPages = data.totalPages;
         const info = `Pagina ${data.number + 1} ` +
                      `de ${data.totalPages} ` +
-                     `(Total: ${data.totalElements})`;
+                     `(Total: ${data.totalElements} peliculas)`;
         document.getElementById("infoPagina").innerText = info;
-        document.getElementById("btnAnterior").disabled = 
-            data.first;
-        document.getElementById("btnSiguiente").disabled = 
-            data.last;
+        document.getElementById("btnPrimera").disabled = data.first;
+        document.getElementById("btnAnterior").disabled = data.first;
+        document.getElementById("btnSiguiente").disabled = data.last;
+        document.getElementById("btnUltima").disabled = data.last;
+    }
+
+    function primeraPagina() {
+        currentPage = 0;
+        cargar();
     }
 
     function paginaAnterior() {
@@ -590,31 +666,41 @@ Cree el archivo `src/main/resources/static/index.html`:
         }
     }
 
+    function ultimaPagina() {
+        if (totalPages > 0) {
+            currentPage = totalPages - 1;
+            cargar();
+        }
+    }
+
     function cambiarTamano() {
-        pageSize = 
+        pageSize =
             parseInt(document.getElementById("selectSize").value);
         currentPage = 0;
         cargar();
     }
 
-    function buscarCliente() {
-        filtroCliente = 
-            document.getElementById("inputCliente").value;
+    function buscarTitulo() {
+        filtroTitulo =
+            document.getElementById("inputTitulo").value;
         currentPage = 0;
         cargar();
     }
 
     async function ejecutarSP() {
-        const est = document.getElementById("selectSP").value;
-        if (!est) { cargar(); return; }
-        const resp = 
-            await fetch(`/api/v1/facturas/procedimiento/${est}`);
+        const val = document.getElementById("selectSP").value;
+        if (val === "") { cargar(); return; }
+        const disp = val === "true";
+        const resp =
+            await fetch(`/api/v1/videos/procedimiento/${disp}`);
         const data = await resp.json();
         renderTabla(data);
-        document.getElementById("infoPagina").innerText = 
-            `Resultados SP: ${data.length} registros`;
+        document.getElementById("infoPagina").innerText =
+            `Resultados SP Nativo: ${data.length} registros`;
+        document.getElementById("btnPrimera").disabled = true;
         document.getElementById("btnAnterior").disabled = true;
         document.getElementById("btnSiguiente").disabled = true;
+        document.getElementById("btnUltima").disabled = true;
     }
 </script>
 </body>
@@ -623,16 +709,41 @@ Cree el archivo `src/main/resources/static/index.html`:
 
 ---
 
-## Parte 2: Seccion de Depuracion de Errores Comunes
+### Paso 6: Integración con Git Flow en IDE y Prompts de IA
+
+En Visual Studio Code, usted puede gestionar el control de versiones de forma visual utilizando la pestaña **Source Control** (`Ctrl+Shift+G` / `Cmd+Shift+G`):
+
+**1.** Haga clic en el ícono de **Source Control** en la barra lateral izquierda.
+
+**2.** Revise los archivos modificados e introduzca su mensaje de commit siguiendo la convención de Commits Semánticos:
+
+```bash
+feat(backend): add paginated video catalog endpoint and stored procedure
+```
+
+**3.** Presione el botón **Commit** y posteriormente **Sync Changes** para enviar los cambios a su repositorio en GitHub.
+
+#### Prompts Sugeridos para Google Antigravity / Copilot:
+
+*   *Generar Gitignore:* `"Genera un archivo .gitignore completo para un proyecto Spring Boot 3 con Maven, Java 21 e H2/SQL Server."`
+*   *Redactar Commit Semántico:* `"Sugerime un mensaje de commit semantico en espanol para la implementacion de la paginacion relacional en VideoService."`
+*   *Depuración de Consola:* `"Analiza este stacktrace de Spring Data JPA sobre un error en @Procedure y explica paso a paso como solucionarlo."`
+
+---
+
+## Parte 2: Sección de Depuración de Errores Comunes
 
 ### Error 1: Desajuste de Índice Base 0 en Spring Data (`IndexOutOfBoundsException`)
 
 #### Guía de Depuración:
 
-- [ ] Verifique la URL emitida en la pestaña **Network** (F12) del navegador.
-- [ ] Observe que Spring Data interpreta `page = 0` como la primera página.
-- [ ] Inspeccione el controlador Java y asegúrese de que `@RequestParam default = "0"` coincida con el script.
-- [ ] En JavaScript, muestre al usuario `pageData.number + 1` mientras envía `pageData.number` a la API.
+- [ ] Verifique la URL emitida en la pestaña **Network** (F12) del navegador al cambiar de página.
+
+- [ ] Observe que Spring Data JPA interpreta `page = 0` como la primera página de la colección.
+
+- [ ] Inspeccione el controlador Java y asegúrese de que `@RequestParam(defaultValue = "0")` coincida con el script cliente.
+
+- [ ] En JavaScript, presente al usuario `data.number + 1` en el texto UI mientras envía `currentPage` (base 0) a la API.
 
 ---
 
@@ -640,14 +751,39 @@ Cree el archivo `src/main/resources/static/index.html`:
 
 #### Guía de Depuración:
 
-- [ ] Revise sus consultas JPQL en `FacturaRepository.java`.
-- [ ] Confirme que no está utilizando `JOIN FETCH` sobre colecciones `@OneToMany` con `Pageable`.
-- [ ] Para solucionar este error, aplique `@EntityGraph(attributePaths = {"detalles"})` sobre el repositorio.
+- [ ] Revise sus consultas JPQL personalizadas en `VideoRepository.java`.
+
+- [ ] Confirme que no está utilizando `JOIN FETCH` sobre colecciones `@OneToMany` junto con un parámetro `Pageable`.
+
+- [ ] Para solucionar este aviso y evitar desbordamientos de memoria RAM, sustituya el `JOIN FETCH` por la anotación `@EntityGraph(attributePaths = {"alquileres"})` sobre el método del repositorio.
 
 ---
 
-## Parte 3: Reto Autonomo
+## Parte 3: Reto Autónomo (Evaluado)
 
-1.  **Nuevo Stored Procedure:** Cree `SP_CALCULAR_TOTALES_FACTURACION` con parámetro `IN pEstado` y parámetros `OUT pTotal` y `pMonto`.
-2.  **Mapeo y Endpoint:** Exponga el método en `FacturaService` y el controlador GET `/api/v1/facturas/resumen/{estado}`.
-3.  **UI:** Agregue tarjetas dinámicas en HTML que muestren los totales acumulados devueltos por el procedimiento almacenado.
+Para completar esta práctica guiada, extienda el módulo de **VideoRent** resolviendo los siguientes requerimientos técnicos:
+
+- [ ] **Tarea 1: Nuevo Stored Procedure con Mapeo JPA**  
+  Diseñe en `schema.sql` el procedimiento almacenado `SP_OBTENER_VIDEOS_POR_CATEGORIA` que reciba el parámetro `pCategoria` (VARCHAR) y devuelva las películas pertenecientes a dicha categoría ordenadas por precio descendente. Mapee este método en `VideoRepository` utilizando la anotación `@Procedure`.
+
+- [ ] **Tarea 2: Endpoint de Consulta por Categoría**  
+  Exponga en `VideoController` el endpoint `GET /api/v1/videos/categoria-sp/{categoria}` que invoque el procedimiento almacenado mediante `VideoService` y retorne un payload JSON con la lista de objetos DTO correspondientes.
+
+- [ ] **Tarea 3: Componente de Tarjetas de Métricas en HTML5/CSS3**  
+  Modifique `src/main/resources/static/index.html` para incorporar un desplegable de selección de categoría y una sección superior de métricas (*Metrics Cards*) en CSS Grid. Al seleccionar una categoría, consuma el nuevo endpoint del Stored Procedure y renderice dinámicamente las películas resultantes junto con la cantidad total hallada.
+
+---
+
+## Lista de Chequeo Final
+
+Antes de dar por concluida la práctica, asegúrese de haber verificado los siguientes puntos:
+
+- [ ] El esquema y Stored Procedure `SP_FILTRAR_VIDEOS_DISPONIBLES` se ejecutan sin errores en la base de datos de `VideoRent`.
+
+- [ ] El endpoint `GET /api/v1/videos` responde con la estructura paginada nativa de Spring Data (`content`, `totalPages`, `totalElements`, `first`, `last`).
+
+- [ ] La interfaz HTML5 (`index.html`) navega entre páginas correctamente mediante la Fetch API sin recargar la página.
+
+- [ ] Los botones `Primera`, `Anterior`, `Siguiente` y `Última` se deshabilitan adecuadamente según los bordes del catálogo.
+
+- [ ] El código de la solución ha sido subido a su repositorio remoto en GitHub mediante un commit semántico documentado.
