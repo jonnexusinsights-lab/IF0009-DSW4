@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <title>Presentación - Desarrollo de Software IV</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <!-- Reveal.js Base Stylesheets -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reset.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.css">
+    
+    <!-- Tokyo Night Dark Theme for Code Syntax Resaltation -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/tokyo-night-dark.min.css">
+
+    <!-- Premium Google Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* Modern Web Design Aesthetics & Layout Tokens */
+        html, body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background-color: #0b0f19 !important;
+            color: #f8fafc;
+            overflow: hidden;
+        }
+
+        .reveal {
+            width: 100%;
+            height: 100%;
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0b0f19 0%, #111827 50%, #1e1b4b 100%) !important;
+            color: #f8fafc;
+        }
+        
+        .reveal .slides section {
+            font-family: 'Outfit', 'Inter', sans-serif;
+            text-align: left;
+            padding: 50px 70px;
+            box-sizing: border-box;
+            font-size: 22px;
+            color: #f8fafc;
+        }
+        
+        /* Centered Cover Slide Layout */
+        .reveal .slides section.lead-slide {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+        
+        /* Premium Typography Styles */
+        .reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6 {
+            font-family: 'Outfit', sans-serif;
+            text-transform: none;
+            color: #38bdf8;
+            font-weight: 800;
+            text-shadow: none;
+        }
+        
+        .reveal h1 {
+            font-size: 1.7em;
+            margin-bottom: 12px;
+            border-bottom: 2px solid #3b82f6;
+            padding-bottom: 10px;
+        }
+        
+        .reveal .lead-slide h1 {
+            border-bottom: none;
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            color: #38bdf8;
+        }
+        
+        .reveal h2 {
+            font-size: 1.25em;
+            color: #818cf8;
+            font-weight: 700;
+            margin-top: 0px;
+        }
+        
+        .reveal .lead-slide h2 {
+            font-size: 1.55em;
+            color: #818cf8;
+            margin-bottom: 30px;
+        }
+        
+        .reveal h3 {
+            font-size: 1.1em;
+            color: #a78bfa;
+        }
+        
+        /* List and Text Formatting */
+        .reveal p, .reveal li {
+            color: #cbd5e1;
+            line-height: 1.6;
+        }
+        
+        .reveal ul {
+            list-style-type: square;
+            margin-left: 1.5em;
+        }
+        
+        .reveal li {
+            margin-bottom: 12px;
+        }
+        
+        .reveal strong {
+            color: #f43f5e;
+            font-weight: 600;
+        }
+        
+        .reveal em {
+            color: #fb7185;
+            font-style: italic;
+        }
+        
+        .reveal footer {
+            font-size: 0.5em;
+            color: #6b7280;
+            position: absolute;
+            bottom: 20px;
+            right: 50px;
+        }
+        
+        /* Code Block Containers and Inlines */
+        .reveal code {
+            font-family: 'Fira Code', monospace;
+            background-color: #030712;
+            color: #38bdf8;
+            border-radius: 4px;
+            padding: 2px 8px;
+            font-size: 0.85em;
+        }
+        
+        .reveal pre {
+            background-color: #030712 !important;
+            border: 1px solid #1f2937;
+            border-radius: 10px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
+            width: 100%;
+            margin: 20px 0;
+            box-sizing: border-box;
+        }
+        
+        .reveal pre code {
+            background-color: transparent;
+            color: inherit;
+            font-size: 0.8em;
+            line-height: 1.55;
+            padding: 18px;
+            max-height: 520px;
+        }
+        
+        /* Control Nav Arrows & Progress Bar */
+        .reveal .controls-arrow {
+            color: #38bdf8 !important;
+        }
+        
+        .reveal .progress span {
+            background-color: #38bdf8 !important;
+        }
+
+        /* Custom style overrides parsed from Marp frontmatter */
+        .reveal .slides section {
+  font-family: 'Outfit', 'Inter', sans-serif;
+  background: linear-gradient(135deg, #0b0f19 0%, #111827 50%, #1e1b4b 100%);
+  color: #f8fafc;
+  padding: 50px 70px;
+  font-size: 22px;
+}
+h1 {
+  color: #38bdf8;
+  font-size: 1.7em;
+  font-weight: 800;
+  margin-bottom: 12px;
+  border-bottom: 2px solid #3b82f6;
+  padding-bottom: 10px;
+}
+h2 {
+  color: #818cf8;
+  font-size: 1.3em;
+}
+code {
+  background-color: #1e293b;
+  color: #34d399;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+.highlight {
+  color: #f472b6;
+  font-weight: bold;
+}
+.box {
+  background: rgba(30, 41, 59, 0.7);
+  border-left: 4px solid #38bdf8;
+  padding: 15px;
+  border-radius: 4px;
+  margin-top: 15px;
+}
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <section >
+<h1>🚀 Master Class: Formularios Reactivos en Angular</h1>
+<h2>Desarrollo Front-end Avanzado (Angular 19+)</h2>
+
+<strong>Curso:</strong> IF0009 - Desarrollo de Software IV
+<strong>Docente:</strong> Mag. Jonathan Granados C.
+            </section>
+
+            <section >
+<h1>¿Por qué Formularios Reactivos?</h1>
+
+Para aplicaciones de nivel empresarial, los formularios básicos (Template-Driven) no son suficientes. 
+
+Los <strong>Formularios Reactivos</strong> proporcionan:
+<ul>
+<li><strong>Gestión del Estado en la Clase:</strong> La lógica está en TypeScript, no en el HTML.
+</li>
+<li><strong>Inmutabilidad:</strong> Cada cambio devuelve un nuevo estado de forma reactiva.
+</li>
+<li><strong>Seguridad de Tipos (Angular 14+):</strong> Validaciones de tipos estrictas (Type Safety).
+</li>
+<li><strong>Testeabilidad:</strong> Es más fácil escribir pruebas unitarias para la lógica del formulario.
+</li>
+</ul>
+            </section>
+
+            <section >
+<h1>🧱 Componentes Básicos</h1>
+
+Los bloques de construcción son:
+
+<ol>
+<li><code>FormControl</code>: Rastrea un único campo de input (ej. <code>nombre</code>).
+</li>
+<li><code>FormGroup</code>: Agrupa múltiples controles relacionados (ej. datos personales).
+</li>
+<li><code>FormArray</code>: Maneja una lista dinámica de controles que crece o se reduce.
+</li>
+<li><code>FormBuilder</code>: Un servicio utilitario (<code>inject(FormBuilder)</code>) que reduce el código repetitivo al crear estos elementos.
+</li>
+</ol>
+            </section>
+
+            <section >
+<h1>🛡️ Typed Forms (Formularios Tipados)</h1>
+
+Desde Angular 14, si usamos un <code>FormBuilder</code>, TypeScript infiere y restringe automáticamente la estructura del formulario.
+
+<pre><code class="language-typescript">import { Component, inject } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
+
+export class RegistroComponent {
+  private fb = inject(FormBuilder);
+
+  // TypeScript sabe que 'edad' es number
+  registroForm = this.fb.group({
+    nombre: ['', Validators.required],
+    edad: [0, Validators.min(18)]
+  });
+}</code></pre>
+<em>Si intentamos hacer <code>registroForm.patchValue({ edad: "veinte" })</code>, el compilador fallará.</em>
+            </section>
+
+            <section >
+<h1>✅ Validadores (Synchronous y Asynchronous)</h1>
+
+<ul>
+<li><strong>Validadores Síncronos:</strong> Revisan el control instantáneamente en memoria.
+<ul>
+<li>Ejemplos: <code>Validators.required</code>, <code>Validators.email</code>, <code>Validators.pattern</code>.
+</li>
+</ul>
+</li>
+<li><strong>Validadores Asíncronos:</strong> Consultan a un servidor (API) y retornan un <code>Observable</code> o <code>Promise</code>.
+<ul>
+<li>Ejemplo: Comprobar si un <em>username</em> o un <em>email</em> ya están registrados en la base de datos.
+</li>
+</ul>
+</li>
+</ul>
+            </section>
+
+            <section >
+<h1>🔗 Validaciones de Campos Cruzados (Cross-Field)</h1>
+
+A veces, validar un campo depende de otro campo (ej. Contraseña vs Confirmar Contraseña).
+Esto se aplica a nivel de <code>FormGroup</code>, no de <code>FormControl</code>.
+
+<pre><code class="language-typescript">function passwordMatchValidator(g: AbstractControl): ValidationErrors | null {
+  const pwd = g.get('password')?.value;
+  const confirm = g.get('confirmPassword')?.value;
+  return pwd === confirm ? null : { mismatch: true };
+}
+
+// Implementación:
+this.fb.group({
+  password: ['', Validators.required],
+  confirmPassword: ['', Validators.required]
+}, { validators: passwordMatchValidator });</code></pre>
+            </section>
+
+            <section >
+<h1>➕ Formularios Dinámicos con FormArray</h1>
+
+Para listas dinámicas (ej. múltiples roles o habilidades de un usuario), utilizamos <code>FormArray</code>.
+
+<pre><code class="language-typescript">get habilidades() {
+  return this.registroForm.get('habilidades') as FormArray;
+}
+
+agregarHabilidad() {
+  this.habilidades.push(this.fb.control('', Validators.required));
+}
+
+removerHabilidad(index: number) {
+  this.habilidades.removeAt(index);
+}</code></pre>
+En el HTML se itera sobre este arreglo usando el moderno control de flujo <code>@for</code>.
+            </section>
+
+            <section >
+<h1>📡 Integrando Formularios con Signals (Angular 16+)</h1>
+
+Las <strong>Signals</strong> son el nuevo estándar de reactividad fina en Angular.
+Podemos convertir los flujos reactivos del formulario (<code>valueChanges</code>) directamente a Signals para optimizar el renderizado y eliminar subscripciones (<code>subscribe()</code>).
+
+<pre><code class="language-typescript">import { toSignal } from '@angular/core/rxjs-interop';
+
+export class RegistroComponent {
+  // ... creación del formulario ...
+  
+  // Convierte los cambios del formulario en una Signal reactiva
+  formValues = toSignal(this.registroForm.valueChanges, 
+                        { initialValue: this.registroForm.value });
+
+  // Computed signal que reacciona instántaneamente
+  progreso = computed(() =&gt; {
+    return this.formValues().nombre ? 'Progreso: 50%' : 'Progreso: 0%';
+  });
+}</code></pre>
+            </section>
+
+            <section >
+<h1>💻 Master Class: Práctica de Interfaz Gráfica</h1>
+
+En el HTML de nuestro formulario, usamos las directivas <code>[formGroup]</code> y <code>formControlName</code> para enlazar el modelo de TypeScript. Además, utilizamos el nuevo <code>@if</code> para mostrar errores visualmente.
+
+<pre><code class="language-html">&lt;form [formGroup]="registroForm" (ngSubmit)="onSubmit()"&gt;
+  
+  &lt;input type="email" formControlName="email"&gt;
+  
+  @if (registroForm.get('email')?.errors?.['email'] &amp;&amp; 
+       registroForm.get('email')?.touched) {
+    &lt;span class="error"&gt;Formato de correo incorrecto.&lt;/span&gt;
+  }
+
+  &lt;button type="submit" [disabled]="registroForm.invalid"&gt;
+    Guardar
+  &lt;/button&gt;
+&lt;/form&gt;</code></pre>
+<em><code>touched</code> garantiza que el error solo se muestre si el usuario ya visitó el campo.</em>
+            </section>
+
+            <section >
+<h1>🏁 Conclusión y Reto</h1>
+
+<ul>
+<li>Los <strong>Formularios Reactivos</strong> separan la lógica de validación de la vista.
+</li>
+<li><strong>Typed Forms</strong> evitan errores catastróficos en tiempo de ejecución.
+</li>
+<li><strong>Signals</strong> se acoplan perfectamente para proporcionar una UI altamente reactiva.
+</li>
+</ul>
+
+<div class="box">
+<b>Reto de Laboratorio:</b> Integre este formulario con un backend Spring Boot real, utilizando el validador cruzado para contraseñas y un FormArray para capturar una lista dinámica de teléfonos.
+</div>
+            </section>
+
+        </div>
+    </div>
+
+    <!-- Highlight.js and Reveal.js Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.js"></script>
+
+    <script>
+        // Initialize Highlight.js for code syntax coloring
+        hljs.highlightAll();
+
+        // Initialize Reveal.js with modern layout configurations
+        Reveal.initialize({
+            hash: true,
+            respondToHashChanges: true,
+            history: true,
+            transition: 'slide', // none/fade/slide/convex/concave/zoom
+            transitionSpeed: 'default',
+            backgroundTransition: 'fade',
+            width: 960,
+            height: 700,
+            margin: 0.05,
+            minScale: 0.2,
+            maxScale: 2.0,
+            plugins: []
+        });
+    </script>
+</body>
+</html>
