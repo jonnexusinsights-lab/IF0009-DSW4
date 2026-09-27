@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <title>Presentación - Desarrollo de Software IV</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <!-- Reveal.js Base Stylesheets -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reset.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.css">
+    
+    <!-- Tokyo Night Dark Theme for Code Syntax Resaltation -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/tokyo-night-dark.min.css">
+
+    <!-- Premium Google Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* Modern Web Design Aesthetics & Layout Tokens */
+        html, body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background-color: #0b0f19 !important;
+            color: #f8fafc;
+            overflow: hidden;
+        }
+
+        .reveal {
+            width: 100%;
+            height: 100%;
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0b0f19 0%, #111827 50%, #1e1b4b 100%) !important;
+            color: #f8fafc;
+        }
+        
+        .reveal .slides section {
+            font-family: 'Outfit', 'Inter', sans-serif;
+            text-align: left;
+            padding: 50px 70px;
+            box-sizing: border-box;
+            font-size: 22px;
+            color: #f8fafc;
+        }
+        
+        /* Centered Cover Slide Layout */
+        .reveal .slides section.lead-slide {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+        
+        /* Premium Typography Styles */
+        .reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6 {
+            font-family: 'Outfit', sans-serif;
+            text-transform: none;
+            color: #38bdf8;
+            font-weight: 800;
+            text-shadow: none;
+        }
+        
+        .reveal h1 {
+            font-size: 1.7em;
+            margin-bottom: 12px;
+            border-bottom: 2px solid #3b82f6;
+            padding-bottom: 10px;
+        }
+        
+        .reveal .lead-slide h1 {
+            border-bottom: none;
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            color: #38bdf8;
+        }
+        
+        .reveal h2 {
+            font-size: 1.25em;
+            color: #818cf8;
+            font-weight: 700;
+            margin-top: 0px;
+        }
+        
+        .reveal .lead-slide h2 {
+            font-size: 1.55em;
+            color: #818cf8;
+            margin-bottom: 30px;
+        }
+        
+        .reveal h3 {
+            font-size: 1.1em;
+            color: #a78bfa;
+        }
+        
+        /* List and Text Formatting */
+        .reveal p, .reveal li {
+            color: #cbd5e1;
+            line-height: 1.6;
+        }
+        
+        .reveal ul {
+            list-style-type: square;
+            margin-left: 1.5em;
+        }
+        
+        .reveal li {
+            margin-bottom: 12px;
+        }
+        
+        .reveal strong {
+            color: #f43f5e;
+            font-weight: 600;
+        }
+        
+        .reveal em {
+            color: #fb7185;
+            font-style: italic;
+        }
+        
+        .reveal footer {
+            font-size: 0.5em;
+            color: #6b7280;
+            position: absolute;
+            bottom: 20px;
+            right: 50px;
+        }
+        
+        /* Code Block Containers and Inlines */
+        .reveal code {
+            font-family: 'Fira Code', monospace;
+            background-color: #030712;
+            color: #38bdf8;
+            border-radius: 4px;
+            padding: 2px 8px;
+            font-size: 0.85em;
+        }
+        
+        .reveal pre {
+            background-color: #030712 !important;
+            border: 1px solid #1f2937;
+            border-radius: 10px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
+            width: 100%;
+            margin: 20px 0;
+            box-sizing: border-box;
+        }
+        
+        .reveal pre code {
+            background-color: transparent;
+            color: inherit;
+            font-size: 0.8em;
+            line-height: 1.55;
+            padding: 18px;
+            max-height: 520px;
+        }
+        
+        /* Control Nav Arrows & Progress Bar */
+        .reveal .controls-arrow {
+            color: #38bdf8 !important;
+        }
+        
+        .reveal .progress span {
+            background-color: #38bdf8 !important;
+        }
+
+        /* Custom style overrides parsed from Marp frontmatter */
+        .reveal .slides section {
+  font-family: 'Outfit', 'Inter', sans-serif;
+  background: linear-gradient(135deg, #0b0f19 0%, #111827 50%, #1e1b4b 100%);
+  color: #f8fafc;
+  padding: 50px 70px;
+  font-size: 22px;
+}
+h1 {
+  color: #38bdf8;
+  font-size: 1.7em;
+  font-weight: 800;
+  margin-bottom: 12px;
+  border-bottom: 2px solid #3b82f6;
+  padding-bottom: 10px;
+}
+h2 {
+  color: #818cf8;
+  font-size: 1.3em;
+}
+code {
+  background-color: #1e293b;
+  color: #34d399;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+.highlight {
+  color: #f472b6;
+  font-weight: bold;
+}
+.box {
+  background: rgba(30, 41, 59, 0.7);
+  border-left: 4px solid #38bdf8;
+  padding: 15px;
+  border-radius: 4px;
+  margin-top: 15px;
+}
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <section >
+<h1>📱 Introducción al Desarrollo Móvil</h1>
+<h2>IF0009 - Desarrollo de Software IV</h2>
+
+<strong>Docente:</strong> Mag. Jonathan Granados C.
+            </section>
+
+            <section >
+<h1>El Ecosistema Móvil: Duopolio</h1>
+
+El mercado se divide en dos grandes arquitecturas y filosofías:
+
+<ul>
+<li><strong>🤖 Android (Google):</strong> 
+<ul>
+<li>Código abierto (Linux), alta fragmentación de hardware.
+</li>
+<li>Lenguajes nativos: <strong>Kotlin</strong> y Java.
+</li>
+<li>Tienda: Google Play (permite Sideloading).
+</li>
+</ul>
+</li>
+<li><strong>🍎 iOS (Apple):</strong> 
+<ul>
+<li>Código cerrado (Unix), hardware homogéneo (iPhone/iPad).
+</li>
+<li>Lenguajes nativos: <strong>Swift</strong> y Objective-C.
+</li>
+<li>Tienda: App Store (Estrictamente controlada).
+</li>
+</ul>
+</li>
+</ul>
+            </section>
+
+            <section >
+<h1>¿Cómo construir la aplicación? (Enfoques)</h1>
+
+<h3>1. Desarrollo Nativo</h3>
+Se usan los lenguajes oficiales (Swift/Kotlin). Máximo rendimiento, pero se requieren dos bases de código y dos equipos de desarrollo separados.
+
+<h3>2. Multiplataforma (Cross-Platform)</h3>
+Una sola base de código para iOS y Android.
+<ul>
+<li><strong>React Native:</strong> Usa un puente (JS Bridge) para hablar con botones nativos.
+</li>
+<li><strong>Flutter:</strong> Usa su propio motor de renderizado (Skia/Impeller) dibujando cada píxel a 60/120 fps.
+</li>
+</ul>
+
+<h3>3. PWA (Progressive Web Apps)</h3>
+Páginas web que funcionan offline. Limitado acceso a hardware.
+            </section>
+
+            <section >
+<h1>El Ciclo de Vida: No eres dueño de la memoria</h1>
+
+A diferencia del software de escritorio, en móviles <strong>el Sistema Operativo es el rey</strong>. Puede matar tu aplicación en cualquier momento.
+
+<h3>Android (Activity)</h3>
+<code>onCreate()</code> -> <code>onStart()</code> -> <code>onResume()</code> -> (El usuario contesta una llamada) -> <code>onPause()</code> -> <code>onStop()</code> -> <code>onDestroy()</code>.
+
+<h3>iOS (ViewController)</h3>
+<code>viewDidLoad()</code> -> <code>viewWillAppear()</code> -> <code>viewDidAppear()</code> -> <code>viewWillDisappear()</code> -> <code>viewDidDisappear()</code>.
+
+💡 <strong>Regla de oro:</strong> Siempre guarda el estado y cancela tareas de red en <code>onPause</code>/<code>viewWillDisappear</code>.
+            </section>
+
+            <section >
+<h1>Restricciones Físicas y de UX</h1>
+
+Programar para móviles requiere cambiar la mentalidad web:
+
+<ol>
+<li><strong>🔋 Batería y Calor:</strong> Tareas pesadas bloquean el UI y agotan la batería. Todo debe ser asíncrono.
+</li>
+<li><strong>👆 "Fat Finger Problem":</strong> Los usuarios tocan con el dedo, no con un puntero. Todo botón debe ser de al menos <strong>44x44 píxeles</strong>.
+</li>
+<li><strong>🚫 No hay Hover:</strong> No existe el evento de "pasar el mouse por encima". Las interacciones son Taps, Swipes y Long Presses.
+</li>
+<li><strong>📶 Red Inestable (Offline-first):</strong> La app debe soportar transiciones en túneles o pérdida de señal. Use cachés locales (SQLite).
+</li>
+</ol>
+            </section>
+
+            <section >
+<h1>Resumen: Ingeniería de Restricciones</h1>
+
+El desarrollo móvil es <strong>"Ingeniería de Restricciones"</strong>.
+
+Debemos entregar experiencias fluidas de 60 FPS, en pantallas diminutas, consumiendo la menor cantidad de batería posible, asumiendo que la red fallará, y bajo un sistema operativo que intentará destruir nuestra app para recuperar memoria RAM en cualquier momento.
+
+<div class="box">
+<b>Reflexión:</b> Para el proyecto del curso, abordaremos este reto utilizando <b>Flutter</b>, lo que nos permitirá mitigar el problema del doble desarrollo sin sacrificar el rendimiento nativo.
+</div>
+            </section>
+
+        </div>
+    </div>
+
+    <!-- Highlight.js and Reveal.js Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.js"></script>
+
+    <script>
+        // Initialize Highlight.js for code syntax coloring
+        hljs.highlightAll();
+
+        // Initialize Reveal.js with modern layout configurations
+        Reveal.initialize({
+            hash: true,
+            respondToHashChanges: true,
+            history: true,
+            transition: 'slide', // none/fade/slide/convex/concave/zoom
+            transitionSpeed: 'default',
+            backgroundTransition: 'fade',
+            width: 960,
+            height: 700,
+            margin: 0.05,
+            minScale: 0.2,
+            maxScale: 2.0,
+            plugins: []
+        });
+    </script>
+</body>
+</html>
