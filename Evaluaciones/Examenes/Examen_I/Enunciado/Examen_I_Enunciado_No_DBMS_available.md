@@ -14,13 +14,14 @@
 ## Ficha Técnica del Examen
 
 * **Fecha:** Lunes 12 de Octubre, 2026
-* **Duración Máxima:** 3 horas (180 minutos)
+* **Duración Máxima:** 2 horas y 30 minutos (150 minutos)
 * **Ponderación:** 20% de la nota final del curso
 * **Modalidad:** Presencial (Laboratorio de Cómputo 3) - Individual
 * **Motor de Base de Datos:** H2 Database en Memoria (Spring Data JPA)
 * **Entornos a Desarrollar:**
   * Backend: Spring Boot 3 (versión de Java disponible en su computadora) en carpeta `medtriage-backend`
   * Frontend: Angular 19 Standalone en carpeta `medtriage-frontend`
+* **Recursos Iniciales (Kickoff):** Scripts SQL ANSI (`schema.sql` y `data.sql`) disponibles en `resources/sql/` y plantillas base.
 * **Restricciones:** Prohibición estricta de asistentes de IA generativa (ChatGPT, Copilot, Claude, Gemini). Prohibido el acceso a documentación externa o repositorios previos. Conexión obligatoria a GitHub con commits semánticos periódicos.
 
 ---
@@ -29,7 +30,7 @@
 
 El centro de salud **MedTriage Express** requiere un sistema informático de pila completa (Full-Stack) para gestionar el flujo de recepción, prioridad de triaje y asignación de citas médicas de emergencia.
 
-Usted ha sido contratado para construir desde cero tanto la **API RESTful back-end en Spring Boot** como la **interfaz cliente SPA en Angular 19 Standalone**. En esta variante de examen (sin servidor local de SQL Server disponible), usted configurará una **base de datos H2 en memoria** en Spring Boot utilizando scripts de inicialización ANSI SQL (`schema.sql` y `data.sql`).
+Usted ha sido contratado para construir tanto la **API RESTful back-end en Spring Boot** como la **interfaz cliente SPA en Angular 19 Standalone**. En esta variante de examen (sin servidor local de SQL Server disponible), usted configurará una **base de datos H2 en memoria** en Spring Boot utilizando los scripts de inicialización ANSI SQL (`schema.sql` y `data.sql`) provistos en la carpeta de recursos de inicio (`resources/sql/`).
 
 ---
 
@@ -37,7 +38,13 @@ Usted ha sido contratado para construir desde cero tanto la **API RESTful back-e
 
 Al no disponer de un motor SQL Server local en el laboratorio, usted debe configurar la persistencia en memoria dentro del proyecto `medtriage-backend`.
 
-### 1. Dependencia en `pom.xml`
+### 1. Archivos SQL Iniciales (Kickoff)
+
+Copie los archivos de la carpeta provista `resources/sql/` hacia la carpeta de recursos de su backend:
+* `resources/sql/schema.sql` -> `medtriage-backend/src/main/resources/schema.sql`
+* `resources/sql/data.sql` -> `medtriage-backend/src/main/resources/data.sql`
+
+### 2. Dependencia en `pom.xml`
 
 Asegúrese de incluir la dependencia de H2 Database en el archivo `pom.xml`:
 
@@ -49,7 +56,7 @@ Asegúrese de incluir la dependencia de H2 Database en el archivo `pom.xml`:
 </dependency>
 ```
 
-### 2. Configuración en `src/main/resources/application.properties`
+### 3. Configuración en `src/main/resources/application.properties`
 
 Agregue las siguientes propiedades para activar H2, la consola web y la ejecución de scripts al iniciar la aplicación (desactivando la generación automática de Hibernate para evitar duplicidad de tablas):
 
@@ -68,9 +75,9 @@ spring.h2.console.enabled=true
 spring.sql.init.mode=always
 ```
 
-### 3. Script de Esquema (`src/main/resources/schema.sql`)
+### 4. Estructura de Tablas Provista (`schema.sql`)
 
-Cree el archivo `schema.sql` en la carpeta `src/main/resources/` con el siguiente contenido DDL:
+El script DDL de creación de tablas incluye la siguiente estructura:
 
 ```sql
 DROP TABLE IF EXISTS cita_medica;
@@ -109,9 +116,9 @@ CREATE TABLE cita_medica (
 );
 ```
 
-### 4. Datos Semilla (`src/main/resources/data.sql`)
+### 5. Datos Semilla Provistos (`data.sql`)
 
-Cree el archivo `data.sql` en la carpeta `src/main/resources/` para cargar los registros iniciales automáticamente al arrancar la aplicación:
+El script DML de inserción automática incluye los siguientes datos iniciales:
 
 ```sql
 INSERT INTO doctor (nombre, especialidad, disponible) VALUES 
@@ -142,7 +149,7 @@ VALUES
 
 ### 1. Desarrollo Back-End (`medtriage-backend` - 35%)
 
-Cree un proyecto Spring Boot 3 en la versión de Java disponible en su computadora estructurado en las siguientes capas:
+Cree un proyecto Spring Boot 3 estructurado en las siguientes capas:
 
 - [ ] **Mapeo JPA (`com.medtriage.model`)**:
   * Implemente las entidades `Doctor.java`, `Paciente.java` y `CitaMedica.java` con las relaciones `@ManyToOne` hacia `Paciente` y `Doctor`.
@@ -200,7 +207,7 @@ Inicialice el cliente con `ng new medtriage-frontend --standalone` (CSS format, 
 
 - [ ] **Componente Formulario de Triaje (`CitaFormComponent`)**:
   * **Ruta:** `/nueva-cita`
-  * Formulario con `[(ngModel)]` para registrar paciente, doctor, prioridad, motivo y monto.
+  * Formulario estilizado con `[(ngModel)]` para registrar paciente, doctor, prioridad, motivo y monto.
   * Procesamiento y envío mediante `CitaService`.
 
 - [ ] **Navegación y Rutas (`app.routes.ts`)**:
@@ -215,16 +222,16 @@ Inicialice el cliente con `ng new medtriage-frontend --standalone` (CSS format, 
 
 ---
 
-## Distribución Recomendada del Tiempo (180 Minutos)
+## Distribución Recomendada del Tiempo (150 Minutos)
 
 | Bloque de Tiempo | Fase de Desarrollo | Duración |
 |---|---|---|
-| **Bloque 1** | Configurar H2 Database (`properties`, `schema.sql`, `data.sql`) y crear proyectos base | 20 min |
-| **Bloque 2** | Desarrollo de Backend (Entidades, DTOs, Service, Controller) | 50 min |
-| **Bloque 3** | Manejo de Excepciones RFC 7807 y Prueba Unitaria JUnit/Mockito | 20 min |
-| **Bloque 4** | Setup de Angular 19, `environment.ts`, Models y `CitaService` | 20 min |
-| **Bloque 5** | Componentes Standalone (`CitaListComponent` con Signals y `CitaFormComponent`) | 50 min |
-| **Bloque 6** | Integración Full-Stack, verificación final y Commits en GitHub | 20 min |
+| **Bloque 1** | Copiar kickoff SQL (`schema.sql`, `data.sql`), configurar H2 (`properties`) y crear proyectos base | 15 min |
+| **Bloque 2** | Desarrollo de Backend (Entidades, DTOs, Service, Controller) | 45 min |
+| **Bloque 3** | Manejo de Excepciones RFC 7807 y Prueba Unitaria JUnit/Mockito | 15 min |
+| **Bloque 4** | Setup de Angular 19, `environment.ts`, Models y `CitaService` | 15 min |
+| **Bloque 5** | Componentes Standalone (`CitaListComponent` con Signals y `CitaFormComponent`) | 45 min |
+| **Bloque 6** | Integración Full-Stack, verificación final y Commits en GitHub | 15 min |
 
 ---
 

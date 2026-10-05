@@ -46,7 +46,10 @@ Dependiendo de la modalidad de examen asignada en su laboratorio, siga la opció
 ### Opción B: Base de Datos H2 en Memoria (Modalidad Sin DBMS Local)
 
 1. No requiere instalar ni ejecutar ningún motor SQL Server.
-2. Verifique que el archivo `src/main/resources/application.properties` en `medtriage-backend` contenga:
+2. Copie los archivos de kickoff provistos desde `resources/sql/` hacia la carpeta `src/main/resources/` de `medtriage-backend`:
+   * `resources/sql/schema.sql` -> `src/main/resources/schema.sql`
+   * `resources/sql/data.sql` -> `src/main/resources/data.sql`
+3. Verifique que el archivo `src/main/resources/application.properties` en `medtriage-backend` contenga:
    ```properties
    spring.datasource.url=jdbc:h2:mem:medtriagedb;DB_CLOSE_DELAY=-1
    spring.datasource.driverClassName=org.h2.Driver
@@ -57,7 +60,7 @@ Dependiendo de la modalidad de examen asignada en su laboratorio, siga la opció
    spring.h2.console.enabled=true
    spring.sql.init.mode=always
    ```
-3. Los scripts `schema.sql` y `data.sql` en `src/main/resources/` crearán y poblarán las tablas automáticamente al iniciar Spring Boot.
+4. Los scripts `schema.sql` y `data.sql` en `src/main/resources/` crearán y poblarán las tablas automáticamente al iniciar Spring Boot.
 
 ---
 

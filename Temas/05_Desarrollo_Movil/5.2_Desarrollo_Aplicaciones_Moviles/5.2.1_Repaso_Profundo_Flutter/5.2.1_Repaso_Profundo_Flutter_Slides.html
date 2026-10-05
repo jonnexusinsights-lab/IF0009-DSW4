@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <title>Presentación - Desarrollo de Software IV</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <!-- Reveal.js Base Stylesheets -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reset.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.css">
+    
+    <!-- Tokyo Night Dark Theme for Code Syntax Resaltation -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/tokyo-night-dark.min.css">
+
+    <!-- Premium Google Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* Modern Web Design Aesthetics & Layout Tokens */
+        html, body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background-color: #0b0f19 !important;
+            color: #f8fafc;
+            overflow: hidden;
+        }
+
+        .reveal {
+            width: 100%;
+            height: 100%;
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0b0f19 0%, #111827 50%, #1e1b4b 100%) !important;
+            color: #f8fafc;
+        }
+        
+        .reveal .slides section {
+            font-family: 'Outfit', 'Inter', sans-serif;
+            text-align: left;
+            padding: 50px 70px;
+            box-sizing: border-box;
+            font-size: 22px;
+            color: #f8fafc;
+        }
+        
+        /* Centered Cover Slide Layout */
+        .reveal .slides section.lead-slide {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+        
+        /* Premium Typography Styles */
+        .reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6 {
+            font-family: 'Outfit', sans-serif;
+            text-transform: none;
+            color: #38bdf8;
+            font-weight: 800;
+            text-shadow: none;
+        }
+        
+        .reveal h1 {
+            font-size: 1.7em;
+            margin-bottom: 12px;
+            border-bottom: 2px solid #3b82f6;
+            padding-bottom: 10px;
+        }
+        
+        .reveal .lead-slide h1 {
+            border-bottom: none;
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            color: #38bdf8;
+        }
+        
+        .reveal h2 {
+            font-size: 1.25em;
+            color: #818cf8;
+            font-weight: 700;
+            margin-top: 0px;
+        }
+        
+        .reveal .lead-slide h2 {
+            font-size: 1.55em;
+            color: #818cf8;
+            margin-bottom: 30px;
+        }
+        
+        .reveal h3 {
+            font-size: 1.1em;
+            color: #a78bfa;
+        }
+        
+        /* List and Text Formatting */
+        .reveal p, .reveal li {
+            color: #cbd5e1;
+            line-height: 1.6;
+        }
+        
+        .reveal ul {
+            list-style-type: square;
+            margin-left: 1.5em;
+        }
+        
+        .reveal li {
+            margin-bottom: 12px;
+        }
+        
+        .reveal strong {
+            color: #f43f5e;
+            font-weight: 600;
+        }
+        
+        .reveal em {
+            color: #fb7185;
+            font-style: italic;
+        }
+        
+        .reveal footer {
+            font-size: 0.5em;
+            color: #6b7280;
+            position: absolute;
+            bottom: 20px;
+            right: 50px;
+        }
+        
+        /* Code Block Containers and Inlines */
+        .reveal code {
+            font-family: 'Fira Code', monospace;
+            background-color: #030712;
+            color: #38bdf8;
+            border-radius: 4px;
+            padding: 2px 8px;
+            font-size: 0.85em;
+        }
+        
+        .reveal pre {
+            background-color: #030712 !important;
+            border: 1px solid #1f2937;
+            border-radius: 10px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
+            width: 100%;
+            margin: 20px 0;
+            box-sizing: border-box;
+        }
+        
+        .reveal pre code {
+            background-color: transparent;
+            color: inherit;
+            font-size: 0.8em;
+            line-height: 1.55;
+            padding: 18px;
+            max-height: 520px;
+        }
+        
+        /* Control Nav Arrows & Progress Bar */
+        .reveal .controls-arrow {
+            color: #38bdf8 !important;
+        }
+        
+        .reveal .progress span {
+            background-color: #38bdf8 !important;
+        }
+
+        /* Custom style overrides parsed from Marp frontmatter */
+        .reveal .slides section {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 22px;
+  padding: 40px;
+}
+h1 {
+  color: #0d47a1;
+  font-size: 34px;
+}
+h2 {
+  color: #1565c0;
+  font-size: 26px;
+}
+code {
+  background-color: #f5f5f5;
+  color: #b71c1c;
+}
+pre {
+  background-color: #212121;
+  color: #e0e0e0;
+  font-size: 16px;
+}
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <section >
+<h1>Tema 5.2.1: Repaso Profundo de Flutter & Dart 3</h1>
+<h2>Arquitectura Interna, Ciclo de Vida y Gestión de Estado</h2>
+
+<strong>Curso:</strong> IF0009 - Desarrollo de Software IV  
+<strong>Profesor:</strong> Mag. Jonathan Granados C.  
+<strong>Semestre:</strong> II-2026  
+<strong>Universidad de Costa Rica</strong>
+            </section>
+
+            <section >
+<h1>Objetivos de la Lección</h1>
+
+<ol>
+<li>Comprender la arquitectura interna de Flutter (Engine C++ y Framework Dart).
+</li>
+<li>Analizar la Arquitectura de los <strong>Tres Árboles</strong>: Widget, Element y RenderObject.
+</li>
+<li>Dominar las novedades de <strong>Dart 3</strong>: Records, Patterns y Sealed Classes.
+</li>
+<li>Identificar exhaustivamente el <strong>Ciclo de Vida</strong> de un <code>StatefulWidget</code>.
+</li>
+<li>Comparar paradigmas de gestión de estado: <code>setState</code>, <code>Provider</code> y <code>BLoC</code>.
+</li>
+<li>Aplicar buenas prácticas de optimización de rendimiento a 60/120 FPS.
+</li>
+</ol>
+            </section>
+
+            <section >
+<h1>1. Arquitectura de Flutter: Skia vs Impeller</h1>
+
+<ul>
+<li><strong>Sin Puentes de Serialización:</strong> Flutter no usa puente JSON (a diferencia de React Native clásico) ni WebViews.
+</li>
+<li><strong>Compilación Native AOT:</strong> El código Dart se compila a binario nativo (ARM64 / x86_64).
+</li>
+<li><strong>Motor Gráfico Skia:</strong> Histórico motor 2D, sujeto a <em>Shader Compilation Jank</em>.
+</li>
+<li><strong>Motor Gráfico Impeller:</strong> Diseñado para iOS/Android moderno, precompila shaders en build-time para garantizar 60/120 FPS constantes.
+</li>
+</ul>
+            </section>
+
+            <section >
+<h1>2. La Arquitectura de los Tres Árboles</h1>
+
+Flutter mantiene 3 estructuras paralelas en memoria:
+
+<pre><code class="language-plaintext">[ Widget Tree ]  --&gt;  Inmutable / Configuración Declarativa
+       |
+[ Element Tree ] --&gt;  Mutable / Estructura &amp; Estado en Memoria
+       |
+[ RenderObject ] --&gt;  Mutable / Geometría, Layout &amp; Pintado GPU</code></pre>
+
+<ul>
+<li><strong>Regla de Oro del Layout (Single-Pass):</strong>
+</li>
+</ul>
+  > <em>Constraints Go Down. Sizes Go Up. Parent Sets Position.</em>
+            </section>
+
+            <section >
+<h1>3. Novedades de Dart 3: Registros & Pattern Matching</h1>
+
+<pre><code class="language-dart">// Retorno de tuplas tipadas sin clases adicionales
+(int code, String msg) consultarServicio() {
+  return (200, 'OK');
+}
+
+// Pattern Matching con Pattern Matching Exhaustivo
+sealed class Estado {}
+class Cargando extends Estado {}
+class Exito extends Estado { final String data; Exito(this.data); }
+
+String render(Estado s) =&gt; switch (s) {
+  Cargando() =&gt; 'Cargando datos...',
+  Exito(data: final d) =&gt; 'Resultado: $d',
+};</code></pre>
+            </section>
+
+            <section >
+<h1>4. Ciclo de Vida de un <code>StatefulWidget</code></h1>
+
+<pre><code class="language-plaintext">  Constructor
+      ↓
+  createState()
+      ↓
+   initState()          &lt;-- (1 sola vez: Subscripciones / Init)
+      ↓
+didChangeDependencies() &lt;-- (Cambios en InheritedWidget / Theme)
+      ↓
+    build()             &lt;-- (Se re-ejecuta al llamar setState)
+      ↓
+  deactivate()
+      ↓
+   dispose()            &lt;-- (Destrucción: Limpieza de Memory Leaks)</code></pre>
+            </section>
+
+            <section >
+<h1>5. Live Coding: <code>MonitorMedicoWidget</code> Paso a Paso</h1>
+
+<h3>Paso 1: Definir el Widget y su Estado</h3>
+
+<pre><code class="language-dart">class MonitorMedicoWidget extends StatefulWidget {
+  final String pacienteId;
+  const MonitorMedicoWidget({super.key, required this.pacienteId});
+
+  @override
+  State&lt;MonitorMedicoWidget&gt; createState() =&gt; 
+      _MonitorMedicoWidgetState();
+}</code></pre>
+            </section>
+
+            <section >
+<h1>Live Coding: <code>initState</code> y <code>dispose</code></h1>
+
+<pre><code class="language-dart">class _MonitorMedicoWidgetState extends State&lt;MonitorMedicoWidget&gt; 
+    with WidgetsBindingObserver {
+  int _frecuencia = 75;
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addObserver(this);
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
+}</code></pre>
+            </section>
+
+            <section >
+<h1>Live Coding: Renderizado y <code>setState</code></h1>
+
+<pre><code class="language-dart">  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('Paciente: ${widget.pacienteId}')),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text('Frecuencia: $_frecuencia BPM'),
+            ElevatedButton(
+              onPressed: () =&gt; setState(() =&gt; _frecuencia += 5),
+              child: const Text('Simular Pulso'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }</code></pre>
+            </section>
+
+            <section >
+<h1>6. Paradigmas de Gestión de Estado</h1>
+
+| Patrón | Enfoque | Uso Recomendado |
+|---|---|---|
+| <strong>setState()</strong> | Estado Local | Widgets efímeros aislados (ej. checkbox, toggle). |
+| <strong>Provider</strong> | ChangeNotifier / Inherited | Aplicaciones de tamaño pequeño-mediano. |
+| <strong>BLoC / Cubit</strong> | Reactive Streams (Event->State) | Sistemas empresariales desacoplados y testeables. |
+| <strong>Riverpod</strong> | Reactividad Funcional | Proyectos escalables sin dependencia de BuildContext. |
+            </section>
+
+            <section >
+<h1>7. Reglas de Optimización de Rendimiento</h1>
+
+<ol>
+<li><strong>Usar <code>const</code> siempre que sea posible:</strong> Reutiliza instancias en memoria y omite llamadas a <code>build()</code>.
+</li>
+<li><strong>Asignar <code>Keys</code> (<code>ValueKey</code>):</strong> En listas dinámicas reordenables para mantener la sincronización con el <code>Element Tree</code>.
+</li>
+<li><strong>Extraer sub-widgets en clases <code>StatelessWidget</code>:</strong> Evitar métodos auxiliares <code>_buildChild()</code> dentro de la misma clase.
+</li>
+<li><strong>Utilizar <code>RepaintBoundary</code>:</strong> Para aislar animaciones complejas en capas compuestas independientes de GPU.
+</li>
+</ol>
+            </section>
+
+            <section >
+<h1>Resumen & Reto de Clase</h1>
+
+<ul>
+<li><strong>Flutter</strong> rinde nativamente dibujando directamente en GPU mediante <strong>Impeller/Skia</strong>.
+</li>
+<li>El <strong>Element Tree</strong> preserva el estado mientras el <strong>Widget Tree</strong> se reconstruye declarativamente.
+</li>
+<li><strong>Reto Práctico:</strong>  
+</li>
+</ul>
+  Agregue un <code>Timer.periodic</code> de 1 segundo al <code>MonitorMedicoWidget</code> para simular pulso aleatorio y cancélelo adecuadamente en <code>dispose()</code>.
+            </section>
+
+        </div>
+    </div>
+
+    <!-- Highlight.js and Reveal.js Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.js"></script>
+
+    <script>
+        // Initialize Highlight.js for code syntax coloring
+        hljs.highlightAll();
+
+        // Initialize Reveal.js with modern layout configurations
+        Reveal.initialize({
+            hash: true,
+            respondToHashChanges: true,
+            history: true,
+            transition: 'slide', // none/fade/slide/convex/concave/zoom
+            transitionSpeed: 'default',
+            backgroundTransition: 'fade',
+            width: 960,
+            height: 700,
+            margin: 0.05,
+            minScale: 0.2,
+            maxScale: 2.0,
+            plugins: []
+        });
+    </script>
+</body>
+</html>
