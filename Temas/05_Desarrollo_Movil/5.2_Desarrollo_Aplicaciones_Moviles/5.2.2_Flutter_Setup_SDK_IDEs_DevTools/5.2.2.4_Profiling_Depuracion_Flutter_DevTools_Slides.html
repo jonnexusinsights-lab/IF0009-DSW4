@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <title>Presentación - Desarrollo de Software IV</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <!-- Reveal.js Base Stylesheets -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reset.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.css">
+    
+    <!-- Tokyo Night Dark Theme for Code Syntax Resaltation -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/tokyo-night-dark.min.css">
+
+    <!-- Premium Google Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* Modern Web Design Aesthetics & Layout Tokens */
+        html, body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background-color: #0b0f19 !important;
+            color: #f8fafc;
+            overflow: hidden;
+        }
+
+        .reveal {
+            width: 100%;
+            height: 100%;
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0b0f19 0%, #111827 50%, #1e1b4b 100%) !important;
+            color: #f8fafc;
+        }
+        
+        .reveal .slides section {
+            font-family: 'Outfit', 'Inter', sans-serif;
+            text-align: left;
+            padding: 50px 70px;
+            box-sizing: border-box;
+            font-size: 22px;
+            color: #f8fafc;
+        }
+        
+        /* Centered Cover Slide Layout */
+        .reveal .slides section.lead-slide {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+        
+        /* Premium Typography Styles */
+        .reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6 {
+            font-family: 'Outfit', sans-serif;
+            text-transform: none;
+            color: #38bdf8;
+            font-weight: 800;
+            text-shadow: none;
+        }
+        
+        .reveal h1 {
+            font-size: 1.7em;
+            margin-bottom: 12px;
+            border-bottom: 2px solid #3b82f6;
+            padding-bottom: 10px;
+        }
+        
+        .reveal .lead-slide h1 {
+            border-bottom: none;
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            color: #38bdf8;
+        }
+        
+        .reveal h2 {
+            font-size: 1.25em;
+            color: #818cf8;
+            font-weight: 700;
+            margin-top: 0px;
+        }
+        
+        .reveal .lead-slide h2 {
+            font-size: 1.55em;
+            color: #818cf8;
+            margin-bottom: 30px;
+        }
+        
+        .reveal h3 {
+            font-size: 1.1em;
+            color: #a78bfa;
+        }
+        
+        /* List and Text Formatting */
+        .reveal p, .reveal li {
+            color: #cbd5e1;
+            line-height: 1.6;
+        }
+        
+        .reveal ul {
+            list-style-type: square;
+            margin-left: 1.5em;
+        }
+        
+        .reveal li {
+            margin-bottom: 12px;
+        }
+        
+        .reveal strong {
+            color: #f43f5e;
+            font-weight: 600;
+        }
+        
+        .reveal em {
+            color: #fb7185;
+            font-style: italic;
+        }
+        
+        .reveal footer {
+            font-size: 0.5em;
+            color: #6b7280;
+            position: absolute;
+            bottom: 20px;
+            right: 50px;
+        }
+        
+        /* Code Block Containers and Inlines */
+        .reveal code {
+            font-family: 'Fira Code', monospace;
+            background-color: #030712;
+            color: #38bdf8;
+            border-radius: 4px;
+            padding: 2px 8px;
+            font-size: 0.85em;
+        }
+        
+        .reveal pre {
+            background-color: #030712 !important;
+            border: 1px solid #1f2937;
+            border-radius: 10px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
+            width: 100%;
+            margin: 20px 0;
+            box-sizing: border-box;
+        }
+        
+        .reveal pre code {
+            background-color: transparent;
+            color: inherit;
+            font-size: 0.8em;
+            line-height: 1.55;
+            padding: 18px;
+            max-height: 520px;
+        }
+        
+        /* Control Nav Arrows & Progress Bar */
+        .reveal .controls-arrow {
+            color: #38bdf8 !important;
+        }
+        
+        .reveal .progress span {
+            background-color: #38bdf8 !important;
+        }
+
+        /* Custom style overrides parsed from Marp frontmatter */
+        .reveal .slides section {
+  font-family: 'Outfit', 'Inter', sans-serif;
+  background: linear-gradient(135deg, #0b0f19 0%, #111827 50%, #1e1b4b 100%);
+  color: #f8fafc;
+  padding: 50px 70px;
+  font-size: 22px;
+}
+h1 {
+  color: #38bdf8;
+  font-size: 1.7em;
+  font-weight: 800;
+  margin-bottom: 12px;
+  border-bottom: 2px solid #3b82f6;
+  padding-bottom: 10px;
+}
+h2 {
+  color: #818cf8;
+  font-size: 1.3em;
+}
+code {
+  background-color: #1e293b;
+  color: #34d399;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+.highlight {
+  color: #f472b6;
+  font-weight: bold;
+}
+.box {
+  background: rgba(30, 41, 59, 0.7);
+  border-left: 4px solid #38bdf8;
+  padding: 15px;
+  border-radius: 4px;
+}
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <section >
+<h1>Tema 5.2.2.4: Profiling y Flutter DevTools</h1>
+<h2>Inspector, Performance Overlay, Memory y Network</h2>
+
+<strong>Curso:</strong> IF0009 - Desarrollo de Software IV  
+<strong>Profesor:</strong> Mag. Jonathan Granados C.  
+<strong>Semestre:</strong> II-2026 | Universidad de Costa Rica
+            </section>
+
+            <section >
+<h1>Objetivos de la Sesión</h1>
+
+<ul>
+<li>Comprender la <strong>arquitectura web de Flutter DevTools</strong> conectada al Dart VM Service.
+</li>
+<li>Auditar el árbol declarativo de widgets con <strong>Widget Inspector</strong>.
+</li>
+<li>Diagnosticar pérdidas de cuadros (<em>jank</em>) mediante <strong>Performance Overlay</strong>.
+</li>
+<li>Detectar fugas de memoria (<em>memory leaks</em>) en el <strong>Memory Profiler</strong>.
+</li>
+<li>Inspeccionar transacciones RESTful en tiempo real en el <strong>Network Profiler</strong>.
+</li>
+</ul>
+            </section>
+
+            <section >
+<h1>Flutter Widget Inspector</h1>
+
+<ul>
+<li><strong>Select Widget Mode:</strong> Al tocar un elemento en pantalla, el IDE salta a su declaración de código.
+</li>
+<li><strong>Repaint Rainbow:</strong> Dibuja bordes de colores aleatorios que cambian al repintar; ayuda a identificar redibujados innecesarios.
+</li>
+<li><strong>Show Guidelines:</strong> Visualiza alineaciones, márgenes y cajas de colisión (<em>RenderBoxes</em>).
+</li>
+<li><strong>Details Tree:</strong> Inspecciona propiedades inmutables y el objeto de renderizado subyacente.
+</li>
+</ul>
+            </section>
+
+            <section >
+<h1>Performance Overlay y la Regla de los 16.6 ms</h1>
+
+<ul>
+<li>Para mantener <strong>60 FPS</strong> fluidos, cada frame debe procesarse en menos de <strong>16.6 ms</strong>.
+</li>
+<li><strong>UI Thread (Gráfico Superior):</strong>
+<ul>
+<li>Tiempo invertido por la CPU ejecutando código Dart y el árbol de widgets.
+</li>
+<li>Barras rojas indican operaciones pesadas en el método <code>build()</code>.
+</li>
+</ul>
+</li>
+<li><strong>Raster Thread (Gráfico Inferior):</strong>
+<ul>
+<li>Tiempo invertido por la GPU dibujando píxeles y ejecutando shaders.
+</li>
+<li>Barras rojas indican efectos gráficos caros (desenfoques excesivos).
+</li>
+</ul>
+</li>
+</ul>
+            </section>
+
+            <section >
+<h1>Memory Profiler y Prevención de Fugas</h1>
+
+<pre><code class="language-dart">// Desechar controladores y streams en el dispose()
+@override
+void dispose() {
+  // 1. Cancelar suscripciones para evitar listeners huerfanos
+  _streamSubscription?.cancel();
+
+  // 2. Liberar el controlador de texto de la memoria nativa
+  _filtroController.dispose();
+
+  super.dispose();
+}</code></pre>
+
+<ul>
+<li>Si no se cancelan listeners o controladores, el <strong>Garbage Collector</strong> no puede destruir el widget y la memoria RAM crece indefinidamente.
+</li>
+</ul>
+            </section>
+
+            <section >
+<h1>Network Profiler: Auditoría RESTful</h1>
+
+<ul>
+<li><strong>Monitoreo en Tiempo Real:</strong> Inspecciona cada llamada HTTP/HTTPS realizada con <code>http</code> o <code>Dio</code>.
+</li>
+<li><strong>Métricas Clave:</strong>
+<ul>
+<li>Método HTTP (GET, POST, PUT, DELETE).
+</li>
+<li>Código de estado HTTP (200 OK, 401 Unauthorized, 500 Server Error).
+</li>
+<li>Latencia en milisegundos y tamaño del payload JSON transferido.
+</li>
+<li>Visualización de cabeceras de autorización (Tokens JWT Bearer).
+</li>
+</ul>
+</li>
+</ul>
+            </section>
+
+            <section >
+<h1>Regla de Oro del Profiling</h1>
+
+<ul>
+<li><strong>Nunca realice profiling en Debug Mode:</strong>
+<ul>
+<li>Las aserciones activas y la compilación JIT distorsionan las métricas de FPS y memoria.
+</li>
+</ul>
+</li>
+<li><strong>Ejecute siempre en Profile Mode sobre hardware real:</strong>
+</li>
+</ul>
+
+<pre><code class="language-powershell"># Compilacion AOT optimizada con telemetria activa
+flutter run --profile</code></pre>
+
+<ul>
+<li>Es la única forma de obtener mediciones térmicas y de rendimiento fidedignas.
+</li>
+</ul>
+            </section>
+
+        </div>
+    </div>
+
+    <!-- Highlight.js and Reveal.js Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.js"></script>
+
+    <script>
+        // Initialize Highlight.js for code syntax coloring
+        hljs.highlightAll();
+
+        // Initialize Reveal.js with modern layout configurations
+        Reveal.initialize({
+            hash: true,
+            respondToHashChanges: true,
+            history: true,
+            transition: 'slide', // none/fade/slide/convex/concave/zoom
+            transitionSpeed: 'default',
+            backgroundTransition: 'fade',
+            width: 960,
+            height: 700,
+            margin: 0.05,
+            minScale: 0.2,
+            maxScale: 2.0,
+            plugins: []
+        });
+    </script>
+</body>
+</html>

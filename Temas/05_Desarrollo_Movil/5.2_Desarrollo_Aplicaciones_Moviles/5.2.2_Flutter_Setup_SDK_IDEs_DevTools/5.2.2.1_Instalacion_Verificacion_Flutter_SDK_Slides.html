@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <title>Presentación - Desarrollo de Software IV</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <!-- Reveal.js Base Stylesheets -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reset.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.css">
+    
+    <!-- Tokyo Night Dark Theme for Code Syntax Resaltation -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/tokyo-night-dark.min.css">
+
+    <!-- Premium Google Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* Modern Web Design Aesthetics & Layout Tokens */
+        html, body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background-color: #0b0f19 !important;
+            color: #f8fafc;
+            overflow: hidden;
+        }
+
+        .reveal {
+            width: 100%;
+            height: 100%;
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0b0f19 0%, #111827 50%, #1e1b4b 100%) !important;
+            color: #f8fafc;
+        }
+        
+        .reveal .slides section {
+            font-family: 'Outfit', 'Inter', sans-serif;
+            text-align: left;
+            padding: 50px 70px;
+            box-sizing: border-box;
+            font-size: 22px;
+            color: #f8fafc;
+        }
+        
+        /* Centered Cover Slide Layout */
+        .reveal .slides section.lead-slide {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+        
+        /* Premium Typography Styles */
+        .reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6 {
+            font-family: 'Outfit', sans-serif;
+            text-transform: none;
+            color: #38bdf8;
+            font-weight: 800;
+            text-shadow: none;
+        }
+        
+        .reveal h1 {
+            font-size: 1.7em;
+            margin-bottom: 12px;
+            border-bottom: 2px solid #3b82f6;
+            padding-bottom: 10px;
+        }
+        
+        .reveal .lead-slide h1 {
+            border-bottom: none;
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            color: #38bdf8;
+        }
+        
+        .reveal h2 {
+            font-size: 1.25em;
+            color: #818cf8;
+            font-weight: 700;
+            margin-top: 0px;
+        }
+        
+        .reveal .lead-slide h2 {
+            font-size: 1.55em;
+            color: #818cf8;
+            margin-bottom: 30px;
+        }
+        
+        .reveal h3 {
+            font-size: 1.1em;
+            color: #a78bfa;
+        }
+        
+        /* List and Text Formatting */
+        .reveal p, .reveal li {
+            color: #cbd5e1;
+            line-height: 1.6;
+        }
+        
+        .reveal ul {
+            list-style-type: square;
+            margin-left: 1.5em;
+        }
+        
+        .reveal li {
+            margin-bottom: 12px;
+        }
+        
+        .reveal strong {
+            color: #f43f5e;
+            font-weight: 600;
+        }
+        
+        .reveal em {
+            color: #fb7185;
+            font-style: italic;
+        }
+        
+        .reveal footer {
+            font-size: 0.5em;
+            color: #6b7280;
+            position: absolute;
+            bottom: 20px;
+            right: 50px;
+        }
+        
+        /* Code Block Containers and Inlines */
+        .reveal code {
+            font-family: 'Fira Code', monospace;
+            background-color: #030712;
+            color: #38bdf8;
+            border-radius: 4px;
+            padding: 2px 8px;
+            font-size: 0.85em;
+        }
+        
+        .reveal pre {
+            background-color: #030712 !important;
+            border: 1px solid #1f2937;
+            border-radius: 10px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
+            width: 100%;
+            margin: 20px 0;
+            box-sizing: border-box;
+        }
+        
+        .reveal pre code {
+            background-color: transparent;
+            color: inherit;
+            font-size: 0.8em;
+            line-height: 1.55;
+            padding: 18px;
+            max-height: 520px;
+        }
+        
+        /* Control Nav Arrows & Progress Bar */
+        .reveal .controls-arrow {
+            color: #38bdf8 !important;
+        }
+        
+        .reveal .progress span {
+            background-color: #38bdf8 !important;
+        }
+
+        /* Custom style overrides parsed from Marp frontmatter */
+        .reveal .slides section {
+  font-family: 'Outfit', 'Inter', sans-serif;
+  background: linear-gradient(135deg, #0b0f19 0%, #111827 50%, #1e1b4b 100%);
+  color: #f8fafc;
+  padding: 50px 70px;
+  font-size: 22px;
+}
+h1 {
+  color: #38bdf8;
+  font-size: 1.7em;
+  font-weight: 800;
+  margin-bottom: 12px;
+  border-bottom: 2px solid #3b82f6;
+  padding-bottom: 10px;
+}
+h2 {
+  color: #818cf8;
+  font-size: 1.3em;
+}
+code {
+  background-color: #1e293b;
+  color: #34d399;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+.highlight {
+  color: #f472b6;
+  font-weight: bold;
+}
+.box {
+  background: rgba(30, 41, 59, 0.7);
+  border-left: 4px solid #38bdf8;
+  padding: 15px;
+  border-radius: 4px;
+}
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <section >
+<h1>Tema 5.2.2.1: Instalación y Verificación del Flutter SDK</h1>
+<h2>Toolchain, Variables de Entorno y flutter doctor</h2>
+
+<strong>Curso:</strong> IF0009 - Desarrollo de Software IV  
+<strong>Profesor:</strong> Mag. Jonathan Granados C.  
+<strong>Semestre:</strong> II-2026 | Universidad de Costa Rica
+            </section>
+
+            <section >
+<h1>Objetivos de la Sesión</h1>
+
+<ul>
+<li>Comprender la <strong>anatomía interna del SDK de Flutter</strong> y su acoplamiento con Dart.
+</li>
+<li>Dominar la inyección determinista en variables de entorno (<code>PATH</code>, <code>JAVA_HOME</code>).
+</li>
+<li>Gestionar los canales de actualización oficial (<code>stable</code>, <code>beta</code>, <code>master</code>).
+</li>
+<li>Interpretar y resolver diagnósticos de advertencia con <code>flutter doctor -v</code>.
+</li>
+<li>Aceptar y validar licencias binarias de Android SDK Manager.
+</li>
+</ul>
+            </section>
+
+            <section >
+<h1>¿Qué es el Flutter SDK?</h1>
+
+<ul>
+<li><strong>Toolchain de Compilación Cruzada:</strong> No es solo una biblioteca; integra compiladores AOT y JIT.
+</li>
+<li><strong>Dart SDK Embebido:</strong> Incluye un compilador Dart 3 pre-validado en <code>bin/cache/dart-sdk</code>.
+</li>
+<li><strong>Motor Gráfico Precompilado:</strong> Descarga artefactos binarios de Impeller y Skia en caché.
+</li>
+<li><strong>Orquestador Universal:</strong> Automatiza la compilación sobre Gradle (Android), Xcode (iOS) y CMake (Desktop).
+</li>
+</ul>
+            </section>
+
+            <section >
+<h1>Estructura Interna del SDK</h1>
+
+<pre><code class="language-plaintext">C:/src/flutter/
+  ├── bin/
+  │    ├── flutter.bat          &lt;-- Script ejecutable para Windows
+  │    └── cache/
+  │         ├── artifacts/      &lt;-- Motores binarios C++
+  │         └── dart-sdk/       &lt;-- SDK de Dart oficial
+  └── packages/
+       └── flutter/             &lt;-- Código fuente del framework</code></pre>
+
+<ul>
+<li><strong>Regla de oro:</strong> No instale Dart por separado; utilice el provisto por Flutter.
+</li>
+</ul>
+            </section>
+
+            <section >
+<h1>Configuración de Variables de Entorno</h1>
+
+<pre><code class="language-powershell"># Agregar Flutter bin al PATH en Windows PowerShell
+$FlutterPath = "C:\src\flutter\bin"
+$CurrentPath = [Environment]::GetEnvironmentVariable("Path", "User")
+
+if ($CurrentPath -notlike "*$FlutterPath*") {
+    $NewPath = "$CurrentPath;$FlutterPath"
+    [Environment]::SetEnvironmentVariable("Path", $NewPath, "User")
+}</code></pre>
+
+<ul>
+<li>Evite rutas con espacios (<code>C:\Program Files</code> genera fallas con Gradle).
+</li>
+<li>Utilice rutas deterministas como <code>C:\src\flutter</code>.
+</li>
+</ul>
+            </section>
+
+            <section >
+<h1>Diagnóstico Completo con <code>flutter doctor</code></h1>
+
+<pre><code class="language-powershell"># Ejecutar analisis diagnostico con maxima verbosidad
+flutter doctor -v</code></pre>
+
+<ul>
+<li><strong>Canal Flutter:</strong> Valida versión y hash de Git.
+</li>
+<li><strong>Android Toolchain:</strong> Inspecciona SDK, JDK y licencias de Google.
+</li>
+<li><strong>Chrome / Web:</strong> Verifica compatibilidad de depuración web.
+</li>
+<li><strong>Connected Devices:</strong> Enumera emuladores y teléfonos físicos por ADB.
+</li>
+</ul>
+            </section>
+
+            <section >
+<h1>Aceptación de Licencias de Android</h1>
+
+<pre><code class="language-powershell"># Resolver advertencia: "Android license status unknown"
+flutter doctor --android-licenses</code></pre>
+
+<ul>
+<li>Requisito legal de Google para descargar dependencias nativas de Android.
+</li>
+<li>Presione <code>y</code> en cada contrato presentado en la consola interactiva.
+</li>
+<li>Requiere tener instalado el paquete <code>cmdline-tools</code> en Android Studio.
+</li>
+</ul>
+            </section>
+
+            <section >
+<h1>Resumen de Mejores Prácticas</h1>
+
+<ul>
+<li>Utilice exclusivamente el canal <code>stable</code> para proyectos del curso.
+</li>
+<li>Configure <code>JAVA_HOME</code> apuntando a OpenJDK 17 o al JBR de Android Studio.
+</li>
+<li>Cierre y reabra la consola PowerShell tras modificar variables de entorno.
+</li>
+<li>Mantenga actualizado el SDK ejecutando periódicamente <code>flutter upgrade</code>.
+</li>
+</ul>
+            </section>
+
+        </div>
+    </div>
+
+    <!-- Highlight.js and Reveal.js Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.js"></script>
+
+    <script>
+        // Initialize Highlight.js for code syntax coloring
+        hljs.highlightAll();
+
+        // Initialize Reveal.js with modern layout configurations
+        Reveal.initialize({
+            hash: true,
+            respondToHashChanges: true,
+            history: true,
+            transition: 'slide', // none/fade/slide/convex/concave/zoom
+            transitionSpeed: 'default',
+            backgroundTransition: 'fade',
+            width: 960,
+            height: 700,
+            margin: 0.05,
+            minScale: 0.2,
+            maxScale: 2.0,
+            plugins: []
+        });
+    </script>
+</body>
+</html>

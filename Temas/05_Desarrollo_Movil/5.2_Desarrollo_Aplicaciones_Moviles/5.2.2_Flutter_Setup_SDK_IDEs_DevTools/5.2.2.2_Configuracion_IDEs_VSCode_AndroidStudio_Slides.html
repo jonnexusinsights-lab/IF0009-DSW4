@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <title>Presentación - Desarrollo de Software IV</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <!-- Reveal.js Base Stylesheets -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reset.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.css">
+    
+    <!-- Tokyo Night Dark Theme for Code Syntax Resaltation -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/tokyo-night-dark.min.css">
+
+    <!-- Premium Google Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* Modern Web Design Aesthetics & Layout Tokens */
+        html, body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background-color: #0b0f19 !important;
+            color: #f8fafc;
+            overflow: hidden;
+        }
+
+        .reveal {
+            width: 100%;
+            height: 100%;
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0b0f19 0%, #111827 50%, #1e1b4b 100%) !important;
+            color: #f8fafc;
+        }
+        
+        .reveal .slides section {
+            font-family: 'Outfit', 'Inter', sans-serif;
+            text-align: left;
+            padding: 50px 70px;
+            box-sizing: border-box;
+            font-size: 22px;
+            color: #f8fafc;
+        }
+        
+        /* Centered Cover Slide Layout */
+        .reveal .slides section.lead-slide {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+        
+        /* Premium Typography Styles */
+        .reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6 {
+            font-family: 'Outfit', sans-serif;
+            text-transform: none;
+            color: #38bdf8;
+            font-weight: 800;
+            text-shadow: none;
+        }
+        
+        .reveal h1 {
+            font-size: 1.7em;
+            margin-bottom: 12px;
+            border-bottom: 2px solid #3b82f6;
+            padding-bottom: 10px;
+        }
+        
+        .reveal .lead-slide h1 {
+            border-bottom: none;
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            color: #38bdf8;
+        }
+        
+        .reveal h2 {
+            font-size: 1.25em;
+            color: #818cf8;
+            font-weight: 700;
+            margin-top: 0px;
+        }
+        
+        .reveal .lead-slide h2 {
+            font-size: 1.55em;
+            color: #818cf8;
+            margin-bottom: 30px;
+        }
+        
+        .reveal h3 {
+            font-size: 1.1em;
+            color: #a78bfa;
+        }
+        
+        /* List and Text Formatting */
+        .reveal p, .reveal li {
+            color: #cbd5e1;
+            line-height: 1.6;
+        }
+        
+        .reveal ul {
+            list-style-type: square;
+            margin-left: 1.5em;
+        }
+        
+        .reveal li {
+            margin-bottom: 12px;
+        }
+        
+        .reveal strong {
+            color: #f43f5e;
+            font-weight: 600;
+        }
+        
+        .reveal em {
+            color: #fb7185;
+            font-style: italic;
+        }
+        
+        .reveal footer {
+            font-size: 0.5em;
+            color: #6b7280;
+            position: absolute;
+            bottom: 20px;
+            right: 50px;
+        }
+        
+        /* Code Block Containers and Inlines */
+        .reveal code {
+            font-family: 'Fira Code', monospace;
+            background-color: #030712;
+            color: #38bdf8;
+            border-radius: 4px;
+            padding: 2px 8px;
+            font-size: 0.85em;
+        }
+        
+        .reveal pre {
+            background-color: #030712 !important;
+            border: 1px solid #1f2937;
+            border-radius: 10px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
+            width: 100%;
+            margin: 20px 0;
+            box-sizing: border-box;
+        }
+        
+        .reveal pre code {
+            background-color: transparent;
+            color: inherit;
+            font-size: 0.8em;
+            line-height: 1.55;
+            padding: 18px;
+            max-height: 520px;
+        }
+        
+        /* Control Nav Arrows & Progress Bar */
+        .reveal .controls-arrow {
+            color: #38bdf8 !important;
+        }
+        
+        .reveal .progress span {
+            background-color: #38bdf8 !important;
+        }
+
+        /* Custom style overrides parsed from Marp frontmatter */
+        .reveal .slides section {
+  font-family: 'Outfit', 'Inter', sans-serif;
+  background: linear-gradient(135deg, #0b0f19 0%, #111827 50%, #1e1b4b 100%);
+  color: #f8fafc;
+  padding: 50px 70px;
+  font-size: 22px;
+}
+h1 {
+  color: #38bdf8;
+  font-size: 1.7em;
+  font-weight: 800;
+  margin-bottom: 12px;
+  border-bottom: 2px solid #3b82f6;
+  padding-bottom: 10px;
+}
+h2 {
+  color: #818cf8;
+  font-size: 1.3em;
+}
+code {
+  background-color: #1e293b;
+  color: #34d399;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+.highlight {
+  color: #f472b6;
+  font-weight: bold;
+}
+.box {
+  background: rgba(30, 41, 59, 0.7);
+  border-left: 4px solid #38bdf8;
+  padding: 15px;
+  border-radius: 4px;
+}
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <section >
+<h1>Tema 5.2.2.2: Configuración Avanzada de IDEs</h1>
+<h2>Visual Studio Code vs. Android Studio y Stateful Hot Reload</h2>
+
+<strong>Curso:</strong> IF0009 - Desarrollo de Software IV  
+<strong>Profesor:</strong> Mag. Jonathan Granados C.  
+<strong>Semestre:</strong> II-2026 | Universidad de Costa Rica
+            </section>
+
+            <section >
+<h1>Objetivos de la Sesión</h1>
+
+<ul>
+<li>Comparar la <strong>arquitectura y consumo de memoria</strong> de VS Code y Android Studio.
+</li>
+<li>Comprender la comunicación mediante <strong>Dart Language Server Protocol (LSP)</strong>.
+</li>
+<li>Analizar la mecánica interna de <strong>Stateful Hot Reload</strong> vs. <strong>Hot Restart</strong>.
+</li>
+<li>Configurar parámetros de autoguardado e inspección en <code>.vscode/settings.json</code>.
+</li>
+<li>Aplicar la convención obligatoria de <strong>Trailing Commas</strong> en Flutter.
+</li>
+</ul>
+            </section>
+
+            <section >
+<h1>Comparativa de Arquitectura: VS Code vs Android Studio</h1>
+
+<ul>
+<li><strong>Visual Studio Code:</strong>
+<ul>
+<li>Basado en Electron (V8 / Node.js). Consumo liviano (350-700 MB RAM).
+</li>
+<li>Conexión por LSP al <code>Dart Analysis Server</code>.
+</li>
+<li>Ideal para desarrollo diario de UI, lógica Dart y navegación rápida.
+</li>
+</ul>
+</li>
+<li><strong>Android Studio:</strong>
+<ul>
+<li>Basado en IntelliJ IDEA (JVM). Consumo exigente (1.8-3.5 GB RAM).
+</li>
+<li>Suite completa con Gradle avanzado, Device File Explorer y NDK.
+</li>
+<li>Indispensable para configurar módulos Android nativos y emuladores.
+</li>
+</ul>
+</li>
+</ul>
+            </section>
+
+            <section >
+<h1>Stateful Hot Reload vs. Hot Restart</h1>
+
+<ul>
+<li><strong>Stateful Hot Reload (<code>r</code> en terminal o <code>Ctrl+S</code>):</strong>
+<ul>
+<li>Inyecta nuevo código fuente directamente en la Dart VM.
+</li>
+<li>Preserva el estado en memoria de los <code>StatefulWidget</code>.
+</li>
+<li><strong>No</strong> re-ejecuta <code>initState()</code> ni constructores estáticos.
+</li>
+</ul>
+</li>
+<li><strong>Hot Restart (<code>R</code> o <code>Ctrl+F5</code>):</strong>
+<ul>
+<li>Reinicia el <em>isolate</em> de Dart por completo y llama a <code>main()</code>.
+</li>
+<li>Destruye el estado en memoria. Requerido tras alterar <code>initState()</code>.
+</li>
+</ul>
+</li>
+</ul>
+            </section>
+
+            <section >
+<h1>Configuración Profesional de VS Code</h1>
+
+<pre><code class="language-json">{
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "Dart-Code.dart-code",
+  "editor.codeActionsOnSave": {
+    "source.fixAll": "explicit",
+    "source.organizeImports": "explicit"
+  },
+  "dart.previewFlutterUiGuides": true,
+  "dart.closingLabels": true
+}</code></pre>
+
+<ul>
+<li>Guarda y formatea automáticamente respetando el estilo de Google.
+</li>
+<li>Dibuja guías visuales punteadas de anidación del árbol de widgets.
+</li>
+</ul>
+            </section>
+
+            <section >
+<h1>La Regla de Oro: Trailing Commas</h1>
+
+<pre><code class="language-dart">// Mal formateado: dificulta lectura en equipos
+return Scaffold(body: Center(child: Text('Hola')));
+
+// Correcto: Con coma final despues de cada widget
+return Scaffold(
+  appBar: AppBar(
+    title: const Text('Inicio'),
+  ),
+  body: const Center(
+    child: Text('Hola Mundo'),
+  ),
+);</code></pre>
+
+<ul>
+<li>La coma final (<code>),</code>) le indica al formateador que separe los widgets en múltiples líneas indentadas.
+</li>
+</ul>
+            </section>
+
+            <section >
+<h1>Atajos de Teclado Esenciales</h1>
+
+<ul>
+<li><strong><code>Alt + Enter</code> (o <code>Ctrl + .</code>):</strong> Menú contextual de refactorización rápida (<em>Wrap with Widget</em>, <em>Extract Widget</em>).
+</li>
+<li><strong><code>F5</code>:</strong> Iniciar sesión de depuración con breakpoints.
+</li>
+<li><strong><code>r</code>:</strong> Disparar Stateful Hot Reload instantáneo.
+</li>
+<li><strong><code>R</code>:</strong> Disparar Hot Restart completo.
+</li>
+<li><strong><code>Ctrl + Shift + P</code>:</strong> Paleta de comandos (escriba <code>Flutter:</code> para acceder a utilidades).
+</li>
+</ul>
+            </section>
+
+        </div>
+    </div>
+
+    <!-- Highlight.js and Reveal.js Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.js"></script>
+
+    <script>
+        // Initialize Highlight.js for code syntax coloring
+        hljs.highlightAll();
+
+        // Initialize Reveal.js with modern layout configurations
+        Reveal.initialize({
+            hash: true,
+            respondToHashChanges: true,
+            history: true,
+            transition: 'slide', // none/fade/slide/convex/concave/zoom
+            transitionSpeed: 'default',
+            backgroundTransition: 'fade',
+            width: 960,
+            height: 700,
+            margin: 0.05,
+            minScale: 0.2,
+            maxScale: 2.0,
+            plugins: []
+        });
+    </script>
+</body>
+</html>
