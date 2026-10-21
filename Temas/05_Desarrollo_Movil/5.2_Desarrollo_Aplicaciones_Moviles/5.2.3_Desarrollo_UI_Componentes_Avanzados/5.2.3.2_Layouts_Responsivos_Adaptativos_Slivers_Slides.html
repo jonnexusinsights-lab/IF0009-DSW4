@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <title>Presentación - Desarrollo de Software IV</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <!-- Reveal.js Base Stylesheets -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reset.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.css">
+    
+    <!-- Tokyo Night Dark Theme for Code Syntax Resaltation -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/tokyo-night-dark.min.css">
+
+    <!-- Premium Google Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* Modern Web Design Aesthetics & Layout Tokens */
+        html, body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background-color: #0b0f19 !important;
+            color: #f8fafc;
+            overflow: hidden;
+        }
+
+        .reveal {
+            width: 100%;
+            height: 100%;
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0b0f19 0%, #111827 50%, #1e1b4b 100%) !important;
+            color: #f8fafc;
+        }
+        
+        .reveal .slides section {
+            font-family: 'Outfit', 'Inter', sans-serif;
+            text-align: left;
+            padding: 50px 70px;
+            box-sizing: border-box;
+            font-size: 22px;
+            color: #f8fafc;
+        }
+        
+        /* Centered Cover Slide Layout */
+        .reveal .slides section.lead-slide {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+        
+        /* Premium Typography Styles */
+        .reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6 {
+            font-family: 'Outfit', sans-serif;
+            text-transform: none;
+            color: #38bdf8;
+            font-weight: 800;
+            text-shadow: none;
+        }
+        
+        .reveal h1 {
+            font-size: 1.7em;
+            margin-bottom: 12px;
+            border-bottom: 2px solid #3b82f6;
+            padding-bottom: 10px;
+        }
+        
+        .reveal .lead-slide h1 {
+            border-bottom: none;
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            color: #38bdf8;
+        }
+        
+        .reveal h2 {
+            font-size: 1.25em;
+            color: #818cf8;
+            font-weight: 700;
+            margin-top: 0px;
+        }
+        
+        .reveal .lead-slide h2 {
+            font-size: 1.55em;
+            color: #818cf8;
+            margin-bottom: 30px;
+        }
+        
+        .reveal h3 {
+            font-size: 1.1em;
+            color: #a78bfa;
+        }
+        
+        /* List and Text Formatting */
+        .reveal p, .reveal li {
+            color: #cbd5e1;
+            line-height: 1.6;
+        }
+        
+        .reveal ul {
+            list-style-type: square;
+            margin-left: 1.5em;
+        }
+        
+        .reveal li {
+            margin-bottom: 12px;
+        }
+        
+        .reveal strong {
+            color: #f43f5e;
+            font-weight: 600;
+        }
+        
+        .reveal em {
+            color: #fb7185;
+            font-style: italic;
+        }
+        
+        .reveal footer {
+            font-size: 0.5em;
+            color: #6b7280;
+            position: absolute;
+            bottom: 20px;
+            right: 50px;
+        }
+        
+        /* Code Block Containers and Inlines */
+        .reveal code {
+            font-family: 'Fira Code', monospace;
+            background-color: #030712;
+            color: #38bdf8;
+            border-radius: 4px;
+            padding: 2px 8px;
+            font-size: 0.85em;
+        }
+        
+        .reveal pre {
+            background-color: #030712 !important;
+            border: 1px solid #1f2937;
+            border-radius: 10px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
+            width: 100%;
+            margin: 20px 0;
+            box-sizing: border-box;
+        }
+        
+        .reveal pre code {
+            background-color: transparent;
+            color: inherit;
+            font-size: 0.8em;
+            line-height: 1.55;
+            padding: 18px;
+            max-height: 520px;
+        }
+        
+        /* Control Nav Arrows & Progress Bar */
+        .reveal .controls-arrow {
+            color: #38bdf8 !important;
+        }
+        
+        .reveal .progress span {
+            background-color: #38bdf8 !important;
+        }
+
+        /* Custom style overrides parsed from Marp frontmatter */
+        .reveal .slides section {
+  font-family: 'Outfit', 'Inter', sans-serif;
+  background: linear-gradient(135deg, #0b0f19 0%, #111827 50%, #1e1b4b 100%);
+  color: #f8fafc;
+  padding: 50px 70px;
+  font-size: 22px;
+}
+h1 {
+  color: #38bdf8;
+  font-size: 1.7em;
+  font-weight: 800;
+  margin-bottom: 12px;
+  border-bottom: 2px solid #3b82f6;
+  padding-bottom: 10px;
+}
+h2 {
+  color: #818cf8;
+  font-size: 1.3em;
+}
+code {
+  background-color: #1e293b;
+  color: #34d399;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+.highlight {
+  color: #f472b6;
+  font-weight: bold;
+}
+.box {
+  background: rgba(30, 41, 59, 0.7);
+  border-left: 4px solid #38bdf8;
+  padding: 15px;
+  border-radius: 4px;
+}
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <section >
+<h1>Tema 5.2.3.2: Layouts Responsivos y Slivers</h1>
+<h2>BoxConstraints, Adaptabilidad y CustomScrollView</h2>
+
+<strong>Curso:</strong> IF0009 - Desarrollo de Software IV  
+<strong>Profesor:</strong> Mag. Jonathan Granados C.  
+<strong>Semestre:</strong> II-2026 | Universidad de Costa Rica
+            </section>
+
+            <section >
+<h1>Objetivos de la Sesión</h1>
+
+<ul>
+<li>Dominar la regla de oro: <em>"Constraints go down, sizes go up, parent sets position"</em>.
+</li>
+<li>Analizar trade-offs de rendimiento entre <code>MediaQuery</code> y <code>LayoutBuilder</code>.
+</li>
+<li>Diseñar interfaces adaptativas para móvil, tableta y escritorio.
+</li>
+<li>Comprender la arquitectura de <strong>Slivers</strong> y su protocolo de desplazamiento.
+</li>
+<li>Implementar listas virtualizadas y cabeceras dinámicas con <code>CustomScrollView</code>.
+</li>
+</ul>
+            </section>
+
+            <section >
+<h1>La Regla de Oro del Renderizado</h1>
+
+<ul>
+<li><strong>1. Constraints go down:</strong> El widget padre impone límites de tamaño (<code>minW</code>, <code>maxW</code>, <code>minH</code>, <code>maxH</code>).
+</li>
+<li><strong>2. Sizes go up:</strong> El widget hijo calcula sus propias dimensiones dentro de esos límites.
+</li>
+<li><strong>3. Parent sets position:</strong> El padre asigna la coordenada <code>(x, y)</code> final del hijo.
+</li>
+<li><strong>Algoritmo de Una Sola Pasada:</strong> Complejidad de maquetación $O(N)$ de ultra alto rendimiento.
+</li>
+</ul>
+            </section>
+
+            <section >
+<h1><code>MediaQuery</code> vs <code>LayoutBuilder</code></h1>
+
+<ul>
+<li><strong><code>MediaQuery.sizeOf(context)</code>:</strong>
+<ul>
+<li>Obtiene las dimensiones globales de la pantalla o ventana.
+</li>
+<li>Reconstruye cuando la ventana cambia (rotación, teclado virtual).
+</li>
+<li>Ideal para decisiones a nivel de pantalla raíz.
+</li>
+</ul>
+</li>
+<li><strong><code>LayoutBuilder</code>:</strong>
+<ul>
+<li>Inspecciona las restricciones locales que impone el contenedor padre.
+</li>
+<li>Reconstruye de forma aislada solo cuando sus restricciones varían.
+</li>
+<li>Esencial para componentes modulares y reutilizables.
+</li>
+</ul>
+</li>
+</ul>
+            </section>
+
+            <section >
+<h1>El Paradigma de los Slivers</h1>
+
+<ul>
+<li><strong>Limitación de Listas Tradicionales:</strong> <code>ListView</code> opera en una caja con dimensiones fijas.
+</li>
+<li><strong>¿Qué es un Sliver?</strong> Una porción de pantalla desplazable gobernada por <code>SliverConstraints</code>.
+</li>
+<li><strong>Viewport Unificado:</strong> <code>CustomScrollView</code> permite combinar listas, grids y headers.
+</li>
+<li><strong>Virtualización Estricta:</strong> Destruye y recicla elementos invisibles en memoria.
+</li>
+</ul>
+            </section>
+
+            <section >
+<h1>Componentes Clave de Slivers</h1>
+
+<ul>
+<li><strong><code>SliverAppBar</code>:</strong> Cabecera con efectos de colapso, estiramiento y anclaje (<code>pinned</code>).
+</li>
+<li><strong><code>SliverList</code>:</strong> Lista lineal con generador delegado (<code>SliverChildBuilderDelegate</code>).
+</li>
+<li><strong><code>SliverGrid</code>:</strong> Cuadrícula de elementos adaptable por número de columnas o ancho máximo.
+</li>
+<li><strong><code>SliverToBoxAdapter</code>:</strong> Puente para incrustar widgets tradicionales (<code>Container</code>, <code>Card</code>).
+</li>
+</ul>
+            </section>
+
+            <section >
+<h1>Implementación: <code>CustomScrollView</code></h1>
+
+<pre><code class="language-dart">CustomScrollView(
+  physics: const BouncingScrollPhysics(),
+  slivers: [
+    SliverAppBar(
+      expandedHeight: 200.0,
+      pinned: true,
+      flexibleSpace: FlexibleSpaceBar(
+        title: Text('Catálogo IF0009'),
+        background: HeaderGradientWidget(),
+      ),
+    ),
+    SliverToBoxAdapter(
+      child: SectionTitleWidget('Módulos Disponibles'),
+    ),
+    SliverList(
+      delegate: SliverChildBuilderDelegate(
+        (context, index) =&gt; ProductCard(items[index]),
+        childCount: items.length,
+      ),
+    ),
+  ],
+)</code></pre>
+            </section>
+
+            <section >
+<h1>Adaptabilidad con <code>SliverLayoutBuilder</code></h1>
+
+<pre><code class="language-dart">SliverLayoutBuilder(
+  builder: (context, constraints) {
+    // Si el ancho supera 600px, mostrar cuadricula de 3 columnas
+    if (constraints.crossAxisExtent &gt;= 600) {
+      return SliverGrid(
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 3,
+          childAspectRatio: 1.8,
+        ),
+        delegate: SliverChildBuilderDelegate(
+          (context, i) =&gt; ProductCard(items[i]),
+          childCount: items.length,
+        ),
+      );
+    }
+    // Pantallas compactas (moviles): Lista vertical simple
+    return SliverList(
+      delegate: SliverChildBuilderDelegate(
+        (context, i) =&gt; ProductCard(items[i]),
+        childCount: items.length,
+      ),
+    );
+  },
+)</code></pre>
+            </section>
+
+            <section >
+<h1>Trampas Comunes de Maquetación</h1>
+
+<ul>
+<li><strong>"Vertical viewport was given unbounded height":</strong> Incrustar <code>ListView</code> dentro de <code>Column</code> sin <code>Expanded</code>.
+</li>
+<li><strong>Abuso de <code>shrinkWrap: true</code>:</strong> Desactiva la virtualización y renderiza miles de ítems a la vez.
+</li>
+<li><strong>Over-rebuilding con <code>MediaQuery</code>:</strong> Invocar <code>MediaQuery.of(context)</code> en la raíz sin selectores específicos.
+</li>
+<li><strong>Forzado de Dimensiones:</strong> Intentar forzar <code>width</code> en un hijo cuando el padre tiene una restricción estricta (<em>tight</em>).
+</li>
+</ul>
+            </section>
+
+            <section >
+<h1>Pregunta de Reflexión</h1>
+
+> ¿Por qué un widget que define <code>width: 300</code> y <code>height: 300</code> ocupa toda la pantalla si se coloca como hijo directo de <code>MaterialApp</code> sin un <code>Center</code> intermedio?
+>
+> <em>Analice la diferencia entre restricciones estrictas (tight) y laxas (loose).</em>
+            </section>
+
+        </div>
+    </div>
+
+    <!-- Highlight.js and Reveal.js Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.js"></script>
+
+    <script>
+        // Initialize Highlight.js for code syntax coloring
+        hljs.highlightAll();
+
+        // Initialize Reveal.js with modern layout configurations
+        Reveal.initialize({
+            hash: true,
+            respondToHashChanges: true,
+            history: true,
+            transition: 'slide', // none/fade/slide/convex/concave/zoom
+            transitionSpeed: 'default',
+            backgroundTransition: 'fade',
+            width: 960,
+            height: 700,
+            margin: 0.05,
+            minScale: 0.2,
+            maxScale: 2.0,
+            plugins: []
+        });
+    </script>
+</body>
+</html>

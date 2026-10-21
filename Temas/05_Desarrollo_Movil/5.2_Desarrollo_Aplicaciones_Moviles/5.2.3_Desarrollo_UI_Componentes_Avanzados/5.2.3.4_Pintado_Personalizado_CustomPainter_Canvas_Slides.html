@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <title>Presentación - Desarrollo de Software IV</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <!-- Reveal.js Base Stylesheets -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reset.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.css">
+    
+    <!-- Tokyo Night Dark Theme for Code Syntax Resaltation -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/tokyo-night-dark.min.css">
+
+    <!-- Premium Google Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* Modern Web Design Aesthetics & Layout Tokens */
+        html, body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background-color: #0b0f19 !important;
+            color: #f8fafc;
+            overflow: hidden;
+        }
+
+        .reveal {
+            width: 100%;
+            height: 100%;
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0b0f19 0%, #111827 50%, #1e1b4b 100%) !important;
+            color: #f8fafc;
+        }
+        
+        .reveal .slides section {
+            font-family: 'Outfit', 'Inter', sans-serif;
+            text-align: left;
+            padding: 50px 70px;
+            box-sizing: border-box;
+            font-size: 22px;
+            color: #f8fafc;
+        }
+        
+        /* Centered Cover Slide Layout */
+        .reveal .slides section.lead-slide {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+        
+        /* Premium Typography Styles */
+        .reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6 {
+            font-family: 'Outfit', sans-serif;
+            text-transform: none;
+            color: #38bdf8;
+            font-weight: 800;
+            text-shadow: none;
+        }
+        
+        .reveal h1 {
+            font-size: 1.7em;
+            margin-bottom: 12px;
+            border-bottom: 2px solid #3b82f6;
+            padding-bottom: 10px;
+        }
+        
+        .reveal .lead-slide h1 {
+            border-bottom: none;
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            color: #38bdf8;
+        }
+        
+        .reveal h2 {
+            font-size: 1.25em;
+            color: #818cf8;
+            font-weight: 700;
+            margin-top: 0px;
+        }
+        
+        .reveal .lead-slide h2 {
+            font-size: 1.55em;
+            color: #818cf8;
+            margin-bottom: 30px;
+        }
+        
+        .reveal h3 {
+            font-size: 1.1em;
+            color: #a78bfa;
+        }
+        
+        /* List and Text Formatting */
+        .reveal p, .reveal li {
+            color: #cbd5e1;
+            line-height: 1.6;
+        }
+        
+        .reveal ul {
+            list-style-type: square;
+            margin-left: 1.5em;
+        }
+        
+        .reveal li {
+            margin-bottom: 12px;
+        }
+        
+        .reveal strong {
+            color: #f43f5e;
+            font-weight: 600;
+        }
+        
+        .reveal em {
+            color: #fb7185;
+            font-style: italic;
+        }
+        
+        .reveal footer {
+            font-size: 0.5em;
+            color: #6b7280;
+            position: absolute;
+            bottom: 20px;
+            right: 50px;
+        }
+        
+        /* Code Block Containers and Inlines */
+        .reveal code {
+            font-family: 'Fira Code', monospace;
+            background-color: #030712;
+            color: #38bdf8;
+            border-radius: 4px;
+            padding: 2px 8px;
+            font-size: 0.85em;
+        }
+        
+        .reveal pre {
+            background-color: #030712 !important;
+            border: 1px solid #1f2937;
+            border-radius: 10px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
+            width: 100%;
+            margin: 20px 0;
+            box-sizing: border-box;
+        }
+        
+        .reveal pre code {
+            background-color: transparent;
+            color: inherit;
+            font-size: 0.8em;
+            line-height: 1.55;
+            padding: 18px;
+            max-height: 520px;
+        }
+        
+        /* Control Nav Arrows & Progress Bar */
+        .reveal .controls-arrow {
+            color: #38bdf8 !important;
+        }
+        
+        .reveal .progress span {
+            background-color: #38bdf8 !important;
+        }
+
+        /* Custom style overrides parsed from Marp frontmatter */
+        .reveal .slides section {
+  font-family: 'Outfit', 'Inter', sans-serif;
+  background: linear-gradient(135deg, #0b0f19 0%, #111827 50%, #1e1b4b 100%);
+  color: #f8fafc;
+  padding: 50px 70px;
+  font-size: 22px;
+}
+h1 {
+  color: #38bdf8;
+  font-size: 1.7em;
+  font-weight: 800;
+  margin-bottom: 12px;
+  border-bottom: 2px solid #3b82f6;
+  padding-bottom: 10px;
+}
+h2 {
+  color: #818cf8;
+  font-size: 1.3em;
+}
+code {
+  background-color: #1e293b;
+  color: #34d399;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+.highlight {
+  color: #f472b6;
+  font-weight: bold;
+}
+.box {
+  background: rgba(30, 41, 59, 0.7);
+  border-left: 4px solid #38bdf8;
+  padding: 15px;
+  border-radius: 4px;
+}
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <section >
+<h1>Tema 5.2.3.4: CustomPainter y Canvas</h1>
+<h2>Gráficos Vectoriales a Bajo Nivel y Renderizado GPU</h2>
+
+<strong>Curso:</strong> IF0009 - Desarrollo de Software IV  
+<strong>Profesor:</strong> Mag. Jonathan Granados C.  
+<strong>Semestre:</strong> II-2026 | Universidad de Costa Rica
+            </section>
+
+            <section >
+<h1>Objetivos de la Sesión</h1>
+
+<ul>
+<li>Comprender el pipeline de dibujo a bajo nivel: de <code>CustomPaint</code> a Impeller/Skia.
+</li>
+<li>Dominar el contrato de <code>CustomPainter</code>: <code>paint()</code> y <code>shouldRepaint()</code>.
+</li>
+<li>Dominar el sistema cartesiano 2D y operaciones vectoriales de <code>Canvas</code>.
+</li>
+<li>Configurar estilos visuales con <code>Paint</code> y caminos complejos con <code>Path</code>.
+</li>
+<li>Optimizar el rendimiento gráfico evitando el redibujado redundante en la GPU.
+</li>
+</ul>
+            </section>
+
+            <section >
+<h1>¿Cuándo Usar <code>CustomPainter</code>?</h1>
+
+<ul>
+<li><strong>Límites de Widgets Preconstruidos:</strong> Gráficos estadísticos, diales o tacómetros.
+</li>
+<li><strong>Control Pixel-Perfect:</strong> Ilustraciones vectoriales matemáticas y diagramas en tiempo real.
+</li>
+<li><strong>Eficiencia Gráfica:</strong> Reduce decenas de widgets anidados a una única instrucción de renderizado.
+</li>
+<li><strong>Integración Directa:</strong> Habla directamente con el motor gráfico en C++ de Flutter.
+</li>
+</ul>
+            </section>
+
+            <section >
+<h1>El Contrato de <code>CustomPainter</code></h1>
+
+<ul>
+<li><strong><code>paint(Canvas canvas, Size size)</code>:</strong>
+<ul>
+<li>Recibe el lienzo de dibujo y las dimensiones calculadas por el padre.
+</li>
+<li>Ejecuta comandos gráficos inmediatos (<code>drawCircle</code>, <code>drawArc</code>, <code>drawPath</code>).
+</li>
+</ul>
+</li>
+<li><strong><code>shouldRepaint(covariant CustomPainter oldDelegate)</code>:</strong>
+<ul>
+<li>Compara la configuración actual contra la previa.
+</li>
+<li>Si retorna <code>false</code>, reutiliza la textura en GPU sin re-ejecutar <code>paint()</code>.
+</li>
+<li>Clave crítica para sostener 60 a 120 FPS.
+</li>
+</ul>
+</li>
+</ul>
+            </section>
+
+            <section >
+<h1>Sistema Cartesiano 2D en Flutter</h1>
+
+<ul>
+<li><strong>Origen <code>(0, 0)</code>:</strong> Esquina superior izquierda del widget.
+</li>
+<li><strong>Eje X:</strong> Se incrementa positivamente hacia la <strong>derecha</strong>.
+</li>
+<li><strong>Eje Y:</strong> Se incrementa positivamente hacia <strong>abajo</strong>.
+</li>
+<li><strong>Centro Geométrico:</strong> <code>Offset(size.width / 2, size.height / 2)</code>.
+</li>
+<li><strong>Regla Cardinal:</strong> Todo trazo debe calcularse relativo a <code>size</code> para ser responsivo.
+</li>
+</ul>
+            </section>
+
+            <section >
+<h1>Pincel (<code>Paint</code>) y Trazo Vectorial (<code>Path</code>)</h1>
+
+<ul>
+<li><strong>Propiedades de <code>Paint</code>:</strong>
+<ul>
+<li><code>style: PaintingStyle.stroke</code> (contorno) o <code>.fill</code> (relleno).
+</li>
+<li><code>strokeWidth</code>: Grosor en píxeles lógicos del trazado.
+</li>
+<li><code>strokeCap: StrokeCap.round</code>: Terminaciones suaves y redondeadas.
+</li>
+<li><code>shader</code>: Gradientes lineales, radiales o de barrido cónico.
+</li>
+</ul>
+</li>
+<li><strong>Capacidades de <code>Path</code>:</strong>
+<ul>
+<li><code>moveTo(x, y)</code> y <code>lineTo(x, y)</code>: Trazado de polígonos.
+</li>
+<li><code>quadraticBezierTo()</code>: Curvas suaves guiadas por puntos de atracción.
+</li>
+</ul>
+</li>
+</ul>
+            </section>
+
+            <section >
+<h1>Implementación: Gauge Circular</h1>
+
+<pre><code class="language-dart">class RadialGaugePainter extends CustomPainter {
+  final double percentage;
+  final Color activeColor;
+
+  RadialGaugePainter({required this.percentage, required this.activeColor});
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final center = Offset(size.width / 2, size.height / 2);
+    final radius = (size.width - 20) / 2;
+    final paint = Paint()
+      ..color = activeColor
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 14.0
+      ..strokeCap = StrokeCap.round;
+
+    // Angulo inicial arriba (-PI/2) y barrido proporcional
+    canvas.drawArc(
+      Rect.fromCircle(center: center, radius: radius),
+      -math.pi / 2,
+      2 * math.pi * percentage,
+      false,
+      paint,
+    );
+  }
+
+  @override
+  bool shouldRepaint(RadialGaugePainter old) =&gt; old.percentage != percentage;
+}</code></pre>
+            </section>
+
+            <section >
+<h1>Trampas Comunes en Dibujo 2D</h1>
+
+<ul>
+<li><strong>Instanciar Objetos en <code>paint()</code>:</strong> Crear <code>Paint()</code> en cada frame satura el Garbage Collector.
+</li>
+<li><strong>Retornar <code>true</code> ciegamente en <code>shouldRepaint</code>:</strong> Deshabilita el caché de GPU y drena la batería.
+</li>
+<li><strong>Coordenadas Absolutas:</strong> Usar valores duros como <code>Offset(200, 200)</code> que se deforman en otros dispositivos.
+</li>
+<li><strong>Ángulos en Grados:</strong> Olvidar que las funciones trigonométricas de Flutter requieren <strong>radianes</strong> ($\text{rad} = \text{grados} \times \frac{\pi}{180}$).
+</li>
+</ul>
+            </section>
+
+            <section >
+<h1>Pregunta de Reflexión</h1>
+
+> ¿Qué beneficio aportan las banderas <code>isComplex: true</code> y <code>willChange: false</code> en un <code>CustomPaint</code> sobre el compositor de capas del motor Impeller al graficar visualizaciones densas?
+>
+> <em>Piense en la rasterización a mapa de bits en la memoria de vídeo de la GPU.</em>
+            </section>
+
+        </div>
+    </div>
+
+    <!-- Highlight.js and Reveal.js Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.js"></script>
+
+    <script>
+        // Initialize Highlight.js for code syntax coloring
+        hljs.highlightAll();
+
+        // Initialize Reveal.js with modern layout configurations
+        Reveal.initialize({
+            hash: true,
+            respondToHashChanges: true,
+            history: true,
+            transition: 'slide', // none/fade/slide/convex/concave/zoom
+            transitionSpeed: 'default',
+            backgroundTransition: 'fade',
+            width: 960,
+            height: 700,
+            margin: 0.05,
+            minScale: 0.2,
+            maxScale: 2.0,
+            plugins: []
+        });
+    </script>
+</body>
+</html>
