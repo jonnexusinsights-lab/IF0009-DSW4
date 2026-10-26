@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <title>Presentación - Desarrollo de Software IV</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <!-- Reveal.js Base Stylesheets -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reset.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.css">
+    
+    <!-- Tokyo Night Dark Theme for Code Syntax Resaltation -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/tokyo-night-dark.min.css">
+
+    <!-- Premium Google Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* Modern Web Design Aesthetics & Layout Tokens */
+        html, body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background-color: #0b0f19 !important;
+            color: #f8fafc;
+            overflow: hidden;
+        }
+
+        .reveal {
+            width: 100%;
+            height: 100%;
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0b0f19 0%, #111827 50%, #1e1b4b 100%) !important;
+            color: #f8fafc;
+        }
+        
+        .reveal .slides section {
+            font-family: 'Outfit', 'Inter', sans-serif;
+            text-align: left;
+            padding: 50px 70px;
+            box-sizing: border-box;
+            font-size: 22px;
+            color: #f8fafc;
+        }
+        
+        /* Centered Cover Slide Layout */
+        .reveal .slides section.lead-slide {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+        
+        /* Premium Typography Styles */
+        .reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6 {
+            font-family: 'Outfit', sans-serif;
+            text-transform: none;
+            color: #38bdf8;
+            font-weight: 800;
+            text-shadow: none;
+        }
+        
+        .reveal h1 {
+            font-size: 1.7em;
+            margin-bottom: 12px;
+            border-bottom: 2px solid #3b82f6;
+            padding-bottom: 10px;
+        }
+        
+        .reveal .lead-slide h1 {
+            border-bottom: none;
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            color: #38bdf8;
+        }
+        
+        .reveal h2 {
+            font-size: 1.25em;
+            color: #818cf8;
+            font-weight: 700;
+            margin-top: 0px;
+        }
+        
+        .reveal .lead-slide h2 {
+            font-size: 1.55em;
+            color: #818cf8;
+            margin-bottom: 30px;
+        }
+        
+        .reveal h3 {
+            font-size: 1.1em;
+            color: #a78bfa;
+        }
+        
+        /* List and Text Formatting */
+        .reveal p, .reveal li {
+            color: #cbd5e1;
+            line-height: 1.6;
+        }
+        
+        .reveal ul {
+            list-style-type: square;
+            margin-left: 1.5em;
+        }
+        
+        .reveal li {
+            margin-bottom: 12px;
+        }
+        
+        .reveal strong {
+            color: #f43f5e;
+            font-weight: 600;
+        }
+        
+        .reveal em {
+            color: #fb7185;
+            font-style: italic;
+        }
+        
+        .reveal footer {
+            font-size: 0.5em;
+            color: #6b7280;
+            position: absolute;
+            bottom: 20px;
+            right: 50px;
+        }
+        
+        /* Code Block Containers and Inlines */
+        .reveal code {
+            font-family: 'Fira Code', monospace;
+            background-color: #030712;
+            color: #38bdf8;
+            border-radius: 4px;
+            padding: 2px 8px;
+            font-size: 0.85em;
+        }
+        
+        .reveal pre {
+            background-color: #030712 !important;
+            border: 1px solid #1f2937;
+            border-radius: 10px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
+            width: 100%;
+            margin: 20px 0;
+            box-sizing: border-box;
+        }
+        
+        .reveal pre code {
+            background-color: transparent;
+            color: inherit;
+            font-size: 0.8em;
+            line-height: 1.55;
+            padding: 18px;
+            max-height: 520px;
+        }
+        
+        /* Control Nav Arrows & Progress Bar */
+        .reveal .controls-arrow {
+            color: #38bdf8 !important;
+        }
+        
+        .reveal .progress span {
+            background-color: #38bdf8 !important;
+        }
+
+        /* Custom style overrides parsed from Marp frontmatter */
+        .reveal .slides section {
+  font-family: 'Outfit', 'Inter', sans-serif;
+  background: linear-gradient(135deg, #0b0f19 0%, #111827 50%, #1e1b4b 100%);
+  color: #f8fafc;
+  padding: 50px 70px;
+  font-size: 22px;
+}
+h1 {
+  color: #38bdf8;
+  font-size: 1.7em;
+  font-weight: 800;
+  margin-bottom: 12px;
+  border-bottom: 2px solid #3b82f6;
+  padding-bottom: 10px;
+}
+h2 {
+  color: #818cf8;
+  font-size: 1.3em;
+}
+code {
+  background-color: #1e293b;
+  color: #34d399;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+.highlight {
+  color: #f472b6;
+  font-weight: bold;
+}
+.box {
+  background: rgba(30, 41, 59, 0.7);
+  border-left: 4px solid #38bdf8;
+  padding: 15px;
+  border-radius: 4px;
+}
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <section >
+<h1>Tema 5.2.4.1: Consumo de APIs RESTful en Spring Boot</h1>
+<h2>Integración HTTP, DTOs y Almacenamiento Seguro de Tokens JWT</h2>
+
+<strong>Curso:</strong> IF0009 - Desarrollo de Software IV  
+<strong>Profesor:</strong> Mag. Jonathan Granados C.  
+<strong>Semestre:</strong> II-2026 | Universidad de Costa Rica
+            </section>
+
+            <section >
+<h1>Objetivos de la Sesión</h1>
+
+<ul>
+<li>Dominar la comunicación asíncrona cliente-servidor con el paquete <code>http</code>.
+</li>
+<li>Implementar serialización y deserialización fuertemente tipada con <strong>DTOs</strong>.
+</li>
+<li>Capturar y categorizar errores de red, timeouts y códigos de estado HTTP.
+</li>
+<li>Asegurar credenciales y <strong>Tokens JWT</strong> con <code>flutter&lt;em&gt;secure&lt;/em&gt;storage</code>.
+</li>
+<li>Superar trampas comunes de conectividad local en emuladores y dispositivos.
+</li>
+</ul>
+            </section>
+
+            <section >
+<h1>Arquitectura de Comunicación Móvil</h1>
+
+<ul>
+<li><strong>Desacoplamiento Estricto:</strong> La app móvil consume recursos vía JSON.
+</li>
+<li><strong>Flujo Asíncrono no bloqueante:</strong> Peticiones mediante <code>Future&lt;http.Response&gt;</code>.
+</li>
+<li><strong>Seguridad Stateless:</strong> Cada solicitud protegida incluye cabecera:
+</li>
+</ul>
+  <code>Authorization: Bearer &lt;token_jwt&gt;</code>
+<ul>
+<li><strong>Bóveda de Seguridad:</strong> Cifrado con hardware nativo:
+<ul>
+<li><strong>Android:</strong> Android Keystore + EncryptedSharedPreferences.
+</li>
+<li><strong>iOS:</strong> Keychain Services API.
+</li>
+</ul>
+</li>
+</ul>
+            </section>
+
+            <section >
+<h1>Dependencias Clave (<code>pubspec.yaml</code>)</h1>
+
+<pre><code class="language-yaml">dependencies:
+  flutter:
+    sdk: flutter
+  http: ^1.2.1
+  flutter_secure_storage: ^9.2.2</code></pre>
+
+<ul>
+<li><code>http</code>: Cliente asíncrono para métodos <code>GET</code>, <code>POST</code>, <code>PUT</code>, <code>DELETE</code>.
+</li>
+<li><code>flutter&lt;em&gt;secure&lt;/em&gt;storage</code>: Persistencia de llaves y secretos con cifrado.
+</li>
+</ul>
+            </section>
+
+            <section >
+<h1>Modelos Fuertemente Tipados (DTOs)</h1>
+
+<pre><code class="language-dart">class IncidenciaDTO {
+  final int? id;
+  final String titulo;
+  final double latitud;
+
+  IncidenciaDTO({this.id, required this.titulo, required this.latitud});
+
+  factory IncidenciaDTO.fromJson(Map&lt;String, dynamic&gt; json) {
+    return IncidenciaDTO(
+      id: json['id'] as int?,
+      titulo: json['titulo'] as String? ?? 'Sin título',
+      latitud: (json['latitud'] as num).toDouble(),
+    );
+  }
+}</code></pre>
+
+<ul>
+<li>Previene excepciones <code>TypeError</code> en producción.
+</li>
+<li>Maneja de forma segura valores nulos y conversiones numéricas.
+</li>
+</ul>
+            </section>
+
+            <section >
+<h1>Almacenamiento Seguro de Tokens JWT</h1>
+
+<pre><code class="language-dart">import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+
+class AuthStorageService {
+  final _storage = const FlutterSecureStorage(
+    aOptions: AndroidOptions(encryptedSharedPreferences: true),
+  );
+
+  Future&lt;void&gt; saveToken(String token) async =&gt;
+      await _storage.write(key: 'jwt_token', value: token);
+
+  Future&lt;String?&gt; getToken() async =&gt;
+      await _storage.read(key: 'jwt_token');
+
+  Future&lt;void&gt; deleteToken() async =&gt;
+      await _storage.delete(key: 'jwt_token');
+}</code></pre>
+            </section>
+
+            <section >
+<h1>Servicio Cliente RESTful en Dart</h1>
+
+<pre><code class="language-dart">Future&lt;List&lt;IncidenciaDTO&gt;&gt; obtenerIncidencias(String baseUrl) async {
+  final token = await authStorage.getToken();
+  final url = Uri.parse('$baseUrl/api/v1/incidencias');
+
+  final response = await http.get(
+    url,
+    headers: {
+      'Content-Type': 'application/json',
+      if (token != null) 'Authorization': 'Bearer $token',
+    },
+  ).timeout(const Duration(seconds: 10));
+
+  if (response.statusCode == 200) {
+    final List data = jsonDecode(utf8.decode(response.bodyBytes));
+    return data.map((e) =&gt; IncidenciaDTO.fromJson(e)).toList();
+  }
+  throw Exception('Falla HTTP: ${response.statusCode}');
+}</code></pre>
+            </section>
+
+            <section >
+<h1>Resiliencia: Timeouts y Manejo de Red</h1>
+
+<ul>
+<li><strong><code>utf8.decode(response.bodyBytes)</code>:</strong>
+<ul>
+<li>Protege caracteres acentuados y caracteres especiales en español.
+</li>
+</ul>
+</li>
+<li><strong><code>timeout(Duration(seconds: 10))</code>:</strong>
+<ul>
+<li>Evita bloqueos visuales en zonas con pérdida de cobertura.
+</li>
+</ul>
+</li>
+<li><strong>Manejo de Excepciones:</strong>
+<ul>
+<li><code>SocketException</code>: Sin conexión física o servidor apagado.
+</li>
+<li><code>TimeoutException</code>: Latencia excesiva de red.
+</li>
+<li>Códigos <code>401 Unauthorized</code>: Forzar cierre de sesión / refresh token.
+</li>
+</ul>
+</li>
+</ul>
+            </section>
+
+            <section >
+<h1>Trampa Crítica: Loopback en Emuladores</h1>
+
+<ul>
+<li>❌ <code>http://localhost:8080</code> apunta al emulador Android mismo.
+</li>
+<li>✅ En emulador Android oficial use:
+</li>
+</ul>
+  <code>http://10.0.2.2:8080</code>
+<ul>
+<li>✅ En dispositivo físico depurado por USB:
+</li>
+</ul>
+  Use la IP de su red local (ej. <code>http://192.168.1.15:8080</code>)
+<ul>
+<li><strong>Permiso de Tráfico no Seguro en Android (<code>AndroidManifest.xml</code>):</strong>
+</li>
+</ul>
+  <code>android:usesCleartextTraffic="true"</code> (solo para desarrollo local).
+            </section>
+
+            <section >
+<h1>Pregunta de Reflexión</h1>
+
+<div class="box">
+¿Por qué almacenar tokens JWT en SharedPreferences tradicionales representa una vulnerabilidad de alta severidad en aplicaciones bancarias o empresariales, y cómo lo mitiga Android Keystore / iOS Keychain?
+</div>
+            </section>
+
+        </div>
+    </div>
+
+    <!-- Highlight.js and Reveal.js Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.js"></script>
+
+    <script>
+        // Initialize Highlight.js for code syntax coloring
+        hljs.highlightAll();
+
+        // Initialize Reveal.js with modern layout configurations
+        Reveal.initialize({
+            hash: true,
+            respondToHashChanges: true,
+            history: true,
+            transition: 'slide', // none/fade/slide/convex/concave/zoom
+            transitionSpeed: 'default',
+            backgroundTransition: 'fade',
+            width: 960,
+            height: 700,
+            margin: 0.05,
+            minScale: 0.2,
+            maxScale: 2.0,
+            plugins: []
+        });
+    </script>
+</body>
+</html>

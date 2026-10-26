@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rúbrica de Evaluación - EduMentor Hub</title>
+</head>
+<body style="margin: 0; padding: 20px; background-color: #f8fafc; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
+
+<!-- =============================================================================
+     RÚBRICA DE EVALUACIÓN OFICIAL: PROYECTO INTEGRADOR EDUMENTOR HUB
+     Curso: IF0009 - Desarrollo de Software IV (UCR - Recinto de Paraíso)
+     Diseñado para Mediación Virtual (Moodle), Markdown embed y visualizadores web.
+     ============================================================================= -->
+
+<div id="rubrica-edumentorhub" style="max-width: 1100px; margin: 0 auto; color: #1e293b; background: #ffffff; border-radius: 16px; box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.08), 0 8px 10px -6px rgba(15, 23, 42, 0.04); border: 1px solid #e2e8f0; overflow: hidden; font-size: 14px; line-height: 1.5;">
+
+  <!-- ENCABEZADO PRINCIPAL -->
+  <header style="background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #0284c7 100%); color: #ffffff; padding: 32px 28px; position: relative;">
+    <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: 16px;">
+      <div>
+        <div style="display: inline-flex; align-items: center; gap: 8px; background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(8px); padding: 4px 12px; border-radius: 9999px; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 12px; border: 1px solid rgba(255, 255, 255, 0.2);">
+          <span>🎓 Universidad de Costa Rica</span> • <span>IF0009 Desarrollo de Software IV</span>
+        </div>
+        <h1 style="margin: 0 0 8px 0; font-size: 26px; font-weight: 800; letter-spacing: -0.02em; color: #ffffff;">
+          Rúbrica Oficial de Evaluación: EduMentor Hub
+        </h1>
+        <p style="margin: 0; color: #bae6fd; font-size: 15px; font-weight: 400; max-width: 650px;">
+          Criterios de valoración técnica, calidad arquitectónica y defensa oral para el Proyecto Integrador (II Ciclo 2026).
+        </p>
+      </div>
+      
+      <!-- TARJETA RESUMEN PONDERACIÓN -->
+      <div style="background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 12px; padding: 14px 20px; min-width: 190px; text-align: center;">
+        <span style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; color: #93c5fd; font-weight: 600; display: block; margin-bottom: 4px;">Ponderación del Curso</span>
+        <div style="font-size: 28px; font-weight: 800; color: #38bdf8; line-height: 1;">30%</div>
+        <span style="font-size: 12px; color: #cbd5e1; font-weight: 500; display: block; margin-top: 4px;">100 Puntos Totales</span>
+      </div>
+    </div>
+
+    <!-- METADATOS RÁPIDOS -->
+    <div style="display: flex; flex-wrap: wrap; gap: 20px; margin-top: 24px; padding-top: 18px; border-top: 1px solid rgba(255, 255, 255, 0.15); font-size: 13px; color: #e2e8f0;">
+      <div><strong style="color: #ffffff;">Modalidad:</strong> Equipos de 1 a 4 estudiantes</div>
+      <div><strong style="color: #ffffff;">Fase de Evaluación:</strong> Única Integral (Semanas 1 a 5)</div>
+      <div><strong style="color: #ffffff;">Fecha Límite:</strong> Lunes 30 de Noviembre de 2026</div>
+    </div>
+  </header>
+
+  <!-- LEYENDA DE NIVELES DE DOMINIO -->
+  <section style="background: #f8fafc; padding: 16px 28px; border-bottom: 1px solid #e2e8f0;">
+    <span style="font-size: 12px; font-weight: 700; color: #475569; text-transform: uppercase; letter-spacing: 0.05em; display: block; margin-bottom: 10px;">
+      Escala de Valoración de Criterios:
+    </span>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px;">
+      <div style="background: #ffffff; padding: 10px 14px; border-radius: 8px; border-left: 4px solid #10b981; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
+        <strong style="color: #065f46; font-size: 13px;">⭐ Excelente (100%)</strong>
+        <p style="margin: 2px 0 0 0; font-size: 12px; color: #64748b;">Cumplimiento óptimo, sin errores técnicos ni desviaciones arquitectónicas.</p>
+      </div>
+      <div style="background: #ffffff; padding: 10px 14px; border-radius: 8px; border-left: 4px solid #3b82f6; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
+        <strong style="color: #1e40af; font-size: 13px;">✓ Aceptable (75%)</strong>
+        <p style="margin: 2px 0 0 0; font-size: 12px; color: #64748b;">Funcional con observaciones menores de formato, validación o diseño.</p>
+      </div>
+      <div style="background: #ffffff; padding: 10px 14px; border-radius: 8px; border-left: 4px solid #f59e0b; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
+        <strong style="color: #92400e; font-size: 13px;">⚠ En Desarrollo (50%)</strong>
+        <p style="margin: 2px 0 0 0; font-size: 12px; color: #64748b;">Incompleto, fallas funcionales parciales o carencia de robustez.</p>
+      </div>
+      <div style="background: #ffffff; padding: 10px 14px; border-radius: 8px; border-left: 4px solid #ef4444; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
+        <strong style="color: #991b1b; font-size: 13px;">✕ Insuficiente (0-25%)</strong>
+        <p style="margin: 2px 0 0 0; font-size: 12px; color: #64748b;">No implementado, no compila o infringe las directrices del curso.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTENIDO: TABLA DETALLADA DE LA RÚBRICA -->
+  <div style="padding: 24px 28px;">
+
+    <!-- ==================== SECCIÓN 1: DISEÑO Y ESPECIFICACIÓN (25%) ==================== -->
+    <div style="margin-bottom: 32px;">
+      <div style="display: flex; align-items: center; justify-content: space-between; background: #f0fdf4; border: 1px solid #bbf7d0; padding: 12px 18px; border-radius: 10px; margin-bottom: 14px;">
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <span style="font-size: 20px;">📐</span>
+          <div>
+            <h2 style="margin: 0; font-size: 16px; font-weight: 700; color: #166534;">
+              Componente 1: Paquete de Diseño y Especificación
+            </h2>
+            <span style="font-size: 12px; color: #15803d;">Entregables documentales en formato PDF / YAML dentro de docs/ (Modalidad Grupal)</span>
+          </div>
+        </div>
+        <span style="background: #16a34a; color: #ffffff; font-weight: 700; font-size: 13px; padding: 4px 12px; border-radius: 9999px;">
+          25 Puntos (25%)
+        </span>
+      </div>
+
+      <!-- TABLA DEL COMPONENTE 1 -->
+      <div style="overflow-x: auto; border: 1px solid #e2e8f0; border-radius: 10px;">
+        <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 13px;">
+          <thead>
+            <tr style="background: #f8fafc; color: #334155; border-bottom: 2px solid #cbd5e1;">
+              <th style="padding: 12px 14px; width: 22%;">Criterio Evaluativo</th>
+              <th style="padding: 12px 14px; width: 44%;">Descriptores de Calidad (Excelente)</th>
+              <th style="padding: 12px 14px; width: 22%;">Evidencias de Evaluación</th>
+              <th style="padding: 12px 14px; width: 12%; text-align: center;">Puntaje</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- 1.1 ERD -->
+            <tr style="border-bottom: 1px solid #e2e8f0;">
+              <td style="padding: 14px; vertical-align: top;">
+                <strong style="color: #0f172a; display: block; font-size: 13.5px;">1.1 Modelo Entidad-Relación (ERD)</strong>
+                <span style="color: #64748b; font-size: 11.5px;">Base de datos relacional</span>
+              </td>
+              <td style="padding: 14px; vertical-align: top; color: #334155;">
+                • Contempla con precisión las <strong>6 entidades obligatorias</strong> (<code>Usuario</code>, <code>Materia</code>, <code>DisponibilidadTutor</code>, <code>SesionTutoria</code>, <code>RecursoEstudio</code>, <code>EvaluacionTutoria</code>).<br>
+                • Define claves primarias (PK), foráneas (FK), tipos SQL relacionales y restricciones de nulidad y unicidad (UK).<br>
+                • Modela con exactitud cardinalidades 1:N y la relación 1:1 entre sesión y evaluación.
+              </td>
+              <td style="padding: 14px; vertical-align: top; color: #475569; font-size: 12px;">
+                Diagrama visual (PDF/Mermaid) y consistencia con las entidades JPA del backend.
+              </td>
+              <td style="padding: 14px; vertical-align: top; text-align: center;">
+                <span style="font-weight: 700; color: #166534; font-size: 14px;">8 pts</span><br>
+                <span style="color: #64748b; font-size: 11px;">(8%)</span>
+              </td>
+            </tr>
+
+            <!-- 1.2 UML -->
+            <tr style="border-bottom: 1px solid #e2e8f0; background: #fafafa;">
+              <td style="padding: 14px; vertical-align: top;">
+                <strong style="color: #0f172a; display: block; font-size: 13.5px;">1.2 Diagrama de Clases UML</strong>
+                <span style="color: #64748b; font-size: 11.5px;">Arquitectura Orientada a Objetos</span>
+              </td>
+              <td style="padding: 14px; vertical-align: top; color: #334155;">
+                • Estructuración nítida en capas: <code>Controller</code>, <code>Service</code>, <code>Repository</code>, <code>Entity</code> y <code>DTO</code>.<br>
+                • Modela métodos principales de negocio, firmas de parámetros y tipos de retorno.<br>
+                • Expresa relaciones formales de agregación, composición y dependencias de inyección entre componentes Spring.
+              </td>
+              <td style="padding: 14px; vertical-align: top; color: #475569; font-size: 12px;">
+                Diagrama UML legible en formato PDF o imagen de alta resolución.
+              </td>
+              <td style="padding: 14px; vertical-align: top; text-align: center;">
+                <span style="font-weight: 700; color: #166534; font-size: 14px;">8 pts</span><br>
+                <span style="color: #64748b; font-size: 11px;">(8%)</span>
+              </td>
+            </tr>
+
+            <!-- 1.3 OpenAPI -->
+            <tr>
+              <td style="padding: 14px; vertical-align: top;">
+                <strong style="color: #0f172a; display: block; font-size: 13.5px;">1.3 Especificación OpenAPI 3.0</strong>
+                <span style="color: #64748b; font-size: 11.5px;">Contrato formal de la API REST</span>
+              </td>
+              <td style="padding: 14px; vertical-align: top; color: #334155;">
+                • Archivo <code>openapi.yaml</code> o <code>openapi.json</code> válido y libre de errores de sintaxis.<br>
+                • Cubre todos los endpoints REST requeridos para la gestión de usuarios, materias, agendas y sesiones.<br>
+                • Esquematiza códigos HTTP estándar (200, 201, 400, 401, 403, 404, 500) y payloads de error conformes con <strong>RFC 7807 (ProblemDetails)</strong>.
+              </td>
+              <td style="padding: 14px; vertical-align: top; color: #475569; font-size: 12px;">
+                Archivo fuente OpenAPI 3.0 ejecutable/importable en Swagger Editor o Postman.
+              </td>
+              <td style="padding: 14px; vertical-align: top; text-align: center;">
+                <span style="font-weight: 700; color: #166534; font-size: 14px;">9 pts</span><br>
+                <span style="color: #64748b; font-size: 11px;">(9%)</span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+
+    <!-- ==================== SECCIÓN 2: PROYECTO FUNCIONAL (75%) ==================== -->
+    <div>
+      <div style="display: flex; align-items: center; justify-content: space-between; background: #eff6ff; border: 1px solid #bfdbfe; padding: 12px 18px; border-radius: 10px; margin-bottom: 14px;">
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <span style="font-size: 20px;">💻</span>
+          <div>
+            <h2 style="margin: 0; font-size: 16px; font-weight: 700; color: #1e40af;">
+              Componente 2: Proyecto Funcional Desarrollado y Defensa
+            </h2>
+            <span style="font-size: 12px; color: #2563eb;">Implementación de código fuente en GitHub + Sustentación individual</span>
+          </div>
+        </div>
+        <span style="background: #2563eb; color: #ffffff; font-weight: 700; font-size: 13px; padding: 4px 12px; border-radius: 9999px;">
+          75 Puntos (75%)
+        </span>
+      </div>
+
+      <!-- TABLA DEL COMPONENTE 2 -->
+      <div style="overflow-x: auto; border: 1px solid #e2e8f0; border-radius: 10px;">
+        <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 13px;">
+          <thead>
+            <tr style="background: #f8fafc; color: #334155; border-bottom: 2px solid #cbd5e1;">
+              <th style="padding: 12px 14px; width: 22%;">Criterio Evaluativo</th>
+              <th style="padding: 12px 14px; width: 44%;">Descriptores de Calidad (Excelente)</th>
+              <th style="padding: 12px 14px; width: 22%;">Evidencias de Evaluación</th>
+              <th style="padding: 12px 14px; width: 12%; text-align: center;">Puntaje</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- 2.1 Backend Spring Boot -->
+            <tr style="border-bottom: 1px solid #e2e8f0;">
+              <td style="padding: 14px; vertical-align: top;">
+                <strong style="color: #0f172a; display: block; font-size: 13.5px;">2.1 Backend Spring Boot 3 y Persistencia</strong>
+                <span style="color: #64748b; font-size: 11.5px;">Java 17/21 • Data JPA • JWT</span>
+              </td>
+              <td style="padding: 14px; vertical-align: top; color: #334155;">
+                • Separación estricta de responsabilidades en capas (Controller, Service, Repository, Entity).<br>
+                • Mapeo relacional con Spring Data JPA sin incidencias de consultas N+1 (uso de <code>JOIN FETCH</code> o <code>@EntityGraph</code>).<br>
+                • Lógica de negocio en capa de servicios: <strong>validación determinista de traslapes de horario</strong> y <strong>control de cancelación previa (2h)</strong>.<br>
+                • Manejo global de excepciones mediante <code>@RestControllerAdvice</code> bajo el estándar RFC 7807.<br>
+                • Seguridad robusta con Spring Security: autenticación stateless y tokens JWT con control por roles.
+              </td>
+              <td style="padding: 14px; vertical-align: top; color: #475569; font-size: 12px;">
+                Ejecución de la API REST, pruebas de traslapes en Swagger/Postman y revisión de consultas SQL en consola.
+              </td>
+              <td style="padding: 14px; vertical-align: top; text-align: center;">
+                <span style="font-weight: 700; color: #1e40af; font-size: 14px;">25 pts</span><br>
+                <span style="color: #64748b; font-size: 11px;">(25%)</span>
+              </td>
+            </tr>
+
+            <!-- 2.2 Frontend Angular SPA -->
+            <tr style="border-bottom: 1px solid #e2e8f0; background: #fafafa;">
+              <td style="padding: 14px; vertical-align: top;">
+                <strong style="color: #0f172a; display: block; font-size: 13.5px;">2.2 Frontend Angular SPA, Accesibilidad e i18n</strong>
+                <span style="color: #64748b; font-size: 11.5px;">Angular v17+ Standalone</span>
+              </td>
+              <td style="padding: 14px; vertical-align: top; color: #334155;">
+                • Estructura basada en <strong>Standalone Components</strong> (sin NgModules monolíticos).<br>
+                • Formularios Reactivos (<code>ReactiveFormsModule</code>) fuertemente tipados con retroalimentación visual accesible ante errores de validación.<br>
+                • Enrutamiento modular con guardas funcionales (<code>CanActivateFn</code>) y <code>HttpInterceptorFn</code> para inyección automática de cabeceras Bearer JWT.<br>
+                • <strong>Auditoría Google Lighthouse ≥ 90 en Accesibilidad</strong> (contrastes WCAG, foco de teclado, labels semánticos).<br>
+                • Soporte funcional de <strong>internacionalización dinámica (i18n)</strong> con alternancia interactiva entre Español e Inglés.
+              </td>
+              <td style="padding: 14px; vertical-align: top; color: #475569; font-size: 12px;">
+                Navegación en vivo por la SPA, reporte de Lighthouse en Chrome DevTools y prueba de cambio de idioma.
+              </td>
+              <td style="padding: 14px; vertical-align: top; text-align: center;">
+                <span style="font-weight: 700; color: #1e40af; font-size: 14px;">20 pts</span><br>
+                <span style="color: #64748b; font-size: 11px;">(20%)</span>
+              </td>
+            </tr>
+
+            <!-- 2.3 Git & Testing -->
+            <tr style="border-bottom: 1px solid #e2e8f0;">
+              <td style="padding: 14px; vertical-align: top;">
+                <strong style="color: #0f172a; display: block; font-size: 13.5px;">2.3 Calidad Git, PRs y Pruebas Unitarias</strong>
+                <span style="color: #64748b; font-size: 11.5px;">GitHub Flow • JUnit 5 • Mockito</span>
+              </td>
+              <td style="padding: 14px; vertical-align: top; color: #334155;">
+                • Gobernanza colaborativa en GitHub: cero commits directos en <code>main</code>, estrategia de ramas <code>feature/*</code> activa y verificable.<br>
+                • Evidencia explícita de <strong>Pull Requests revisados y aprobados</strong> formalmente entre compañeros de equipo.<br>
+                • Batería de pruebas unitarias automatizadas con <strong>JUnit 5 y Mockito</strong> para la capa de servicios del backend, validando al menos 2 escenarios críticos de negocio (reserva exitosa vs. rechazo por conflicto de horario).
+              </td>
+              <td style="padding: 14px; vertical-align: top; color: #475569; font-size: 12px;">
+                Historial de PRs/Commits en GitHub y ejecución de <code>mvn test</code> con resultados en verde.
+              </td>
+              <td style="padding: 14px; vertical-align: top; text-align: center;">
+                <span style="font-weight: 700; color: #1e40af; font-size: 14px;">10 pts</span><br>
+                <span style="color: #64748b; font-size: 11px;">(10%)</span>
+              </td>
+            </tr>
+
+            <!-- 2.4 Live Coding & Oral -->
+            <tr>
+              <td style="padding: 14px; vertical-align: top;">
+                <strong style="color: #0f172a; display: block; font-size: 13.5px;">2.4 Defensa Oral y Live Coding</strong>
+                <span style="color: #64748b; font-size: 11.5px;">Evaluación Individual con Docente</span>
+              </td>
+              <td style="padding: 14px; vertical-align: top; color: #334155;">
+                • Dominio conceptual completo: el estudiante explica con fluidez la arquitectura, el flujo de datos y las decisiones tomadas en el proyecto.<br>
+                • Demostración convincente de autoría individual sobre las partes del código que le fueron asignadas.<br>
+                • <strong>Resolución exitosa del reto en vivo (Live Coding):</strong> modificación o extensión menor del backend o frontend solicitada por el docente durante la entrevista sincrónica.
+              </td>
+              <td style="padding: 14px; vertical-align: top; color: #475569; font-size: 12px;">
+                Entrevista oral individual, explicación técnica y codificación en pantalla compartida.
+              </td>
+              <td style="padding: 14px; vertical-align: top; text-align: center;">
+                <span style="font-weight: 700; color: #1e40af; font-size: 14px;">20 pts</span><br>
+                <span style="color: #64748b; font-size: 11px;">(20%)</span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- RESUMEN FINAL Y TOTALIZADOR -->
+    <div style="margin-top: 24px; background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 12px; padding: 18px 24px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 16px;">
+      <div>
+        <h3 style="margin: 0 0 4px 0; font-size: 15px; color: #0f172a; font-weight: 700;">Resumen Consolidado del Proyecto</h3>
+        <p style="margin: 0; color: #64748b; font-size: 13px;">
+          Diseño (25%) + Desarrollo Funcional (45%) + Gobernanza/Pruebas (10%) + Defensa Oral Individual (20%).
+        </p>
+      </div>
+      <div style="display: flex; align-items: baseline; gap: 8px;">
+        <span style="font-size: 13px; color: #475569; font-weight: 600;">Calificación Máxima:</span>
+        <span style="font-size: 24px; font-weight: 800; color: #0f172a;">100 Puntos</span>
+        <span style="font-size: 13px; font-weight: 700; color: #0284c7;">(30% de la nota final)</span>
+      </div>
+    </div>
+
+    <!-- NOTAS ACLARATORIAS Y POLÍTICAS -->
+    <div style="margin-top: 18px; padding: 14px 18px; background: #fffbeb; border: 1px solid #fef3c7; border-radius: 8px; font-size: 12.5px; color: #92400e;">
+      <strong>⚠️ Políticas Importantes de Aceptación:</strong>
+      <ul style="margin: 6px 0 0 0; padding-left: 20px;">
+        <li>El proyecto debe compilar y ejecutarse localmente según las instrucciones del <code>README.md</code>. Proyectos que no compilen no podrán ser evaluados.</li>
+        <li>La defensa oral individual es <strong>estrictamente obligatoria</strong>. La nota del Live Coding es individual para cada miembro del equipo.</li>
+        <li>Se comprobará la trazabilidad de autoría en GitHub; no se asignará puntaje de desarrollo a miembros con contribuciones ausentes o delegadas en commits de terceros.</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <!-- PIE DE PÁGINA -->
+  <footer style="background: #f1f5f9; padding: 14px 28px; border-top: 1px solid #e2e8f0; font-size: 12px; color: #64748b; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px;">
+    <span>Escuela de Informática y Administración de Negocios • UCR Recinto de Paraíso</span>
+    <span>Profesor: Mag. Jonathan Granados C. • II Ciclo 2026</span>
+  </footer>
+
+</div>
+
+</body>
+</html>

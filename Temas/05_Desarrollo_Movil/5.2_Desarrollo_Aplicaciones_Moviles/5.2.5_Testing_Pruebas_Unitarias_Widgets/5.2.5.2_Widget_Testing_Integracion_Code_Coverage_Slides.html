@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <title>Presentación - Desarrollo de Software IV</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <!-- Reveal.js Base Stylesheets -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reset.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.css">
+    
+    <!-- Tokyo Night Dark Theme for Code Syntax Resaltation -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/tokyo-night-dark.min.css">
+
+    <!-- Premium Google Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* Modern Web Design Aesthetics & Layout Tokens */
+        html, body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background-color: #0b0f19 !important;
+            color: #f8fafc;
+            overflow: hidden;
+        }
+
+        .reveal {
+            width: 100%;
+            height: 100%;
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0b0f19 0%, #111827 50%, #1e1b4b 100%) !important;
+            color: #f8fafc;
+        }
+        
+        .reveal .slides section {
+            font-family: 'Outfit', 'Inter', sans-serif;
+            text-align: left;
+            padding: 50px 70px;
+            box-sizing: border-box;
+            font-size: 22px;
+            color: #f8fafc;
+        }
+        
+        /* Centered Cover Slide Layout */
+        .reveal .slides section.lead-slide {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+        
+        /* Premium Typography Styles */
+        .reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6 {
+            font-family: 'Outfit', sans-serif;
+            text-transform: none;
+            color: #38bdf8;
+            font-weight: 800;
+            text-shadow: none;
+        }
+        
+        .reveal h1 {
+            font-size: 1.7em;
+            margin-bottom: 12px;
+            border-bottom: 2px solid #3b82f6;
+            padding-bottom: 10px;
+        }
+        
+        .reveal .lead-slide h1 {
+            border-bottom: none;
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            color: #38bdf8;
+        }
+        
+        .reveal h2 {
+            font-size: 1.25em;
+            color: #818cf8;
+            font-weight: 700;
+            margin-top: 0px;
+        }
+        
+        .reveal .lead-slide h2 {
+            font-size: 1.55em;
+            color: #818cf8;
+            margin-bottom: 30px;
+        }
+        
+        .reveal h3 {
+            font-size: 1.1em;
+            color: #a78bfa;
+        }
+        
+        /* List and Text Formatting */
+        .reveal p, .reveal li {
+            color: #cbd5e1;
+            line-height: 1.6;
+        }
+        
+        .reveal ul {
+            list-style-type: square;
+            margin-left: 1.5em;
+        }
+        
+        .reveal li {
+            margin-bottom: 12px;
+        }
+        
+        .reveal strong {
+            color: #f43f5e;
+            font-weight: 600;
+        }
+        
+        .reveal em {
+            color: #fb7185;
+            font-style: italic;
+        }
+        
+        .reveal footer {
+            font-size: 0.5em;
+            color: #6b7280;
+            position: absolute;
+            bottom: 20px;
+            right: 50px;
+        }
+        
+        /* Code Block Containers and Inlines */
+        .reveal code {
+            font-family: 'Fira Code', monospace;
+            background-color: #030712;
+            color: #38bdf8;
+            border-radius: 4px;
+            padding: 2px 8px;
+            font-size: 0.85em;
+        }
+        
+        .reveal pre {
+            background-color: #030712 !important;
+            border: 1px solid #1f2937;
+            border-radius: 10px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
+            width: 100%;
+            margin: 20px 0;
+            box-sizing: border-box;
+        }
+        
+        .reveal pre code {
+            background-color: transparent;
+            color: inherit;
+            font-size: 0.8em;
+            line-height: 1.55;
+            padding: 18px;
+            max-height: 520px;
+        }
+        
+        /* Control Nav Arrows & Progress Bar */
+        .reveal .controls-arrow {
+            color: #38bdf8 !important;
+        }
+        
+        .reveal .progress span {
+            background-color: #38bdf8 !important;
+        }
+
+        /* Custom style overrides parsed from Marp frontmatter */
+        .reveal .slides section {
+  font-family: 'Outfit', 'Inter', sans-serif;
+  background: linear-gradient(135deg, #0b0f19 0%, #111827 50%, #1e1b4b 100%);
+  color: #f8fafc;
+  padding: 50px 70px;
+  font-size: 22px;
+}
+h1 {
+  color: #38bdf8;
+  font-size: 1.7em;
+  font-weight: 800;
+  margin-bottom: 12px;
+  border-bottom: 2px solid #3b82f6;
+  padding-bottom: 10px;
+}
+h2 {
+  color: #818cf8;
+  font-size: 1.3em;
+}
+code {
+  background-color: #1e293b;
+  color: #34d399;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+.highlight {
+  color: #f472b6;
+  font-weight: bold;
+}
+.box {
+  background: rgba(30, 41, 59, 0.7);
+  border-left: 4px solid #38bdf8;
+  padding: 15px;
+  border-radius: 4px;
+}
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <section >
+<h1>Tema 5.2.5.2: Pruebas de Interfaz y Cobertura de Código</h1>
+<h2>Widget Testing con WidgetTester, Finders y Métricas LCOV</h2>
+
+<strong>Curso:</strong> IF0009 - Desarrollo de Software IV  
+<strong>Profesor:</strong> Mag. Jonathan Granados C.  
+<strong>Semestre:</strong> II-2026 | Universidad de Costa Rica
+            </section>
+
+            <section >
+<h1>Objetivos de la Sesión</h1>
+
+<ul>
+<li>Renderizar y evaluar componentes de UI con <code>WidgetTester</code>.
+</li>
+<li>Dominar el ciclo de renderizado de prueba: <code>pumpWidget</code>, <code>pump</code> y <code>pumpAndSettle</code>.
+</li>
+<li>Localizar elementos en el árbol con <code>find.text</code>, <code>find.byKey</code> y <code>find.byType</code>.
+</li>
+<li>Simular interacciones de usuario: toques (<code>tap</code>) e ingreso de texto (<code>enterText</code>).
+</li>
+<li>Generar y analizar reportes de <strong>cobertura de código (LCOV)</strong> en Flutter.
+</li>
+</ul>
+            </section>
+
+            <section >
+<h1>Naturaleza del Widget Testing</h1>
+
+<ul>
+<li><strong>Sin Emulador Gráfico:</strong> Corre en un canvas virtual <em>Headless</em> en la máquina local.
+</li>
+<li><strong>Control Temporal Absoluto:</strong> El reloj del motor gráfico está pausado por defecto.
+</li>
+<li><strong>Orquestación de Frames:</strong>
+<ul>
+<li><code>tester.pumpWidget(widget)</code>: Monta el árbol de componentes.
+</li>
+<li><code>tester.pump(duration)</code>: Avanza el reloj un frame discreto.
+</li>
+<li><code>tester.pumpAndSettle()</code>: Espera hasta que todas las animaciones concluyan.
+</li>
+</ul>
+</li>
+</ul>
+            </section>
+
+            <section >
+<h1>Estrategias de Búsqueda con Finders</h1>
+
+| Método Finder | Caso de Uso | Nivel de Robustez |
+|---|---|---|
+| <code>find.byKey(Key('id'))</code> | Identificador único desacoplado | <strong>Máxima (Recomendada)</strong> |
+| <code>find.text('Guardar')</code> | Textos específicos de UI | Moderada (frágil con i18n) |
+| <code>find.byType(ElevatedButton)</code> | Validación de presencia de clase | Genérica |
+| <code>find.byIcon(Icons.camera)</code> | Botones de hardware y acciones | Alta para multimedia |
+            </section>
+
+            <section >
+<h1>Estructura de un Widget Test</h1>
+
+<pre><code class="language-dart">testWidgets('Debe mostrar error si el campo está vacío', (WidgetTester tester) async {
+  // 1. Montaje envuelto en MaterialApp (Obligatorio para temas y textos)
+  await tester.pumpWidget(
+    MaterialApp(home: Scaffold(body: IncidenciaFormWidget(onGuardar: (_, __) async {}))),
+  );
+
+  // 2. Simular pulsación del botón
+  await tester.tap(find.byKey(const Key('boton_guardar')));
+
+  // 3. Forzar el redibujado del frame
+  await tester.pump();
+
+  // 4. Aserción de presencia
+  expect(find.text('El título es obligatorio'), findsOneWidget);
+});</code></pre>
+            </section>
+
+            <section >
+<h1>Simulación de Entrada de Usuario</h1>
+
+<pre><code class="language-dart">testWidgets('Debe escribir y enviar datos correctamente', (WidgetTester tester) async {
+  String? tituloIngresado;
+
+  await tester.pumpWidget(
+    MaterialApp(home: Scaffold(body: IncidenciaFormWidget(
+      onGuardar: (t, _) async =&gt; tituloIngresado = t,
+    ))),
+  );
+
+  // Escribir texto en el campo
+  await tester.enterText(find.byKey(const Key('campo_titulo')), 'Poste Caído');
+  await tester.tap(find.byKey(const Key('boton_guardar')));
+  await tester.pumpAndSettle();
+
+  expect(tituloIngresado, equals('Poste Caído'));
+});</code></pre>
+            </section>
+
+            <section >
+<h1>Medición de Cobertura de Código</h1>
+
+<ul>
+<li><strong>Ejecución y Generación de LCOV:</strong>
+</li>
+</ul>
+  ```bash
+  flutter test --coverage
+  ```
+  Genera el archivo estandarizado <code>coverage/lcov.info</code>.
+
+<ul>
+<li><strong>Generación de Reporte Visual HTML (con genhtml):</strong>
+</li>
+</ul>
+  ```bash
+  genhtml coverage/lcov.info -o coverage/html
+  ```
+
+<ul>
+<li>Permite identificar líneas sin ejecutar y ramas de error no cubiertas.
+</li>
+</ul>
+            </section>
+
+            <section >
+<h1>Trampas Comunes en Widget Testing</h1>
+
+<ul>
+<li>❌ <strong>Olvidar envolver en <code>MaterialApp</code>:</strong> Lanza la excepción <code>No Directionality widget found</code>.
+</li>
+<li>❌ <strong>Usar <code>pumpAndSettle()</code> con spinners infinitos:</strong>
+<ul>
+<li>Si un <code>CircularProgressIndicator</code> gira indefinidamente, <code>pumpAndSettle()</code> colapsará por timeout.
+</li>
+<li><em>Solución:</em> Usar <code>tester.pump(Duration(milliseconds: 500))</code>.
+</li>
+</ul>
+</li>
+<li>❌ <strong>Depender de coordenadas físicas fijas:</strong> Los toques deben enviarse a Finders, nunca a píxeles fijos que varían con la pantalla.
+</li>
+</ul>
+            </section>
+
+            <section >
+<h1>Pregunta de Reflexión</h1>
+
+<div class="box">
+¿Por qué una suite de Widget Tests completa y automatizada permite refactorizar la arquitectura interna de estado (ej. migrar de setState a BLoC o Riverpod) con absoluta seguridad y sin alterar los tests de UI?
+</div>
+            </section>
+
+        </div>
+    </div>
+
+    <!-- Highlight.js and Reveal.js Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.js"></script>
+
+    <script>
+        // Initialize Highlight.js for code syntax coloring
+        hljs.highlightAll();
+
+        // Initialize Reveal.js with modern layout configurations
+        Reveal.initialize({
+            hash: true,
+            respondToHashChanges: true,
+            history: true,
+            transition: 'slide', // none/fade/slide/convex/concave/zoom
+            transitionSpeed: 'default',
+            backgroundTransition: 'fade',
+            width: 960,
+            height: 700,
+            margin: 0.05,
+            minScale: 0.2,
+            maxScale: 2.0,
+            plugins: []
+        });
+    </script>
+</body>
+</html>
