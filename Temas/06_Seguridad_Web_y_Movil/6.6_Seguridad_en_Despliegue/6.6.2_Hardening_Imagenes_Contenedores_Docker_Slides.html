@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <title>Presentación - Desarrollo de Software IV</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <!-- Reveal.js Base Stylesheets -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reset.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.css">
+    
+    <!-- Tokyo Night Dark Theme for Code Syntax Resaltation -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/tokyo-night-dark.min.css">
+
+    <!-- Premium Google Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* Modern Web Design Aesthetics & Layout Tokens */
+        html, body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background-color: #0b0f19 !important;
+            color: #f8fafc;
+            overflow: hidden;
+        }
+
+        .reveal {
+            width: 100%;
+            height: 100%;
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0b0f19 0%, #111827 50%, #1e1b4b 100%) !important;
+            color: #f8fafc;
+        }
+        
+        .reveal .slides section {
+            font-family: 'Outfit', 'Inter', sans-serif;
+            text-align: left;
+            padding: 50px 70px;
+            box-sizing: border-box;
+            font-size: 22px;
+            color: #f8fafc;
+        }
+        
+        /* Centered Cover Slide Layout */
+        .reveal .slides section.lead-slide {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+        
+        /* Premium Typography Styles */
+        .reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6 {
+            font-family: 'Outfit', sans-serif;
+            text-transform: none;
+            color: #38bdf8;
+            font-weight: 800;
+            text-shadow: none;
+        }
+        
+        .reveal h1 {
+            font-size: 1.7em;
+            margin-bottom: 12px;
+            border-bottom: 2px solid #3b82f6;
+            padding-bottom: 10px;
+        }
+        
+        .reveal .lead-slide h1 {
+            border-bottom: none;
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            color: #38bdf8;
+        }
+        
+        .reveal h2 {
+            font-size: 1.25em;
+            color: #818cf8;
+            font-weight: 700;
+            margin-top: 0px;
+        }
+        
+        .reveal .lead-slide h2 {
+            font-size: 1.55em;
+            color: #818cf8;
+            margin-bottom: 30px;
+        }
+        
+        .reveal h3 {
+            font-size: 1.1em;
+            color: #a78bfa;
+        }
+        
+        /* List and Text Formatting */
+        .reveal p, .reveal li {
+            color: #cbd5e1;
+            line-height: 1.6;
+        }
+        
+        .reveal ul {
+            list-style-type: square;
+            margin-left: 1.5em;
+        }
+        
+        .reveal li {
+            margin-bottom: 12px;
+        }
+        
+        .reveal strong {
+            color: #f43f5e;
+            font-weight: 600;
+        }
+        
+        .reveal em {
+            color: #fb7185;
+            font-style: italic;
+        }
+        
+        .reveal footer {
+            font-size: 0.5em;
+            color: #6b7280;
+            position: absolute;
+            bottom: 20px;
+            right: 50px;
+        }
+        
+        /* Code Block Containers and Inlines */
+        .reveal code {
+            font-family: 'Fira Code', monospace;
+            background-color: #030712;
+            color: #38bdf8;
+            border-radius: 4px;
+            padding: 2px 8px;
+            font-size: 0.85em;
+        }
+        
+        .reveal pre {
+            background-color: #030712 !important;
+            border: 1px solid #1f2937;
+            border-radius: 10px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
+            width: 100%;
+            margin: 20px 0;
+            box-sizing: border-box;
+        }
+        
+        .reveal pre code {
+            background-color: transparent;
+            color: inherit;
+            font-size: 0.8em;
+            line-height: 1.55;
+            padding: 18px;
+            max-height: 520px;
+        }
+        
+        /* Control Nav Arrows & Progress Bar */
+        .reveal .controls-arrow {
+            color: #38bdf8 !important;
+        }
+        
+        .reveal .progress span {
+            background-color: #38bdf8 !important;
+        }
+
+        /* Custom style overrides parsed from Marp frontmatter */
+        .reveal .slides section {
+  font-family: 'Outfit', 'Inter', sans-serif;
+  background: linear-gradient(135deg, #0b0f19 0%, #111827 50%, #1e1b4b 100%);
+  color: #f8fafc;
+  padding: 50px 70px;
+  font-size: 22px;
+}
+h1 {
+  color: #38bdf8;
+  font-size: 1.7em;
+  font-weight: 800;
+  margin-bottom: 12px;
+  border-bottom: 2px solid #3b82f6;
+  padding-bottom: 10px;
+}
+h2 {
+  color: #818cf8;
+  font-size: 1.3em;
+}
+code {
+  background-color: #1e293b;
+  color: #34d399;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+.highlight {
+  color: #f472b6;
+  font-weight: bold;
+}
+.box {
+  background: rgba(30, 41, 59, 0.7);
+  border-left: 4px solid #38bdf8;
+  padding: 15px;
+  border-radius: 4px;
+}
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <section >
+<h1>Tema 6.6.2: Hardening de Docker</h1>
+<h2>Contenedores Non-Root, Distroless y Multi-Stage Builds en Java 25</h2>
+
+<strong>Curso:</strong> IF0009 - Desarrollo de Software IV  
+<strong>Profesor:</strong> Mag. Jonathan Granados C.  
+<strong>Semestre:</strong> II-2026 | Universidad de Costa Rica
+            </section>
+
+            <section >
+<h1>Objetivos de la Sesión</h1>
+
+<ul>
+<li>Comprender los riesgos de ejecutar contenedores como usuario <code>root</code> (UID 0).
+</li>
+<li>Minimizar la superficie de ataque con imágenes <strong>Distroless</strong>.
+</li>
+<li>Diseñar construcciones en múltiples etapas (<strong>Multi-Stage Builds</strong>).
+</li>
+<li>Implementar sistemas de archivos de solo lectura (<strong><code>--read-only</code></strong>).
+</li>
+<li>Optimizar la ejecución de la JVM en contenedores (cgroups v2).
+</li>
+</ul>
+            </section>
+
+            <section >
+<h1>El Peligro del Usuario <code>root</code> en Contenedores</h1>
+
+<ul>
+<li><strong>Mito común:</strong> <em>"Un contenedor es un entorno virtual completamente aislado"</em>.
+</li>
+<li><strong>Realidad Técnica:</strong>
+<ul>
+<li>El contenedor comparte el <strong>kernel del sistema anfitrión</strong>.
+</li>
+<li>Si un proceso corre como UID 0 y sufre una brecha, puede ejecutar un <strong>Container Breakout</strong> y controlar el host.
+</li>
+</ul>
+</li>
+<li><strong>Directiva Defensiva Obligatoria:</strong>
+<ul>
+<li>Crear y conmutar a un usuario no privilegiado: <code>USER nonroot:nonroot</code>.
+</li>
+</ul>
+</li>
+</ul>
+            </section>
+
+            <section >
+<h1>Filosofía Distroless (Google Container Tools)</h1>
+
+<ul>
+<li><strong>¿Qué contiene una imagen Distroless?</strong>
+<ul>
+<li>Únicamente la JVM y bibliotecas de enlace dinámico mínimas.
+</li>
+<li><strong>CERO gestores de paquetes (<code>apt</code>, <code>apk</code>).</strong>
+</li>
+<li><strong>CERO intérpretes de shell (<code>/bin/sh</code>, <code>/bin/bash</code>).</strong>
+</li>
+<li>CERO comandos de red (<code>curl</code>, <code>wget</code>, <code>nc</code>).
+</li>
+</ul>
+</li>
+<li>Si un atacante inyecta comandos del sistema, no tiene intérprete para ejecutarlos.
+</li>
+</ul>
+            </section>
+
+            <section >
+<h1>Dockerfile Multi-Stage en Java 25</h1>
+
+<pre><code class="language-dockerfile"># ETAPA 1: Construcción
+FROM maven:3.9.6-eclipse-temurin-25 AS builder
+WORKDIR /build
+COPY pom.xml .
+RUN mvn dependency:go-offline
+COPY src ./src
+RUN mvn clean package -DskipTests
+
+# ETAPA 2: Runtime Seguro Distroless
+FROM gcr.io/distroless/java25-debian12:nonroot
+WORKDIR /app
+COPY --from=builder /build/target/*.jar app.jar
+USER nonroot:nonroot
+ENTRYPOINT ["java", "-jar", "app.jar"]</code></pre>
+
+<ul>
+<li>Imagen final compacta y libre de código fuente o dependencias de compilación.
+</li>
+</ul>
+            </section>
+
+            <section >
+<h1>Parámetros de Ejecución Blindada</h1>
+
+<pre><code class="language-bash">docker run -d \
+  --read-only \
+  --tmpfs /tmp:rw,noexec,nosuid \
+  --security-opt=no-new-privileges:true \
+  --cap-drop=ALL \
+  -p 8080:8080 api-segura:latest</code></pre>
+
+<ul>
+<li><strong><code>--read-only</code>:</strong> Impide alterar binarios o inyectar scripts en disco.
+</li>
+<li><strong><code>--cap-drop=ALL</code>:</strong> Elimina privilegios del kernel no indispensables.
+</li>
+</ul>
+            </section>
+
+            <section >
+<h1>Pregunta para Discusión</h1>
+
+<ul>
+<li>Si un contenedor Distroless no tiene bash ni shell, ¿cómo puede un desarrollador conectarse mediante <code>docker exec -it</code> para depurar problemas en caliente?
+</li>
+<li><em>(Analice el uso de imágenes debug efímeras y telemetría de observabilidad).</em>
+</li>
+</ul>
+            </section>
+
+        </div>
+    </div>
+
+    <!-- Highlight.js and Reveal.js Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.js"></script>
+
+    <script>
+        // Initialize Highlight.js for code syntax coloring
+        hljs.highlightAll();
+
+        // Initialize Reveal.js with modern layout configurations
+        Reveal.initialize({
+            hash: true,
+            respondToHashChanges: true,
+            history: true,
+            transition: 'slide', // none/fade/slide/convex/concave/zoom
+            transitionSpeed: 'default',
+            backgroundTransition: 'fade',
+            width: 960,
+            height: 700,
+            margin: 0.05,
+            minScale: 0.2,
+            maxScale: 2.0,
+            plugins: []
+        });
+    </script>
+</body>
+</html>

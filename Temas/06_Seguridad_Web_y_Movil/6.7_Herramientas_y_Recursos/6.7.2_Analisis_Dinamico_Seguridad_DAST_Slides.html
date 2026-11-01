@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <title>Presentación - Desarrollo de Software IV</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <!-- Reveal.js Base Stylesheets -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reset.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.css">
+    
+    <!-- Tokyo Night Dark Theme for Code Syntax Resaltation -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/tokyo-night-dark.min.css">
+
+    <!-- Premium Google Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* Modern Web Design Aesthetics & Layout Tokens */
+        html, body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background-color: #0b0f19 !important;
+            color: #f8fafc;
+            overflow: hidden;
+        }
+
+        .reveal {
+            width: 100%;
+            height: 100%;
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0b0f19 0%, #111827 50%, #1e1b4b 100%) !important;
+            color: #f8fafc;
+        }
+        
+        .reveal .slides section {
+            font-family: 'Outfit', 'Inter', sans-serif;
+            text-align: left;
+            padding: 50px 70px;
+            box-sizing: border-box;
+            font-size: 22px;
+            color: #f8fafc;
+        }
+        
+        /* Centered Cover Slide Layout */
+        .reveal .slides section.lead-slide {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+        
+        /* Premium Typography Styles */
+        .reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6 {
+            font-family: 'Outfit', sans-serif;
+            text-transform: none;
+            color: #38bdf8;
+            font-weight: 800;
+            text-shadow: none;
+        }
+        
+        .reveal h1 {
+            font-size: 1.7em;
+            margin-bottom: 12px;
+            border-bottom: 2px solid #3b82f6;
+            padding-bottom: 10px;
+        }
+        
+        .reveal .lead-slide h1 {
+            border-bottom: none;
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            color: #38bdf8;
+        }
+        
+        .reveal h2 {
+            font-size: 1.25em;
+            color: #818cf8;
+            font-weight: 700;
+            margin-top: 0px;
+        }
+        
+        .reveal .lead-slide h2 {
+            font-size: 1.55em;
+            color: #818cf8;
+            margin-bottom: 30px;
+        }
+        
+        .reveal h3 {
+            font-size: 1.1em;
+            color: #a78bfa;
+        }
+        
+        /* List and Text Formatting */
+        .reveal p, .reveal li {
+            color: #cbd5e1;
+            line-height: 1.6;
+        }
+        
+        .reveal ul {
+            list-style-type: square;
+            margin-left: 1.5em;
+        }
+        
+        .reveal li {
+            margin-bottom: 12px;
+        }
+        
+        .reveal strong {
+            color: #f43f5e;
+            font-weight: 600;
+        }
+        
+        .reveal em {
+            color: #fb7185;
+            font-style: italic;
+        }
+        
+        .reveal footer {
+            font-size: 0.5em;
+            color: #6b7280;
+            position: absolute;
+            bottom: 20px;
+            right: 50px;
+        }
+        
+        /* Code Block Containers and Inlines */
+        .reveal code {
+            font-family: 'Fira Code', monospace;
+            background-color: #030712;
+            color: #38bdf8;
+            border-radius: 4px;
+            padding: 2px 8px;
+            font-size: 0.85em;
+        }
+        
+        .reveal pre {
+            background-color: #030712 !important;
+            border: 1px solid #1f2937;
+            border-radius: 10px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
+            width: 100%;
+            margin: 20px 0;
+            box-sizing: border-box;
+        }
+        
+        .reveal pre code {
+            background-color: transparent;
+            color: inherit;
+            font-size: 0.8em;
+            line-height: 1.55;
+            padding: 18px;
+            max-height: 520px;
+        }
+        
+        /* Control Nav Arrows & Progress Bar */
+        .reveal .controls-arrow {
+            color: #38bdf8 !important;
+        }
+        
+        .reveal .progress span {
+            background-color: #38bdf8 !important;
+        }
+
+        /* Custom style overrides parsed from Marp frontmatter */
+        .reveal .slides section {
+  font-family: 'Outfit', 'Inter', sans-serif;
+  background: linear-gradient(135deg, #0b0f19 0%, #111827 50%, #1e1b4b 100%);
+  color: #f8fafc;
+  padding: 50px 70px;
+  font-size: 22px;
+}
+h1 {
+  color: #38bdf8;
+  font-size: 1.7em;
+  font-weight: 800;
+  margin-bottom: 12px;
+  border-bottom: 2px solid #3b82f6;
+  padding-bottom: 10px;
+}
+h2 {
+  color: #818cf8;
+  font-size: 1.3em;
+}
+code {
+  background-color: #1e293b;
+  color: #34d399;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+.highlight {
+  color: #f472b6;
+  font-weight: bold;
+}
+.box {
+  background: rgba(30, 41, 59, 0.7);
+  border-left: 4px solid #38bdf8;
+  padding: 15px;
+  border-radius: 4px;
+}
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <section >
+<h1>Tema 6.7.2: Análisis Dinámico (DAST)</h1>
+<h2>OWASP ZAP, Escaneo de APIs RESTful con OpenAPI y Automatización en Docker</h2>
+
+<strong>Curso:</strong> IF0009 - Desarrollo de Software IV  
+<strong>Profesor:</strong> Mag. Jonathan Granados C.  
+<strong>Semestre:</strong> II-2026 | Universidad de Costa Rica
+            </section>
+
+            <section >
+<h1>Objetivos de la Sesión</h1>
+
+<ul>
+<li>Comprender el enfoque de pruebas de caja negra (<strong>DAST</strong>).
+</li>
+<li>Comparar <strong>SAST</strong> frente a <strong>DAST</strong> en el ciclo de vida de desarrollo.
+</li>
+<li>Distinguir los modos de escaneo <strong>Pasivo</strong> y <strong>Activo</strong> en <strong>OWASP ZAP</strong>.
+</li>
+<li>Automatizar el escaneo de APIs mediante contratos <strong>OpenAPI / Swagger</strong>.
+</li>
+<li>Interpretar y filtrar reportes de vulnerabilidad diferenciando falsos positivos.
+</li>
+</ul>
+            </section>
+
+            <section >
+<h1>DAST: La Perspectiva del Atacante</h1>
+
+<ul>
+<li><strong>Pruebas de Caja Negra (Black-Box):</strong>
+<ul>
+<li>La herramienta interactúa contra la aplicación desplegada y activa en red.
+</li>
+<li>No tiene acceso al código fuente ni al compilador.
+</li>
+</ul>
+</li>
+<li><strong>Capacidades Exclusivas de DAST:</strong>
+<ul>
+<li>Detecta desconfiguración real de servidores web y proxies inversos.
+</li>
+<li>Valida certificados SSL/TLS y cabeceras de respuesta reales en tránsito.
+</li>
+<li>Comprueba si los filtros de Spring Security realmente interceptan peticiones.
+</li>
+</ul>
+</li>
+</ul>
+            </section>
+
+            <section >
+<h1>OWASP ZAP: Modos de Operación</h1>
+
+<ul>
+<li><strong>1. Escaneo Pasivo (Passive Scan):</strong>
+<ul>
+<li>Analiza el tráfico legítimo sin alterar peticiones ni inyectar datos.
+</li>
+<li>Inocuo: seguro para ejecutar en cualquier entorno.
+</li>
+<li>Detecta cookies inseguras y cabeceras ausentes.
+</li>
+</ul>
+</li>
+<li><strong>2. Escaneo Activo (Active Scan):</strong>
+<ul>
+<li>Envía ráfagas de ataques dirigidos (SQLi, XSS, Path Traversal).
+</li>
+<li><strong>Intrusivo:</strong> Solo debe ejecutarse en entornos de staging aislados.
+</li>
+</ul>
+</li>
+</ul>
+            </section>
+
+            <section >
+<h1>Escaneo Automatizado con OpenAPI en Docker</h1>
+
+<pre><code class="language-bash">docker run --rm -v $(pwd)/reportes:/zap/wrk/:rw \
+  ghcr.io/zaproxy/zaproxy:stable zap-api-scan.py \
+  -t http://backend:8080/v3/api-docs \
+  -f openapi \
+  -r reporte_zap.html \
+  -l WARN</code></pre>
+
+<ul>
+<li>Carga automáticamente todos los endpoints documentados en la API.
+</li>
+<li>Genera reportes interactivos y detiene el build si hay alertas altas.
+</li>
+</ul>
+            </section>
+
+            <section >
+<h1>Análisis de Reportes y Falsos Positivos</h1>
+
+<ul>
+<li><strong>Niveles de Riesgo:</strong>
+<ul>
+<li><strong>Alto:</strong> Inyección SQL comprobada, RCE, bypass de autenticación.
+</li>
+<li><strong>Medio:</strong> Ausencia de CSP, cookies sin <code>SameSite</code> o <code>HttpOnly</code>.
+</li>
+<li><strong>Bajo / Informativo:</strong> Cabeceras redundantes o divulgación de versión.
+</li>
+</ul>
+</li>
+<li><strong>Falso Positivo Común:</strong>
+<ul>
+<li>Alertas de XSS en endpoints que devuelven exclusivamente JSON estricto (<code>application/json</code>).
+</li>
+</ul>
+</li>
+</ul>
+            </section>
+
+            <section >
+<h1>Pregunta para Discusión</h1>
+
+<ul>
+<li>¿Por qué un escaneo dinámico DAST realizado sin credenciales de autenticación ofrece una visión incompleta de la postura de seguridad de una API RESTful?
+</li>
+<li><em>(Analice qué proporción de endpoints reside detrás de la seguridad Bearer).</em>
+</li>
+</ul>
+            </section>
+
+        </div>
+    </div>
+
+    <!-- Highlight.js and Reveal.js Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.js"></script>
+
+    <script>
+        // Initialize Highlight.js for code syntax coloring
+        hljs.highlightAll();
+
+        // Initialize Reveal.js with modern layout configurations
+        Reveal.initialize({
+            hash: true,
+            respondToHashChanges: true,
+            history: true,
+            transition: 'slide', // none/fade/slide/convex/concave/zoom
+            transitionSpeed: 'default',
+            backgroundTransition: 'fade',
+            width: 960,
+            height: 700,
+            margin: 0.05,
+            minScale: 0.2,
+            maxScale: 2.0,
+            plugins: []
+        });
+    </script>
+</body>
+</html>

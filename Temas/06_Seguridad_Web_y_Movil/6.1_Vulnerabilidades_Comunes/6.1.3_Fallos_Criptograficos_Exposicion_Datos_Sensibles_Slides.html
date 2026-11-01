@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <title>Presentación - Desarrollo de Software IV</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <!-- Reveal.js Base Stylesheets -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reset.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.css">
+    
+    <!-- Tokyo Night Dark Theme for Code Syntax Resaltation -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/tokyo-night-dark.min.css">
+
+    <!-- Premium Google Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* Modern Web Design Aesthetics & Layout Tokens */
+        html, body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background-color: #0b0f19 !important;
+            color: #f8fafc;
+            overflow: hidden;
+        }
+
+        .reveal {
+            width: 100%;
+            height: 100%;
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0b0f19 0%, #111827 50%, #1e1b4b 100%) !important;
+            color: #f8fafc;
+        }
+        
+        .reveal .slides section {
+            font-family: 'Outfit', 'Inter', sans-serif;
+            text-align: left;
+            padding: 50px 70px;
+            box-sizing: border-box;
+            font-size: 22px;
+            color: #f8fafc;
+        }
+        
+        /* Centered Cover Slide Layout */
+        .reveal .slides section.lead-slide {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+        
+        /* Premium Typography Styles */
+        .reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6 {
+            font-family: 'Outfit', sans-serif;
+            text-transform: none;
+            color: #38bdf8;
+            font-weight: 800;
+            text-shadow: none;
+        }
+        
+        .reveal h1 {
+            font-size: 1.7em;
+            margin-bottom: 12px;
+            border-bottom: 2px solid #3b82f6;
+            padding-bottom: 10px;
+        }
+        
+        .reveal .lead-slide h1 {
+            border-bottom: none;
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            color: #38bdf8;
+        }
+        
+        .reveal h2 {
+            font-size: 1.25em;
+            color: #818cf8;
+            font-weight: 700;
+            margin-top: 0px;
+        }
+        
+        .reveal .lead-slide h2 {
+            font-size: 1.55em;
+            color: #818cf8;
+            margin-bottom: 30px;
+        }
+        
+        .reveal h3 {
+            font-size: 1.1em;
+            color: #a78bfa;
+        }
+        
+        /* List and Text Formatting */
+        .reveal p, .reveal li {
+            color: #cbd5e1;
+            line-height: 1.6;
+        }
+        
+        .reveal ul {
+            list-style-type: square;
+            margin-left: 1.5em;
+        }
+        
+        .reveal li {
+            margin-bottom: 12px;
+        }
+        
+        .reveal strong {
+            color: #f43f5e;
+            font-weight: 600;
+        }
+        
+        .reveal em {
+            color: #fb7185;
+            font-style: italic;
+        }
+        
+        .reveal footer {
+            font-size: 0.5em;
+            color: #6b7280;
+            position: absolute;
+            bottom: 20px;
+            right: 50px;
+        }
+        
+        /* Code Block Containers and Inlines */
+        .reveal code {
+            font-family: 'Fira Code', monospace;
+            background-color: #030712;
+            color: #38bdf8;
+            border-radius: 4px;
+            padding: 2px 8px;
+            font-size: 0.85em;
+        }
+        
+        .reveal pre {
+            background-color: #030712 !important;
+            border: 1px solid #1f2937;
+            border-radius: 10px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
+            width: 100%;
+            margin: 20px 0;
+            box-sizing: border-box;
+        }
+        
+        .reveal pre code {
+            background-color: transparent;
+            color: inherit;
+            font-size: 0.8em;
+            line-height: 1.55;
+            padding: 18px;
+            max-height: 520px;
+        }
+        
+        /* Control Nav Arrows & Progress Bar */
+        .reveal .controls-arrow {
+            color: #38bdf8 !important;
+        }
+        
+        .reveal .progress span {
+            background-color: #38bdf8 !important;
+        }
+
+        /* Custom style overrides parsed from Marp frontmatter */
+        .reveal .slides section {
+  font-family: 'Outfit', 'Inter', sans-serif;
+  background: linear-gradient(135deg, #0b0f19 0%, #111827 50%, #1e1b4b 100%);
+  color: #f8fafc;
+  padding: 50px 70px;
+  font-size: 22px;
+}
+h1 {
+  color: #38bdf8;
+  font-size: 1.7em;
+  font-weight: 800;
+  margin-bottom: 12px;
+  border-bottom: 2px solid #3b82f6;
+  padding-bottom: 10px;
+}
+h2 {
+  color: #818cf8;
+  font-size: 1.3em;
+}
+code {
+  background-color: #1e293b;
+  color: #34d399;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+.highlight {
+  color: #f472b6;
+  font-weight: bold;
+}
+.box {
+  background: rgba(30, 41, 59, 0.7);
+  border-left: 4px solid #38bdf8;
+  padding: 15px;
+  border-radius: 4px;
+}
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <section >
+<h1>Tema 6.1.3: Fallos Criptográficos</h1>
+<h2>Protección de Secretos en Reposo y en Tránsito</h2>
+
+<strong>Curso:</strong> IF0009 - Desarrollo de Software IV  
+<strong>Profesor:</strong> Mag. Jonathan Granados C.  
+<strong>Semestre:</strong> II-2026 | Universidad de Costa Rica
+            </section>
+
+            <section >
+<h1>Objetivos de la Sesión</h1>
+
+<ul>
+<li>Distinguir las tres ramas de la criptografía: <strong>Hash</strong>, <strong>Simétrico</strong> y <strong>Asimétrico</strong>.
+</li>
+<li>Identificar algoritmos obsoletos e inseguros (<strong>MD5, SHA-1, DES</strong>).
+</li>
+<li>Implementar funciones de derivación seguras: <strong>Argon2id</strong> y <strong>BCrypt</strong>.
+</li>
+<li>Comprender la necesidad del <em>Salt</em> y el factor de costo computable.
+</li>
+<li>Prevenir ataques de temporización (<em>Timing Attacks</em>) en comparación de credenciales.
+</li>
+</ul>
+            </section>
+
+            <section >
+<h1>Las Tres Ramas Criptográficas</h1>
+
+<ul>
+<li><strong>1. Funciones Resumen (Hash Unidireccional):</strong>
+<ul>
+<li>Diseñadas para contraseñas. Imposible recuperar el texto original.
+</li>
+<li>Ejemplos seguros: <strong>Argon2id</strong>, <strong>BCrypt</strong> (cost $\ge 12$).
+</li>
+</ul>
+</li>
+<li><strong>2. Cifrado Simétrico (Una sola clave):</strong>
+<ul>
+<li>Para grandes volúmenes de datos en reposo.
+</li>
+<li>Estándar actual: <strong>AES-256-GCM</strong> (cifrado autenticado AEAD).
+</li>
+</ul>
+</li>
+<li><strong>3. Cifrado Asimétrico (Par de claves Pública / Privada):</strong>
+<ul>
+<li>Para firmas digitales, certificados y negociación TLS.
+</li>
+<li>Estándar: <strong>RSA $\ge 2048$ bits</strong> y Curvas Elípticas (<strong>ECC / Ed25519</strong>).
+</li>
+</ul>
+</li>
+</ul>
+            </section>
+
+            <section >
+<h1>¿Por qué NUNCA usar SHA-256 para contraseñas?</h1>
+
+<ul>
+<li><strong>SHA-256 es un algoritmo de alta velocidad:</strong>
+<ul>
+<li>Diseñado para verificar integridad de archivos y bloques de datos.
+</li>
+<li>Una tarjeta GPU moderna calcula $>10$ mil millones de hashes por segundo.
+</li>
+<li>Permite romper contraseñas con tablas arcoíris (<em>Rainbow Tables</em>) en minutos.
+</li>
+</ul>
+</li>
+<li><strong>Solución (Argon2id / BCrypt):</strong>
+<ul>
+<li>Incorporan <strong>Salting</strong> aleatorio por cada usuario.
+</li>
+<li>Introducen <strong>Work Factor</strong> y consumo de memoria RAM intencional.
+</li>
+<li>Hacen que cada verificación tome 200-500 ms, volviendo inviable la fuerza bruta.
+</li>
+</ul>
+</li>
+</ul>
+            </section>
+
+            <section >
+<h1>Configuración de Argon2id en Spring Boot (Java 25)</h1>
+
+<pre><code class="language-java">@Configuration
+public class CriptografiaConfig {
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new Argon2PasswordEncoder(
+            16,     // Longitud del salt (16 bytes)
+            32,     // Longitud del hash resultante
+            1,      // Hilos paralelos de CPU
+            65536,  // Consumo de RAM: 64 MB
+            3       // Iteraciones computacionales
+        );
+    }
+}</code></pre>
+
+<ul>
+<li>Recomendación oficial de NIST y OWASP Password Storage Cheat Sheet.
+</li>
+</ul>
+            </section>
+
+            <section >
+<h1>Verificación Segura en Tiempo Constante</h1>
+
+<pre><code class="language-java">@Transactional(readOnly = true)
+public boolean validarCredenciales(String email, String rawPass) {
+    Usuario user = repository.findByEmail(email)
+        .orElseThrow(() -&gt; new BadCredentialsException());
+
+    // Compara en tiempo constante (previene Timing Attacks)
+    return passwordEncoder.matches(rawPass, user.getPasswordHash());
+}</code></pre>
+
+<ul>
+<li><code>matches()</code> no retorna antes de tiempo si el primer byte falla.
+</li>
+<li>Evita que atacantes midan microsegundos para adivinar caracteres.
+</li>
+</ul>
+            </section>
+
+            <section >
+<h1>Errores Críticos que Debe Evitar</h1>
+
+<ul>
+<li><strong>Algoritmos deprecados:</strong> Usar MD5 o SHA-1 en nuevos proyectos.
+</li>
+<li><strong>Modo AES-ECB:</strong> Permite visualizar patrones de datos repetidos. Use siempre <strong>AES-GCM</strong>.
+</li>
+<li><strong>Hardcoded Keys:</strong> Quemar claves criptográficas en el código Java o TypeScript.
+</li>
+<li><strong>Falta de Salt:</strong> Hashear contraseñas idénticas genera hashes idénticos en la base de datos.
+</li>
+</ul>
+            </section>
+
+            <section >
+<h1>Pregunta para Debate</h1>
+
+<ul>
+<li>¿Cuál es la diferencia entre <em>cifrar</em> un número de tarjeta de crédito en una base de datos y <em>hashear</em> una contraseña de usuario?
+</li>
+<li><em>(Reflexione sobre la reversibilidad y la necesidad de uso posterior).</em>
+</li>
+</ul>
+            </section>
+
+        </div>
+    </div>
+
+    <!-- Highlight.js and Reveal.js Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.js"></script>
+
+    <script>
+        // Initialize Highlight.js for code syntax coloring
+        hljs.highlightAll();
+
+        // Initialize Reveal.js with modern layout configurations
+        Reveal.initialize({
+            hash: true,
+            respondToHashChanges: true,
+            history: true,
+            transition: 'slide', // none/fade/slide/convex/concave/zoom
+            transitionSpeed: 'default',
+            backgroundTransition: 'fade',
+            width: 960,
+            height: 700,
+            margin: 0.05,
+            minScale: 0.2,
+            maxScale: 2.0,
+            plugins: []
+        });
+    </script>
+</body>
+</html>

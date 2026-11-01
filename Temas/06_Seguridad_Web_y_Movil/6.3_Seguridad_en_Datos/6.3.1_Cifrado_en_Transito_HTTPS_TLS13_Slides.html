@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <title>Presentación - Desarrollo de Software IV</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <!-- Reveal.js Base Stylesheets -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reset.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.css">
+    
+    <!-- Tokyo Night Dark Theme for Code Syntax Resaltation -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/tokyo-night-dark.min.css">
+
+    <!-- Premium Google Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* Modern Web Design Aesthetics & Layout Tokens */
+        html, body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background-color: #0b0f19 !important;
+            color: #f8fafc;
+            overflow: hidden;
+        }
+
+        .reveal {
+            width: 100%;
+            height: 100%;
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0b0f19 0%, #111827 50%, #1e1b4b 100%) !important;
+            color: #f8fafc;
+        }
+        
+        .reveal .slides section {
+            font-family: 'Outfit', 'Inter', sans-serif;
+            text-align: left;
+            padding: 50px 70px;
+            box-sizing: border-box;
+            font-size: 22px;
+            color: #f8fafc;
+        }
+        
+        /* Centered Cover Slide Layout */
+        .reveal .slides section.lead-slide {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+        
+        /* Premium Typography Styles */
+        .reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6 {
+            font-family: 'Outfit', sans-serif;
+            text-transform: none;
+            color: #38bdf8;
+            font-weight: 800;
+            text-shadow: none;
+        }
+        
+        .reveal h1 {
+            font-size: 1.7em;
+            margin-bottom: 12px;
+            border-bottom: 2px solid #3b82f6;
+            padding-bottom: 10px;
+        }
+        
+        .reveal .lead-slide h1 {
+            border-bottom: none;
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            color: #38bdf8;
+        }
+        
+        .reveal h2 {
+            font-size: 1.25em;
+            color: #818cf8;
+            font-weight: 700;
+            margin-top: 0px;
+        }
+        
+        .reveal .lead-slide h2 {
+            font-size: 1.55em;
+            color: #818cf8;
+            margin-bottom: 30px;
+        }
+        
+        .reveal h3 {
+            font-size: 1.1em;
+            color: #a78bfa;
+        }
+        
+        /* List and Text Formatting */
+        .reveal p, .reveal li {
+            color: #cbd5e1;
+            line-height: 1.6;
+        }
+        
+        .reveal ul {
+            list-style-type: square;
+            margin-left: 1.5em;
+        }
+        
+        .reveal li {
+            margin-bottom: 12px;
+        }
+        
+        .reveal strong {
+            color: #f43f5e;
+            font-weight: 600;
+        }
+        
+        .reveal em {
+            color: #fb7185;
+            font-style: italic;
+        }
+        
+        .reveal footer {
+            font-size: 0.5em;
+            color: #6b7280;
+            position: absolute;
+            bottom: 20px;
+            right: 50px;
+        }
+        
+        /* Code Block Containers and Inlines */
+        .reveal code {
+            font-family: 'Fira Code', monospace;
+            background-color: #030712;
+            color: #38bdf8;
+            border-radius: 4px;
+            padding: 2px 8px;
+            font-size: 0.85em;
+        }
+        
+        .reveal pre {
+            background-color: #030712 !important;
+            border: 1px solid #1f2937;
+            border-radius: 10px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
+            width: 100%;
+            margin: 20px 0;
+            box-sizing: border-box;
+        }
+        
+        .reveal pre code {
+            background-color: transparent;
+            color: inherit;
+            font-size: 0.8em;
+            line-height: 1.55;
+            padding: 18px;
+            max-height: 520px;
+        }
+        
+        /* Control Nav Arrows & Progress Bar */
+        .reveal .controls-arrow {
+            color: #38bdf8 !important;
+        }
+        
+        .reveal .progress span {
+            background-color: #38bdf8 !important;
+        }
+
+        /* Custom style overrides parsed from Marp frontmatter */
+        .reveal .slides section {
+  font-family: 'Outfit', 'Inter', sans-serif;
+  background: linear-gradient(135deg, #0b0f19 0%, #111827 50%, #1e1b4b 100%);
+  color: #f8fafc;
+  padding: 50px 70px;
+  font-size: 22px;
+}
+h1 {
+  color: #38bdf8;
+  font-size: 1.7em;
+  font-weight: 800;
+  margin-bottom: 12px;
+  border-bottom: 2px solid #3b82f6;
+  padding-bottom: 10px;
+}
+h2 {
+  color: #818cf8;
+  font-size: 1.3em;
+}
+code {
+  background-color: #1e293b;
+  color: #34d399;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+.highlight {
+  color: #f472b6;
+  font-weight: bold;
+}
+.box {
+  background: rgba(30, 41, 59, 0.7);
+  border-left: 4px solid #38bdf8;
+  padding: 15px;
+  border-radius: 4px;
+}
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <section >
+<h1>Tema 6.3.1: Cifrado en Tránsito</h1>
+<h2>TLS 1.3, Cabeceras HSTS y Certificate Pinning en Flutter 3</h2>
+
+<strong>Curso:</strong> IF0009 - Desarrollo de Software IV  
+<strong>Profesor:</strong> Mag. Jonathan Granados C.  
+<strong>Semestre:</strong> II-2026 | Universidad de Costa Rica
+            </section>
+
+            <section >
+<h1>Objetivos de la Sesión</h1>
+
+<ul>
+<li>Analizar la evolución y optimizaciones del protocolo <strong>TLS 1.3 (RFC 8446)</strong>.
+</li>
+<li>Comprender la propiedad de <strong>Forward Secrecy (PFS)</strong> con Diffie-Hellman efímero.
+</li>
+<li>Erradicar ataques de degradación mediante cabeceras <strong>HSTS</strong>.
+</li>
+<li>Comprender los riesgos de confiar ciegamente en Autoridades Certificadoras (CAs).
+</li>
+<li>Implementar <strong>Certificate Pinning</strong> defensivo en clientes <strong>Flutter 3</strong>.
+</li>
+</ul>
+            </section>
+
+            <section >
+<h1>TLS 1.3: Más Rápido y Criptográficamente Robusto</h1>
+
+<ul>
+<li><strong>Latencia reducida (1-RTT y 0-RTT):</strong>
+<ul>
+<li>Handshake completado en la mitad de tiempo frente a TLS 1.2.
+</li>
+</ul>
+</li>
+<li><strong>Eliminación de primitivas inseguras:</strong>
+<ul>
+<li>Prohibición formal de RSA estático, modo CBC, RC4 y 3DES.
+</li>
+<li>Solo admite cifrados autenticados modernos (<strong>AES-GCM, ChaCha20</strong>).
+</li>
+</ul>
+</li>
+<li><strong>Forward Secrecy Obligatorio:</strong>
+<ul>
+<li>Si la clave privada del servidor se compromete en el futuro, no se puede descifrar el tráfico pasado.
+</li>
+</ul>
+</li>
+</ul>
+            </section>
+
+            <section >
+<h1>Mitigación de SSL Stripping con HSTS</h1>
+
+<pre><code class="language-http">Strict-Transport-Security: max-age=31536000; includeSubDomains; preload</code></pre>
+
+<ul>
+<li><strong>Comportamiento en el Navegador:</strong>
+<ul>
+<li>Transforma de inmediato cualquier enlace <code>http://</code> en <code>https://</code> antes de transmitir.
+</li>
+<li>Impide que el usuario ignore avisos de certificados inválidos.
+</li>
+</ul>
+</li>
+<li><strong>Lista de Preload:</strong> Inclusión directa en el código fuente de los navegadores comerciales.
+</li>
+</ul>
+            </section>
+
+            <section >
+<h1>¿Por qué Certificate Pinning en Clientes Móviles?</h1>
+
+<ul>
+<li>Los teléfonos inteligentes contienen cientos de Certificados Raíz confiables.
+</li>
+<li><strong>Vectores de Ataque:</strong>
+<ul>
+<li>Redes Wi-Fi públicas con portales cautivos maliciosos.
+</li>
+<li>Certificados corporativos o gubernamentales instalados en el dispositivo.
+</li>
+<li>Compromiso de una Autoridad Certificadora intermedia.
+</li>
+</ul>
+</li>
+<li><strong>Certificate Pinning:</strong>
+<ul>
+<li>La aplicación móvil solo acepta la <strong>clave pública exacta (SPKI)</strong> de su propio backend.
+</li>
+<li>Rechaza cualquier proxy o interceptor (Burp Suite, Charles Proxy).
+</li>
+</ul>
+</li>
+</ul>
+            </section>
+
+            <section >
+<h1>Implementación de Pinning en Flutter 3</h1>
+
+<pre><code class="language-dart">final SecurityContext context = SecurityContext(withTrustedRoots: false);
+final certData = await rootBundle.load('assets/certs/api_ucr.pem');
+
+// Confía EXCLUSIVAMENTE en el certificado provisto
+context.setTrustedCertificatesBytes(certData.buffer.asUint8List());
+
+final client = HttpClient(context: context);
+client.badCertificateCallback = (cert, host, port) =&gt; false;</code></pre>
+
+<ul>
+<li>Bloquea conexiones sospechosas antes de enviar cualquier credencial o dato privado.
+</li>
+</ul>
+            </section>
+
+            <section >
+<h1>Trampas Comunes en Implementación</h1>
+
+<ul>
+<li><strong>Desactivar validación en debug y olvidarlo:</strong> Configurar <code>badCertificateCallback = (...) =&gt; true;</code> en producción anula toda protección.
+</li>
+<li><strong>No incluir Backup Pins:</strong> Si el certificado del servidor se renueva y la app no tiene la clave nueva precargada, los usuarios no podrán conectar hasta actualizar la app en la tienda.
+</li>
+<li><strong>Omitir anclaje en librerías de terceros:</strong> Proteger peticiones REST pero descuidar WebSockets o llamadas a servicios analíticos.
+</li>
+</ul>
+            </section>
+
+            <section >
+<h1>Pregunta para Discusión</h1>
+
+<ul>
+<li>¿Por qué el Certificate Pinning debe aplicarse mediante el hash de la clave pública (SPKI) en lugar de anclar el certificado X.509 completo?
+</li>
+<li><em>(Considere qué sucede cuando un certificado se renueva manteniendo el mismo par de claves).</em>
+</li>
+</ul>
+            </section>
+
+        </div>
+    </div>
+
+    <!-- Highlight.js and Reveal.js Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.js"></script>
+
+    <script>
+        // Initialize Highlight.js for code syntax coloring
+        hljs.highlightAll();
+
+        // Initialize Reveal.js with modern layout configurations
+        Reveal.initialize({
+            hash: true,
+            respondToHashChanges: true,
+            history: true,
+            transition: 'slide', // none/fade/slide/convex/concave/zoom
+            transitionSpeed: 'default',
+            backgroundTransition: 'fade',
+            width: 960,
+            height: 700,
+            margin: 0.05,
+            minScale: 0.2,
+            maxScale: 2.0,
+            plugins: []
+        });
+    </script>
+</body>
+</html>

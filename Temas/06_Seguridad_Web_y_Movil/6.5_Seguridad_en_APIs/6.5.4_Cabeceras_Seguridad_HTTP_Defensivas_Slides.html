@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <title>Presentación - Desarrollo de Software IV</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <!-- Reveal.js Base Stylesheets -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reset.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.css">
+    
+    <!-- Tokyo Night Dark Theme for Code Syntax Resaltation -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/tokyo-night-dark.min.css">
+
+    <!-- Premium Google Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* Modern Web Design Aesthetics & Layout Tokens */
+        html, body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background-color: #0b0f19 !important;
+            color: #f8fafc;
+            overflow: hidden;
+        }
+
+        .reveal {
+            width: 100%;
+            height: 100%;
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0b0f19 0%, #111827 50%, #1e1b4b 100%) !important;
+            color: #f8fafc;
+        }
+        
+        .reveal .slides section {
+            font-family: 'Outfit', 'Inter', sans-serif;
+            text-align: left;
+            padding: 50px 70px;
+            box-sizing: border-box;
+            font-size: 22px;
+            color: #f8fafc;
+        }
+        
+        /* Centered Cover Slide Layout */
+        .reveal .slides section.lead-slide {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+        
+        /* Premium Typography Styles */
+        .reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6 {
+            font-family: 'Outfit', sans-serif;
+            text-transform: none;
+            color: #38bdf8;
+            font-weight: 800;
+            text-shadow: none;
+        }
+        
+        .reveal h1 {
+            font-size: 1.7em;
+            margin-bottom: 12px;
+            border-bottom: 2px solid #3b82f6;
+            padding-bottom: 10px;
+        }
+        
+        .reveal .lead-slide h1 {
+            border-bottom: none;
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            color: #38bdf8;
+        }
+        
+        .reveal h2 {
+            font-size: 1.25em;
+            color: #818cf8;
+            font-weight: 700;
+            margin-top: 0px;
+        }
+        
+        .reveal .lead-slide h2 {
+            font-size: 1.55em;
+            color: #818cf8;
+            margin-bottom: 30px;
+        }
+        
+        .reveal h3 {
+            font-size: 1.1em;
+            color: #a78bfa;
+        }
+        
+        /* List and Text Formatting */
+        .reveal p, .reveal li {
+            color: #cbd5e1;
+            line-height: 1.6;
+        }
+        
+        .reveal ul {
+            list-style-type: square;
+            margin-left: 1.5em;
+        }
+        
+        .reveal li {
+            margin-bottom: 12px;
+        }
+        
+        .reveal strong {
+            color: #f43f5e;
+            font-weight: 600;
+        }
+        
+        .reveal em {
+            color: #fb7185;
+            font-style: italic;
+        }
+        
+        .reveal footer {
+            font-size: 0.5em;
+            color: #6b7280;
+            position: absolute;
+            bottom: 20px;
+            right: 50px;
+        }
+        
+        /* Code Block Containers and Inlines */
+        .reveal code {
+            font-family: 'Fira Code', monospace;
+            background-color: #030712;
+            color: #38bdf8;
+            border-radius: 4px;
+            padding: 2px 8px;
+            font-size: 0.85em;
+        }
+        
+        .reveal pre {
+            background-color: #030712 !important;
+            border: 1px solid #1f2937;
+            border-radius: 10px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
+            width: 100%;
+            margin: 20px 0;
+            box-sizing: border-box;
+        }
+        
+        .reveal pre code {
+            background-color: transparent;
+            color: inherit;
+            font-size: 0.8em;
+            line-height: 1.55;
+            padding: 18px;
+            max-height: 520px;
+        }
+        
+        /* Control Nav Arrows & Progress Bar */
+        .reveal .controls-arrow {
+            color: #38bdf8 !important;
+        }
+        
+        .reveal .progress span {
+            background-color: #38bdf8 !important;
+        }
+
+        /* Custom style overrides parsed from Marp frontmatter */
+        .reveal .slides section {
+  font-family: 'Outfit', 'Inter', sans-serif;
+  background: linear-gradient(135deg, #0b0f19 0%, #111827 50%, #1e1b4b 100%);
+  color: #f8fafc;
+  padding: 50px 70px;
+  font-size: 22px;
+}
+h1 {
+  color: #38bdf8;
+  font-size: 1.7em;
+  font-weight: 800;
+  margin-bottom: 12px;
+  border-bottom: 2px solid #3b82f6;
+  padding-bottom: 10px;
+}
+h2 {
+  color: #818cf8;
+  font-size: 1.3em;
+}
+code {
+  background-color: #1e293b;
+  color: #34d399;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+.highlight {
+  color: #f472b6;
+  font-weight: bold;
+}
+.box {
+  background: rgba(30, 41, 59, 0.7);
+  border-left: 4px solid #38bdf8;
+  padding: 15px;
+  border-radius: 4px;
+}
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <section >
+<h1>Tema 6.5.4: Cabeceras HTTP Defensivas</h1>
+<h2>Blindaje contra MIME Sniffing, Clickjacking y Exposición de Metadatos</h2>
+
+<strong>Curso:</strong> IF0009 - Desarrollo de Software IV  
+<strong>Profesor:</strong> Mag. Jonathan Granados C.  
+<strong>Semestre:</strong> II-2026 | Universidad de Costa Rica
+            </section>
+
+            <section >
+<h1>Objetivos de la Sesión</h1>
+
+<ul>
+<li>Identificar las cabeceras defensivas del <strong>OWASP Secure Headers Project</strong>.
+</li>
+<li>Neutralizar la adivinanza de ejecutables con <strong><code>nosniff</code></strong>.
+</li>
+<li>Erradicar el secuestro de clics (<strong>Clickjacking</strong>) con <strong><code>X-Frame-Options</code></strong>.
+</li>
+<li>Restringir fuga de información privada mediante <strong><code>Referrer-Policy</code></strong>.
+</li>
+<li>Inhabilitar APIs invasivas del navegador con <strong><code>Permissions-Policy</code></strong>.
+</li>
+</ul>
+            </section>
+
+            <section >
+<h1><code>X-Content-Type-Options: nosniff</code></h1>
+
+<ul>
+<li><strong>El Problema:</strong>
+<ul>
+<li>Navegadores antiguos intentaban adivinar el contenido (<em>MIME-Sniffing</em>).
+</li>
+<li>Un archivo <code>.jpg</code> con código JavaScript malicioso era ejecutado como script.
+</li>
+</ul>
+</li>
+<li><strong>La Solución:</strong>
+<ul>
+<li><code>nosniff</code> obliga al navegador a respetar estrictamente el <code>Content-Type</code>.
+</li>
+<li>Si el servidor declara <code>image/jpeg</code>, el navegador <strong>jamás lo ejecutará</strong> como script.
+</li>
+</ul>
+</li>
+</ul>
+            </section>
+
+            <section >
+<h1>Clickjacking y <code>X-Frame-Options</code></h1>
+
+<ul>
+<li><strong>Mecánica del Ataque:</strong>
+<ul>
+<li>Un sitio web malicioso incrusta su página en un <code>&lt;iframe&gt;</code> invisible (opacidad 0).
+</li>
+<li>Coloca botones falsos encima para que la víctima haga clic involuntariamente.
+</li>
+</ul>
+</li>
+<li><strong>Directiva Defensiva:</strong>
+<ul>
+<li><code>X-Frame-Options: DENY</code> (prohíbe que cualquier sitio lo incruste en frames).
+</li>
+<li><code>frame-ancestors 'none'</code> en CSP.
+</li>
+</ul>
+</li>
+</ul>
+            </section>
+
+            <section >
+<h1>Privacidad de Enlaces con <code>Referrer-Policy</code></h1>
+
+<pre><code class="language-http">Referrer-Policy: strict-origin-when-cross-origin</code></pre>
+
+<ul>
+<li><strong>Comportamiento:</strong>
+<ul>
+<li>Dentro del mismo origen: envía la ruta completa (<code>/perfil/juan/expediente</code>).
+</li>
+<li>Hacia dominios externos: envía <strong>únicamente el dominio</strong> (<code>https://ucr.ac.cr</code>).
+</li>
+</ul>
+</li>
+<li>Impide la filtración de tokens, IDs y parámetros privados en logs de terceros.
+</li>
+</ul>
+            </section>
+
+            <section >
+<h1>Configuración en Spring Security 6 (Java 25)</h1>
+
+<pre><code class="language-java">@Bean
+public SecurityFilterChain securityHeaders(HttpSecurity http) throws Exception {
+    return http
+        .headers(h -&gt; h
+            .contentTypeOptions(Customizer.withDefaults())
+            .frameOptions(f -&gt; f.deny())
+            .httpStrictTransportSecurity(hsts -&gt; hsts.maxAgeInSeconds(31536000))
+            .referrerPolicy(r -&gt; r.policy(
+                ReferrerPolicy.STRICT_ORIGIN_WHEN_CROSS_ORIGIN))
+        )
+        .build();
+}</code></pre>
+
+<ul>
+<li>Cumplimiento con grado "A+" en escaneos de SSL Labs y SecurityHeaders.
+</li>
+</ul>
+            </section>
+
+            <section >
+<h1>Pregunta para Discusión</h1>
+
+<ul>
+<li>¿Por qué es una buena práctica de hardening eliminar o falsificar las cabeceras del servidor como <code>Server: Apache</code> o <code>X-Powered-By: Spring</code>?
+</li>
+<li><em>(Analice el concepto de Reconocimiento y Fingerprinting en la fase ofensiva).</em>
+</li>
+</ul>
+            </section>
+
+        </div>
+    </div>
+
+    <!-- Highlight.js and Reveal.js Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.js"></script>
+
+    <script>
+        // Initialize Highlight.js for code syntax coloring
+        hljs.highlightAll();
+
+        // Initialize Reveal.js with modern layout configurations
+        Reveal.initialize({
+            hash: true,
+            respondToHashChanges: true,
+            history: true,
+            transition: 'slide', // none/fade/slide/convex/concave/zoom
+            transitionSpeed: 'default',
+            backgroundTransition: 'fade',
+            width: 960,
+            height: 700,
+            margin: 0.05,
+            minScale: 0.2,
+            maxScale: 2.0,
+            plugins: []
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <title>Presentación - Desarrollo de Software IV</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <!-- Reveal.js Base Stylesheets -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reset.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.css">
+    
+    <!-- Tokyo Night Dark Theme for Code Syntax Resaltation -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/tokyo-night-dark.min.css">
+
+    <!-- Premium Google Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* Modern Web Design Aesthetics & Layout Tokens */
+        html, body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background-color: #0b0f19 !important;
+            color: #f8fafc;
+            overflow: hidden;
+        }
+
+        .reveal {
+            width: 100%;
+            height: 100%;
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0b0f19 0%, #111827 50%, #1e1b4b 100%) !important;
+            color: #f8fafc;
+        }
+        
+        .reveal .slides section {
+            font-family: 'Outfit', 'Inter', sans-serif;
+            text-align: left;
+            padding: 50px 70px;
+            box-sizing: border-box;
+            font-size: 22px;
+            color: #f8fafc;
+        }
+        
+        /* Centered Cover Slide Layout */
+        .reveal .slides section.lead-slide {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+        
+        /* Premium Typography Styles */
+        .reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6 {
+            font-family: 'Outfit', sans-serif;
+            text-transform: none;
+            color: #38bdf8;
+            font-weight: 800;
+            text-shadow: none;
+        }
+        
+        .reveal h1 {
+            font-size: 1.7em;
+            margin-bottom: 12px;
+            border-bottom: 2px solid #3b82f6;
+            padding-bottom: 10px;
+        }
+        
+        .reveal .lead-slide h1 {
+            border-bottom: none;
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            color: #38bdf8;
+        }
+        
+        .reveal h2 {
+            font-size: 1.25em;
+            color: #818cf8;
+            font-weight: 700;
+            margin-top: 0px;
+        }
+        
+        .reveal .lead-slide h2 {
+            font-size: 1.55em;
+            color: #818cf8;
+            margin-bottom: 30px;
+        }
+        
+        .reveal h3 {
+            font-size: 1.1em;
+            color: #a78bfa;
+        }
+        
+        /* List and Text Formatting */
+        .reveal p, .reveal li {
+            color: #cbd5e1;
+            line-height: 1.6;
+        }
+        
+        .reveal ul {
+            list-style-type: square;
+            margin-left: 1.5em;
+        }
+        
+        .reveal li {
+            margin-bottom: 12px;
+        }
+        
+        .reveal strong {
+            color: #f43f5e;
+            font-weight: 600;
+        }
+        
+        .reveal em {
+            color: #fb7185;
+            font-style: italic;
+        }
+        
+        .reveal footer {
+            font-size: 0.5em;
+            color: #6b7280;
+            position: absolute;
+            bottom: 20px;
+            right: 50px;
+        }
+        
+        /* Code Block Containers and Inlines */
+        .reveal code {
+            font-family: 'Fira Code', monospace;
+            background-color: #030712;
+            color: #38bdf8;
+            border-radius: 4px;
+            padding: 2px 8px;
+            font-size: 0.85em;
+        }
+        
+        .reveal pre {
+            background-color: #030712 !important;
+            border: 1px solid #1f2937;
+            border-radius: 10px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
+            width: 100%;
+            margin: 20px 0;
+            box-sizing: border-box;
+        }
+        
+        .reveal pre code {
+            background-color: transparent;
+            color: inherit;
+            font-size: 0.8em;
+            line-height: 1.55;
+            padding: 18px;
+            max-height: 520px;
+        }
+        
+        /* Control Nav Arrows & Progress Bar */
+        .reveal .controls-arrow {
+            color: #38bdf8 !important;
+        }
+        
+        .reveal .progress span {
+            background-color: #38bdf8 !important;
+        }
+
+        /* Custom style overrides parsed from Marp frontmatter */
+        .reveal .slides section {
+  font-family: 'Outfit', 'Inter', sans-serif;
+  background: linear-gradient(135deg, #0b0f19 0%, #111827 50%, #1e1b4b 100%);
+  color: #f8fafc;
+  padding: 50px 70px;
+  font-size: 22px;
+}
+h1 {
+  color: #38bdf8;
+  font-size: 1.7em;
+  font-weight: 800;
+  margin-bottom: 12px;
+  border-bottom: 2px solid #3b82f6;
+  padding-bottom: 10px;
+}
+h2 {
+  color: #818cf8;
+  font-size: 1.3em;
+}
+code {
+  background-color: #1e293b;
+  color: #34d399;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+.highlight {
+  color: #f472b6;
+  font-weight: bold;
+}
+.box {
+  background: rgba(30, 41, 59, 0.7);
+  border-left: 4px solid #38bdf8;
+  padding: 15px;
+  border-radius: 4px;
+}
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <section >
+<h1>Tema 6.5.1: OWASP API Security Top 10</h1>
+<h2>BOLA, Mass Assignment y Consumo de Recursos en APIs RESTful</h2>
+
+<strong>Curso:</strong> IF0009 - Desarrollo de Software IV  
+<strong>Profesor:</strong> Mag. Jonathan Granados C.  
+<strong>Semestre:</strong> II-2026 | Universidad de Costa Rica
+            </section>
+
+            <section >
+<h1>Objetivos de la Sesión</h1>
+
+<ul>
+<li>Analizar el estándar <strong>OWASP API Security Top 10 (2023)</strong>.
+</li>
+<li>Comprender la criticidad de <strong>BOLA (Broken Object Level Authorization)</strong>.
+</li>
+<li>Erradicar la asignación masiva de campos (<strong>BOPLA / Mass Assignment</strong>).
+</li>
+<li>Mitigar el consumo desmedido de recursos mediante paginación acotada.
+</li>
+<li>Implementar contratos inmutables con <strong>Java 25 Records</strong>.
+</li>
+</ul>
+            </section>
+
+            <section >
+<h1>¿Por qué un Top 10 exclusivo para APIs?</h1>
+
+<ul>
+<li>Las APIs REST no devuelven HTML decorado; exponen <strong>datos y lógica pura</strong> en JSON.
+</li>
+<li><strong>Superficie de Ataque Diferenciada:</strong>
+<ul>
+<li>Exposición de identificadores primarios directamente en rutas REST.
+</li>
+<li>Consumo desacoplado desde clientes móviles, web y servicios IoT.
+</li>
+<li>Dificultad para auditar endpoints "invisibles" o no documentados (<em>Shadow APIs</em>).
+</li>
+</ul>
+</li>
+</ul>
+            </section>
+
+            <section >
+<h1>API1:2023 - Broken Object Level Auth (BOLA)</h1>
+
+<ul>
+<li><strong>El Riesgo #1 Global en APIs:</strong>
+<ul>
+<li>El atacante manipula el identificador en la URL:
+</li>
+</ul>
+</li>
+</ul>
+    <code>/api/v1/recibos/1001</code> $\longrightarrow$ <code>/api/v1/recibos/1002</code>.
+<ul>
+<li><strong>Causa Raíz:</strong>
+<ul>
+<li>El backend valida que el token sea legítimo, pero <strong>no comprueba la propiedad del objeto</strong>.
+</li>
+</ul>
+</li>
+<li><strong>Remediación Obligatoria:</strong>
+<ul>
+<li>Regla contextual en servicio: <code>if (recibo.getUsuarioId() != token.getId()) throw Forbidden</code>.
+</li>
+</ul>
+</li>
+</ul>
+            </section>
+
+            <section >
+<h1>API3:2023 - Mass Assignment (BOPLA)</h1>
+
+<ul>
+<li><strong>Mecánica de Vulnerabilidad:</strong>
+<ul>
+<li>Ocurre al vincular directamente la entrada JSON con entidades de persistencia:
+</li>
+</ul>
+</li>
+</ul>
+  ```json
+  { "nombre": "Ana", "roles": ["ADMIN"] }
+  ```
+<ul>
+<li>Si la entidad JPA contiene <code>roles</code>, el atacante se autoasigna privilegios.
+</li>
+<li><strong>Defensa:</strong> Usar siempre DTOs inmutables estrictos que solo admitan campos permitidos.
+</li>
+</ul>
+            </section>
+
+            <section >
+<h1>API4:2023 - Unrestricted Resource Consumption</h1>
+
+<ul>
+<li>Falta de límites en peticiones y consultas a bases de datos:
+<ul>
+<li>Cliente solicita <code>GET /api/logs?size=10000000</code>.
+</li>
+<li>La JVM agota su memoria RAM (<em>OutOfMemoryError</em>) generando DoS.
+</li>
+</ul>
+</li>
+<li><strong>Solución Defensiva:</strong>
+<ul>
+<li>Paginación obligatoria con cota superior fija:
+</li>
+</ul>
+</li>
+</ul>
+  ```java
+  int tamanio = Math.min(size, 50); // Máximo 50 elementos
+  ```
+            </section>
+
+            <section >
+<h1>Pregunta para Discusión</h1>
+
+<ul>
+<li>En un backend de Spring Boot, ¿por qué enlazar una entidad JPA con <code>@RequestBody</code> directamente en el controlador se considera una grave negligencia de seguridad arquitectónica?
+</li>
+<li><em>(Analice el proceso de deserialización automática de Jackson).</em>
+</li>
+</ul>
+            </section>
+
+        </div>
+    </div>
+
+    <!-- Highlight.js and Reveal.js Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.js"></script>
+
+    <script>
+        // Initialize Highlight.js for code syntax coloring
+        hljs.highlightAll();
+
+        // Initialize Reveal.js with modern layout configurations
+        Reveal.initialize({
+            hash: true,
+            respondToHashChanges: true,
+            history: true,
+            transition: 'slide', // none/fade/slide/convex/concave/zoom
+            transitionSpeed: 'default',
+            backgroundTransition: 'fade',
+            width: 960,
+            height: 700,
+            margin: 0.05,
+            minScale: 0.2,
+            maxScale: 2.0,
+            plugins: []
+        });
+    </script>
+</body>
+</html>

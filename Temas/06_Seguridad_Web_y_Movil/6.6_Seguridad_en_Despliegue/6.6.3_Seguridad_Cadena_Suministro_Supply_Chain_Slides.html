@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <title>Presentación - Desarrollo de Software IV</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <!-- Reveal.js Base Stylesheets -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reset.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.css">
+    
+    <!-- Tokyo Night Dark Theme for Code Syntax Resaltation -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/tokyo-night-dark.min.css">
+
+    <!-- Premium Google Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* Modern Web Design Aesthetics & Layout Tokens */
+        html, body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background-color: #0b0f19 !important;
+            color: #f8fafc;
+            overflow: hidden;
+        }
+
+        .reveal {
+            width: 100%;
+            height: 100%;
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0b0f19 0%, #111827 50%, #1e1b4b 100%) !important;
+            color: #f8fafc;
+        }
+        
+        .reveal .slides section {
+            font-family: 'Outfit', 'Inter', sans-serif;
+            text-align: left;
+            padding: 50px 70px;
+            box-sizing: border-box;
+            font-size: 22px;
+            color: #f8fafc;
+        }
+        
+        /* Centered Cover Slide Layout */
+        .reveal .slides section.lead-slide {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+        
+        /* Premium Typography Styles */
+        .reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6 {
+            font-family: 'Outfit', sans-serif;
+            text-transform: none;
+            color: #38bdf8;
+            font-weight: 800;
+            text-shadow: none;
+        }
+        
+        .reveal h1 {
+            font-size: 1.7em;
+            margin-bottom: 12px;
+            border-bottom: 2px solid #3b82f6;
+            padding-bottom: 10px;
+        }
+        
+        .reveal .lead-slide h1 {
+            border-bottom: none;
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            color: #38bdf8;
+        }
+        
+        .reveal h2 {
+            font-size: 1.25em;
+            color: #818cf8;
+            font-weight: 700;
+            margin-top: 0px;
+        }
+        
+        .reveal .lead-slide h2 {
+            font-size: 1.55em;
+            color: #818cf8;
+            margin-bottom: 30px;
+        }
+        
+        .reveal h3 {
+            font-size: 1.1em;
+            color: #a78bfa;
+        }
+        
+        /* List and Text Formatting */
+        .reveal p, .reveal li {
+            color: #cbd5e1;
+            line-height: 1.6;
+        }
+        
+        .reveal ul {
+            list-style-type: square;
+            margin-left: 1.5em;
+        }
+        
+        .reveal li {
+            margin-bottom: 12px;
+        }
+        
+        .reveal strong {
+            color: #f43f5e;
+            font-weight: 600;
+        }
+        
+        .reveal em {
+            color: #fb7185;
+            font-style: italic;
+        }
+        
+        .reveal footer {
+            font-size: 0.5em;
+            color: #6b7280;
+            position: absolute;
+            bottom: 20px;
+            right: 50px;
+        }
+        
+        /* Code Block Containers and Inlines */
+        .reveal code {
+            font-family: 'Fira Code', monospace;
+            background-color: #030712;
+            color: #38bdf8;
+            border-radius: 4px;
+            padding: 2px 8px;
+            font-size: 0.85em;
+        }
+        
+        .reveal pre {
+            background-color: #030712 !important;
+            border: 1px solid #1f2937;
+            border-radius: 10px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
+            width: 100%;
+            margin: 20px 0;
+            box-sizing: border-box;
+        }
+        
+        .reveal pre code {
+            background-color: transparent;
+            color: inherit;
+            font-size: 0.8em;
+            line-height: 1.55;
+            padding: 18px;
+            max-height: 520px;
+        }
+        
+        /* Control Nav Arrows & Progress Bar */
+        .reveal .controls-arrow {
+            color: #38bdf8 !important;
+        }
+        
+        .reveal .progress span {
+            background-color: #38bdf8 !important;
+        }
+
+        /* Custom style overrides parsed from Marp frontmatter */
+        .reveal .slides section {
+  font-family: 'Outfit', 'Inter', sans-serif;
+  background: linear-gradient(135deg, #0b0f19 0%, #111827 50%, #1e1b4b 100%);
+  color: #f8fafc;
+  padding: 50px 70px;
+  font-size: 22px;
+}
+h1 {
+  color: #38bdf8;
+  font-size: 1.7em;
+  font-weight: 800;
+  margin-bottom: 12px;
+  border-bottom: 2px solid #3b82f6;
+  padding-bottom: 10px;
+}
+h2 {
+  color: #818cf8;
+  font-size: 1.3em;
+}
+code {
+  background-color: #1e293b;
+  color: #34d399;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+.highlight {
+  color: #f472b6;
+  font-weight: bold;
+}
+.box {
+  background: rgba(30, 41, 59, 0.7);
+  border-left: 4px solid #38bdf8;
+  padding: 15px;
+  border-radius: 4px;
+}
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <section >
+<h1>Tema 6.6.3: Seguridad en la Cadena de Suministro</h1>
+<h2>CVEs en Dependencias, SBOM (CycloneDX) y Auditorías con Trivy</h2>
+
+<strong>Curso:</strong> IF0009 - Desarrollo de Software IV  
+<strong>Profesor:</strong> Mag. Jonathan Granados C.  
+<strong>Semestre:</strong> II-2026 | Universidad de Costa Rica
+            </section>
+
+            <section >
+<h1>Objetivos de la Sesión</h1>
+
+<ul>
+<li>Comprender los vectores de ataque en la <strong>Cadena de Suministro (Supply Chain)</strong>.
+</li>
+<li>Analizar el impacto de dependencias transitivas vulnerables (<strong>CVEs</strong>).
+</li>
+<li>Integrar <strong>OWASP Dependency-Check</strong> en compilaciones de Maven.
+</li>
+<li>Generar inventarios de componentes <strong>SBOM (CycloneDX / SPDX)</strong>.
+</li>
+<li>Automatizar el escaneo de imágenes de contenedores con <strong>Trivy</strong>.
+</li>
+</ul>
+            </section>
+
+            <section >
+<h1>La Realidad del Software Moderno</h1>
+
+<ul>
+<li><strong>El 80-90% del código en producción son dependencias de terceros:</strong>
+<ul>
+<li>Librerías de Maven Central, paquetes de npm, plugins de Flutter (pub.dev).
+</li>
+</ul>
+</li>
+<li><strong>Vectores de Ataque Comunes:</strong>
+<ul>
+<li><strong>Dependencias Transitivas:</strong> Librerías importadas indirectamente por frameworks.
+</li>
+<li><strong>Typosquatting:</strong> Paquetes maliciosos con nombres similares a librerías famosas.
+</li>
+<li><strong>Compromiso de Mantenedores:</strong> Cuentas secuestradas que inyectan código malicioso.
+</li>
+</ul>
+</li>
+</ul>
+            </section>
+
+            <section >
+<h1>¿Qué es un SBOM? (Software Bill of Materials)</h1>
+
+<ul>
+<li><strong>Lista Formal de Ingredientes de Software:</strong>
+<ul>
+<li>Documento legible por máquinas (JSON/XML) con todas las librerías, licencias y hashes.
+</li>
+</ul>
+</li>
+<li><strong>Estándar Universal: CycloneDX (OWASP).</strong>
+</li>
+<li><strong>Beneficio Estratégico:</strong>
+<ul>
+<li>Permite saber en segundos si un nuevo <em>Zero-Day</em> afecta a su empresa, sin necesidad de recompilar el código fuente.
+</li>
+</ul>
+</li>
+</ul>
+            </section>
+
+            <section >
+<h1>OWASP Dependency-Check en Maven</h1>
+
+<pre><code class="language-xml">&lt;plugin&gt;
+    &lt;groupId&gt;org.owasp&lt;/groupId&gt;
+    &lt;artifactId&gt;dependency-check-maven&lt;/artifactId&gt;
+    &lt;configuration&gt;
+        &lt;!-- Falla la compilación si encuentra vulnerabilidad Alta/Crítica --&gt;
+        &lt;failBuildOnCVSS&gt;7.0&lt;/failBuildOnCVSS&gt;
+        &lt;formats&gt;
+            &lt;format&gt;HTML&lt;/format&gt;
+            &lt;format&gt;JSON&lt;/format&gt;
+        &lt;/formats&gt;
+    &lt;/configuration&gt;
+&lt;/plugin&gt;</code></pre>
+
+<ul>
+<li>Compuerta de calidad (<em>Security Quality Gate</em>) en el pipeline de CI/CD.
+</li>
+</ul>
+            </section>
+
+            <section >
+<h1>Escaneo de Imágenes con Trivy</h1>
+
+<pre><code class="language-bash"># Inspecciona el sistema operativo y binarios Java en el contenedor
+trivy image --severity HIGH,CRITICAL --exit-code 1 mi-api:latest</code></pre>
+
+<ul>
+<li>Analiza capas de la imagen Docker en búsqueda de paquetes obsoletos.
+</li>
+<li>Detiene el despliegue automático si el código de salida es distinto de cero.
+</li>
+</ul>
+            </section>
+
+            <section >
+<h1>Pregunta para Discusión</h1>
+
+<ul>
+<li>Si una vulnerabilidad crítica se encuentra en una librería que fue importada de forma transitiva por un framework que usted no puede actualizar de inmediato, ¿qué mecanismos ofrece Maven para forzar la exclusión o reemplazo de esa versión específica?
+</li>
+<li><em>(Analice el uso de <code>&lt;exclusions&gt;</code> y <code>&lt;dependencyManagement&gt;</code>).</em>
+</li>
+</ul>
+            </section>
+
+        </div>
+    </div>
+
+    <!-- Highlight.js and Reveal.js Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.js"></script>
+
+    <script>
+        // Initialize Highlight.js for code syntax coloring
+        hljs.highlightAll();
+
+        // Initialize Reveal.js with modern layout configurations
+        Reveal.initialize({
+            hash: true,
+            respondToHashChanges: true,
+            history: true,
+            transition: 'slide', // none/fade/slide/convex/concave/zoom
+            transitionSpeed: 'default',
+            backgroundTransition: 'fade',
+            width: 960,
+            height: 700,
+            margin: 0.05,
+            minScale: 0.2,
+            maxScale: 2.0,
+            plugins: []
+        });
+    </script>
+</body>
+</html>

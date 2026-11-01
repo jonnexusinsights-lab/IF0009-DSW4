@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <title>Presentación - Desarrollo de Software IV</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <!-- Reveal.js Base Stylesheets -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reset.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.css">
+    
+    <!-- Tokyo Night Dark Theme for Code Syntax Resaltation -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/tokyo-night-dark.min.css">
+
+    <!-- Premium Google Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* Modern Web Design Aesthetics & Layout Tokens */
+        html, body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background-color: #0b0f19 !important;
+            color: #f8fafc;
+            overflow: hidden;
+        }
+
+        .reveal {
+            width: 100%;
+            height: 100%;
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0b0f19 0%, #111827 50%, #1e1b4b 100%) !important;
+            color: #f8fafc;
+        }
+        
+        .reveal .slides section {
+            font-family: 'Outfit', 'Inter', sans-serif;
+            text-align: left;
+            padding: 50px 70px;
+            box-sizing: border-box;
+            font-size: 22px;
+            color: #f8fafc;
+        }
+        
+        /* Centered Cover Slide Layout */
+        .reveal .slides section.lead-slide {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+        
+        /* Premium Typography Styles */
+        .reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6 {
+            font-family: 'Outfit', sans-serif;
+            text-transform: none;
+            color: #38bdf8;
+            font-weight: 800;
+            text-shadow: none;
+        }
+        
+        .reveal h1 {
+            font-size: 1.7em;
+            margin-bottom: 12px;
+            border-bottom: 2px solid #3b82f6;
+            padding-bottom: 10px;
+        }
+        
+        .reveal .lead-slide h1 {
+            border-bottom: none;
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            color: #38bdf8;
+        }
+        
+        .reveal h2 {
+            font-size: 1.25em;
+            color: #818cf8;
+            font-weight: 700;
+            margin-top: 0px;
+        }
+        
+        .reveal .lead-slide h2 {
+            font-size: 1.55em;
+            color: #818cf8;
+            margin-bottom: 30px;
+        }
+        
+        .reveal h3 {
+            font-size: 1.1em;
+            color: #a78bfa;
+        }
+        
+        /* List and Text Formatting */
+        .reveal p, .reveal li {
+            color: #cbd5e1;
+            line-height: 1.6;
+        }
+        
+        .reveal ul {
+            list-style-type: square;
+            margin-left: 1.5em;
+        }
+        
+        .reveal li {
+            margin-bottom: 12px;
+        }
+        
+        .reveal strong {
+            color: #f43f5e;
+            font-weight: 600;
+        }
+        
+        .reveal em {
+            color: #fb7185;
+            font-style: italic;
+        }
+        
+        .reveal footer {
+            font-size: 0.5em;
+            color: #6b7280;
+            position: absolute;
+            bottom: 20px;
+            right: 50px;
+        }
+        
+        /* Code Block Containers and Inlines */
+        .reveal code {
+            font-family: 'Fira Code', monospace;
+            background-color: #030712;
+            color: #38bdf8;
+            border-radius: 4px;
+            padding: 2px 8px;
+            font-size: 0.85em;
+        }
+        
+        .reveal pre {
+            background-color: #030712 !important;
+            border: 1px solid #1f2937;
+            border-radius: 10px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
+            width: 100%;
+            margin: 20px 0;
+            box-sizing: border-box;
+        }
+        
+        .reveal pre code {
+            background-color: transparent;
+            color: inherit;
+            font-size: 0.8em;
+            line-height: 1.55;
+            padding: 18px;
+            max-height: 520px;
+        }
+        
+        /* Control Nav Arrows & Progress Bar */
+        .reveal .controls-arrow {
+            color: #38bdf8 !important;
+        }
+        
+        .reveal .progress span {
+            background-color: #38bdf8 !important;
+        }
+
+        /* Custom style overrides parsed from Marp frontmatter */
+        .reveal .slides section {
+  font-family: 'Outfit', 'Inter', sans-serif;
+  background: linear-gradient(135deg, #0b0f19 0%, #111827 50%, #1e1b4b 100%);
+  color: #f8fafc;
+  padding: 50px 70px;
+  font-size: 22px;
+}
+h1 {
+  color: #38bdf8;
+  font-size: 1.7em;
+  font-weight: 800;
+  margin-bottom: 12px;
+  border-bottom: 2px solid #3b82f6;
+  padding-bottom: 10px;
+}
+h2 {
+  color: #818cf8;
+  font-size: 1.3em;
+}
+code {
+  background-color: #1e293b;
+  color: #34d399;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+.highlight {
+  color: #f472b6;
+  font-weight: bold;
+}
+.box {
+  background: rgba(30, 41, 59, 0.7);
+  border-left: 4px solid #38bdf8;
+  padding: 15px;
+  border-radius: 4px;
+}
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <section >
+<h1>Tema 6.3.2: Cifrado en Reposo</h1>
+<h2>Cifrado de Campo con JPA y Bases de Datos Móviles con SQLCipher</h2>
+
+<strong>Curso:</strong> IF0009 - Desarrollo de Software IV  
+<strong>Profesor:</strong> Mag. Jonathan Granados C.  
+<strong>Semestre:</strong> II-2026 | Universidad de Costa Rica
+            </section>
+
+            <section >
+<h1>Objetivos de la Sesión</h1>
+
+<ul>
+<li>Comparar <strong>TDE</strong> frente al cifrado a nivel de aplicación (<em>Field-Level</em>).
+</li>
+<li>Dominar el modo de cifrado autenticado <strong>AES-256-GCM (AEAD)</strong>.
+</li>
+<li>Implementar un convertidor criptográfico <code>@Converter</code> en <strong>JPA / Java 25</strong>.
+</li>
+<li>Resguardar bases de datos embebidas móviles con <strong>SQLCipher</strong>.
+</li>
+<li>Comprender la criticidad del Vector de Inicialización (<strong>IV</strong>) único.
+</li>
+</ul>
+            </section>
+
+            <section >
+<h1>Niveles de Protección en Reposo</h1>
+
+<ul>
+<li><strong>1. Cifrado a Nivel de Disco / TDE:</strong>
+<ul>
+<li>Administrado por el motor de BD (PostgreSQL, SQL Server).
+</li>
+<li>Protege contra el robo físico de los discos duros o cintas de backup.
+</li>
+<li>Inconveniente: Si un usuario hace <code>SELECT</code>, los datos se ven en claro.
+</li>
+</ul>
+</li>
+<li><strong>2. Cifrado a Nivel de Aplicación:</strong>
+<ul>
+<li>Spring Boot cifra el campo antes de enviarlo a la base de datos.
+</li>
+<li>Protege incluso si un atacante accede como administrador de la BD (DBA).
+</li>
+</ul>
+</li>
+<li><strong>3. Cifrado Móvil con SQLCipher:</strong>
+<ul>
+<li>Cifra página por página los archivos SQLite en dispositivos móviles.
+</li>
+</ul>
+</li>
+</ul>
+            </section>
+
+            <section >
+<h1>¿Por qué AES-256-GCM?</h1>
+
+<ul>
+<li><strong>Galois/Counter Mode (GCM):</strong>
+<ul>
+<li>Estándar recomendado internacionalmente por NIST.
+</li>
+<li>Combina <strong>Confidencialidad</strong> con <strong>Integridad (AEAD)</strong>.
+</li>
+</ul>
+</li>
+<li><strong>Authentication Tag (128 bits):</strong>
+<ul>
+<li>Si un atacante modifica un bit del registro cifrado, el descifrado falla.
+</li>
+</ul>
+</li>
+<li><strong>Vector de Inicialización (IV):</strong>
+<ul>
+<li>Debe ser de 12 bytes y <strong>estrictamente aleatorio por cada fila</strong>.
+</li>
+<li>Reutilizar un IV destruye la seguridad matemática del algoritmo.
+</li>
+</ul>
+</li>
+</ul>
+            </section>
+
+            <section >
+<h1>Implementación de JPA Converter (Java 25)</h1>
+
+<pre><code class="language-java">@Converter
+public class CifradoAesConverter implements AttributeConverter&lt;String, String&gt; {
+
+    @Override
+    public String convertToDatabaseColumn(String datoClaro) {
+        byte[] iv = new byte[12];
+        secureRandom.nextBytes(iv); // IV aleatorio único
+
+        Cipher cipher = Cipher.getInstance("AES/GCM/NoPadding");
+        cipher.init(Cipher.ENCRYPT_MODE, secretKey, 
+                    new GCMParameterSpec(128, iv));
+        
+        byte[] cifrado = cipher.doFinal(datoClaro.getBytes(UTF_8));
+        return empaquetarBase64(iv, cifrado);
+    }
+}</code></pre>
+
+<ul>
+<li>Empaqueta el IV junto con el texto cifrado para su posterior lectura.
+</li>
+</ul>
+            </section>
+
+            <section >
+<h1>Uso Declarativo en Entidades</h1>
+
+<pre><code class="language-java">@Entity
+@Table(name = "pacientes")
+public class Paciente {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Convert(converter = CifradoAesConverter.class)
+    @Column(name = "cedula_cifrada", nullable = false)
+    private String cedula;
+}</code></pre>
+
+<ul>
+<li>Cifrado y descifrado transparente para la capa de servicios y controladores.
+</li>
+</ul>
+            </section>
+
+            <section >
+<h1>SQLCipher en Móviles (Flutter 3)</h1>
+
+<ul>
+<li>Sustituto directo de SQLite que cifra completamente la base de datos.
+</li>
+<li>Clave derivada mediante <strong>PBKDF2 con 256.000 iteraciones</strong>.
+</li>
+<li>La contraseña de la base de datos se guarda en <code>flutter&lt;em&gt;secure&lt;/em&gt;storage</code>.
+</li>
+<li>Si el teléfono es conectado por USB en modo depuración (ADB), el archivo <code>.db</code> solo contendrá bytes ilegibles.
+</li>
+</ul>
+            </section>
+
+            <section >
+<h1>Pregunta para Debate</h1>
+
+<ul>
+<li>Si los datos en la base de datos están cifrados a nivel de columna con AES-GCM, ¿cómo podemos permitir que los usuarios busquen un registro por su número de cédula exacto?
+</li>
+<li><em>(Pista: Analice el uso de Hashes Criptográficos Ciegos o Blind Indexing).</em>
+</li>
+</ul>
+            </section>
+
+        </div>
+    </div>
+
+    <!-- Highlight.js and Reveal.js Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.js"></script>
+
+    <script>
+        // Initialize Highlight.js for code syntax coloring
+        hljs.highlightAll();
+
+        // Initialize Reveal.js with modern layout configurations
+        Reveal.initialize({
+            hash: true,
+            respondToHashChanges: true,
+            history: true,
+            transition: 'slide', // none/fade/slide/convex/concave/zoom
+            transitionSpeed: 'default',
+            backgroundTransition: 'fade',
+            width: 960,
+            height: 700,
+            margin: 0.05,
+            minScale: 0.2,
+            maxScale: 2.0,
+            plugins: []
+        });
+    </script>
+</body>
+</html>

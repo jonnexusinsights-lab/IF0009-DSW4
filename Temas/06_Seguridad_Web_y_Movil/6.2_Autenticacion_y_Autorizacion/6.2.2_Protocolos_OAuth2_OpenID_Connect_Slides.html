@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <title>Presentación - Desarrollo de Software IV</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <!-- Reveal.js Base Stylesheets -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reset.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.css">
+    
+    <!-- Tokyo Night Dark Theme for Code Syntax Resaltation -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/tokyo-night-dark.min.css">
+
+    <!-- Premium Google Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* Modern Web Design Aesthetics & Layout Tokens */
+        html, body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background-color: #0b0f19 !important;
+            color: #f8fafc;
+            overflow: hidden;
+        }
+
+        .reveal {
+            width: 100%;
+            height: 100%;
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0b0f19 0%, #111827 50%, #1e1b4b 100%) !important;
+            color: #f8fafc;
+        }
+        
+        .reveal .slides section {
+            font-family: 'Outfit', 'Inter', sans-serif;
+            text-align: left;
+            padding: 50px 70px;
+            box-sizing: border-box;
+            font-size: 22px;
+            color: #f8fafc;
+        }
+        
+        /* Centered Cover Slide Layout */
+        .reveal .slides section.lead-slide {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+        
+        /* Premium Typography Styles */
+        .reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6 {
+            font-family: 'Outfit', sans-serif;
+            text-transform: none;
+            color: #38bdf8;
+            font-weight: 800;
+            text-shadow: none;
+        }
+        
+        .reveal h1 {
+            font-size: 1.7em;
+            margin-bottom: 12px;
+            border-bottom: 2px solid #3b82f6;
+            padding-bottom: 10px;
+        }
+        
+        .reveal .lead-slide h1 {
+            border-bottom: none;
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            color: #38bdf8;
+        }
+        
+        .reveal h2 {
+            font-size: 1.25em;
+            color: #818cf8;
+            font-weight: 700;
+            margin-top: 0px;
+        }
+        
+        .reveal .lead-slide h2 {
+            font-size: 1.55em;
+            color: #818cf8;
+            margin-bottom: 30px;
+        }
+        
+        .reveal h3 {
+            font-size: 1.1em;
+            color: #a78bfa;
+        }
+        
+        /* List and Text Formatting */
+        .reveal p, .reveal li {
+            color: #cbd5e1;
+            line-height: 1.6;
+        }
+        
+        .reveal ul {
+            list-style-type: square;
+            margin-left: 1.5em;
+        }
+        
+        .reveal li {
+            margin-bottom: 12px;
+        }
+        
+        .reveal strong {
+            color: #f43f5e;
+            font-weight: 600;
+        }
+        
+        .reveal em {
+            color: #fb7185;
+            font-style: italic;
+        }
+        
+        .reveal footer {
+            font-size: 0.5em;
+            color: #6b7280;
+            position: absolute;
+            bottom: 20px;
+            right: 50px;
+        }
+        
+        /* Code Block Containers and Inlines */
+        .reveal code {
+            font-family: 'Fira Code', monospace;
+            background-color: #030712;
+            color: #38bdf8;
+            border-radius: 4px;
+            padding: 2px 8px;
+            font-size: 0.85em;
+        }
+        
+        .reveal pre {
+            background-color: #030712 !important;
+            border: 1px solid #1f2937;
+            border-radius: 10px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
+            width: 100%;
+            margin: 20px 0;
+            box-sizing: border-box;
+        }
+        
+        .reveal pre code {
+            background-color: transparent;
+            color: inherit;
+            font-size: 0.8em;
+            line-height: 1.55;
+            padding: 18px;
+            max-height: 520px;
+        }
+        
+        /* Control Nav Arrows & Progress Bar */
+        .reveal .controls-arrow {
+            color: #38bdf8 !important;
+        }
+        
+        .reveal .progress span {
+            background-color: #38bdf8 !important;
+        }
+
+        /* Custom style overrides parsed from Marp frontmatter */
+        .reveal .slides section {
+  font-family: 'Outfit', 'Inter', sans-serif;
+  background: linear-gradient(135deg, #0b0f19 0%, #111827 50%, #1e1b4b 100%);
+  color: #f8fafc;
+  padding: 50px 70px;
+  font-size: 22px;
+}
+h1 {
+  color: #38bdf8;
+  font-size: 1.7em;
+  font-weight: 800;
+  margin-bottom: 12px;
+  border-bottom: 2px solid #3b82f6;
+  padding-bottom: 10px;
+}
+h2 {
+  color: #818cf8;
+  font-size: 1.3em;
+}
+code {
+  background-color: #1e293b;
+  color: #34d399;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+.highlight {
+  color: #f472b6;
+  font-weight: bold;
+}
+.box {
+  background: rgba(30, 41, 59, 0.7);
+  border-left: 4px solid #38bdf8;
+  padding: 15px;
+  border-radius: 4px;
+}
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <section >
+<h1>Tema 6.2.2: OAuth 2.0, OIDC & PKCE</h1>
+<h2>Protocolos Estándar de Delegación e Identidad Federada</h2>
+
+<strong>Curso:</strong> IF0009 - Desarrollo de Software IV  
+<strong>Profesor:</strong> Mag. Jonathan Granados C.  
+<strong>Semestre:</strong> II-2026 | Universidad de Costa Rica
+            </section>
+
+            <section >
+<h1>Objetivos de la Sesión</h1>
+
+<ul>
+<li>Comprender los 4 roles formales de <strong>OAuth 2.0 (RFC 6749)</strong>.
+</li>
+<li>Distinguir la capa de identidad <strong>OpenID Connect (OIDC)</strong> de la autorización.
+</li>
+<li>Analizar la vulnerabilidad del antiguo flujo <em>Implicit Grant</em>.
+</li>
+<li>Dominar el flujo <strong>Authorization Code con PKCE (RFC 7636)</strong>.
+</li>
+<li>Configurar un <strong>Resource Server</strong> seguro en Spring Boot 3 con Java 25.
+</li>
+</ul>
+            </section>
+
+            <section >
+<h1>Los Cuatro Roles de OAuth 2.0</h1>
+
+<ul>
+<li><strong>Resource Owner:</strong> El usuario propietario de la información.
+</li>
+<li><strong>Client:</strong> La aplicación que solicita actuar en representación del usuario (Flutter / Angular).
+</li>
+<li><strong>Authorization Server:</strong> Autentica al usuario, solicita consentimiento y emite tokens (Keycloak, Auth0).
+</li>
+<li><strong>Resource Server:</strong> La API RESTful protegida (Spring Boot 3) que valida los tokens y despacha datos.
+</li>
+</ul>
+            </section>
+
+            <section >
+<h1>¿Qué es PKCE y por qué es obligatorio?</h1>
+
+<ul>
+<li><strong>Proof Key for Code Exchange (RFC 7636):</strong>
+<ul>
+<li>Diseñado específicamente para <strong>Clientes Públicos</strong> (Móviles y SPAs).
+</li>
+<li>Los clientes públicos no pueden resguardar un <code>client_secret</code> de forma segura.
+</li>
+</ul>
+</li>
+<li><strong>Mecánica del Desafío:</strong>
+<ul>
+<li>1. Cliente genera <code>code_verifier</code> (cadena aleatoria).
+</li>
+<li>2. Calcula <code>code_challenge = Base64URL(SHA-256(verifier))</code>.
+</li>
+<li>3. Envía <code>challenge</code> en la petición de login.
+</li>
+<li>4. Al recibir el código temporal, lo canjea enviando el <code>verifier</code> original.
+</li>
+<li>Neutraliza el robo de códigos de autorización en Deep Links.
+</li>
+</ul>
+</li>
+</ul>
+            </section>
+
+            <section >
+<h1>OpenID Connect (OIDC): Identidad sobre OAuth 2.0</h1>
+
+<ul>
+<li>OAuth 2.0 es <strong>Autorización</strong> (permisos); OIDC es <strong>Autenticación</strong> (identidad).
+</li>
+<li><strong>Diferencia entre Tokens:</strong>
+<ul>
+<li><strong><code>access_token</code>:</strong> Diseñado para la API backend. Define scopes y accesos. Cadena opaca para el cliente.
+</li>
+<li><strong><code>id_token</code>:</strong> Diseñado para el cliente móvil/web. JWT firmado con datos de perfil (<code>sub</code>, <code>name</code>, <code>email</code>).
+</li>
+</ul>
+</li>
+<li><strong>Endpoint <code>/userinfo</code>:</strong> Consulta estandarizada de reclamos de identidad.
+</li>
+</ul>
+            </section>
+
+            <section >
+<h1>Resource Server en Spring Boot 3 (Java 25)</h1>
+
+<pre><code class="language-java">@Configuration
+@EnableWebSecurity
+public class SecurityConfig {
+
+    @Bean
+    public SecurityFilterChain filterChain(HttpSecurity http) 
+            throws Exception {
+        return http
+            .sessionManagement(s -&gt; 
+                s.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+            .authorizeHttpRequests(auth -&gt; auth
+                .requestMatchers("/api/v1/publico/**").permitAll()
+                .anyRequest().authenticated()
+            )
+            .oauth2ResourceServer(oauth -&gt; oauth.jwt(Customizer.withDefaults()))
+            .build();
+    }
+}</code></pre>
+
+<ul>
+<li>Valida automáticamente la firma con la clave pública del Authorization Server.
+</li>
+</ul>
+            </section>
+
+            <section >
+<h1>Trampas de Seguridad en Clientes Públicos</h1>
+
+<ul>
+<li><strong>Quemar el <code>client_secret</code>:</strong> Descompilar un <code>.apk</code> o abrir la pestaña <em>Sources</em> del navegador permite sustraerlo inmediatamente.
+</li>
+<li><strong>Omitir el parámetro <code>state</code>:</strong> Permite ataques de <em>CSRF en el flujo de inicio de sesión</em>.
+</li>
+<li><strong>No validar la audiencia (<code>aud</code>):</strong> Aceptar tokens emitidos para otra aplicación distinta dentro del mismo servidor de autenticación.
+</li>
+</ul>
+            </section>
+
+            <section >
+<h1>Pregunta para Discusión</h1>
+
+<ul>
+<li>¿Por qué una aplicación móvil nunca debe autenticarse pidiendo al usuario su usuario y contraseña directamente en un formulario nativo para luego reenviarlo a un servidor de terceros?
+</li>
+<li><em>(Analice el principio de principio de menor privilegio y separación de responsabilidades).</em>
+</li>
+</ul>
+            </section>
+
+        </div>
+    </div>
+
+    <!-- Highlight.js and Reveal.js Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.js"></script>
+
+    <script>
+        // Initialize Highlight.js for code syntax coloring
+        hljs.highlightAll();
+
+        // Initialize Reveal.js with modern layout configurations
+        Reveal.initialize({
+            hash: true,
+            respondToHashChanges: true,
+            history: true,
+            transition: 'slide', // none/fade/slide/convex/concave/zoom
+            transitionSpeed: 'default',
+            backgroundTransition: 'fade',
+            width: 960,
+            height: 700,
+            margin: 0.05,
+            minScale: 0.2,
+            maxScale: 2.0,
+            plugins: []
+        });
+    </script>
+</body>
+</html>

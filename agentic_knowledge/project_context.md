@@ -229,6 +229,16 @@ Para garantizar la uniformidad en las evaluaciones, se establecen los siguientes
 
 ---
 
+* **Actualización Reciente (Generación Integral del Tema 6: Seguridad Web y Móvil - 22 Subtemas, Diapositivas y Portal Web):** Bajo la invocación del modo `ModeTheory` (Persona `Profesor` y habilidad `Theory`), se estructuraron, redactaron y compilaron los contenidos teóricos y presentaciones interactivas de la unidad completa **Tema 6: Seguridad Web y Móvil** (`Temas/06_Seguridad_Web_y_Movil/`), desglosados en 22 módulos específicos en Java 25 (Spring Boot 3 / Spring Security 6), Angular 17+ y Flutter 3:
+  1. **6.1 Vulnerabilidades Comunes:** `6.1.1` Estándar OWASP Top 10 Web y Móvil, `6.1.2` Inyecciones y Broken Access Control (IDOR), `6.1.3` Fallos Criptográficos (Argon2id, BCrypt, AES-GCM).
+  2. **6.2 Autenticación y Autorización:** `6.2.1` Arquitectura Stateful vs Stateless y Biometría Móvil, `6.2.2` Protocolos OAuth 2.0, OIDC y Flujo PKCE, `6.2.3` Hardening de JWT y rotación de Refresh Tokens.
+  3. **6.3 Seguridad en Datos:** `6.3.1` Cifrado en Tránsito TLS 1.3 y Certificate Pinning, `6.3.2` Cifrado en Reposo con JPA AttributeConverter y SQLCipher, `6.3.3` Prevención de Inyecciones (Von Neumann, Blind SQLi, NoSQLi).
+  4. **6.4 Seguridad en Código:** `6.4.1` Validación y Sanitización con Jakarta Bean Validation y RFC 7807, `6.4.2` XSS y Codificación Contextual en Angular y Flutter, `6.4.3` Content Security Policy (CSP Nivel 3) y mitigación CSRF.
+  5. **6.5 Seguridad en APIs:** `6.5.1` OWASP API Security Top 10 (BOLA, Mass Assignment), `6.5.2` Políticas CORS rigurosas y Preflight OPTIONS, `6.5.3` Rate Limiting con Bucket4j y HTTP 429, `6.5.4` Cabeceras defensivas HTTP (`nosniff`, `DENY`, `strict-origin`).
+  6. **6.6 Seguridad en Despliegue:** `6.6.1` Gestión de Secretos (12-Factor y GitLeaks), `6.6.2` Hardening Docker Non-Root y Distroless con Java 25, `6.6.3` Seguridad de Cadena de Suministro (OWASP Dependency-Check, SBOM CycloneDX, Trivy).
+  7. **6.7 Herramientas y Recursos:** `6.7.1` SAST con SonarQube y Semgrep, `6.7.2` DAST con OWASP ZAP y OpenAPI en Docker, `6.7.3` Auditoría Móvil MASVS y MobSF.
+  Se compilaron las 22 presentaciones a HTML Reveal.js mediante `marp_to_reveal.py`, se actualizaron los 7 archivos `README.md` con sus tablas de navegación, y se activó la tarjeta de Tema 6 con sus 22 enlaces en el portal web [`index.html`](file:///c:/Users/jonat/OneDrive/Documentos/UCR-2026/IF0009/Planificacion%20Lecciones/index.html).
+
 * **Actualización Reciente (Generación Integral Temas 5.2.4 y 5.2.5, Laboratorio 15 "FieldTech Móvil" y Planificación Temas 6 y 7):** Bajo la invocación del modo `ModeTheory` (Persona `Profesor` y habilidad `Theory`), se estructuraron y generaron los contenidos teóricos y diapositivas de los subtemas móviles restantes de la unidad 5.2:
   1. **Subtema 5.2.4 (Persistencia Local, Hardware e Integración de APIs):** Se desglosó en tres módulos granulares: `5.2.4.1_Consumo_APIs_Spring_Boot_JWT` (Lectura teórica, presentación Marp y presentación interactiva Reveal.js HTML), `5.2.4.2_Persistencia_Local_SQLite_Offline_First` (Lectura teórica, presentación Marp y Reveal.js HTML) y `5.2.4.3_Integracion_Hardware_GPS_Camara_Permisos` (Lectura teórica, presentación Marp y Reveal.js HTML). Se actualizó el índice general en `5.2.4_Persistencia_Hardware_API_Integration/README.md`.
   2. **Subtema 5.2.5 (Pruebas Unitarias y Widget Testing en Móvil):** Se estructuró en dos módulos: `5.2.5.1_Pruebas_Unitarias_Logica_Servicios_Mocking` (Lectura teórica, presentación Marp y Reveal.js HTML) y `5.2.5.2_Widget_Testing_Integracion_Code_Coverage` (Lectura teórica, presentación Marp y Reveal.js HTML), actualizando el índice general en `5.2.5_Testing_Pruebas_Unitarias_Widgets/README.md`.
@@ -563,7 +573,7 @@ Planificacion Lecciones/
 | [Temas/05_Desarrollo_Movil/5.2_Desarrollo_Aplicaciones_Moviles/5.2.5_Testing_Pruebas_Unitarias_Widgets](file:///c:/Users/jonat/OneDrive/Documentos/UCR-2026/IF0009/Planificacion%20Lecciones/Temas/05_Desarrollo_Movil/5.2_Desarrollo_Aplicaciones_Moviles/5.2.5_Testing_Pruebas_Unitarias_Widgets) | [5.2.5.2_Widget_Testing_Integracion_Code_Coverage_Slides.html](file:///c:/Users/jonat/OneDrive/Documentos/UCR-2026/IF0009/Planificacion%20Lecciones/Temas/05_Desarrollo_Movil/5.2_Desarrollo_Aplicaciones_Moviles/5.2.5_Testing_Pruebas_Unitarias_Widgets/5.2.5.2_Widget_Testing_Integracion_Code_Coverage_Slides.html) | Presentación Interactiva Reveal.js HTML | Compilador Python | [x] Completado |
 | [Evaluaciones/Laboratorios/Laboratorio_15](file:///c:/Users/jonat/OneDrive/Documentos/UCR-2026/IF0009/Planificacion%20Lecciones/Evaluaciones/Laboratorios/Laboratorio_15) | [laboratorio_15.md](file:///c:/Users/jonat/OneDrive/Documentos/UCR-2026/IF0009/Planificacion%20Lecciones/Evaluaciones/Laboratorios/Laboratorio_15/laboratorio_15.md) | Guía Completa de Laboratorio 15 Guiado ("FieldTech Móvil") | ModeLab / Instructor | [x] Completado |
 | [Evaluaciones/Laboratorios/Laboratorio_15](file:///c:/Users/jonat/OneDrive/Documentos/UCR-2026/IF0009/Planificacion%20Lecciones/Evaluaciones/Laboratorios/Laboratorio_15) | [laboratorio_15.pdf](file:///c:/Users/jonat/OneDrive/Documentos/UCR-2026/IF0009/Planificacion%20Lecciones/Evaluaciones/Laboratorios/Laboratorio_15/laboratorio_15.pdf) | Guía de Laboratorio 15 en PDF Imprimible | Conversor Python | [x] Completado |
-| [Temas/06_Seguridad_Web_y_Movil](file:///c:/Users/jonat/OneDrive/Documentos/UCR-2026/IF0009/Planificacion%20Lecciones/Temas/06_Seguridad_Web_y_Movil) | Subtemas 6.1 a 6.7 README.md | Planificación Pedagógica y Temarios de Seguridad | ModeTheory | [x] Completado |
+| [Temas/06_Seguridad_Web_y_Movil](file:///c:/Users/jonat/OneDrive/Documentos/UCR-2026/IF0009/Planificacion%20Lecciones/Temas/06_Seguridad_Web_y_Movil) | 22 Subtemas (6.1.1 a 6.7.3) .md, _Slides.md y _Slides.html | Unidad Completa de Seguridad Web y Móvil (Java 25, Angular, Flutter) | ModeTheory / Compilador | [x] Completado |
 | [Temas/07_Despliegue_y_Publicacion](file:///c:/Users/jonat/OneDrive/Documentos/UCR-2026/IF0009/Planificacion%20Lecciones/Temas/07_Despliegue_y_Publicacion) | Subtemas 7.1 y 7.2 README.md | Planificación Pedagógica y Temarios de Despliegue | ModeTheory | [x] Completado |
 
 ---
@@ -571,11 +581,10 @@ Planificacion Lecciones/
 ## 🚀 Planificación de Próximas Tareas
 
 1. **Próxima Tarea Prioritaria:**
-   - Iniciar el desarrollo de contenidos teóricos y diapositivas para el **Tema 6: Seguridad Web y Móvil**, comenzando con el Subtema **6.1: Vulnerabilidades Comunes y Mitigación frente al OWASP Top 10**.
+   - Iniciar el desarrollo de contenidos teóricos y diapositivas para el **Tema 7: Despliegue y Publicación**, comenzando con el Subtema **7.1: Despliegue de Aplicaciones Web** (Empaquetado productivo, Docker, Nginx Reverse Proxy, SSL/TLS Let's Encrypt).
 2. **Tareas Pendientes (Próximas Sesiones):**
-   - Desarrollar los módulos teóricos restantes del Tema 6 (6.2 Autenticación/OAuth2/JWT, 6.3 Seguridad en Datos, 6.4 Seguridad en Código, 6.5 Seguridad en APIs, 6.6 Seguridad en Despliegue, 6.7 Herramientas y OWASP ZAP).
-   - Desarrollar los contenidos teóricos y prácticos del **Tema 7: Despliegue y Publicación** (7.1 Despliegue Web con Docker/Nginx/SSL y 7.2 Publicación Móvil con AAB/IPA y Tiendas).
-   - Preparar la evaluación práctica correspondiente al Examen Parcial II (Módulos 5 a 7).
+   - Desarrollar los módulos teóricos y prácticos de **7.2: Publicación y Despliegue de Aplicaciones Móviles** (Compilación AAB/IPA, firmado de aplicaciones, Play Console y App Store Connect).
+   - Preparar la evaluación práctica correspondiente al **Examen Parcial II** (Módulos 5 a 7).
 
 ---
 

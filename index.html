@@ -1084,27 +1084,187 @@
             </div>
 
             <!-- TEMA 6: SEGURIDAD WEB Y MÓVIL -->
-            <div class="card disabled">
+            <div class="card">
                 <div class="card-header">
                     <h2>Tema 6: Seguridad Web y Móvil</h2>
-                    <p>Mitigación de riesgos contra OWASP Top 10 y hardening de APIs.</p>
+                    <p>Mitigación de riesgos contra OWASP Top 10, hardening de APIs, criptografía y auditorías DevSecOps.</p>
                 </div>
                 <div class="links-list">
-                    <div class="upcoming-item">
+                    <a href="Temas/06_Seguridad_Web_y_Movil/6.1_Vulnerabilidades_Comunes/6.1.1_Estandar_OWASP_Top_10_Web_y_Movil_Slides.html" class="presentation-item" target="_blank">
                         <div class="item-info">
-                            <span class="item-title">6.1 al 6.4 Protección de Código</span>
-                            <span class="item-meta">Prevención SQLi y XSS, cifrado de datos y sanitización.</span>
+                            <span class="item-title">6.1.1 El Estándar OWASP Top 10 (Web y Móvil)</span>
+                            <span class="item-meta">Taxonomía de riesgos, CVSS, A01-A10 web vs M1-M10 móvil y superficie de ataque dual.</span>
                         </div>
-                        <span class="badge-upcoming">Próximamente</span>
-                    </div>
-                    
-                    <div class="upcoming-item">
+                        <span class="badge-active">Disponible</span>
+                    </a>
+
+                    <a href="Temas/06_Seguridad_Web_y_Movil/6.1_Vulnerabilidades_Comunes/6.1.2_Vectores_Inyeccion_Perdida_Control_Acceso_Slides.html" class="presentation-item" target="_blank">
                         <div class="item-info">
-                            <span class="item-title">6.5 al 6.7 Seguridad en APIs y Despliegue</span>
-                            <span class="item-meta">Rate limiting, CORS, secretos y análisis de vulnerabilidades.</span>
+                            <span class="item-title">6.1.2 Vectores de Inyección &amp; Broken Access Control</span>
+                            <span class="item-meta">Explotación SQLi, parametrización con Spring Data JPA y prevención de IDOR en servicios.</span>
                         </div>
-                        <span class="badge-upcoming">Próximamente</span>
-                    </div>
+                        <span class="badge-active">Disponible</span>
+                    </a>
+
+                    <a href="Temas/06_Seguridad_Web_y_Movil/6.1_Vulnerabilidades_Comunes/6.1.3_Fallos_Criptograficos_Exposicion_Datos_Sensibles_Slides.html" class="presentation-item" target="_blank">
+                        <div class="item-info">
+                            <span class="item-title">6.1.3 Fallos Criptográficos &amp; Exposición de Secretos</span>
+                            <span class="item-meta">Hashing con Salt (Argon2id, BCrypt), cifrado simétrico AES-256-GCM y asimétrico (ECC/RSA).</span>
+                        </div>
+                        <span class="badge-active">Disponible</span>
+                    </a>
+
+                    <a href="Temas/06_Seguridad_Web_y_Movil/6.2_Autenticacion_y_Autorizacion/6.2.1_Arquitectura_Autenticacion_Moderna_Slides.html" class="presentation-item" target="_blank">
+                        <div class="item-info">
+                            <span class="item-title">6.2.1 Autenticación Moderna: Stateful vs. Stateless</span>
+                            <span class="item-meta">Sesiones de servidor vs. tokens JWT, autenticación multifactor TOTP y biometría en Flutter.</span>
+                        </div>
+                        <span class="badge-active">Disponible</span>
+                    </a>
+
+                    <a href="Temas/06_Seguridad_Web_y_Movil/6.2_Autenticacion_y_Autorizacion/6.2.2_Protocolos_OAuth2_OpenID_Connect_Slides.html" class="presentation-item" target="_blank">
+                        <div class="item-info">
+                            <span class="item-title">6.2.2 Protocolos Estándar: OAuth 2.0, OIDC y PKCE</span>
+                            <span class="item-meta">Los 4 roles, Authorization Code Flow con PKCE (RFC 7636) y Resource Server en Spring Boot 3.</span>
+                        </div>
+                        <span class="badge-active">Disponible</span>
+                    </a>
+
+                    <a href="Temas/06_Seguridad_Web_y_Movil/6.2_Autenticacion_y_Autorizacion/6.2.3_Endurecimiento_JWT_Hardening_Slides.html" class="presentation-item" target="_blank">
+                        <div class="item-info">
+                            <span class="item-title">6.2.3 Endurecimiento de JWT (JWT Hardening)</span>
+                            <span class="item-meta">Ataques alg: none, confusión HMAC/RSA y doble token con rotación y detección de reuso.</span>
+                        </div>
+                        <span class="badge-active">Disponible</span>
+                    </a>
+
+                    <a href="Temas/06_Seguridad_Web_y_Movil/6.3_Seguridad_en_Datos/6.3.1_Cifrado_en_Transito_HTTPS_TLS13_Slides.html" class="presentation-item" target="_blank">
+                        <div class="item-info">
+                            <span class="item-title">6.3.1 Cifrado en Tránsito: TLS 1.3 &amp; Certificate Pinning</span>
+                            <span class="item-meta">Forward Secrecy, cabeceras HSTS y anclaje de clave pública SPKI en clientes Flutter.</span>
+                        </div>
+                        <span class="badge-active">Disponible</span>
+                    </a>
+
+                    <a href="Temas/06_Seguridad_Web_y_Movil/6.3_Seguridad_en_Datos/6.3.2_Cifrado_en_Reposo_BD_Almacenamiento_Movil_Slides.html" class="presentation-item" target="_blank">
+                        <div class="item-info">
+                            <span class="item-title">6.3.2 Cifrado en Reposo: JPA AttributeConverter &amp; SQLCipher</span>
+                            <span class="item-meta">TDE vs cifrado a nivel de campo con AES-256-GCM y SQLite cifrado en móviles.</span>
+                        </div>
+                        <span class="badge-active">Disponible</span>
+                    </a>
+
+                    <a href="Temas/06_Seguridad_Web_y_Movil/6.3_Seguridad_en_Datos/6.3.3_Prevencion_Integral_Inyecciones_Codigo_Slides.html" class="presentation-item" target="_blank">
+                        <div class="item-info">
+                            <span class="item-title">6.3.3 Prevención Integral contra Inyecciones de Código</span>
+                            <span class="item-meta">Principio Von Neumann, Blind SQLi booleana/tiempo, Allowlist en ORDER BY y NoSQLi.</span>
+                        </div>
+                        <span class="badge-active">Disponible</span>
+                    </a>
+
+                    <a href="Temas/06_Seguridad_Web_y_Movil/6.4_Seguridad_en_Codigo/6.4.1_Validacion_Sanitizacion_Entradas_Slides.html" class="presentation-item" target="_blank">
+                        <div class="item-info">
+                            <span class="item-title">6.4.1 Validación &amp; Sanitización de Entradas</span>
+                            <span class="item-meta">Allowlisting vs Blocklisting, Jakarta Bean Validation 3.0 y respuestas RFC 7807.</span>
+                        </div>
+                        <span class="badge-active">Disponible</span>
+                    </a>
+
+                    <a href="Temas/06_Seguridad_Web_y_Movil/6.4_Seguridad_en_Codigo/6.4.2_Cross_Site_Scripting_XSS_Encoding_Slides.html" class="presentation-item" target="_blank">
+                        <div class="item-info">
+                            <span class="item-title">6.4.2 Cross-Site Scripting (XSS) y Codificación Contextual</span>
+                            <span class="item-meta">XSS Stored/Reflected/DOM, escape contextual, Angular DomSanitizer y motor Flutter.</span>
+                        </div>
+                        <span class="badge-active">Disponible</span>
+                    </a>
+
+                    <a href="Temas/06_Seguridad_Web_y_Movil/6.4_Seguridad_en_Codigo/6.4.3_Content_Security_Policy_CSP_Mitigacion_CSRF_Slides.html" class="presentation-item" target="_blank">
+                        <div class="item-info">
+                            <span class="item-title">6.4.3 Content Security Policy (CSP Nivel 3) &amp; CSRF</span>
+                            <span class="item-meta">Directivas CSP con nonces, SameSite=Strict e inmunidad CSRF en APIs stateless.</span>
+                        </div>
+                        <span class="badge-active">Disponible</span>
+                    </a>
+
+                    <a href="Temas/06_Seguridad_Web_y_Movil/6.5_Seguridad_en_APIs/6.5.1_Estandar_OWASP_API_Security_Top_10_Slides.html" class="presentation-item" target="_blank">
+                        <div class="item-info">
+                            <span class="item-title">6.5.1 OWASP API Security Top 10</span>
+                            <span class="item-meta">BOLA (API1), Mass Assignment (API3) con Java Records y consumo acotado de recursos (API4).</span>
+                        </div>
+                        <span class="badge-active">Disponible</span>
+                    </a>
+
+                    <a href="Temas/06_Seguridad_Web_y_Movil/6.5_Seguridad_en_APIs/6.5.2_Control_Acceso_Origen_CORS_Riguroso_Slides.html" class="presentation-item" target="_blank">
+                        <div class="item-info">
+                            <span class="item-title">6.5.2 Control de Acceso por Origen: CORS Riguroso</span>
+                            <span class="item-meta">Same-Origin Policy, peticiones preflight OPTIONS y CorsConfigurationSource en Spring.</span>
+                        </div>
+                        <span class="badge-active">Disponible</span>
+                    </a>
+
+                    <a href="Temas/06_Seguridad_Web_y_Movil/6.5_Seguridad_en_APIs/6.5.3_Rate_Limiting_Cuotas_Peticion_Slides.html" class="presentation-item" target="_blank">
+                        <div class="item-info">
+                            <span class="item-title">6.5.3 Rate Limiting, Cuotas y Resiliencia DoS</span>
+                            <span class="item-meta">Algoritmos Token Bucket y Leaky Bucket, Bucket4j en Java 25 y código HTTP 429.</span>
+                        </div>
+                        <span class="badge-active">Disponible</span>
+                    </a>
+
+                    <a href="Temas/06_Seguridad_Web_y_Movil/6.5_Seguridad_en_APIs/6.5.4_Cabeceras_Seguridad_HTTP_Defensivas_Slides.html" class="presentation-item" target="_blank">
+                        <div class="item-info">
+                            <span class="item-title">6.5.4 Cabeceras HTTP Defensivas</span>
+                            <span class="item-meta">X-Content-Type-Options: nosniff, X-Frame-Options: DENY, Referrer-Policy y Permissions-Policy.</span>
+                        </div>
+                        <span class="badge-active">Disponible</span>
+                    </a>
+
+                    <a href="Temas/06_Seguridad_Web_y_Movil/6.6_Seguridad_en_Despliegue/6.6.1_Gestion_Secretos_Configuracion_Externa_Slides.html" class="presentation-item" target="_blank">
+                        <div class="item-info">
+                            <span class="item-title">6.6.1 Gestión de Secretos y Configuración Externa</span>
+                            <span class="item-meta">Factor III de 12-Factor App, detección con GitLeaks y bóvedas en la nube.</span>
+                        </div>
+                        <span class="badge-active">Disponible</span>
+                    </a>
+
+                    <a href="Temas/06_Seguridad_Web_y_Movil/6.6_Seguridad_en_Despliegue/6.6.2_Hardening_Imagenes_Contenedores_Docker_Slides.html" class="presentation-item" target="_blank">
+                        <div class="item-info">
+                            <span class="item-title">6.6.2 Hardening de Docker: Non-Root &amp; Distroless</span>
+                            <span class="item-meta">Multi-stage builds en Java 25, mitigación de escape de contenedor y --read-only.</span>
+                        </div>
+                        <span class="badge-active">Disponible</span>
+                    </a>
+
+                    <a href="Temas/06_Seguridad_Web_y_Movil/6.6_Seguridad_en_Despliegue/6.6.3_Seguridad_Cadena_Suministro_Supply_Chain_Slides.html" class="presentation-item" target="_blank">
+                        <div class="item-info">
+                            <span class="item-title">6.6.3 Seguridad en la Cadena de Suministro (Supply Chain)</span>
+                            <span class="item-meta">Auditoría de CVEs con OWASP Dependency-Check, SBOM CycloneDX y escaneo con Trivy.</span>
+                        </div>
+                        <span class="badge-active">Disponible</span>
+                    </a>
+
+                    <a href="Temas/06_Seguridad_Web_y_Movil/6.7_Herramientas_y_Recursos/6.7.1_Analisis_Estatico_Seguridad_SAST_Slides.html" class="presentation-item" target="_blank">
+                        <div class="item-info">
+                            <span class="item-title">6.7.1 Análisis Estático de Seguridad (SAST)</span>
+                            <span class="item-meta">Taint Analysis (Source a Sink), reglas Semgrep y Security Quality Gates en SonarQube.</span>
+                        </div>
+                        <span class="badge-active">Disponible</span>
+                    </a>
+
+                    <a href="Temas/06_Seguridad_Web_y_Movil/6.7_Herramientas_y_Recursos/6.7.2_Analisis_Dinamico_Seguridad_DAST_Slides.html" class="presentation-item" target="_blank">
+                        <div class="item-info">
+                            <span class="item-title">6.7.2 Análisis Dinámico de Seguridad (DAST)</span>
+                            <span class="item-meta">OWASP ZAP (pasivo y activo), escaneo de endpoints OpenAPI en Docker y análisis de reportes.</span>
+                        </div>
+                        <span class="badge-active">Disponible</span>
+                    </a>
+
+                    <a href="Temas/06_Seguridad_Web_y_Movil/6.7_Herramientas_y_Recursos/6.7.3_Analisis_Auditoria_Seguridad_Movil_MASVS_MobSF_Slides.html" class="presentation-item" target="_blank">
+                        <div class="item-info">
+                            <span class="item-title">6.7.3 Auditoría de Seguridad Móvil (MASVS &amp; MobSF)</span>
+                            <span class="item-meta">Estándar OWASP MASVS, descompilación de APKs/AABs y análisis forense con MobSF.</span>
+                        </div>
+                        <span class="badge-active">Disponible</span>
+                    </a>
                 </div>
             </div>
 
