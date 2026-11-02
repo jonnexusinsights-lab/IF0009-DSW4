@@ -229,6 +229,22 @@ Para garantizar la uniformidad en las evaluaciones, se establecen los siguientes
 
 ---
 
+* **Actualización Reciente (Generación Integral del Tema 7: Despliegue y Publicación - 9 Subtemas, Diapositivas Reveal.js y Portal Web):** Bajo la invocación del modo `ModeTheory` (Persona `Profesor` y habilidad `Theory`), se investigaron, estructuraron, redactaron y compilaron los contenidos conceptuales y presentaciones interactivas de la unidad completa **Tema 7: Despliegue y Publicación** (`Temas/07_Despliegue_y_Publicacion/`), dividida en 9 subtemas especializados (4 para Web y 5 para Móvil), adaptados rigurosamente a las directrices pedagógicas (Java 25, Angular 17+, Flutter 3, sin Nginx ni Docker para Web, y enfoque mínimo esencial para Móvil):
+  1. **7.1 Despliegue de Aplicaciones Web (4 Módulos):**
+     - `7.1.1 Empaquetado & Optimización de Bundles`: Minificación, Tree-Shaking, Code-Splitting, Cache-Busting por hashes criptográficos y análisis de paquetes con `source-map-explorer` y `rollup-plugin-visualizer`.
+     - `7.1.2 Servidores y Hosting Estático vs. Dinámico`: Hosting de SPAs en servidores web estáticos nativos con fallback routing (`index.html`), backend dinámico con Tomcat embebido en Spring Boot 3 y arquitectura de ejecución nativa.
+     - `7.1.3 Dominios, DNS y Certificados SSL/TLS`: Jerarquía DNS, registros A, CNAME, ALIAS, handshake TLS 1.3, Let's Encrypt, validaciones ACME (HTTP-01 y DNS-01) y Certbot con auto-renovación.
+     - `7.1.4 Despliegue en Producción & Servicios Cloud`: Despliegue bare-metal / VPS con servicios Linux `systemd` (`Restart=always`, isolation), gestión de configuración mediante variables de entorno (Twelve-Factor App), logging con `journalctl` y despliegue en PaaS cloud (Heroku, Render, AWS App Runner).
+     - Actualización de `Temas/07_Despliegue_y_Publicacion/7.1_Despliegue_Aplicaciones_Web/README.md`.
+  2. **7.2 Publicación de Aplicaciones Móviles (5 Módulos Mínimos Esenciales):**
+     - `7.2.1 Firma Digital & Gestión de Claves en Android`: Generación criptográfica de Java Keystore con `keytool` (RSA 4096 / PKCS12), externalización segura con `key.properties` y configuración de `signingConfigs` en Gradle.
+     - `7.2.2 Formatos de Distribución (APK vs. AAB)`: Comparativa entre monolitos APK heredados y Android App Bundle (AAB), Dynamic Delivery, Play Feature Delivery y reducción de tamaño de descarga.
+     - `7.2.3 Ecosistema Apple & Pruebas en TestFlight`: Certificados de distribución, Identificadores de App, Provisioning Profiles, compilación de binarios `.ipa` y distribución beta para testers con TestFlight.
+     - `7.2.4 Arquitectura de Entornos (Flavors Esenciales)`: Implementación dual minimalista `dev` y `prod` en Flutter (`flavorDimensions`), puntos de entrada independientes (`main_dev.dart` y `main_prod.dart`) y aislamiento de base de datos/APIs.
+     - `7.2.5 Directrices de Aprobación en Tiendas`: Cumplimiento del Formulario de Seguridad de Datos de Google Play, App Store Review Guidelines, mecanismo de eliminación de cuenta de extremo a extremo y políticas de privacidad.
+     - Actualización de `Temas/07_Despliegue_y_Publicacion/7.2_Publicacion_Aplicaciones_Moviles/README.md`.
+  3. **Compilación y Portal Web:** Se compilaron las 9 presentaciones a HTML interactivo Reveal.js con el tema Tokyo Night mediante `marp_to_reveal.py`, y se activó la tarjeta del **Tema 7: Despliegue y Publicación** en el portal principal [`index.html`](file:///c:/Users/jonat/OneDrive/Documentos/UCR-2026/IF0009/Planificacion%20Lecciones/index.html) con 9 hipervínculos funcionales.
+
 * **Actualización Reciente (Generación Integral del Tema 6: Seguridad Web y Móvil - 22 Subtemas, Diapositivas y Portal Web):** Bajo la invocación del modo `ModeTheory` (Persona `Profesor` y habilidad `Theory`), se estructuraron, redactaron y compilaron los contenidos teóricos y presentaciones interactivas de la unidad completa **Tema 6: Seguridad Web y Móvil** (`Temas/06_Seguridad_Web_y_Movil/`), desglosados en 22 módulos específicos en Java 25 (Spring Boot 3 / Spring Security 6), Angular 17+ y Flutter 3:
   1. **6.1 Vulnerabilidades Comunes:** `6.1.1` Estándar OWASP Top 10 Web y Móvil, `6.1.2` Inyecciones y Broken Access Control (IDOR), `6.1.3` Fallos Criptográficos (Argon2id, BCrypt, AES-GCM).
   2. **6.2 Autenticación y Autorización:** `6.2.1` Arquitectura Stateful vs Stateless y Biometría Móvil, `6.2.2` Protocolos OAuth 2.0, OIDC y Flujo PKCE, `6.2.3` Hardening de JWT y rotación de Refresh Tokens.
@@ -574,17 +590,20 @@ Planificacion Lecciones/
 | [Evaluaciones/Laboratorios/Laboratorio_15](file:///c:/Users/jonat/OneDrive/Documentos/UCR-2026/IF0009/Planificacion%20Lecciones/Evaluaciones/Laboratorios/Laboratorio_15) | [laboratorio_15.md](file:///c:/Users/jonat/OneDrive/Documentos/UCR-2026/IF0009/Planificacion%20Lecciones/Evaluaciones/Laboratorios/Laboratorio_15/laboratorio_15.md) | Guía Completa de Laboratorio 15 Guiado ("FieldTech Móvil") | ModeLab / Instructor | [x] Completado |
 | [Evaluaciones/Laboratorios/Laboratorio_15](file:///c:/Users/jonat/OneDrive/Documentos/UCR-2026/IF0009/Planificacion%20Lecciones/Evaluaciones/Laboratorios/Laboratorio_15) | [laboratorio_15.pdf](file:///c:/Users/jonat/OneDrive/Documentos/UCR-2026/IF0009/Planificacion%20Lecciones/Evaluaciones/Laboratorios/Laboratorio_15/laboratorio_15.pdf) | Guía de Laboratorio 15 en PDF Imprimible | Conversor Python | [x] Completado |
 | [Temas/06_Seguridad_Web_y_Movil](file:///c:/Users/jonat/OneDrive/Documentos/UCR-2026/IF0009/Planificacion%20Lecciones/Temas/06_Seguridad_Web_y_Movil) | 22 Subtemas (6.1.1 a 6.7.3) .md, _Slides.md y _Slides.html | Unidad Completa de Seguridad Web y Móvil (Java 25, Angular, Flutter) | ModeTheory / Compilador | [x] Completado |
-| [Temas/07_Despliegue_y_Publicacion](file:///c:/Users/jonat/OneDrive/Documentos/UCR-2026/IF0009/Planificacion%20Lecciones/Temas/07_Despliegue_y_Publicacion) | Subtemas 7.1 y 7.2 README.md | Planificación Pedagógica y Temarios de Despliegue | ModeTheory | [x] Completado |
+| [Temas/07_Despliegue_y_Publicacion/7.1_Despliegue_Aplicaciones_Web](file:///c:/Users/jonat/OneDrive/Documentos/UCR-2026/IF0009/Planificacion%20Lecciones/Temas/07_Despliegue_y_Publicacion/7.1_Despliegue_Aplicaciones_Web) | 4 Subtemas (7.1.1 a 7.1.4) .md, _Slides.md y _Slides.html | Despliegue Web (Bundles, Hosting Estático/Dinámico, DNS, SSL/TLS, systemd) | ModeTheory / Compilador | [x] Completado |
+| [Temas/07_Despliegue_y_Publicacion/7.2_Publicacion_Aplicaciones_Moviles](file:///c:/Users/jonat/OneDrive/Documentos/UCR-2026/IF0009/Planificacion%20Lecciones/Temas/07_Despliegue_y_Publicacion/7.2_Publicacion_Aplicaciones_Moviles) | 5 Subtemas (7.2.1 a 7.2.5) .md, _Slides.md y _Slides.html | Publicación Móvil (Keytool, APK vs AAB, Apple/TestFlight, Flavors, Directrices) | ModeTheory / Compilador | [x] Completado |
+| [/](file:///c:/Users/jonat/OneDrive/Documentos/UCR-2026/IF0009/Planificacion%20Lecciones) | [index.html](file:///c:/Users/jonat/OneDrive/Documentos/UCR-2026/IF0009/Planificacion%20Lecciones/index.html) | Portal Principal con Tarjeta Activa del Tema 7 y 9 Presentaciones | HTML5/CSS3 | [x] Completado |
 
 ---
 
 ## 🚀 Planificación de Próximas Tareas
 
 1. **Próxima Tarea Prioritaria:**
-   - Iniciar el desarrollo de contenidos teóricos y diapositivas para el **Tema 7: Despliegue y Publicación**, comenzando con el Subtema **7.1: Despliegue de Aplicaciones Web** (Empaquetado productivo, Docker, Nginx Reverse Proxy, SSL/TLS Let's Encrypt).
+   - Preparar la evaluación práctica y teórica correspondiente al **Examen Parcial II** (Evaluando de forma integrada los Módulos 5, 6 y 7: Desarrollo Móvil en Flutter, Seguridad Full-Stack con Spring Boot/Angular/Flutter y Despliegue/Publicación).
 2. **Tareas Pendientes (Próximas Sesiones):**
-   - Desarrollar los módulos teóricos y prácticos de **7.2: Publicación y Despliegue de Aplicaciones Móviles** (Compilación AAB/IPA, firmado de aplicaciones, Play Console y App Store Connect).
-   - Preparar la evaluación práctica correspondiente al **Examen Parcial II** (Módulos 5 a 7).
+   - Diseñar los enunciados, solucionarios y rúbricas del Examen Parcial II.
+   - Diseñar las prácticas guiadas y laboratorios correspondientes a los Temas 6 y 7.
+   - Desarrollar los contenidos pedagógicos del **Tema 8: Temas Adicionales** (Maven avanzado, GitHub Actions CI/CD, Web Components y CSS Moderno).
 
 ---
 
