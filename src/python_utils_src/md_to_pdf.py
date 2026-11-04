@@ -59,20 +59,20 @@ THEMES = {
     "modern": """
         @page {
             size: letter;
-            margin: 2.5cm;
+            margin: 1.8cm 1.8cm 2.2cm 1.8cm;
             @frame footer {
                 -pdf-frame-content: footer_content;
-                bottom: 1.2cm;
-                margin-left: 2.5cm;
-                margin-right: 2.5cm;
+                bottom: 1.0cm;
+                margin-left: 1.8cm;
+                margin-right: 1.8cm;
                 height: 1cm;
             }
         }
         body {
             font-family: Helvetica, Arial, sans-serif;
             color: #1e293b;
-            font-size: 10.5pt;
-            line-height: 1.6;
+            font-size: 10pt;
+            line-height: 1.5;
         }
         h1 {
             font-size: 24pt;
@@ -122,11 +122,12 @@ THEMES = {
         }
         pre {
             font-family: Courier, monospace;
-            font-size: 8.5pt;
+            font-size: 7.8pt;
+            line-height: 1.35;
             background-color: #f8fafc;
             border: 1px solid #cbd5e1;
-            padding: 8pt;
-            margin-bottom: 14pt;
+            padding: 6pt;
+            margin-bottom: 12pt;
         }
         blockquote {
             border-left: 4px solid #2563eb;

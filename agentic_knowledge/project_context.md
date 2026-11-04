@@ -229,6 +229,12 @@ Para garantizar la uniformidad en las evaluaciones, se establecen los siguientes
 
 ---
 
+* **Actualización Reciente (Laboratorio 16 - Hardening Defensivo y Mitigación de Vulnerabilidades Web OWASP en Spring Boot 3 con Spring Security 6 "MediVault Web"):** Bajo la invocación del modo `ModeLab` (Persona `Instructor` y habilidad `Lab`), se estructuró, redactó y compiló el **Laboratorio 16** en `Evaluaciones/Laboratorios/Laboratorio_16/` ([`laboratorio_16.md`](file:///c:/Users/jonat/OneDrive/Documentos/UCR-2026/IF0009/Planificacion%20Lecciones/Evaluaciones/Laboratorios/Laboratorio_16/laboratorio_16.md) y su versión PDF [`laboratorio_16.pdf`](file:///c:/Users/jonat/OneDrive/Documentos/UCR-2026/IF0009/Planificacion%20Lecciones/Evaluaciones/Laboratorios/Laboratorio_16/laboratorio_16.pdf)). El laboratorio se acompaña de los scripts ANSI SQL de inicialización H2 [`schema.sql`](file:///c:/Users/jonat/OneDrive/Documentos/UCR-2026/IF0009/Planificacion%20Lecciones/Evaluaciones/Laboratorios/Laboratorio_16/resources/sql/schema.sql) y [`data.sql`](file:///c:/Users/jonat/OneDrive/Documentos/UCR-2026/IF0009/Planificacion%20Lecciones/Evaluaciones/Laboratorios/Laboratorio_16/resources/sql/data.sql) con contraseñas cifradas en BCrypt.
+  La práctica aborda exclusivamente la seguridad en aplicaciones web (capa backend RESTful con Java 25 y Spring Boot 3.3+) e incluye:
+  1. **Parte 1 (Práctica Guiada):** Implementación de la plataforma de salud confidencial **MediVault Web**, integrando autenticación JWT stateless, mitigación de Broken Access Control (IDOR / BOLA) mediante comprobación estricta de propiedad de recurso (*Resource Ownership*), validaciones declarativas con Jakarta Bean Validation, manejo seguro de errores con RFC 7807 (`ProblemDetail`) sin fugas de stack trace, hardening de cabeceras HTTP en Spring Security 6 (CSP Nivel 3, HSTS, `X-Content-Type-Options: nosniff`, `X-Frame-Options: DENY`, `no-store`), control de peticiones concurrentes y mitigación de fuerza bruta con el algoritmo Token Bucket de **Bucket4j** (HTTP 429 con cabecera `Retry-After`), y 5 pruebas exhaustivas con comandos cURL.
+  2. **Parte 2 (Depuración):** Análisis forense y refactorización guiada de un endpoint con omisión de validación de pertenencia y vulnerabilidad de autorización.
+  3. **Parte 3 (Reto Autónomo):** Extensión autónoma con Rate Limiting individualizado por IP remota/proxy (`ConcurrentHashMap`) y persistencia asíncrona de eventos sospechosos en la tabla `AUDIT_LOGS`.
+
 * **Actualización Reciente (Generación Integral del Tema 7: Despliegue y Publicación - 9 Subtemas, Diapositivas Reveal.js y Portal Web):** Bajo la invocación del modo `ModeTheory` (Persona `Profesor` y habilidad `Theory`), se investigaron, estructuraron, redactaron y compilaron los contenidos conceptuales y presentaciones interactivas de la unidad completa **Tema 7: Despliegue y Publicación** (`Temas/07_Despliegue_y_Publicacion/`), dividida en 9 subtemas especializados (4 para Web y 5 para Móvil), adaptados rigurosamente a las directrices pedagógicas (Java 25, Angular 17+, Flutter 3, sin Nginx ni Docker para Web, y enfoque mínimo esencial para Móvil):
   1. **7.1 Despliegue de Aplicaciones Web (4 Módulos):**
      - `7.1.1 Empaquetado & Optimización de Bundles`: Minificación, Tree-Shaking, Code-Splitting, Cache-Busting por hashes criptográficos y análisis de paquetes con `source-map-explorer` y `rollup-plugin-visualizer`.
@@ -593,16 +599,18 @@ Planificacion Lecciones/
 | [Temas/07_Despliegue_y_Publicacion/7.1_Despliegue_Aplicaciones_Web](file:///c:/Users/jonat/OneDrive/Documentos/UCR-2026/IF0009/Planificacion%20Lecciones/Temas/07_Despliegue_y_Publicacion/7.1_Despliegue_Aplicaciones_Web) | 4 Subtemas (7.1.1 a 7.1.4) .md, _Slides.md y _Slides.html | Despliegue Web (Bundles, Hosting Estático/Dinámico, DNS, SSL/TLS, systemd) | ModeTheory / Compilador | [x] Completado |
 | [Temas/07_Despliegue_y_Publicacion/7.2_Publicacion_Aplicaciones_Moviles](file:///c:/Users/jonat/OneDrive/Documentos/UCR-2026/IF0009/Planificacion%20Lecciones/Temas/07_Despliegue_y_Publicacion/7.2_Publicacion_Aplicaciones_Moviles) | 5 Subtemas (7.2.1 a 7.2.5) .md, _Slides.md y _Slides.html | Publicación Móvil (Keytool, APK vs AAB, Apple/TestFlight, Flavors, Directrices) | ModeTheory / Compilador | [x] Completado |
 | [/](file:///c:/Users/jonat/OneDrive/Documentos/UCR-2026/IF0009/Planificacion%20Lecciones) | [index.html](file:///c:/Users/jonat/OneDrive/Documentos/UCR-2026/IF0009/Planificacion%20Lecciones/index.html) | Portal Principal con Tarjeta Activa del Tema 7 y 9 Presentaciones | HTML5/CSS3 | [x] Completado |
+| [Evaluaciones/Laboratorios/Laboratorio_16](file:///c:/Users/jonat/OneDrive/Documentos/UCR-2026/IF0009/Planificacion%20Lecciones/Evaluaciones/Laboratorios/Laboratorio_16) | [laboratorio_16.md](file:///c:/Users/jonat/OneDrive/Documentos/UCR-2026/IF0009/Planificacion%20Lecciones/Evaluaciones/Laboratorios/Laboratorio_16/laboratorio_16.md) | Guía Completa de Laboratorio 16 Guiado ("MediVault Web") | ModeLab / Instructor | [x] Completado |
+| [Evaluaciones/Laboratorios/Laboratorio_16](file:///c:/Users/jonat/OneDrive/Documentos/UCR-2026/IF0009/Planificacion%20Lecciones/Evaluaciones/Laboratorios/Laboratorio_16) | [laboratorio_16.pdf](file:///c:/Users/jonat/OneDrive/Documentos/UCR-2026/IF0009/Planificacion%20Lecciones/Evaluaciones/Laboratorios/Laboratorio_16/laboratorio_16.pdf) | Guía de Laboratorio 16 en PDF Imprimible | Conversor Python | [x] Completado |
 
 ---
 
 ## 🚀 Planificación de Próximas Tareas
 
 1. **Próxima Tarea Prioritaria:**
-   - Preparar la evaluación práctica y teórica correspondiente al **Examen Parcial II** (Evaluando de forma integrada los Módulos 5, 6 y 7: Desarrollo Móvil en Flutter, Seguridad Full-Stack con Spring Boot/Angular/Flutter y Despliegue/Publicación).
+   - Preparar la evaluación práctica y teórica correspondiente al **Examen Parcial II** (Evaluando de forma integrada los Módulos 5, 6 y 7: Desarrollo Móvil en Flutter, Seguridad Full-Stack con Spring Boot/Angular y Despliegue/Publicación).
 2. **Tareas Pendientes (Próximas Sesiones):**
    - Diseñar los enunciados, solucionarios y rúbricas del Examen Parcial II.
-   - Diseñar las prácticas guiadas y laboratorios correspondientes a los Temas 6 y 7.
+   - Diseñar prácticas adicionales o talleres guiados de consolidación para Despliegue en Producción (Tema 7).
    - Desarrollar los contenidos pedagógicos del **Tema 8: Temas Adicionales** (Maven avanzado, GitHub Actions CI/CD, Web Components y CSS Moderno).
 
 ---
