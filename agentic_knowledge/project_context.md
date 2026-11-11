@@ -637,15 +637,22 @@ Planificacion Lecciones/
 | [web_apps/unsecure_web_app_lab](file:///c:/Users/jonat/OneDrive/Documentos/UCR-2026/IF0009/web_apps/unsecure_web_app_lab) | [unsecure_web_app_lab](file:///c:/Users/jonat/OneDrive/Documentos/UCR-2026/IF0009/web_apps/unsecure_web_app_lab) | App Web Vulnerable InsecurePay (Spring Boot 3.3.4 + Angular 18 + H2 + VS Code Workspace) | Full-Stack / Ciberseguridad | [x] Completado |
 | [Evaluaciones/Laboratorios/Laboratorio_17](file:///c:/Users/jonat/OneDrive/Documentos/UCR-2026/IF0009/Planificacion%20Lecciones/Evaluaciones/Laboratorios/Laboratorio_17) | [laboratorio_17.md](file:///c:/Users/jonat/OneDrive/Documentos/UCR-2026/IF0009/Planificacion%20Lecciones/Evaluaciones/Laboratorios/Laboratorio_17/laboratorio_17.md) | Guía Completa de Laboratorio 17 Semi-Guiado ("InsecurePay: Auditoría Forense y Remediación OWASP") | ModeLab / Instructor | [x] Completado |
 | [Evaluaciones/Laboratorios/Laboratorio_17](file:///c:/Users/jonat/OneDrive/Documentos/UCR-2026/IF0009/Planificacion%20Lecciones/Evaluaciones/Laboratorios/Laboratorio_17) | [laboratorio_17.pdf](file:///c:/Users/jonat/OneDrive/Documentos/UCR-2026/IF0009/Planificacion%20Lecciones/Evaluaciones/Laboratorios/Laboratorio_17/laboratorio_17.pdf) | Guía de Laboratorio 17 en PDF Imprimible (100 Puntos) | Conversor Python | [x] Completado |
+| [Evaluaciones/Examenes/Examen_II/Anuncio](file:///c:/Users/jonat/OneDrive/Documentos/UCR-2026/IF0009/Planificacion%20Lecciones/Evaluaciones/Examenes/Examen_II/Anuncio) | [Examen_II_Anuncio.md](file:///c:/Users/jonat/OneDrive/Documentos/UCR-2026/IF0009/Planificacion%20Lecciones/Evaluaciones/Examenes/Examen_II/Anuncio/Examen_II_Anuncio.md) | Anuncio Oficial y Ficha Informativa del Examen Parcial II (20%) | Formato Markdown / Docente | [x] Completado |
+| [Evaluaciones/Examenes/Examen_II/Anuncio](file:///c:/Users/jonat/OneDrive/Documentos/UCR-2026/IF0009/Planificacion%20Lecciones/Evaluaciones/Examenes/Examen_II/Anuncio) | [Examen_II_Anuncio.pdf](file:///c:/Users/jonat/OneDrive/Documentos/UCR-2026/IF0009/Planificacion%20Lecciones/Evaluaciones/Examenes/Examen_II/Anuncio/Examen_II_Anuncio.pdf) | Anuncio Oficial del Examen Parcial II en PDF Imprimible | Conversor Python | [x] Completado |
+| [Evaluaciones/Examenes/Examen_II/Anuncio](file:///c:/Users/jonat/OneDrive/Documentos/UCR-2026/IF0009/Planificacion%20Lecciones/Evaluaciones/Examenes/Examen_II/Anuncio) | [Examen_II_Anuncio_Moodle.html](file:///c:/Users/jonat/OneDrive/Documentos/UCR-2026/IF0009/Planificacion%20Lecciones/Evaluaciones/Examenes/Examen_II/Anuncio/Examen_II_Anuncio_Moodle.html) | Anuncio Oficial para Moodle (Etiqueta HTML con Estilos Inline) | HTML5 / Mediación Virtual | [x] Completado |
+| [Evaluaciones/Examenes/Examen_II/Enunciado](file:///c:/Users/jonat/OneDrive/Documentos/UCR-2026/IF0009/Planificacion%20Lecciones/Evaluaciones/Examenes/Examen_II/Enunciado) | [Enunciado](file:///c:/Users/jonat/OneDrive/Documentos/UCR-2026/IF0009/Planificacion%20Lecciones/Evaluaciones/Examenes/Examen_II/Enunciado) | Directorio creado para los enunciados, guías y solucionarios del Examen II | Estructura de Carpetas | [x] Completado |
 
 ---
 
 ## 🚀 Planificación de Próximas Tareas
 
 1. **Próxima Tarea Prioritaria:**
-   - Preparar la evaluación práctica y teórica correspondiente al **Examen Parcial II** (Evaluando de forma integrada los Módulos 5, 6 y 7: Desarrollo Móvil en Flutter, Seguridad Full-Stack con Spring Boot/Angular y Despliegue/Publicación).
+   - Diseñar y redactar el **Enunciado Oficial del Examen Parcial II** en `Evaluaciones/Examenes/Examen_II/Enunciado/`:
+     - Parte 1: Cuestionario Moodle de Teoría Aplicada (Móvil Flutter, Ciberseguridad OWASP y Despliegue/Hosting).
+     - Parte 2: Proyecto Práctico Starter (Spring Boot 3 + Angular + Seguridad OWASP).
+   - Generar el solucionario y la rúbrica detallada de evaluación (100 puntos).
 2. **Tareas Pendientes (Próximas Sesiones):**
-   - Diseñar los enunciados, solucionarios y rúbricas del Examen Parcial II.
+   - Configurar o ajustar el repositorio starter oficial de la aplicación de examen.
    - Diseñar prácticas adicionales o talleres guiados de consolidación para Despliegue en Producción (Tema 7).
    - Desarrollar los contenidos pedagógicos del **Tema 8: Temas Adicionales** (Maven avanzado, GitHub Actions CI/CD, Web Components y CSS Moderno).
 
