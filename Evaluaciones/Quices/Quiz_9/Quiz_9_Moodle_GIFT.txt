@@ -1,0 +1,60 @@
+// ==============================================================================
+// Cuestionario: Quiz 9 - Auditoria Forense de Vulnerabilidades Web (OWASP Top 10)
+// Caso de Estudio: InsecureCare Medical Portal
+// Curso: IF0009 - Desarrollo de Software IV (UCR)
+// Plataforma: Mediacion Virtual (Moodle)
+// Formato: GIFT (Moodle Quiz Import)
+// ==============================================================================
+
+$CATEGORY: $course$/Quiz 9 - Auditoria Vulnerabilidades OWASP InsecureCare
+
+// ------------------------------------------------------------------------------
+// Pregunta 1: Inventario y Cuantificacion de Vulnerabilidades OWASP
+// ------------------------------------------------------------------------------
+::Q1_Inventario_OWASP_InsecureCare:: [html]Tras auditar exhaustivamente la arquitectura Full-Stack de la aplicación <b>InsecureCare</b> (revisando endpoints REST, persistencia JPA, configuración de Spring Boot y componentes Standalone en Angular), ¿cuál es la cantidad exacta de vulnerabilidades críticas del estándar <b>OWASP Top 10</b> deliberadamente implementadas en el sistema y cuál es su clasificación correspondiente? {
+	~A) Existen exactamente 3 vulnerabilidades: Inyección SQL (A03), Desbordamiento de Búfer (A04) y Fallo de Cifrado en Disco (A02). #Incorrecto. Desbordamiento de búfer no aplica a aplicaciones gestionadas en la JVM, y el sistema implementa 5 vulnerabilidades.
+	=B) Existen exactamente 5 vulnerabilidades: Broken Access Control / IDOR (A01), Fallos Criptográficos / Contraseñas en Texto Plano (A02), Inyección SQL (A03), Cross-Site Scripting Almacenado (A03) y Configuración de Seguridad Incorrecta / Fuga de Trazas (A05). #¡Correcto! Esas son exactamente las cinco fallas estructuradas en el backend y frontend de InsecureCare.
+	~C) Existen exactamente 2 vulnerabilidades: Cross-Site Scripting (XSS) y Denegación de Servicio Distribuida (DDoS) por falta de balanceador Nginx. #Incorrecto. La aplicación no presenta ataques DDoS deliberados y cuenta con más de dos vectores de riesgo explotables.
+	~D) Existen exactamente 7 vulnerabilidades: Ataque de Hombre en el Medio (MitM), Falsificación de Solicitudes del Servidor (SSRF), XML External Entity (XXE), Clickjacking, Broken Object Level Authorization, Memory Leak y Buffer Overflow. #Incorrecto. InsecureCare no procesa documentos XML (evitando XXE) ni realiza peticiones salientes a URLs arbitrarias (evitando SSRF).
+}
+
+// ------------------------------------------------------------------------------
+// Pregunta 2: Inyeccion SQL (SQLi) y Exfiltracion de Datos
+// ------------------------------------------------------------------------------
+::Q2_SQL_Injection_Exfiltracion:: [html]En la barra de búsqueda de diagnósticos clínicos del componente <code>ExpedienteListComponent</code>, un auditor de seguridad prueba evadir el filtro ingresando cadenas de control SQL en la URL:<br/><br/><code>GET /api/expedientes/buscar?termino=' OR '1'='1</code><br/><br/>¿Por qué este vector de ataque tiene éxito en el servidor y cuál es la solución técnica estándar en Spring Data JPA para neutralizarlo definitivamente? {
+	~A) El ataque tiene éxito porque H2 Database no admite claves foráneas; se soluciona migrando el backend a Oracle Database sin tocar el código Java. #Incorrecto. El fallo no reside en el motor de base de datos sino en la ausencia de parametrización en el código de la aplicación.
+	=B) El ataque tiene éxito porque el servicio ExpedienteService concatena dinámicamente el parámetro del usuario en una consulta SQL nativa (createNativeQuery); se soluciona utilizando consultas parametrizadas con marcadores de posición (:termino) o métodos derivados de JpaRepository. #¡Correcto! La concatenación directa de entradas de usuario en sentencias SQL permite alterar la lógica lógica del predicado WHERE. La parametrización delega el escape al driver JDBC.
+	~C) El ataque tiene éxito porque el navegador envía los parámetros en texto claro mediante HTTP; se soluciona instalando un certificado SSL autofirmado en el puerto 4200 de Angular. #Incorrecto. El protocolo SSL/TLS cifra el canal de transporte, pero no previene la ejecución de comandos SQL inyectados en la consulta.
+	~D) El ataque tiene éxito debido a que la base de datos corre en memoria RAM; se neutraliza configurando spring.datasource.username=root. #Incorrecto. El medio de almacenamiento (memoria vs disco) y el nombre de usuario no tienen impacto en la vulnerabilidad de inyección SQL.
+}
+
+// ------------------------------------------------------------------------------
+// Pregunta 3: Broken Access Control / IDOR (BOLA)
+// ------------------------------------------------------------------------------
+::Q3_IDOR_BOLA_Expedientes:: [html]El estudiante inicia sesión con las credenciales del paciente <code>carlos_mora</code> (Usuario ID\: 3, asignado al Expediente #1). Al navegar a la vista de detalle, la URL del navegador muestra <code>/expediente/1</code>. Si el estudiante reemplaza manualmente la ruta por <code>/expediente/2</code>, ¿qué ocurre técnica y conceptualmente en la aplicación? {
+	~A) El sistema lanza inmediatamente un error HTTP 403 Forbidden y bloquea la IP del cliente durante 24 horas por violación de políticas de seguridad. #Incorrecto. La aplicación carece intencionalmente de dicho control defensivo, permitiendo el acceso no autorizado.
+	=B) Se produce una vulnerabilidad de Broken Access Control (IDOR / BOLA) donde el paciente accede al expediente psiquiátrico confidencial de maria_rojas, debido a que ExpedienteService.obtenerPorId() busca directamente por clave primaria sin verificar que el usuarioId del recurso coincida con el usuario autenticado en la sesión. #¡Correcto! La ausencia de validación de propiedad del recurso (Resource Ownership) permite que cualquier usuario autenticado manipule identificadores y exfiltre datos ajenos.
+	~C) El servidor Angular redirige al usuario a la página de inicio porque el componente Standalone detecta la discrepancia en el árbol de enrutamiento mediante un CanActivateFn. #Incorrecto. El frontend no cuenta con guardas que comparen el ID de la ruta contra el usuario en localStorage.
+	~D) La base de datos H2 se corrompe automáticamente al recibir una petición de lectura fuera del ámbito transaccional @Transactional. #Incorrecto. Las operaciones de lectura no corrompen bases de datos relacionales por omisión de @Transactional.
+}
+
+// ------------------------------------------------------------------------------
+// Pregunta 4: Cross-Site Scripting (XSS Almacenado) y Bypass en Angular
+// ------------------------------------------------------------------------------
+::Q4_XSS_Almacenado_Bypass_Angular:: [html]En el registro de un nuevo expediente médico, un atacante ingresa el siguiente contenido en el campo de observaciones clínicas:<br/><br/><code>&lt;img src="invalido" onerror="alert('XSS Detectado')"&gt;</code><br/><br/>Al visualizar dicho registro en <code>ExpedienteDetailComponent</code>, la ventana modal de alerta de JavaScript se ejecuta exitosamente en el navegador. ¿Cuál fue el fallo cometido en el código del Front-End que provocó la ejecución del payload? {
+	=A) El desarrollador utilizó la directiva [innerHTML] invocando explícitamente sanitizer.bypassSecurityTrustHtml(), desactivando voluntariamente el motor de sanitización contextual nativo de Angular. #¡Correcto! Angular protege contra XSS por defecto; solo al invocar bypassSecurityTrustHtml() se permite la ejecución de scripts o manejadores de eventos maliciosos inyectados.
+	~B) Angular carece de defensas nativas contra XSS y requiere obligatoriamente instalar la librería externa jQuery para filtrar etiquetas peligrosas. #Incorrecto. Angular incorpora de fábrica un potente sistema de sanitización contextual para HTML, estilos, URLs y recursos.
+	~C) El navegador web tiene deshabilitado el motor V8, provocando que las etiquetas &lt;img&gt; ejecuten scripts en el hilo de renderizado visual. #Incorrecto. El motor V8 es el intérprete estándar de JavaScript en Chromium; su presencia es lo que permite ejecutar el manejador onerror.
+	~D) El fallo ocurrió porque el archivo index.html no tiene configurado el atributo lang="es". #Incorrecto. El atributo lang define el idioma del documento para lectores de pantalla y motores de búsqueda; no tiene relación con el filtrado XSS.
+}
+
+// ------------------------------------------------------------------------------
+// Pregunta 5: Fallos Criptograficos y Fuga de Informacion Tecnica
+// ------------------------------------------------------------------------------
+::Q5_Criptografia_Fuga_Informacion:: [html]Durante la inspección de la base de datos mediante la consola <code>/h2-console</code> y al forzar un error de sintaxis SQL en la API, el equipo auditor observa dos violaciones críticas a la confidencialidad. ¿Cuáles son estas dos debilidades y qué directivas de configuración corrigen la fuga de información? {
+	~A) El puerto 8080 está bloqueado por el firewall de Windows y la memoria JVM es insuficiente para procesar el garbage collector. #Incorrecto. La aplicación responde adecuadamente en el puerto 8080 y no existen fallas de recolección de basura.
+	=B) Las contraseñas de los usuarios se almacenan en texto plano en la tabla USUARIOS, y el servidor tiene configurado server.error.include-stacktrace=always, lo cual expone la arquitectura interna y consultas SQL; se remedia implementando BCryptPasswordEncoder y configurando server.error.include-stacktrace=never. #¡Correcto! El almacenamiento en texto claro viola A02 (Cryptographic Failures) y la exposición de stack traces detallados viola A05 (Security Misconfiguration).
+	~C) El servidor utiliza algoritmos cuánticos no estandarizados; se soluciona deshabilitando el protocolo HTTP 1.1 en pom.xml. #Incorrecto. No existen algoritmos cuánticos en Spring Boot 3 y pom.xml no gestiona versiones de protocolos HTTP.
+	~D) La consola de H2 requiere autenticación biométrica y el backend rechaza peticiones JSON de Angular. #Incorrecto. H2 Console no soporta biometría y la comunicación JSON opera normalmente.
+}
+

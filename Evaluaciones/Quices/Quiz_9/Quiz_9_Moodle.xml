@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <!-- Categoría del Banco de Preguntas en Mediación Virtual -->
+  <question type="category">
+    <category>
+      <text>$course$/top/Quiz 9 - Auditoria Vulnerabilidades OWASP InsecureCare</text>
+    </category>
+    <info format="moodle_auto_format">
+      <text>Preguntas del Quiz 9: Auditoría Forense de Vulnerabilidades Web (OWASP Top 10) en InsecureCare (IF0009 - Desarrollo de Software IV)</text>
+    </info>
+  </question>
+
+  <!-- Pregunta 1 -->
+  <question type="multichoice">
+    <name>
+      <text>Q1 - Inventario y Cuantificacion de Vulnerabilidades OWASP</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Tras auditar exhaustivamente la arquitectura Full-Stack de la aplicación <strong>InsecureCare</strong> (revisando endpoints REST, persistencia JPA, configuración de Spring Boot y componentes Standalone en Angular), ¿cuál es la cantidad exacta de vulnerabilidades críticas del estándar <strong>OWASP Top 10</strong> deliberadamente implementadas en el sistema y cuál es su clasificación correspondiente?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>InsecureCare contiene exactamente 5 vulnerabilidades intencionadas: A01 (IDOR / BOLA en expedientes), A02 (Contraseñas en texto plano y secreto JWT débil), A03 (SQL Injection en búsqueda), A03 (XSS Almacenado con bypass de sanitización) y A05 (Exposición de trazas de error completas y consola H2 abierta).</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>5.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="0" format="html">
+      <text><![CDATA[Existen exactamente 3 vulnerabilidades: Inyección SQL (A03), Desbordamiento de Búfer (A04) y Fallo de Cifrado en Disco (A02).]]></text>
+      <feedback format="html">
+        <text><![CDATA[Incorrecto. Desbordamiento de búfer no aplica a aplicaciones gestionadas en la JVM, y el sistema implementa 5 vulnerabilidades.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="100" format="html">
+      <text><![CDATA[Existen exactamente 5 vulnerabilidades: Broken Access Control / IDOR (A01), Fallos Criptográficos / Contraseñas en Texto Plano (A02), Inyección SQL (A03), Cross-Site Scripting Almacenado (A03) y Configuración de Seguridad Incorrecta / Fuga de Trazas (A05).]]></text>
+      <feedback format="html">
+        <text><![CDATA[¡Correcto! Esas son exactamente las cinco fallas estructuradas en el backend y frontend de InsecureCare.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[Existen exactamente 2 vulnerabilidades: Cross-Site Scripting (XSS) y Denegación de Servicio Distribuida (DDoS) por falta de balanceador Nginx.]]></text>
+      <feedback format="html">
+        <text><![CDATA[Incorrecto. La aplicación no presenta ataques DDoS deliberados y cuenta con más de dos vectores de riesgo explotables.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[Existen exactamente 7 vulnerabilidades: Ataque de Hombre en el Medio (MitM), Falsificación de Solicitudes del Servidor (SSRF), XML External Entity (XXE), Clickjacking, Broken Object Level Authorization, Memory Leak y Buffer Overflow.]]></text>
+      <feedback format="html">
+        <text><![CDATA[Incorrecto. InsecureCare no procesa documentos XML (evitando XXE) ni realiza peticiones salientes a URLs arbitrarias (evitando SSRF).]]></text>
+      </feedback>
+    </answer>
+  </question>
+
+  <!-- Pregunta 2 -->
+  <question type="multichoice">
+    <name>
+      <text>Q2 - Inyeccion SQL (SQLi) y Exfiltracion de Datos</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>En la barra de búsqueda de diagnósticos clínicos del componente <code>ExpedienteListComponent</code>, un auditor de seguridad prueba evadir el filtro ingresando cadenas de control SQL en la URL:<br/><code>GET /api/expedientes/buscar?termino=' OR '1'='1</code><br/><br/>¿Por qué este vector de ataque tiene éxito en el servidor y cuál es la solución técnica estándar en Spring Data JPA para neutralizarlo definitivamente?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>El fallo ocurre por la concatenación de variables en createNativeQuery. La solución es parametrizar la consulta con :filtro o utilizar métodos de JpaRepository.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>5.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="0" format="html">
+      <text><![CDATA[El ataque tiene éxito porque H2 Database no admite claves foráneas; se soluciona migrando el backend a Oracle Database sin tocar el código Java.]]></text>
+      <feedback format="html">
+        <text><![CDATA[Incorrecto. El fallo no reside en el motor de base de datos sino en la ausencia de parametrización en el código de la aplicación.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="100" format="html">
+      <text><![CDATA[El ataque tiene éxito porque el servicio ExpedienteService concatena dinámicamente el parámetro del usuario en una consulta SQL nativa (createNativeQuery); se soluciona utilizando consultas parametrizadas con marcadores de posición (:termino) o métodos derivados de JpaRepository.]]></text>
+      <feedback format="html">
+        <text><![CDATA[¡Correcto! La concatenación directa de entradas de usuario en sentencias SQL permite alterar la lógica lógica del predicado WHERE. La parametrización delega el escape al driver JDBC.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[El ataque tiene éxito porque el navegador envía los parámetros en texto claro mediante HTTP; se soluciona instalando un certificado SSL autofirmado en el puerto 4200 de Angular.]]></text>
+      <feedback format="html">
+        <text><![CDATA[Incorrecto. El protocolo SSL/TLS cifra el canal de transporte, pero no previene la ejecución de comandos SQL inyectados en la consulta.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[El ataque tiene éxito debido a que la base de datos corre en memoria RAM; se neutraliza configurando spring.datasource.username=root.]]></text>
+      <feedback format="html">
+        <text><![CDATA[Incorrecto. El medio de almacenamiento (memoria vs disco) y el nombre de usuario no tienen impacto en la vulnerabilidad de inyección SQL.]]></text>
+      </feedback>
+    </answer>
+  </question>
+
+  <!-- Pregunta 3 -->
+  <question type="multichoice">
+    <name>
+      <text>Q3 - Broken Access Control / IDOR (BOLA)</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>El estudiante inicia sesión con las credenciales del paciente <code>carlos_mora</code> (Usuario ID: 3, asignado al Expediente #1). Al navegar a la vista de detalle, la URL del navegador muestra <code>/expediente/1</code>. Si el estudiante reemplaza manualmente la ruta por <code>/expediente/2</code>, ¿qué ocurre técnica y conceptualmente en la aplicación?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Se produce una falla IDOR (Insecure Direct Object Reference) o BOLA porque el servicio busca el registro por ID sin verificar que pertenezca al usuario autenticado, violando la confidencialidad médica.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>5.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="0" format="html">
+      <text><![CDATA[El sistema lanza inmediatamente un error HTTP 403 Forbidden y bloquea la IP del cliente durante 24 horas por violación de políticas de seguridad.]]></text>
+      <feedback format="html">
+        <text><![CDATA[Incorrecto. La aplicación carece intencionalmente de dicho control defensivo, permitiendo el acceso no autorizado.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="100" format="html">
+      <text><![CDATA[Se produce una vulnerabilidad de Broken Access Control (IDOR / BOLA) donde el paciente accede al expediente psiquiátrico confidencial de maria_rojas, debido a que ExpedienteService.obtenerPorId() busca directamente por clave primaria sin verificar que el usuarioId del recurso coincida con el usuario autenticado en la sesión.]]></text>
+      <feedback format="html">
+        <text><![CDATA[¡Correcto! La ausencia de validación de propiedad del recurso (Resource Ownership) permite que cualquier usuario autenticado manipule identificadores y exfiltre datos ajenos.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[El servidor Angular redirige al usuario a la página de inicio porque el componente Standalone detecta la discrepancia en el árbol de enrutamiento mediante un CanActivateFn.]]></text>
+      <feedback format="html">
+        <text><![CDATA[Incorrecto. El frontend no cuenta con guardas que comparen el ID de la ruta contra el usuario en localStorage.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[La base de datos H2 se corrompe automáticamente al recibir una petición de lectura fuera del ámbito transaccional @Transactional.]]></text>
+      <feedback format="html">
+        <text><![CDATA[Incorrecto. Las operaciones de lectura no corrompen bases de datos relacionales por omisión de @Transactional.]]></text>
+      </feedback>
+    </answer>
+  </question>
+
+  <!-- Pregunta 4 -->
+  <question type="multichoice">
+    <name>
+      <text>Q4 - Cross-Site Scripting (XSS Almacenado) y Bypass en Angular</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>En el registro de un nuevo expediente médico, un atacante ingresa el siguiente contenido en el campo de observaciones clínicas:<br/><pre><code>&lt;img src="invalido" onerror="alert('XSS Detectado')"&gt;</code></pre><br/>Al visualizar dicho registro en <code>ExpedienteDetailComponent</code>, la ventana modal de alerta de JavaScript se ejecuta exitosamente en el navegador. ¿Cuál fue el fallo cometido en el código del Front-End que provocó la ejecución del payload?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>El desarrollador invocó bypassSecurityTrustHtml() en DomSanitizer, lo que desactiva deliberadamente la sanitización context-aware que Angular aplica por defecto a las plantillas.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>5.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+      <text><![CDATA[El desarrollador utilizó la directiva [innerHTML] invocando explícitamente sanitizer.bypassSecurityTrustHtml(), desactivando voluntariamente el motor de sanitización contextual nativo de Angular.]]></text>
+      <feedback format="html">
+        <text><![CDATA[¡Correcto! Angular protege contra XSS por defecto; solo al invocar bypassSecurityTrustHtml() se permite la ejecución de scripts o manejadores de eventos maliciosos inyectados.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[Angular carece de defensas nativas contra XSS y requiere obligatoriamente instalar la librería externa jQuery para filtrar etiquetas peligrosas.]]></text>
+      <feedback format="html">
+        <text><![CDATA[Incorrecto. Angular incorpora de fábrica un potente sistema de sanitización contextual para HTML, estilos, URLs y recursos.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[El navegador web tiene deshabilitado el motor V8, provocando que las etiquetas &lt;img&gt; ejecuten scripts en el hilo de renderizado visual.]]></text>
+      <feedback format="html">
+        <text><![CDATA[Incorrecto. El motor V8 es el intérprete estándar de JavaScript en Chromium; su presencia es lo que permite ejecutar el manejador onerror.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[El fallo ocurrió porque el archivo index.html no tiene configurado el atributo lang="es".]]></text>
+      <feedback format="html">
+        <text><![CDATA[Incorrecto. El atributo lang define el idioma del documento para lectores de pantalla y motores de búsqueda; no tiene relación con el filtrado XSS.]]></text>
+      </feedback>
+    </answer>
+  </question>
+
+  <!-- Pregunta 5 -->
+  <question type="multichoice">
+    <name>
+      <text>Q5 - Fallos Criptograficos y Fuga de Informacion Tecnica</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Durante la inspección de la base de datos mediante la consola <code>/h2-console</code> y al forzar un error de sintaxis SQL en la API, el equipo auditor observa dos violaciones críticas a la confidencialidad. ¿Cuáles son estas dos debilidades y qué directivas de configuración corrigen la fuga de información?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Las contraseñas están almacenadas en texto plano en la BD, y server.error.include-stacktrace=always expone trazas internas. Se soluciona usando BCryptPasswordEncoder y configurando include-stacktrace=never.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>5.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="0" format="html">
+      <text><![CDATA[El puerto 8080 está bloqueado por el firewall de Windows y la memoria JVM es insuficiente para procesar el garbage collector.]]></text>
+      <feedback format="html">
+        <text><![CDATA[Incorrecto. La aplicación responde adecuadamente en el puerto 8080 y no existen fallas de recolección de basura.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="100" format="html">
+      <text><![CDATA[Las contraseñas de los usuarios se almacenan en texto plano en la tabla USUARIOS, y el servidor tiene configurado server.error.include-stacktrace=always, lo cual expone la arquitectura interna y consultas SQL; se remedia implementando BCryptPasswordEncoder y configurando server.error.include-stacktrace=never.]]></text>
+      <feedback format="html">
+        <text><![CDATA[¡Correcto! El almacenamiento en texto claro viola A02 (Cryptographic Failures) y la exposición de stack traces detallados viola A05 (Security Misconfiguration).]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[El servidor utiliza algoritmos cuánticos no estandarizados; se soluciona deshabilitando el protocolo HTTP 1.1 en pom.xml.]]></text>
+      <feedback format="html">
+        <text><![CDATA[Incorrecto. No existen algoritmos cuánticos en Spring Boot 3 y pom.xml no gestiona versiones de protocolos HTTP.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[La consola de H2 requiere autenticación biométrica y el backend rechaza peticiones JSON de Angular.]]></text>
+      <feedback format="html">
+        <text><![CDATA[Incorrecto. H2 Console no soporta biometría y la comunicación JSON opera normalmente.]]></text>
+      </feedback>
+    </answer>
+  </question>
+
+</quiz>
+

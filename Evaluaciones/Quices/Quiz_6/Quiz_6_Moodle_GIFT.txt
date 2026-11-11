@@ -1,0 +1,67 @@
+// ==============================================================================
+// Cuestionario: Quiz 6 - Introducción al Desarrollo Móvil y Fundamentos de Flutter & Dart
+// Curso: IF0009 - Desarrollo de Software IV (UCR)
+// Plataforma: Mediación Virtual (Moodle)
+// Formato: GIFT (Moodle Quiz Import)
+// ==============================================================================
+
+$CATEGORY: $course$/Quiz 6 - Introducción Desarrollo Móvil y Flutter
+
+// ------------------------------------------------------------------------------
+// Pregunta 1: Arquitectura de Renderizado: Desarrollo Nativo vs. Enfoques Multiplataforma
+// ------------------------------------------------------------------------------
+::Q1_Renderizado_Flutter_vs_ReactNative:: [html]En el análisis de viabilidad técnica para una aplicación empresarial con interfaces complejas que exige tasas de refresco fluidas (60 a 120 fotogramas por segundo), el equipo de ingeniería evalúa la diferencia arquitectónica fundamental entre <b>React Native</b> y <b>Flutter</b>. ¿Cuál de las siguientes afirmaciones describe con precisión técnica cómo gestiona Flutter el renderizado visual frente a React Native? {
+	~A) Flutter utiliza un puente asíncrono (Bridge) en JavaScript que serializa mensajes JSON hacia los componentes nativos (OEM) del sistema operativo, mientras que React Native compila el código a binario puro en C++ omitiendo los componentes nativos. #Incorrecto. Invierte totalmente los roles; es React Native el que utiliza un puente para comunicarse con componentes OEM, no Flutter.
+	=B) Flutter prescinde de los widgets y controles nativos del sistema operativo (OEM), renderizando cada píxel de la interfaz de forma autónoma mediante su propio motor gráfico (Impeller / Skia), a diferencia de React Native que mapea su lógica a vistas nativas de Android e iOS a través de un puente de comunicación. #¡Correcto! Flutter incorpora su propio motor de renderizado gráfico de bajo nivel en C++ (Impeller / Skia) dibujando píxel por píxel sin depender de componentes OEM ni puentes de serialización, a diferencia de React Native que delega en widgets nativos.
+	~C) Flutter delega el dibujo de todos los componentes visuales en el motor WebKit del navegador interno del teléfono (WebView), mientras que React Native dibuja directamente en el buffer de gráficos sin intervención del sistema operativo. #Incorrecto. Describe la arquitectura de frameworks híbridos basados en WebView (como Apache Cordova o Ionic clásico), no la de Flutter.
+	~D) Ambos frameworks operan de forma idéntica convirtiendo el árbol de componentes a código fuente en Kotlin para Android y Swift para iOS en cada compilación en caliente (Hot Reload). #Incorrecto. Hot Reload en Flutter inyecta código actualizado directamente en la máquina virtual de Dart en tiempo de ejecución; no realiza una traducción estática a Kotlin ni a Swift.
+}
+
+// ------------------------------------------------------------------------------
+// Pregunta 2: Ciclo de Vida del Sistema Operativo Móvil y Gestión de Memoria
+// ------------------------------------------------------------------------------
+::Q2_Ciclo_Vida_Android_onPause_onStop:: [html]A diferencia de una aplicación de escritorio o de servidor, una aplicación móvil opera bajo la supervisión estricta del sistema operativo anfitrión (Android o iOS), el cual puede pausar, detener o destruir procesos en cualquier momento. En el ciclo de vida de una pantalla en Android (<i>Activity</i>), ¿qué ocurre cuando el usuario recibe una llamada telefónica o abre otra aplicación que oculta completamente la pantalla actual, y qué buena práctica debe aplicar usted como desarrollador? {
+	~A) La Activity pasa inmediatamente por onDestroy(), borrando toda la memoria RAM; el desarrollador debe reiniciar la aplicación desde cero cada vez que vuelva a primer plano. #Incorrecto. onDestroy() únicamente se ejecuta cuando la Activity finaliza explícitamente o ante escasez crítica de memoria; no ocurre instantáneamente al recibir una llamada.
+	=B) La Activity transiciona por los estados onPause() y onStop(); el desarrollador debe suspender animaciones pesadas, pausar suscripciones activas a sensores y persistir el estado temporal del usuario, evitando fugas de memoria o descargas innecesarias de batería. #¡Correcto! Al perder la visibilidad, se ejecutan onPause() y onStop(). Es indispensable pausar sensores, animaciones y persistir el estado de la UI para evitar fugas de memoria o pérdida de datos.
+	~C) La aplicación entra en un bucle infinito en segundo plano consumiendo el 100% de la CPU hasta que el usuario decida cerrarla manualmente desde la barra de notificaciones. #Incorrecto. Los sistemas operativos móviles modernos vigilan y suspenden o terminan procesos que consumen recursos excesivos en segundo plano (ANR).
+	~D) El sistema operativo transfiere la aplicación a la nube automáticamente mediante un hilo remoto, garantizando que el hardware no sufra interrupción alguna en su ejecución. #Incorrecto. La gestión de ciclo de vida es estrictamente local en el dispositivo; el SO no transfiere hilos a la nube de forma automática.
+}
+
+// ------------------------------------------------------------------------------
+// Pregunta 3: Rastreo de Código (Code Tracing) - Dart 3: Null Safety, Records y Pattern Matching
+// ------------------------------------------------------------------------------
+::Q3_Dart3_Records_Pattern_Matching:: [html]Analice detenidamente el siguiente fragmento de código escrito en <b>Dart 3</b>:<br/><br/><pre><code>(String, int?) procesarUsuario(String? input, int edad) \{
+  final nombre \= input ?? "Invitado";
+  final puntos \= edad &gt;\= 18 ? edad * 10 \: null;
+  return (nombre, puntos);
+\}
+
+void main() \{
+  final (user, score) \= procesarUsuario(null, 20);
+
+  final resultado \= switch (score) \{
+    null \=\&gt; 'Sin puntaje asignado',
+    &gt; 250 \=\&gt; 'Nivel Avanzado',
+    &gt;\= 150 &amp;&amp; &lt;\= 250 \=\&gt; 
+      'Nivel Intermedio: $user ($score pts)',
+    _ \=\&gt; 'Nivel Inicial: $user'
+  \};
+
+  print(resultado);
+\}</code></pre><br/>¿Cuál es la salida exacta que se imprimirá en la consola al ejecutarse este programa? {
+	=A) Nivel Intermedio\: Invitado (200 pts) #¡Correcto! procesarUsuario(null, 20) retorna ('Invitado', 200). En la expresión switch, score (200) cumple la guarda relacional '>= 150 && <= 250', imprimiendo 'Nivel Intermedio: Invitado (200 pts)'.
+	~B) Nivel Inicial\: Invitado #Incorrecto. El patrón comodín _ no se alcanza porque la condición '>= 150 && <= 250' captura exitosamente el valor 200.
+	~C) Sin puntaje asignado #Incorrecto. score no es nulo ya que la edad (20 >= 18) calculó 200 puntos.
+	~D) Se produce un error de compilación debido a que la función procesarUsuario intenta retornar una tupla sin definir una clase contenedora formal. #Incorrecto. En Dart 3, los Records son tipos nativos y válidos del lenguaje sin necesidad de clases adicionales.
+}
+
+// ------------------------------------------------------------------------------
+// Pregunta 4: Rendimiento y Concurrencia en Flutter: Event Loop frente a Isolates
+// ------------------------------------------------------------------------------
+::Q4_Concurrencia_EventLoop_Isolates:: [html]Dart ejecuta el código de una aplicación en un único hilo principal (<i>UI Thread</i>) regulado por un bucle de eventos (<i>Event Loop</i>). Cuando una aplicación móvil debe procesar un archivo JSON masivo de 50 MB proveniente de una API o realizar un cálculo criptográfico intensivo, ¿cuál es el problema de rendimiento que se produce si se ejecuta dentro del hilo principal y cuál es la solución arquitectónica provista por Flutter? {
+	=A) Ocurre un bloqueo del Event Loop que impide al motor gráfico dibujar los 60/120 fotogramas por segundo, provocando congelamiento visual (jank); la solución es delegar el procesamiento en un Isolate independiente (mediante la función compute), el cual corre en un hilo físico separado con su propia memoria aislada. #¡Correcto! Las tareas intensivas en CPU bloquean el Event Loop en el hilo de UI generando jank. Los Isolates ejecutan en hilos y montones de memoria independientes, permitiendo trabajo en segundo plano sin congelar la pantalla.
+	~B) Ocurre un desbordamiento de pila (StackOverflowError) irrecuperable en el navegador; la solución consiste en reemplazar Dart por JavaScript puro utilizando un Service Worker. #Incorrecto. En móvil, Flutter compila a código nativo de máquina (ARM/x86), no sobre JavaScript ni Service Workers.
+	~C) El sistema operativo suspende la antena de red del dispositivo; la solución es invocar setState() repetidamente dentro de un ciclo while(true). #Incorrecto. Un bucle while(true) congelaría por completo el hilo principal provocando un cierre por ANR (Application Not Responding).
+	~D) La palabra clave await resuelve automáticamente el problema creando hilos físicos nativos del procesador para cada función asíncrona, eliminando la necesidad de hilos secundarios. #Incorrecto. await no crea hilos secundarios de CPU; simplemente pausa la función en el bucle de eventos cooperativo. Si el cómputo es costoso en CPU, congelará la UI.
+}
+
