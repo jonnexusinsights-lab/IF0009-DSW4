@@ -1,0 +1,491 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <!-- Categoria del Banco de Preguntas en Mediacion Virtual -->
+  <question type="category">
+    <category>
+      <text>$course$/top/Examen Parcial II - Teoria y Teoria Aplicada (40 pts)</text>
+    </category>
+    <info format="moodle_auto_format">
+      <text>Banco de preguntas para el Examen Parcial II: Desarrollo Movil (Flutter), Ciberseguridad OWASP y Despliegue/Publicacion (IF0009 Desarrollo de Software IV - UCR)</text>
+    </info>
+  </question>
+
+  <!-- Pregunta 1 (3 pts) -->
+  <question type="multichoice">
+    <name>
+      <text>P01 - Flutter: Jerarquia de Arboles y Rendimiento</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Cual es la funcion que desempena cada uno de los tres arboles (<em>Widget Tree</em>, <em>Element Tree</em> y <em>RenderObject Tree</em>) en Flutter y como se optimiza el rendimiento grafico?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Los Widgets son descripciones declarativas e inmutables de la UI; los Elements gestionan el ciclo de vida y el estado; los RenderObjects calculan el tamano y pintan en pantalla. Flutter optimiza el rendimiento reutilizando los RenderObjects existentes cuando unicamente cambian los datos.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>3.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+      <text><![CDATA[Los Widgets son descripciones declarativas e inmutables de la UI; los Elements gestionan el ciclo de vida y el estado; los RenderObjects calculan el tamano y pintan en pantalla. Flutter optimiza el rendimiento reutilizando los RenderObjects existentes cuando unicamente cambian los datos.]]></text>
+      <feedback format="html">
+        <text><![CDATA[Correcto. Esta es la arquitectura interna fundamental del pipeline de renderizado de Flutter.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[Los Widgets compilan directamente a codigo C++; los Elements son los hilos de ejecucion del sistema operativo; los RenderObjects son controladores de la GPU.]]></text>
+      <feedback format="html">
+        <text><![CDATA[Incorrecto. Los widgets no se compilan directamente a C++ ni los elements representan hilos de SO.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[Los tres arboles son copias de respaldo identicas almacenadas en memoria RAM para evitar caidas de la aplicacion en Android y iOS.]]></text>
+      <feedback format="html">
+        <text><![CDATA[Incorrecto. Son tres estructuras jerarquicas conceptualmente distintas.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[El Widget Tree se ejecuta en el navegador web; el Element Tree reside en el servidor remoto; y el RenderObject Tree almacena los datos en SQLite.]]></text>
+      <feedback format="html">
+        <text><![CDATA[Incorrecto. Los tres arboles residen localmente en memoria durante la ejecucion de la app movil.]]></text>
+      </feedback>
+    </answer>
+  </question>
+
+  <!-- Pregunta 2 (4 pts) -->
+  <question type="multichoice">
+    <name>
+      <text>P02 - Flutter: Ciclo de Vida y Fuga de Memoria (StreamSubscription)</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Considere el siguiente fragmento de codigo de un <code>StatefulWidget</code> en Flutter:</p>
+<pre><code>class SensorMonitorState
+    extends State&lt;SensorMonitor&gt; {
+  StreamSubscription? _sub;
+  int _lecturas = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    _sub = sensorStream.listen((dato) {
+      setState(() {
+        _lecturas++;
+      });
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Text("Lecturas: $_lecturas");
+  }
+}</code></pre>
+<p>Cual es el defecto critico de ciclo de vida presente en esta clase y cual es su solucion tecnica?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>La suscripcion reactiva no es cancelada al destruirse el widget. Al salir de la pantalla, el Stream continua emitiendo datos e invocando setState() sobre un objeto desmontado. La solucion es implementar dispose() y ejecutar _sub?.cancel().</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>4.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+      <text><![CDATA[Hay una fuga de memoria (memory leak) porque no se cancela la suscripcion al destruir la vista. Se soluciona implementando el metodo dispose() y ejecutando _sub?.cancel().]]></text>
+      <feedback format="html">
+        <text><![CDATA[Correcto. Toda suscripcion asincrona en Flutter debe liberarse en el metodo dispose().]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[El error radica en llamar a super.initState(); los Streams deben inicializarse unicamente en el constructor de la clase.]]></text>
+      <feedback format="html">
+        <text><![CDATA[Incorrecto. super.initState() es obligatorio y los Streams no se inicializan en constructores.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[El recolector de basura de Dart cancela de forma automatica todos los Streams abiertos al salir de la pantalla, por lo que no existe ningun defecto.]]></text>
+      <feedback format="html">
+        <text><![CDATA[Incorrecto. El Garbage Collector no cancela Streams reactivos si existe una suscripcion activa.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[El defecto se debe a que la variable _lecturas debe ser declarada como final para que Flutter la actualice sin llamar a setState().]]></text>
+      <feedback format="html">
+        <text><![CDATA[Incorrecto. Declarar una variable final no resuelve la reactividad ni el ciclo de vida.]]></text>
+      </feedback>
+    </answer>
+  </question>
+
+  <!-- Pregunta 3 (4 pts) -->
+  <question type="multichoice">
+    <name>
+      <text>P03 - Movil: Persistencia Offline-First y Almacenamiento Seguro</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>En aplicaciones moviles empresariales con persistencia local en SQLite (mediante <code>sqflite</code> en Flutter):</p>
+<ol>
+  <li>Para que se utilizan los metodos <code>toMap()</code> y <code>fromMap()</code>?</li>
+  <li>Donde deben guardarse los tokens de autenticacion JWT confidenciales?</li>
+</ol>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>toMap() convierte instancias de Dart a Map&lt;String, dynamic&gt; para SQLite, y fromMap() reconstruye objetos desde las filas devueltas. Los tokens JWT deben resguardarse en flutter_secure_storage (Android Keystore / iOS Keychain) para garantizar cifrado a nivel de hardware.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>4.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+      <text><![CDATA[toMap() serializa objetos Dart a mapas para guardarlos en SQLite, y fromMap() reconstruye objetos Dart desde registros de la base de datos. Los tokens JWT deben guardarse cifrados mediante flutter_secure_storage (Keystore en Android / Keychain en iOS).]]></text>
+      <feedback format="html">
+        <text><![CDATA[Correcto. SQLite almacena datos estructurados via mapas, y los secretos exigen almacenamiento seguro cifrado por hardware.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[toMap() y fromMap() se utilizan para ubicar coordenadas GPS en mapas satelitales. Los tokens JWT deben guardarse en un archivo de texto plano .txt.]]></text>
+      <feedback format="html">
+        <text><![CDATA[Incorrecto. No tienen relacion con mapas geograficos ni se deben almacenar credenciales en texto plano.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[Los metodos toMap() y fromMap() sirven para enviar correos electronicos; los tokens deben guardarse quemados en el codigo fuente.]]></text>
+      <feedback format="html">
+        <text><![CDATA[Incorrecto. Quemada de credenciales en codigo es una vulnerabilidad critica (M09 / A02).]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[SQLite cifra todas las tablas por defecto con contrasena maestra, por lo que no se requiere ninguna libreria de almacenamiento seguro.]]></text>
+      <feedback format="html">
+        <text><![CDATA[Incorrecto. SQLite estandar no cifra los archivos de base de datos por defecto.]]></text>
+      </feedback>
+    </answer>
+  </question>
+
+  <!-- Pregunta 4 (4 pts) -->
+  <question type="multichoice">
+    <name>
+      <text>P04 - Flutter: Pruebas de Widgets (pump vs pumpAndSettle)</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Al implementar pruebas automatizadas de interfaz con <code>WidgetTester</code> en Flutter, ¿cual es la diferencia tecnica entre <code>tester.pump()</code> y <code>tester.pumpAndSettle()</code>?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>tester.pump() avanza el reloj simulado un frame discreto (16ms); mientras que tester.pumpAndSettle() simula frames repetidamente hasta que todas las animaciones, timers o transiciones de ruta terminen y el arbol este en reposo.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>4.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+      <text><![CDATA[tester.pump() avanza el reloj simulado un frame unico (o un tiempo fijo); mientras que tester.pumpAndSettle() avanza frames continuamente hasta que no queden animaciones o transiciones pendientes en la pantalla.]]></text>
+      <feedback format="html">
+        <text><![CDATA[Correcto. pumpAndSettle asegura que la interfaz alcance un estado completamente estatico antes de verificar condiciones visuales.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[tester.pump() funciona solo en telefonos Android; mientras que tester.pumpAndSettle() funciona solo en telefonos iPhone.]]></text>
+      <feedback format="html">
+        <text><![CDATA[Incorrecto. Ambos metodos son multiplataforma en el framework de pruebas de Flutter.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[tester.pump() reinicia la base de datos; mientras que tester.pumpAndSettle() apaga el emulador al terminar las pruebas.]]></text>
+      <feedback format="html">
+        <text><![CDATA[Incorrecto. Ninguno interactua con bases de datos ni apaga el emulador.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[Son dos nombres identicos para la misma instruccion, introducidos unicamente por razones de compatibilidad historica.]]></text>
+      <feedback format="html">
+        <text><![CDATA[Incorrecto. Tienen semanticas de ejecucion y sincronizacion claramente distintas.]]></text>
+      </feedback>
+    </answer>
+  </question>
+
+  <!-- Pregunta 5 (3 pts) -->
+  <question type="multichoice">
+    <name>
+      <text>P05 - Ciberseguridad: Correspondencia OWASP Top 10</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Empareje las siguientes situaciones con su categoria oficial de OWASP:</p>
+<ol>
+  <li>Concatenar entradas de texto del usuario directamente en sentencias SQL.</li>
+  <li>Permitir que un usuario vea pedidos de otros cambiando el ID en la URL.</li>
+  <li>Dejar contrasenas maestras o llaves de API escritas dentro del codigo de la app.</li>
+</ol>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>1 corresponde a A03:2021 (Injection). 2 corresponde a A01:2021 (Broken Access Control / IDOR). 3 corresponde a M09:2024 (Insecure Data Storage) y A02:2021 (Cryptographic Failures).</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>3.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+      <text><![CDATA[1: Inyeccion (A03:2021); 2: Control de Acceso Roto / IDOR (A01:2021); 3: Almacenamiento Inseguro / Fallas Criptograficas (M09 / A02).]]></text>
+      <feedback format="html">
+        <text><![CDATA[Correcto. Las tres clasificaciones corresponden exactamente a los estandares de OWASP.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[1: Configuracion Insegura (A05); 2: Inyeccion (A03); 3: Ataque de Red (M01).]]></text>
+      <feedback format="html">
+        <text><![CDATA[Incorrecto. La concatenacion en SQL es Inyeccion (A03), no Configuracion Insegura.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[1: Control de Acceso (A01); 2: Falla Criptografica (A02); 3: Registro Insuficiente (A09).]]></text>
+      <feedback format="html">
+        <text><![CDATA[Incorrecto. Concatenar en SQL no es A01 ni cambiar IDs en URL es A02.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[1: Desbordamiento de Memoria; 2: Suplantacion de Identidad; 3: Fallo de Hardware.]]></text>
+      <feedback format="html">
+        <text><![CDATA[Incorrecto. Esas categorias no coinciden con las amenazas descritas ni el estandar OWASP Top 10.]]></text>
+      </feedback>
+    </answer>
+  </question>
+
+  <!-- Pregunta 6 (4 pts) -->
+  <question type="multichoice">
+    <name>
+      <text>P06 - Ciberseguridad: SQLi y Consultas Seguras</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Dado el siguiente codigo vulnerable en un servicio Spring Boot:</p>
+<pre><code>String sql = "SELECT * FROM PRODUCTOS " +
+             "WHERE NOMBRE LIKE '%" +
+             filtro + "%'";
+Query q = em.createNativeQuery(sql);</code></pre>
+<p>Cual es el riesgo de seguridad de este diseno y como se soluciona en Spring Data JPA?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>La concatenacion de cadenas permite la inyeccion de clausulas SQL maliciosas (por ejemplo UNION SELECT) para exfiltrar datos privados. Se remedia utilizando @Query con JPQL parametrizado (:termino), donde el motor ORM vincula la entrada de forma segura.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>4.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+      <text><![CDATA[Un atacante puede inyectar sentencias como ' UNION SELECT ... para robar datos confidenciales de otras tablas. Se soluciona usando @Query con JPQL y parametros nombrados (:termino), que tratan la entrada como dato puro y no como comando ejecutable.]]></text>
+      <feedback format="html">
+        <text><![CDATA[Correcto. Las consultas parametrizadas separan el codigo SQL de los datos proporcionados por el usuario.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[El servidor se apaga por sobrecalentamiento. Se soluciona cambiando la base de datos a formato de hoja de calculo Excel.]]></text>
+      <feedback format="html">
+        <text><![CDATA[Incorrecto. Cambiar a Excel no es una solucion de arquitectura ni previene inyeccion.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[No existe riesgo si el usuario escribe nombres cortos. Se soluciona limitando el campo de busqueda a 5 letras.]]></text>
+      <feedback format="html">
+        <text><![CDATA[Incorrecto. Inyecciones como ' OR 1=1-- son muy cortas y vulneran el sistema igualmente.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[El riesgo es que los productos se borren solos. Se soluciona agregando un try-catch que capture excepciones generales.]]></text>
+      <feedback format="html">
+        <text><![CDATA[Incorrecto. Un bloque try-catch captura errores pero no detiene una inyeccion SQL exitosa.]]></text>
+      </feedback>
+    </answer>
+  </question>
+
+  <!-- Pregunta 7 (4 pts) -->
+  <question type="multichoice">
+    <name>
+      <text>P07 - Ciberseguridad: IDOR / BOLA en APIs REST</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>El endpoint <code>GET /api/ordenes/{id}</code> devuelve los datos del pedido buscando unicamente por ID numerico en la base de datos:<br />
+¿Por que es peligroso y como debe corregirse en el servicio?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Permite que cualquier usuario autenticado inspeccione compras ajenas enumerando IDs (IDOR / Broken Access Control). Se soluciona comprobando en la capa de servicio que la orden pertenezca al usuario solicitante (obtenido del token JWT) o que posea rol de administrador (ADMIN), lanzando 403 Forbidden en caso contrario.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>4.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+      <text><![CDATA[Es peligroso porque cualquier usuario con sesion puede ver ordenes ajenas con solo cambiar el numero en la URL (IDOR). Se corrige verificando en el servicio que la orden pertenezca al usuario autenticado (segun su token JWT) o que tenga rol ADMIN, lanzando 403 Forbidden si no coincide.]]></text>
+      <feedback format="html">
+        <text><![CDATA[Correcto. La validacion contextual de propiedad en el backend es la defensa definitiva contra IDOR.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[Es peligroso porque los numeros consumen mas ancho de banda que las letras. Se corrige usando letras aleatorias en la ruta.]]></text>
+      <feedback format="html">
+        <text><![CDATA[Incorrecto. El uso de identificadores aleatorios (UUID) es ofuscacion y no reemplaza la autorizacion.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[No es peligroso porque los pedidos son informacion publica en todas las aplicaciones web comerciales.]]></text>
+      <feedback format="html">
+        <text><![CDATA[Incorrecto. Las ordenes contienen direcciones de entrega y datos personales privados.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[Se corrige cambiando el metodo de GET a DELETE para que los usuarios no puedan leer informacion.]]></text>
+      <feedback format="html">
+        <text><![CDATA[Incorrecto. Cambiar el verbo HTTP a DELETE eliminaria datos y no resuelve el control de acceso.]]></text>
+      </feedback>
+    </answer>
+  </question>
+
+  <!-- Pregunta 8 (4 pts) -->
+  <question type="multichoice">
+    <name>
+      <text>P08 - Ciberseguridad: XSS y Sanitizacion en Angular</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>En un componente Angular, el programador escribio:</p>
+<pre><code>this.notasHtml = this.sanitizer
+  .bypassSecurityTrustHtml(orden.notasEntrega);</code></pre>
+<p>y en la vista HTML coloco: <code>&lt;div [innerHTML]="notasHtml"&gt;&lt;/div&gt;</code>.<br />
+¿Cual es la vulnerabilidad generada y como se remedia?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Se desactiva la proteccion contextual de Angular contra XSS. Si un atacante almacena etiquetas &lt;img onerror=...&gt; o scripts, estos se ejecutaran en el navegador de la victima (Stored XSS). Se remedia removiendo el bypass y usando interpolacion {{ orden.notasEntrega }}.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>4.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+      <text><![CDATA[Se desactiva la proteccion automatica de Angular contra scripts maliciosos, permitiendo que un atacante inyecte codigo JavaScript que se ejecute en el navegador de otros usuarios (Stored XSS). Se remedia quitando el bypass y usando la interpolacion normal {{ orden.notasEntrega }}.]]></text>
+      <feedback format="html">
+        <text><![CDATA[Correcto. Nunca debe usarse bypassSecurityTrustHtml sobre contenido suministrado por usuarios finales.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[Provoca que la base de datos Spring Boot borre la tabla de clientes. Se remedia reiniciando el servidor web.]]></text>
+      <feedback format="html">
+        <text><![CDATA[Incorrecto. XSS es una vulnerabilidad en el cliente navegador, no borra la base de datos del servidor.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[Angular no compila si se usa bypassSecurityTrustHtml. Se remedia renombrando la variable a notasSeguras.]]></text>
+      <feedback format="html">
+        <text><![CDATA[Incorrecto. Angular si compila perfectamente este metodo ya que forma parte de DomSanitizer.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[Los navegadores bloquean todos los ataques XSS automaticamente, por lo que este codigo es 100% seguro y recomendado.]]></text>
+      <feedback format="html">
+        <text><![CDATA[Incorrecto. Los navegadores ejecutan el HTML inyectado si el framework no lo desinfecta.]]></text>
+      </feedback>
+    </answer>
+  </question>
+
+  <!-- Pregunta 9 (5 pts) -->
+  <question type="multichoice">
+    <name>
+      <text>P09 - Despliegue Web: Nginx Proxy Inverso y Certificados TLS</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Al poner en produccion una aplicacion con Frontend en Angular y Backend en Spring Boot:</p>
+<ol>
+  <li>¿Cual es la funcion principal de Nginx como proxy inverso?</li>
+  <li>¿Cual es la diferencia entre el bundle de Angular y el servicio Spring Boot?</li>
+  <li>¿Para que sirve el protocolo HTTPS (TLS)?</li>
+</ol>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Nginx expone el puerto seguro 443, sirve directamente los archivos HTML/JS/CSS de Angular y delega las peticiones REST /api al servicio Spring Boot en el puerto 8080. Angular es una aplicacion estatica cliente, mientras Spring Boot es un servicio en segundo plano gestionado por systemd. TLS cifra la comunicacion en transito.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>5.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+      <text><![CDATA[Nginx recibe las peticiones en el puerto 443 con HTTPS, sirve los archivos estaticos de Angular directamente y reenvia las peticiones /api a Spring Boot (8080); Spring Boot corre como un servicio continuo de fondo (systemd); HTTPS cifra los datos en transito entre el navegador y el servidor.]]></text>
+      <feedback format="html">
+        <text><![CDATA[Correcto. Describe fielmente el patron de arquitectura de despliegue para SPA + backend REST con terminacion TLS perimetral.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[Nginx es la base de datos relacional del sistema; Angular procesa las transacciones bancarias; y HTTPS solo sirve para conectar impresoras en red.]]></text>
+      <feedback format="html">
+        <text><![CDATA[Incorrecto. Nginx es un servidor web/proxy, no un gestor de base de datos relacional.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[Nginx apaga los servidores por las noches; Angular se ejecuta en Java 21; y TLS solo protege mensajes de WhatsApp.]]></text>
+      <feedback format="html">
+        <text><![CDATA[Incorrecto. Angular se compila a JavaScript/TypeScript en el navegador, no Java 21.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[Spring Boot debe compilarse dentro del navegador web de cada cliente; y Angular corre en la terminal de Linux como demonio de base de datos.]]></text>
+      <feedback format="html">
+        <text><![CDATA[Incorrecto. Spring Boot corre en el servidor y Angular en el navegador del cliente.]]></text>
+      </feedback>
+    </answer>
+  </question>
+
+  <!-- Pregunta 10 (5 pts) -->
+  <question type="multichoice">
+    <name>
+      <text>P10 - Despliegue Movil: Keystore y Android App Bundle (AAB)</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>En la preparacion de una app movil para publicarla en Google Play Store:</p>
+<ol>
+  <li>¿Que es el archivo <code>keystore</code> y la herramienta <code>keytool</code>?</li>
+  <li>¿Por que se utiliza el formato Android App Bundle (<code>.aab</code>) en lugar del <code>.apk</code> tradicional?</li>
+</ol>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>keytool genera el keystore que contiene la llave privada para firmar la app y certificar su autoria de forma inmutable. El formato .aab permite a Google Play compilar e instalar APKs reducidos y personalizados segun la arquitectura de hardware del dispositivo del usuario (Dynamic Delivery).</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>5.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+      <text><![CDATA[keytool y el keystore permiten crear y guardar la llave criptografica privada para firmar digitalmente la aplicacion y certificar que no ha sido alterada. El formato .aab permite a Google Play entregar paquetes mas livianos adaptados al procesador y pantalla de cada usuario (Dynamic Delivery).]]></text>
+      <feedback format="html">
+        <text><![CDATA[Correcto. Firma digital y compilacion dinamica con Dynamic Delivery son los estandares de Google Play.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[El archivo keystore es la lista de usuarios y contrasenas de la app. El formato .aab sirve exclusivamente para televisores inteligentes.]]></text>
+      <feedback format="html">
+        <text><![CDATA[Incorrecto. El keystore es un almacen de certificados criptograficos, no una lista de usuarios.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[La firma digital sirve para cambiar el icono de la aplicacion en el menu. El formato .apk ya no existe en ningun sistema operativo.]]></text>
+      <feedback format="html">
+        <text><![CDATA[Incorrecto. La firma digital garantiza autoria e integridad binaria, no diseno de iconos.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[keytool es un antivirus para celulares; y .aab es un archivo de audio para musica de fondo en la aplicacion.]]></text>
+      <feedback format="html">
+        <text><![CDATA[Incorrecto. keytool gestiona llaves criptograficas y .aab es un formato de empaquetado de aplicacion movil.]]></text>
+      </feedback>
+    </answer>
+  </question>
+</quiz>
